@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema({
         required: true
     },
     role: {
-        type: Boolean,
+        type: Time,
         required: true
     },
     email: {

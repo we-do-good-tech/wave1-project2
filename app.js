@@ -46,6 +46,6 @@ function addStudentToUser() {
     ).then(() => { })
 }
 
-// addStudentToUser()
+addStudentToUser()
 
 server.listen(process.env.PORT || keys.port, () => console.log("Listening"));
