@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const userController = require('../controllers/teacher')
+const teacerControllers = require('../controllers/teacher')
 
 // Admin
 // router.get('/admin/admin/all', userController.admin.all);
