@@ -12,7 +12,7 @@ module.exports = {
     updateTeacher: async function (teacher) {
 
     },
-    deletTeacher: async function (teacher) {
+    deleteTeacher: async function (teacher) {
 
     },
     addStudent: async function (newStudent) {
