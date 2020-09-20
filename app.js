@@ -14,7 +14,7 @@ server.use(express.json())
 
 const userRouter = require('./routes/user')
 
-server.use('/user', userRouter)
+server.use('/api/user', userRouter)
 
 
 

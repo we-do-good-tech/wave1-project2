@@ -1,5 +1,6 @@
 module.exports = {
     // Admining
+    getAllAdmins: async () => { },
     addAdmin: async (newAdmin) => { },
     registerAdmin: async (regAdmin) => { },
     addTeacher: async (newTeacher) => { },

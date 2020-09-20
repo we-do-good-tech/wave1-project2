@@ -3,6 +3,13 @@ const userService = require('../services/user')
 
 exports = {
     admin: {
+        all: async (req, res, next) => {
+            try {
+
+            } catch (err) {
+
+            }
+        },
         add: async (req, res, next) => {
             try {
 
@@ -93,14 +100,14 @@ exports = {
         },
     },
     teacher: {
-        register: async (req, res, next) => {
+        getStudents: async (req, res, next) => {
             try {
 
             } catch (err) {
 
             }
         },
-        getStudents: async (req, res, next) => {
+        register: async (req, res, next) => {
             try {
 
             } catch (err) {
