@@ -1,26 +1,26 @@
 module.exports = {
     // Admining
-    addAdmin: async function (newAdmin) { },
-    registerAdmin: async function (regAdmin) { },
-    addTeacher: async function (newTeacher) { },
-    updateTeacher: async function (teacher) { },
-    deleteTeacher: async function (teacher) { },
-    addStudent: async function (newStudent) { },
-    updateStudent: async function (student) { },
-    deleteStudent: async function (student) { },
+    addAdmin: async (newAdmin) => { },
+    registerAdmin: async (regAdmin) => { },
+    addTeacher: async (newTeacher) => { },
+    updateTeacher: async (teacher) => { },
+    deleteTeacher: async (teacher) => { },
+    addStudent: async (newStudent) => { },
+    updateStudent: async (student) => { },
+    deleteStudent: async (student) => { },
     // Teaching
-    registerTeacher: async function (newTeacher) { },
-    updateStudent: async function (student) { },
-    addMeet: async function (teacher, student, newMeet) { },
+    registerTeacher: async (newTeacher) => { },
+    updateStudent: async (student) => { },
+    addMeet: async (teacher, student, newMeet) => { },
     // Parenting
-    confirmation: async function (meet) { },
+    confirmation: async (meet) => { },
     // Information
     // // Getting
-    getAllStudents: async function () { },
-    getAllTeachers: async function () { },
-    getMyStudents: async function (teacher) { },
-    getStudentMeetings: async function (teacher, student) { },
+    getAllStudents: async () => { },
+    getAllTeachers: async () => { },
+    getMyStudents: async (teacher) => { },
+    getStudentMeetings: async (teacher, student) => { },
     // // Searching
-    searchTeacher: async function (inp) { },
-    searchStudent: async function (inp) { },
+    searchTeacher: async (inp) => { },
+    searchStudent: async (inp) => { },
 }
