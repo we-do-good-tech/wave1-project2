@@ -12,9 +12,11 @@ server.use(express.json())
 
 
 
-const userRouter = require('./routes/user')
+const teacherRouters = require('./routes/teacher')
+const adminRouters = require('./routes/admin')
 
-server.use('/api/user', userRouter)
+server.use('/api/user/admin', adminRouters)
+server.use('/api/user/teacher', teacherRouters)
 
 
 

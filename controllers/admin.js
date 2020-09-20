@@ -1,7 +1,15 @@
-const userService = require('../services/user')
+// i prefer write the funcs like that more clear at controllers
+// because these funcs are sometimes complex
+
+exports.getAllAdmins = async function (req, res, next) {
+    try {
+    } catch (err) {
+    }
+}
 
 
-exports = {
+
+module.exports = {
     admin: {
         all: async (req, res, next) => {
             try {
@@ -99,43 +107,4 @@ exports = {
             },
         },
     },
-    teacher: {
-        getStudents: async (req, res, next) => {
-            try {
-
-            } catch (err) {
-
-            }
-        },
-        register: async (req, res, next) => {
-            try {
-
-            } catch (err) {
-
-            }
-        },
-        updateStudent: async (req, res, next) => {
-            try {
-
-            } catch (err) {
-
-            }
-        },
-        addMeet: async (req, res, next) => {
-            try {
-
-            } catch (err) {
-
-            }
-        },
-    },
-    meetings: {
-        studentMeetings: async (req, res, next) => {
-            try {
-
-            } catch (err) {
-
-            }
-        }
-    }
 }
