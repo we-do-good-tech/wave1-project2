@@ -1,5 +1,41 @@
 module.exports = {
-    register: async function (newUser) {
-        //save user...
+    // Admining
+    addAdmin: async function (newAdmin) {
+
+    },
+    registerAdmin: async function (regAdmin) {
+
+    },
+    addTeacher: async function (newTeacher) {
+
+    },
+    updateTeacher: async function (teacher) {
+
+    },
+    deletTeacher: async function (teacher) {
+
+    },
+    addStudent: async function (newStudent) {
+
+    },
+    updateStudent: async function (student) {
+
+    },
+    deleteStudent: async function (student) {
+
+    },
+    // Teaching
+    registerTeacher: async function (newTeacher) {
+
+    },
+    updateStudent: async function (student) {
+
+    },
+    addMeet: async function (newMeet) {
+
+    },
+    // Parenting
+    confirmation: async function (meet) {
+
     }
 }
