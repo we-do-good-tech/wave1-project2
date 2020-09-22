@@ -12,7 +12,7 @@ import { AuthRoutingModule } from './auth/auth.routing.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AuthRoutingModule
+    AuthRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

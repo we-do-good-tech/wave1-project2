@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-login',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./id.component.scss']
 })
 export class IdComponent implements OnInit {
+  idForm: FormGroup;
 
-  constructor() { }
+  constructor(private fb: FormBuilder) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.idForm = this.fb.group({
+      email: ["", [Validators.required, Validators.email]],
+      password: ["", Validators.required],
+      confirmpassword: ["", Validators.required]
+    });
   }
-
 }
