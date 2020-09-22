@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from './id/id.component';
-import { RegisterComponent } from './register/register.component';
+import { IdComponent } from './id/id.component';
+import { ConfirmComponent } from './confirm/confirm.component';
 
 
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent],
+  declarations: [IdComponent, ConfirmComponent],
   imports: [
     CommonModule
   ]
