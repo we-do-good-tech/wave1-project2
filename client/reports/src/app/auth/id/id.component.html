@@ -1,12 +1,15 @@
 <form [formGroup]="idForm">
     <div class="input-group">
-        <input type="password" placeholder="ת.ז.">
-        <div class="input-group-append">
-            <span class="input-group-text">
-                <i class="fa fa-eye-slash"></i>
+        <input [type]="inputType" formControlName="userId" class="form-control"
+            aria-label="Dollar amount (with dot and two decimal places)" pattern="^\d{9}$">
+        <div class="btn input-group-append input-group-text" (click)="toggleVis()">
+            <span *ngIf="inputType === 'text'">
+                <i class="fa fa-eye-slash" aria-hidden="true"></i>
+            </span>
+            <span *ngIf="inputType !== 'text'">
+                <i class="fa fa-eye" aria-hidden="true"></i>
             </span>
         </div>
     </div>
-    <button>כנס</button>
-
+    <button class="btn btn-primary">כניסה</button>
 </form>

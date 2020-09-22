@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormsService } from 'src/app/services/forms.service';
 
 @Component({
   selector: 'app-login',
@@ -8,14 +9,18 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 })
 export class IdComponent implements OnInit {
   idForm: FormGroup;
+  inputType: string = 'password';
 
-  constructor(private fb: FormBuilder) {}
+  constructor(public formsService: FormsService) {
+  }
 
   ngOnInit() {
-    this.idForm = this.fb.group({
-      email: ["", [Validators.required, Validators.email]],
-      password: ["", Validators.required],
-      confirmpassword: ["", Validators.required]
-    });
+    this.idForm = this.formsService.getIdForm();
   }
+
+  toggleVis() {
+    this.inputType = this.inputType === 'text' ? 'password' : 'text';
+  }
+
+
 }
