@@ -1,0 +1,48 @@
+<form
+    appInputFocus
+    [formGroup]="confirmCodeForm"
+    (ngSubmit)="onSubmit()"
+>
+    <div class="row">
+        <div class="col">
+            <input
+                #first
+                type="number"
+                class="form-control"
+                formControlName="firstNumber"
+                (input)="limitOneNumber('firstNumber')"
+            >
+        </div>
+        <div class="col">
+            <input
+                type="number"
+                class="form-control"
+                formControlName="secondNumber"
+                (input)="limitOneNumber('secondNumber')"
+            >
+        </div>
+        <div class="col">
+            <input
+                type="number"
+                class="form-control"
+                formControlName="thirdNumber"
+                (input)="limitOneNumber('thirdNumber')"
+            >
+        </div>
+        <div class="col">
+            <input
+                type="number"
+                class="form-control"
+                formControlName="fourthNumber"
+                (input)="limitOneNumber('fourthNumber')"
+            >
+        </div>
+    </div>
+    <button
+        type="submit"
+        class="bth btn-primary"
+        [disabled]="confirmCodeForm.invalid"
+    >
+        Confirm
+    </button>
+</form>

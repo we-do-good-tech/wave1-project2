@@ -1,17 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { AuthRoutingModule } from "./auth.routing.module";
+import { IdComponent } from './id/id.component';
+import { ConfirmComponent } from './confirm/confirm.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InputFocusDirective } from "../directives/input-focus.directive";
+
 
 
 
 @NgModule({
-    declarations: [LoginComponent, RegisterComponent],
+    declarations: [
+        IdComponent,
+        ConfirmComponent,
+        InputFocusDirective
+    ],
     imports: [
         CommonModule,
-        AuthRoutingModule
-
+        FormsModule,
+        ReactiveFormsModule
     ]
 })
 export class AuthModule { }
