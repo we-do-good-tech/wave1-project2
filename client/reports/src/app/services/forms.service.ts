@@ -14,7 +14,8 @@ export class FormsService {
     return this.idForm = this.fb.group({
       userId: [null, [
         Validators.required,
-        Validators.minLength(9)
+        Validators.minLength(9),
+        Validators.maxLength(9)
       ]]
     });
   }

@@ -21,6 +21,4 @@ export class IdComponent implements OnInit {
   toggleVis() {
     this.inputType = this.inputType === 'text' ? 'password' : 'text';
   }
-
-
 }
