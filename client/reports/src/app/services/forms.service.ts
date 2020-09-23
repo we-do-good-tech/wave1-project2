@@ -7,6 +7,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class FormsService {
 
   private idForm: FormGroup;
+  private confirmForm: FormGroup;
 
   constructor(private fb: FormBuilder) { }
 
@@ -16,6 +17,15 @@ export class FormsService {
         Validators.required,
         Validators.minLength(9),
         Validators.maxLength(9)
+      ]]
+    });
+  }
+  getConfirmForm(): FormGroup {
+    return this.confirmForm = this.fb.group({
+      userId: [null, [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(4)
       ]]
     });
   }
