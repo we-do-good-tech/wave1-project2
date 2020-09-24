@@ -1,14 +1,11 @@
-import { AfterViewInit, Directive, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
+import { Directive, ElementRef, HostListener, OnInit } from '@angular/core';
 import { NgModel } from '@angular/forms';
-import { filter } from 'rxjs/operators';
 import { KeyboardService } from '../services/keyboard.service';
 
 @Directive({
     selector: '[ngModel]'
 })
 export class VirtualKeyDirective implements OnInit {
-    /*@Input()
-    index: number;*/
 
     constructor(
         private formElement: ElementRef,
@@ -17,26 +14,19 @@ export class VirtualKeyDirective implements OnInit {
     ) { }
 
     ngOnInit(): void {
+
         this.kbd.onKeyPress.subscribe(key => {
             if (document.activeElement === this.formElement.nativeElement) {
-                setTimeout(() => {
-                    this.ngModel.valueAccessor.writeValue(key);
+                this.ngModel.valueAccessor.writeValue(key);
 
-                    const event = new Event('input', {
-                        bubbles: true,
-                        cancelable: true,
-                    });
+                const event = new Event('input', {
+                    bubbles: true,
+                    cancelable: true,
+                });
 
-                    this.formElement.nativeElement.dispatchEvent(event);
-                }, 0);
+                this.formElement.nativeElement.dispatchEvent(event);
             }
         });
-
-        /* this.kbd.onElementFocus.pipe(
-             filter(index => this.index === index)
-         ).subscribe(() => {
-             this.formElement.nativeElement.focus();
-         });*/
     }
 
     @HostListener("focus")

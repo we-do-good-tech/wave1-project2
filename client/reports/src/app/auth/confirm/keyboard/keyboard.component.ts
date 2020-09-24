@@ -15,7 +15,6 @@ export class KeyboardComponent {
 
     onClick(e: Event, key: string): void {
         e.preventDefault();
-
         this.kbd.emitKey(key);
     }
 }

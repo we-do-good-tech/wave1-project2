@@ -12,37 +12,21 @@ import { KeyboardService } from 'src/app/services/keyboard.service';
 })
 export class ConfirmComponent {
 
-    @ViewChild("second")
-    private second: ElementRef;
-
-    constructor(private kbd: KeyboardService) { }
-
-    // index: number = 0;
+    constructor() { }
 
     f: string = ''
     s: string = ''
     t: string = ''
 
-    checkNgForm(form: NgForm) { }
+    checkNgForm(form: NgForm) {
+        console.log(`${this.f} ${this.s} ${this.t}`);
+    }
 
     onChange(event) {
         let { value } = event.target;
-
         if (String(value).length > 1) {
             event.target.value = value.slice(0, 1);
         }
-
-
-        //  this.second.nativeElement.focus();
-
-        /* if (this.index < 3) {
-             this.index++;
- 
-             this.kbd.setFocus(this.index);
-         }*/
     }
 
-    /* onFocus(index: number) {
-         this.index = index;
-     }*/
 }
