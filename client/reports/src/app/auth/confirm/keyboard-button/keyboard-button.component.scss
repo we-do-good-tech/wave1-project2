@@ -4,3 +4,7 @@
     border: 1px solid black;
     padding: 2rem;
 }
+
+:host {
+    display: inline-block;
+}

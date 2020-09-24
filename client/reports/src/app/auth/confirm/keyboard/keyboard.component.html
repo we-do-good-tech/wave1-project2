@@ -1,0 +1,8 @@
+<div class="keyboard">
+    <app-keyboard-button
+        *ngFor="let number of numbers"
+        [number]="number"
+        (click)="onClick($event, number)"
+    >
+    </app-keyboard-button>
+</div>
