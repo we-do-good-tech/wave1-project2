@@ -11,11 +11,9 @@ export class InputFocusDirective {
     check() {
         setTimeout(() => {
             const input = this.formElement.nativeElement.querySelector('.ng-invalid')
-
             if (input) {
                 input.focus();
             }
-
         }, 0);
     }
 }

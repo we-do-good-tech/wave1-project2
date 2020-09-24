@@ -23,7 +23,7 @@ export class KeyboardService {
         this.keyboardEvent.emit(key);
     }
 
-    setElem(element: HTMLInputElement): void {
+    setElement(element: HTMLInputElement): void {
         this.inputElement = element;
     }
 }

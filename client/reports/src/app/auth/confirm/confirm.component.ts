@@ -11,18 +11,14 @@ export class ConfirmComponent {
 
     constructor() { }
 
-    f: string = ''
-    s: string = ''
-    t: string = ''
-
-    checkNgForm(form: NgForm) {
-        console.log(`${this.f} ${this.s} ${this.t}`);
+    onSendConfirmCode(form: NgForm) {
+        console.log(form.value)
     }
 
     onChange(event) {
         let { value } = event.target;
         if (String(value).length > 1) {
-            event.target.value = value.slice(0, 1);
+            event.target.value = value.slice(1, 2);
         }
     }
 

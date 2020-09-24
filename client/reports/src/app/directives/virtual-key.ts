@@ -8,7 +8,7 @@ import { KeyboardService } from '../services/keyboard.service';
 export class VirtualKeyDirective implements OnInit {
 
     constructor(
-        private formElement: ElementRef,
+        private formInputElement: ElementRef,
         private ngModel: NgModel,
         private keyboardService: KeyboardService
     ) { }
@@ -16,7 +16,7 @@ export class VirtualKeyDirective implements OnInit {
     ngOnInit(): void {
 
         this.keyboardService.onKeyPress.subscribe(key => {
-            if (document.activeElement === this.formElement.nativeElement) {
+            if (document.activeElement === this.formInputElement.nativeElement) {
                 this.ngModel.valueAccessor.writeValue(key);
 
                 const event = new Event('input', {
@@ -24,13 +24,13 @@ export class VirtualKeyDirective implements OnInit {
                     cancelable: true,
                 });
 
-                this.formElement.nativeElement.dispatchEvent(event);
+                this.formInputElement.nativeElement.dispatchEvent(event);
             }
         });
     }
 
     @HostListener("focus")
     onFocus(): void {
-        this.keyboardService.setElem(this.formElement.nativeElement);
+        this.keyboardService.setElement(this.formInputElement.nativeElement);
     }
 }

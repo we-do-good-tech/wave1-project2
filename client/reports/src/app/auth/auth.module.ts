@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IdComponent } from './id/id.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { VirtualKeyDirective } from "../directives/input-focus.directive";
+import { VirtualKeyDirective } from "../directives/virtual-key";
 import { KeyboardButtonComponent } from "./confirm/keyboard-button/keyboard-button.component";
 import { KeyboardComponent } from "../auth/confirm/keyboard/keyboard.component";
 import { InputFocusDirective } from '../directives/focus.directive';

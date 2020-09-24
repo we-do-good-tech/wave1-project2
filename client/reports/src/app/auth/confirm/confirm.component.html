@@ -1,28 +1,43 @@
 <form
     #form="ngForm"
     appInputFocus
-    (ngSubmit)="checkNgForm(form)"
+    (ngSubmit)="onSendConfirmCode(form)"
 >
     <input
+        class="form-control"
         required
         type="number"
         name="first"
         autofocus
-        [(ngModel)]="f"
+        ngModel
+        #one="ngModel"
         (input)="onChange($event)"
     >
     <input
+        class="form-control"
         type="number"
         name="second"
         required
-        [(ngModel)]="s"
+        ngModel
+        #two="ngModel"
         (input)="onChange($event)"
     >
     <input
+        class="form-control"
         required
         type="number"
-        name="three"
-        [(ngModel)]="t"
+        name="third"
+        ngModel
+        #three="ngModel"
+        (input)="onChange($event)"
+    >
+    <input
+        class="form-control"
+        required
+        type="number"
+        name="fourth"
+        ngModel
+        #four="ngModel"
         (input)="onChange($event)"
     >
     <button type="submit">Submit</button>

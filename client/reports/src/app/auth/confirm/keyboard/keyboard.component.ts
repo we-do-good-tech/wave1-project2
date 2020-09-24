@@ -14,7 +14,7 @@ export class KeyboardComponent {
     constructor(private keyboardService: KeyboardService) { }
 
     onNumberClick(e: Event, key: string): void {
-        e.preventDefault();
+        // e.preventDefault();
         this.keyboardService.emitKey(key);
     }
 }

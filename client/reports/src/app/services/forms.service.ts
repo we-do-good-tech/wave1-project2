@@ -21,24 +21,6 @@ export class FormsService {
     }
 
 
-    getConfirmCode(): FormGroup {
-        return this.confirmCodeForm = this.fb.group({
-            firstNumber: [null, [
-                Validators.required
-            ]],
-            secondNumber: [null, [
-                Validators.required
-            ]],
-            thirdNumber: [null, [
-                Validators.required
-            ]],
-            fourthNumber: [null, [
-                Validators.required
-            ]]
-        })
-    }
-
-
     getFormControl(form: FormGroup, controlName: string): FormControl {
         return form.get(controlName) as FormControl
     }
