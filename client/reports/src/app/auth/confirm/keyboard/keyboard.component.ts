@@ -11,10 +11,10 @@ import { KeyboardService } from 'src/app/services/keyboard.service';
 export class KeyboardComponent {
     numbers: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-    constructor(private kbd: KeyboardService) { }
+    constructor(private keyboardService: KeyboardService) { }
 
-    onClick(e: Event, key: string): void {
+    onNumberClick(e: Event, key: string): void {
         e.preventDefault();
-        this.kbd.emitKey(key);
+        this.keyboardService.emitKey(key);
     }
 }

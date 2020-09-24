@@ -1,9 +1,6 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, NgForm } from '@angular/forms';
-import { Subscription } from 'rxjs';
-import { FormsService } from 'src/app/services/forms.service';
-import { KeyboardService } from 'src/app/services/keyboard.service';
+import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
 
 @Component({
     selector: 'app-register',
@@ -28,5 +25,7 @@ export class ConfirmComponent {
             event.target.value = value.slice(0, 1);
         }
     }
+
+
 
 }

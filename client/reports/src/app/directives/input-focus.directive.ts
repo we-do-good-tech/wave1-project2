@@ -10,12 +10,12 @@ export class VirtualKeyDirective implements OnInit {
     constructor(
         private formElement: ElementRef,
         private ngModel: NgModel,
-        private kbd: KeyboardService
+        private keyboardService: KeyboardService
     ) { }
 
     ngOnInit(): void {
 
-        this.kbd.onKeyPress.subscribe(key => {
+        this.keyboardService.onKeyPress.subscribe(key => {
             if (document.activeElement === this.formElement.nativeElement) {
                 this.ngModel.valueAccessor.writeValue(key);
 
@@ -31,6 +31,6 @@ export class VirtualKeyDirective implements OnInit {
 
     @HostListener("focus")
     onFocus(): void {
-        this.kbd.setElem(this.formElement.nativeElement);
+        this.keyboardService.setElem(this.formElement.nativeElement);
     }
 }

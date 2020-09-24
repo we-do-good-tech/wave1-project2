@@ -6,22 +6,24 @@ import { Observable } from 'rxjs';
     providedIn: "root"
 })
 export class KeyboardService {
-    private _elem: HTMLInputElement;
-    private _kbdEvent: EventEmitter<string>;
+    private inputElement: HTMLInputElement;
+    private keyboardEvent: EventEmitter<string>;
+
+    constructor() {
+        this.keyboardEvent = new EventEmitter();
+    }
+
 
     get onKeyPress(): Observable<string> {
-        return this._kbdEvent.asObservable();
-    }
-    constructor() {
-        this._kbdEvent = new EventEmitter();
+        return this.keyboardEvent.asObservable();
     }
 
     emitKey(key: string): void {
-        this._elem.focus();
-        this._kbdEvent.emit(key);
+        this.inputElement.focus();
+        this.keyboardEvent.emit(key);
     }
 
-    setElem(elem: HTMLInputElement): void {
-        this._elem = elem;
+    setElem(element: HTMLInputElement): void {
+        this.inputElement = element;
     }
 }
