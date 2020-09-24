@@ -1,30 +1,48 @@
 
 
+<<<<<<< HEAD
 // $bg: whitesmoke;
 // $color: #333333;
 // $btn: #5674c5;
 // $success: #14921e; 
 // $error: #df1f1f;
+=======
+$m-bg: whitesmoke;
+$s-bg: #5674c5;
+$m-color: #333333;
+$s-color: whitesmoke;
+$success: #14921e; 
+$error: #df1f1f;
+>>>>>>> 607dc15ef573c02c95c8d3b48658494f248f2d50
 
-// // Reset All
-// *{
-//     direction: rtl;
-//     position: relative;
-//     margin: 0;
-//     padding: 0;
-//     border: none;
-//     box-sizing: border-box;
-//     outline: none;
-//     color: $color;
-//     font-size: 14px;
-//     text-decoration: none;
-//     user-select: none;
-//     z-index: 0;
-// }
-// // HTML & Body
-// html, body{
-//     width: 100vw;
-//     height: 100vh;
-//     overflow: hidden;
-//     background: $bg;
-// }
+*{
+    direction: rtl;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-sizing: border-box;
+    outline: none;
+    color: $m-color;
+    font-size: 14px;
+    text-decoration: none;
+    user-select: none;
+    z-index: 0;
+    &.neg{
+        background: $s-bg;
+        color: $s-color;
+        *{
+            color: $s-color;
+        }
+    }
+}
+html, body{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: $m-bg;
+    .container-lg{
+        padding: 0;
+        height: 100%;
+    }
+}
