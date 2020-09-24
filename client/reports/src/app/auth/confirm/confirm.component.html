@@ -1,61 +1,14 @@
-<!-- <form
-    appInputFocus
-    [formGroup]="confirmCodeForm"
-    (ngSubmit)="onSubmit()"
->
-    <div class="row">
-        <div class="col">
-            <input
-                #first
-                type="number"
-                class="form-control"
-                formControlName="firstNumber"
-                (input)="limitOneNumber('firstNumber')"
-            >
-        </div>
-        <div class="col">
-            <input
-                type="number"
-                class="form-control"
-                formControlName="secondNumber"
-                (input)="limitOneNumber('secondNumber')"
-            >
-        </div>
-        <div class="col">
-            <input
-                type="number"
-                class="form-control"
-                formControlName="thirdNumber"
-                (input)="limitOneNumber('thirdNumber')"
-            >
-        </div>
-        <div class="col">
-            <input
-                type="number"
-                class="form-control"
-                formControlName="fourthNumber"
-                (input)="limitOneNumber('fourthNumber')"
-            >
-        </div>
-    </div>
-    <button
-        type="submit"
-        class="bth btn-primary"
-        [disabled]="confirmCodeForm.invalid"
-    >
-        Confirm
-    </button>
-</form> -->
 <form
     #form="ngForm"
+    appInputFocus
     (ngSubmit)="checkNgForm(form)"
 >
     <input
+        required
         type="number"
         name="first"
-        required
+        autofocus
         [(ngModel)]="f"
-        #first="ngModel"
         (input)="onChange($event)"
     >
     <input
@@ -63,44 +16,15 @@
         name="second"
         required
         [(ngModel)]="s"
-        #second="ngModel"
         (input)="onChange($event)"
     >
     <input
+        required
         type="number"
         name="three"
         [(ngModel)]="t"
-        required
-        #three="ngModel"
         (input)="onChange($event)"
     >
     <button type="submit">Submit</button>
 </form>
-
-
-<!-- <app-confirm-code-input
-    [name]="'first'"
-    [value]="f"
-></app-confirm-code-input>
-<app-confirm-code-input
-    [name]="'second'"
-    [value]="s"
-></app-confirm-code-input>
-<app-confirm-code-input
-    [name]="'three'"
-    [value]="t"
-></app-confirm-code-input>
-<button
-    type="button"
-    (click)="onSendCode()"
->
-    Submit
-</button> -->
-<div class="keyboard">
-    <app-keyboard-button
-        *ngFor="let number of numbers"
-        [number]="number"
-        (numberSelected)="onClickNumber($event)"
-    >
-    </app-keyboard-button>
-</div>
+<app-keyboard></app-keyboard>

@@ -3,20 +3,19 @@ import { CommonModule } from '@angular/common';
 import { IdComponent } from './id/id.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { InputFocusDirective } from "../directives/input-focus.directive";
+import { VirtualKeyDirective } from "../directives/input-focus.directive";
 import { KeyboardButtonComponent } from "./confirm/keyboard-button/keyboard-button.component";
-import { ConfirmCodeInputComponent } from "./confirm/confirm-code-input/confirm-code-input.component";
-
-
-
+import { KeyboardComponent } from "../auth/confirm/keyboard/keyboard.component";
+import { InputFocusDirective } from '../directives/focus.directive';
 
 @NgModule({
     declarations: [
         IdComponent,
         ConfirmComponent,
-        InputFocusDirective,
+        VirtualKeyDirective,
         KeyboardButtonComponent,
-        ConfirmCodeInputComponent
+        KeyboardComponent,
+        InputFocusDirective
     ],
     imports: [
         CommonModule,

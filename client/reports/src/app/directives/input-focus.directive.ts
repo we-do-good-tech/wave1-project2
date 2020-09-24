@@ -1,20 +1,36 @@
-import { AfterViewInit, Directive, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Directive, ElementRef, HostListener, OnInit } from '@angular/core';
+import { NgModel } from '@angular/forms';
+import { KeyboardService } from '../services/keyboard.service';
 
 @Directive({
-    selector: '[appInputFocus]'
+    selector: '[ngModel]'
 })
-export class InputFocusDirective {
+export class VirtualKeyDirective implements OnInit {
 
-    constructor(private formElement: ElementRef) { }
+    constructor(
+        private formElement: ElementRef,
+        private ngModel: NgModel,
+        private keyboardService: KeyboardService
+    ) { }
 
-    @HostListener('input')
-    check() {
-        const input = this.formElement.nativeElement.querySelector('.ng-invalid')
-        if (input) {
-            input.focus()
-        }
+    ngOnInit(): void {
 
-        return
+        this.keyboardService.onKeyPress.subscribe(key => {
+            if (document.activeElement === this.formElement.nativeElement) {
+                this.ngModel.valueAccessor.writeValue(key);
+
+                const event = new Event('input', {
+                    bubbles: true,
+                    cancelable: true,
+                });
+
+                this.formElement.nativeElement.dispatchEvent(event);
+            }
+        });
     }
 
+    @HostListener("focus")
+    onFocus(): void {
+        this.keyboardService.setElem(this.formElement.nativeElement);
+    }
 }
