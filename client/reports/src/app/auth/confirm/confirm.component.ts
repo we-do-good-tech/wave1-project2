@@ -23,9 +23,7 @@ export class ConfirmComponent implements OnInit, AfterViewInit {
     }
 
     onSubmit(): void {
-        if (this.confirmCodeForm.invalid) {
-            return
-        }
+        if (this.confirmCodeForm.invalid) return;
         let code = ''
         Object.values(this.confirmCodeForm.value).map((v) => code += v)
         alert(code)

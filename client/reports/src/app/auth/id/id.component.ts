@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms"
 import { FormsService } from 'src/app/services/forms.service';
 
 @Component({
-    selector: 'app-login',
+    selector: 'app-id',
     templateUrl: './id.component.html',
     styleUrls: ['./id.component.scss']
 })

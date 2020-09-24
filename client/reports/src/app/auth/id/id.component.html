@@ -1,9 +1,11 @@
-<form [formGroup]="idForm">
+<p class="m-4">ברוכים הבאים חונכים/ות יקרים</p>
+<form [formGroup]="idForm" class="m-4">
     <div class="input-group">
         <input
             [type]="inputType"
             formControlName="userId"
             class="form-control"
+            placeholder="הכנס ת.ז."
         >
         <div
             class="btn input-group-append input-group-text"
@@ -23,5 +25,5 @@
             </span>
         </div>
     </div>
-    <button class="btn btn-primary">כניסה</button>
+    <button class="btn btn-primary m-2">כניסה</button>
 </form>

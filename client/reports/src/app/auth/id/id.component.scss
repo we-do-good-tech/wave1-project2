@@ -1,0 +1,14 @@
+:host(app-id){
+    display: grid;
+    *{
+        justify-self: center;
+    }
+    p{
+        font-size: 5vw;
+        text-align: center;
+    }
+    form{
+        display: grid;
+        width: 50%;
+    }
+}
