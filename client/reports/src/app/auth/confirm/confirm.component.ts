@@ -3,12 +3,12 @@ import { NgForm } from '@angular/forms';
 
 
 @Component({
-    selector: 'app-register',
+    selector: 'app-confirm',
     templateUrl: './confirm.component.html',
     styleUrls: ['./confirm.component.scss']
 })
 export class ConfirmComponent {
-
+    screen = screen;
     constructor() { }
 
     onSendConfirmCode(form: NgForm) {

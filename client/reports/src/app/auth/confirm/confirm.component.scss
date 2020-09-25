@@ -1,12 +1,41 @@
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+@import '../../../styles.scss';
+:host(app-confirm){
+  display: grid;
+  *{
+    justify-self: center;
+  }
+  form{
+    width: 50%;
+    display: grid;
+    direction: ltr;
+    *{
+      margin: 1rem;
+      font-weight: bolder;
+    }
+    input{
+      display: inline-block;
+      width: 75%;
+      justify-self: center;
+      grid-row: 1/1;
+      border-radius: 0;
+      border-bottom: 2px $s-bg solid;
+      text-align: center;
+      font-size: 2rem;
+      outline: none !important;
+      box-shadow: none;
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button{
+        -webkit-appearance: none;
+      }
+    }
+    
+    button{
+      grid-column: 1/5;
+      padding: .4rem .8rem;
+      border-radius: .5rem;
+      background: $s-bg;
+      color: $s-color;
+      font-size: 1.5rem;
+    }
+  }
 }
-
-
-
-.keyboard {
-    display: flex;
-}
-

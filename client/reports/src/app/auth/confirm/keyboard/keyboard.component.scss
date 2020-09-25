@@ -1,0 +1,9 @@
+:host(app-keyboard){
+    grid-column: 1/5;
+    width: 100%;
+    div{
+        direction: ltr;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

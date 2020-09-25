@@ -1,45 +1,12 @@
-<form
-    #form="ngForm"
-    appInputFocus
-    (ngSubmit)="onSendConfirmCode(form)"
->
-    <input
-        class="form-control"
-        required
-        type="number"
-        name="first"
-        autofocus
-        ngModel
-        #one="ngModel"
-        (input)="onChange($event)"
-    >
-    <input
-        class="form-control"
-        type="number"
-        name="second"
-        required
-        ngModel
-        #two="ngModel"
-        (input)="onChange($event)"
-    >
-    <input
-        class="form-control"
-        required
-        type="number"
-        name="third"
-        ngModel
-        #three="ngModel"
-        (input)="onChange($event)"
-    >
-    <input
-        class="form-control"
-        required
-        type="number"
-        name="fourth"
-        ngModel
-        #four="ngModel"
-        (input)="onChange($event)"
-    >
-    <button type="submit">Submit</button>
+<form #form="ngForm" appInputFocus (ngSubmit)="onSendConfirmCode(form)" class="m-4">
+    <input class="form-control num" required type="number" pattern="^\d{1}$" name="first" autofocus ngModel
+        #one="ngModel" (input)="onChange($event)">
+    <input class="form-control num" required type="number" pattern="^\d{1}$" name="second" required ngModel
+        #two="ngModel" (input)="onChange($event)">
+    <input class="form-control num" required type="number" pattern="^\d{1}$" name="third" ngModel #three="ngModel"
+        (input)="onChange($event)">
+    <input class="form-control num" required type="number" pattern="^\d{1}$" name="fourth" ngModel #four="ngModel"
+        (input)="onChange($event)">
+    <app-keyboard *ngIf="screen.width < 768"></app-keyboard>
+    <button type="submit">התחבר</button>
 </form>
-<app-keyboard></app-keyboard>
