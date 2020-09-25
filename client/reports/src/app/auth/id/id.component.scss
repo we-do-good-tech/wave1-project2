@@ -1,24 +1,44 @@
+@import '../../../styles.scss';
 :host(app-id){
     display: grid;
     *{
         justify-self: center;
     }
     p{
-        font-size: 5vw;
+        font-size: 1.5em;
         text-align: center;
     }
     form{
         display: grid;
         width: 50%;
-        input{
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-            border-top-right-radius: .25rem;
-            border-bottom-right-radius: .25rem;
-        }
-        div{
+        
+        >div{
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
+            input{
+                border: 1px solid lighten($s-bg, 30%);
+                border-left: none;
+                padding: .4rem .8rem;
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                border-top-right-radius: .25rem;
+                border-bottom-right-radius: .25rem;
+            }
+            span{
+                border: 1px solid lighten($s-bg, 30%);
+                border-right: none;
+                padding: .4rem .8rem;
+                border-top-left-radius: .25rem;
+                border-bottom-left-radius: .25rem;
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                cursor: pointer;
+            }
+        }
+        button{
+            background: $s-bg;
+            color: $s-color;
+            padding: .4rem .8rem;
         }
     }
 }

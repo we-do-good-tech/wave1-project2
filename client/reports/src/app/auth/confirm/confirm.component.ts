@@ -12,6 +12,7 @@ export class ConfirmComponent {
     constructor() { }
 
     onSendConfirmCode(form: NgForm) {
+        Array.from(document.getElementsByClassName('alert')).forEach(elem => elem.classList[elem.classList.contains('show') ? 'remove' : 'add']('show'))
         console.log(form.value)
     }
 
