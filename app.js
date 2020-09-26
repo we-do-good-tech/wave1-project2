@@ -1,6 +1,6 @@
-const db = require('./db/db'),
+const db = require('./back-end/db/db'),
     cors = require('cors'),
-    keys = require('./config/keys'),
+    keys = require('./back-end/config/keys'),
     express = require('express'),
     server = express();
 
@@ -12,9 +12,9 @@ server.use(express.json())
 
 
 
-const teacherRouters = require('./routes/teacher')
-const adminRouters = require('./routes/admin')
-const meetingRouters = require('./routes/meeting');
+const teacherRouters = require('./back-end/routes/teacher')
+const adminRouters = require('./back-end/routes/admin')
+const meetingRouters = require('./back-end/routes/meeting');
 
 server.use('/api/user/admin', adminRouters)
 server.use('/api/user/teacher', teacherRouters)
