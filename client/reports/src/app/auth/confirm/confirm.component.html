@@ -1,45 +1,54 @@
+<p class="m-3">נשלח מסרון עם קוד 4 ספרות</p>
 <form
     #form="ngForm"
     appInputFocus
     (ngSubmit)="onSendConfirmCode(form)"
+    class="m-3"
 >
     <input
-        class="form-control"
+        class="form-control num m-3"
         required
         type="number"
+        pattern="^\d{1}$"
         name="first"
         autofocus
-        ngModel
+        ngModel="virtualkey"
         #one="ngModel"
         (input)="onChange($event)"
     >
     <input
-        class="form-control"
+        class="form-control num m-3"
+        required
         type="number"
+        pattern="^\d{1}$"
         name="second"
         required
-        ngModel
+        ngModel="virtualkey"
         #two="ngModel"
         (input)="onChange($event)"
     >
     <input
-        class="form-control"
+        class="form-control num m-3"
         required
         type="number"
+        pattern="^\d{1}$"
         name="third"
-        ngModel
+        ngModel="virtualkey"
         #three="ngModel"
         (input)="onChange($event)"
     >
     <input
-        class="form-control"
+        class="form-control num m-3"
         required
         type="number"
+        pattern="^\d{1}$"
         name="fourth"
-        ngModel
+        ngModel="virtualkey"
         #four="ngModel"
         (input)="onChange($event)"
     >
-    <button type="submit">Submit</button>
+    <!-- <p class="alert">קוד שגוי נסה שנית</p> -->
+    <app-keyboard *ngIf="screen.width < 768"></app-keyboard>
+    <button type="submit">התחבר</button>
 </form>
-<app-keyboard></app-keyboard>
+<button>שליחת קוד מחדש</button>

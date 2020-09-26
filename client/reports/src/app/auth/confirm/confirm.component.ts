@@ -4,15 +4,15 @@ import { ConfirmCode } from 'src/app/interfaces/ConfirmCode';
 
 
 @Component({
-    selector: 'app-register',
+    selector: 'app-confirm',
     templateUrl: './confirm.component.html',
     styleUrls: ['./confirm.component.scss']
 })
 export class ConfirmComponent {
-
+    screen = screen;
     constructor() { }
 
-    onSendConfirmCode(form: NgForm) {
+    onSendConfirmCode(form: NgForm): void {
         if (form.invalid) return
 
         let code: string = ''
@@ -24,10 +24,13 @@ export class ConfirmComponent {
             code: Number(code)
         }
 
+        console.log(form.value)
         console.log(codeToSend)
+        // אל תקח מהקודומנט ישירות 
+        // Array.from(document.getElementsByClassName('alert')).forEach(elem => elem.classList[elem.classList.contains('show') ? 'remove' : 'add']('show'))
     }
 
-    onChange(event) {
+    onChange(event: any): void {
         let { value } = event.target;
         if (String(value).length > 1) {
             event.target.value = value.slice(1, 2);

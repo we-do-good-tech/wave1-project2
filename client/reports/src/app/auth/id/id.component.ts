@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators, FormControl, NgForm } from "@angular/forms";
+import { AuthService } from 'src/app/services/auth.service';
 import { FormsService } from 'src/app/services/forms.service';
 
 @Component({
@@ -8,20 +9,22 @@ import { FormsService } from 'src/app/services/forms.service';
     styleUrls: ['./id.component.scss']
 })
 export class IdComponent implements OnInit {
-    idForm: FormGroup;
     inputType: string = 'password';
-    getFormControl: (form: FormGroup, controlName: string) => FormControl
+    constructor(private authService: AuthService) { }
 
-    constructor(public formsService: FormsService) {
-        this.getFormControl = this.formsService.getFormControl
+    ngOnInit(): void { }
 
+    onSendId(form: NgForm): void {
+        if (form.invalid) return
+
+        console.log(form.value)
+        this.authService.checkUserId(form.value)
+            .subscribe((result) => {
+
+            })
     }
 
-    ngOnInit() {
-        this.idForm = this.formsService.getIdForm();
-    }
-
-    toggleVis() {
+    toggleVis(): void {
         this.inputType = this.inputType === 'text' ? 'password' : 'text';
     }
 
