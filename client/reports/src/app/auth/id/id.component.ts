@@ -18,10 +18,10 @@ export class IdComponent implements OnInit {
         if (form.invalid) return
 
         console.log(form.value)
-        // this.authService.checkUserId(form.value)
-        //     .subscribe((result) => {
+        this.authService.checkUserId(form.value)
+            .subscribe((result) => {
 
-        //     })
+            })
     }
 
     toggleVis(): void {
