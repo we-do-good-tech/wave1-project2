@@ -8,6 +8,7 @@ import { HttpErrorMessagesService } from 'src/app/services/http-error-messages.s
     styleUrls: ['./http-error-messages.component.scss']
 })
 export class HttpErrorMessagesComponent implements OnInit {
+
     message: string
 
     constructor(private httpErrorMessages: HttpErrorMessagesService) { }

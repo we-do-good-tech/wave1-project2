@@ -9,6 +9,7 @@
             required
             [type]="inputType"
             ngModel
+            pattern="^[0-9_-]{9,9}$"
             name="userId"
             #userId="ngModel"
             class="form-control"
@@ -31,9 +32,40 @@
                 ></i>
             </span>
         </div>
+        <div *ngIf="this.formsService.formControlStatus(userId.control)">
+            <small *ngIf="userId.errors.required">Required</small>
+            <small *ngIf="userId.errors.pattern">Invalid ID Must Include 9 numbers</small>
+        </div>
     </div>
-    <button class="btn m-2">כניסה</button>
+    <button
+        class="btn m-2"
+        [disabled]="form.invalid"
+    >
+        כניסה
+    </button>
 </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

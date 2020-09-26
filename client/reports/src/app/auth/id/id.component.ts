@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl, NgForm } from "@angular/forms";
+import { NgForm } from "@angular/forms";
 import { AuthService } from 'src/app/services/auth.service';
 import { FormsService } from 'src/app/services/forms.service';
 
@@ -10,23 +10,30 @@ import { FormsService } from 'src/app/services/forms.service';
 })
 export class IdComponent implements OnInit {
     inputType: string = 'password';
-    constructor(private authService: AuthService) { }
+
+    constructor(
+        private authService: AuthService,
+        public formsService: FormsService
+    ) { }
 
     ngOnInit(): void { }
 
+
     onSendId(form: NgForm): void {
-        if (form.invalid) return
+        if (form.invalid) return;
 
         console.log(form.value)
         this.authService.checkUserId(form.value)
             .subscribe((result) => {
 
-            })
+            });
     }
 
     toggleVis(): void {
         this.inputType = this.inputType === 'text' ? 'password' : 'text';
     }
+
+
 
 
 }

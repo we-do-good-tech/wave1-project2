@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ConfirmCode } from 'src/app/interfaces/ConfirmCode';
+import { FormsService } from "../../services/forms.service";
 
 
 @Component({
@@ -10,9 +11,11 @@ import { ConfirmCode } from 'src/app/interfaces/ConfirmCode';
 })
 export class ConfirmComponent {
     screen = screen;
-    constructor() { }
+
+    constructor(private formsService: FormsService) { }
 
     onSendConfirmCode(form: NgForm): void {
+        console.log(form)
         if (form.invalid) return
 
         let code: string = ''

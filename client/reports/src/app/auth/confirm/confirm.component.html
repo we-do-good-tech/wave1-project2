@@ -48,7 +48,13 @@
         (input)="onChange($event)"
     >
     <!-- <p class="alert">קוד שגוי נסה שנית</p> -->
+    <!-- <div *ngIf="form.invalid && form.submitted">Missig number</div> -->
     <app-keyboard *ngIf="screen.width < 768"></app-keyboard>
-    <button type="submit">התחבר</button>
+    <button
+        type="submit"
+        [disabled]="form.invalid"
+    >
+        התחבר
+    </button>
 </form>
 <button>שליחת קוד מחדש</button>
