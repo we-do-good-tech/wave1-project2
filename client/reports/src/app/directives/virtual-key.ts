@@ -3,7 +3,7 @@ import { NgModel } from '@angular/forms';
 import { KeyboardService } from '../services/keyboard.service';
 
 @Directive({
-    selector: '[ngModel]'
+    selector: '[ngModel],[virtualkey]'
 })
 export class VirtualKeyDirective implements OnInit {
 

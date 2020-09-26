@@ -1,6 +1,4 @@
-import { Component, EventEmitter } from "@angular/core";
-import { faThumbsDown } from '@fortawesome/free-solid-svg-icons';
-import { Observable } from 'rxjs';
+import { Component } from "@angular/core";
 import { KeyboardService } from 'src/app/services/keyboard.service';
 
 @Component({
@@ -15,6 +13,7 @@ export class KeyboardComponent {
 
     onNumberClick(e: Event, key: string): void {
         // e.preventDefault();
+        console.log(key)
         this.keyboardService.emitKey(key);
     }
 }
