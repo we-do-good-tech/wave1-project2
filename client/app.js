@@ -1,6 +1,6 @@
-const db = require('./back-end/db/db'),
+const db = require('../back-end/db/db'),
     cors = require('cors'),
-    keys = require('./back-end/config/keys'),
+    keys = require('../back-end/config/keys'),
     express = require('express'),
     path = require('path'),
     server = express();
@@ -14,7 +14,7 @@ const db = require('./back-end/db/db'),
 server.use(cors())
 server.use(express.json())
 server.use(express.urlencoded({ extended: true }))
-server.use(express.static(path.join(__dirname, 'client/dist/reports')))
+server.use(express.static(path.join(__dirname, 'dist/reports')))
 
 
 // server.use('/api/user/admin', adminRouters)
@@ -22,7 +22,7 @@ server.use(express.static(path.join(__dirname, 'client/dist/reports')))
 // server.use('/api/user/meetings', meetingRouters)
 
 server.get('*', (request, response) => {
-    response.sendFile(path.resolve('client/dist/reports/index.html'))
+    response.sendFile(path.resolve('dist/reports/index.html'))
 })
 
 
