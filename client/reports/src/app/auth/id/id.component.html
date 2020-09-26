@@ -1,9 +1,16 @@
 <p class="m-4">ברוכים הבאים חונכים/ות יקרים</p>
-<form [formGroup]="idForm" class="m-4">
+<form
+    #form="ngForm"
+    (ngSubmit)="onSendId(form)"
+    class="m-4"
+>
     <div class="input-group">
         <input
+            required
             [type]="inputType"
-            formControlName="userId"
+            ngModel
+            name="userId"
+            #userId="ngModel"
             class="form-control"
             placeholder="הכנס ת.ז."
         >
@@ -25,5 +32,8 @@
             </span>
         </div>
     </div>
-    <button class="btn btn-primary m-2">כניסה</button>
+    <button class="btn m-2">כניסה</button>
 </form>
+
+
+<app-http-error-messages></app-http-error-messages>

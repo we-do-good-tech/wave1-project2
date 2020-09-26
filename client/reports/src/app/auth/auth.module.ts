@@ -7,6 +7,8 @@ import { VirtualKeyDirective } from "../directives/virtual-key";
 import { KeyboardButtonComponent } from "./confirm/keyboard-button/keyboard-button.component";
 import { KeyboardComponent } from "../auth/confirm/keyboard/keyboard.component";
 import { InputFocusDirective } from '../directives/focus.directive';
+import { AuthRoutingModule } from "./auth.routing.module";
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     declarations: [
@@ -20,7 +22,9 @@ import { InputFocusDirective } from '../directives/focus.directive';
     imports: [
         CommonModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        AuthRoutingModule,
+        SharedModule
     ]
 })
 export class AuthModule { }
