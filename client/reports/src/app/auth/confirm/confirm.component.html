@@ -1,12 +1,12 @@
 <p class="m-3">נשלח מסרון עם קוד 4 ספרות</p>
-<form #form="ngForm" appInputFocus (ngSubmit)="onSendConfirmCode(form)" class="m-3">
-    <input class="form-control num m-3" required type="number" pattern="^\d{1}$" name="first" autofocus ngModel
+<form #form="ngForm" appInputFocus (ngSubmit)="onSendConfirmCode(form)" class="m-1">
+    <input class="form-control num m-2" required type="number" pattern="^\d{1}$" name="first" autofocus ngModel
         #one="ngModel" (input)="onChange($event)">
-    <input class="form-control num m-3" required type="number" pattern="^\d{1}$" name="second" required ngModel
+    <input class="form-control num m-2" required type="number" pattern="^\d{1}$" name="second" required ngModel
         #two="ngModel" (input)="onChange($event)">
-    <input class="form-control num m-3" required type="number" pattern="^\d{1}$" name="third" ngModel #three="ngModel"
+    <input class="form-control num m-2" required type="number" pattern="^\d{1}$" name="third" ngModel #three="ngModel"
         (input)="onChange($event)">
-    <input class="form-control num m-3" required type="number" pattern="^\d{1}$" name="fourth" ngModel #four="ngModel"
+    <input class="form-control num m-2" required type="number" pattern="^\d{1}$" name="fourth" ngModel #four="ngModel"
         (input)="onChange($event)">
     <p class="alert">קוד שגוי נסה שנית</p>
     <app-keyboard *ngIf="screen.width < 768"></app-keyboard>
