@@ -7,10 +7,13 @@ import { AuthService } from './auth.service';
     providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-    constructor(private authService: AuthService, private router: Router) { }
+    constructor(
+        private authService: AuthService,
+        private router: Router
+    ) { }
     canActivate(
         next: ActivatedRouteSnapshot,
-        state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+        state: RouterStateSnapshot): Observable<boolean | UrlTree> | boolean | UrlTree {
 
         const isLog = this.authService.isLog;
 
@@ -18,7 +21,7 @@ export class AuthGuard implements CanActivate {
             return true;
         }
 
-        this.router.navigate(['/auth/id'])
+        this.router.navigate(['/auth/id']);
         return false;
     }
 

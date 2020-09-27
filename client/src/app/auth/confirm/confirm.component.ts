@@ -10,7 +10,6 @@ import { FormsService } from "../../services/forms.service";
     styleUrls: ['./confirm.component.scss']
 })
 export class ConfirmComponent {
-    screen = screen;
 
     constructor(private formsService: FormsService) { }
 
