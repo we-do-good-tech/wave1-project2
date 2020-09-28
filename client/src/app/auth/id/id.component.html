@@ -6,6 +6,7 @@
 >
     <div class="input-group">
         <input
+            id="id-a"
             required
             [type]="inputType"
             ngModel
@@ -16,6 +17,7 @@
             placeholder="הכנס ת.ז."
         >
         <div
+            id="toggle-icon"
             class="btn input-group-append input-group-text"
             (click)="toggleVis()"
         >
@@ -38,12 +40,14 @@
         </div>
     </div>
     <button
+        id="btn-id"
         class="btn m-2"
         [disabled]="form.invalid"
     >
         כניסה
     </button>
 </form>
+
 
 
 

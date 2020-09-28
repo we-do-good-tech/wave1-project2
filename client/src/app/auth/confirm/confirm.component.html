@@ -6,6 +6,7 @@
     class="m-3"
 >
     <input
+        id="num-a"
         class="form-control num m-3"
         required
         type="number"
@@ -17,6 +18,7 @@
         (input)="onChange($event)"
     >
     <input
+        id="num-b"
         class="form-control num m-3"
         required
         type="number"
@@ -28,6 +30,7 @@
         (input)="onChange($event)"
     >
     <input
+        id="num-c"
         class="form-control num m-3"
         required
         type="number"
@@ -38,6 +41,7 @@
         (input)="onChange($event)"
     >
     <input
+        id="num-d"
         class="form-control num m-3"
         required
         type="number"
@@ -48,9 +52,14 @@
         (input)="onChange($event)"
     >
     <!-- <p class="alert">קוד שגוי נסה שנית</p> -->
+
+
+
+
     <!-- <div *ngIf="form.invalid && form.submitted">Missig number</div> -->
     <app-keyboard></app-keyboard>
     <button
+        id="btn-id"
         type="submit"
         [disabled]="form.invalid"
     >
