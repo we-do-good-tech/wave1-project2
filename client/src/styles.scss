@@ -1,9 +1,20 @@
-
-
 $m-bg: whitesmoke;
 $s-bg: #5674c5;
 $m-color: #333333;
 $s-color: whitesmoke;
-$success: #14921e; 
+$success: #14921e;
 $error: #df1f1f;
 
+* {
+  direction: rtl;
+}
+
+.mainButton {
+  background-color: #2699fb;
+  padding: 10px;
+  color: #fff;
+  font-weight: 600;
+  width: 100%;
+  border: none;
+  outline: none;
+}
