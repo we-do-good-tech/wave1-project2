@@ -1,9 +1,9 @@
-const db = require('./back-end/db/db'),
-    cors = require('cors'),
-    keys = require('./back-end/config/keys'),
-    express = require('express'),
-    path = require('path'),
-    server = express();
+const db = require('./back-end/db/db')
+const cors = require('cors')
+const keys = require('./back-end/config/keys')
+const express = require('express')
+const path = require('path')
+const server = express()
 
 // db.connectMongoDB();
 // const teacherRouters = require('./back-end/routes/teacher')
@@ -25,11 +25,11 @@ server.post('/fake/userId', (request, response) => {
     const users = [
         {
             name: 'user-one',
-            id: '123456789'
+            id: 123456789
         },
         {
             name: 'user-two',
-            id: '987654321'
+            id: 987654321
         }
     ]
     const { userId } = request.body
@@ -48,7 +48,6 @@ server.post('/fake/userId', (request, response) => {
     })
 
 })
-
 
 
 server.get('*', (request, response) => {

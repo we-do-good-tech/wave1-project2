@@ -14,7 +14,7 @@ export class AuthService {
     constructor(private http: HttpClient) { }
 
     checkUserId(userId: UserId): Observable<any> {
-        return this.http.post('fake/userId', userId)
+        return this.http.post<any>('fake/userId', userId)
             .pipe(
                 tap((result) => {
                     console.log(result)

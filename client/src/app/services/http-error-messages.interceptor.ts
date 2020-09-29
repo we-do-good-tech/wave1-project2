@@ -22,9 +22,9 @@ export class HttpErrorMessagesInterceptor implements HttpInterceptor {
 
                 }),
                 catchError((error) => {
-                    console.log(error)
+                    console.log(error.error.message)
 
-                    this.httpErrorMessagesService.setMessage(error.statusText);
+                    this.httpErrorMessagesService.setMessage(error.error.message);
 
                     return throwError(error);
                 })

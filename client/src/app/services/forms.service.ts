@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { AbstractControl, FormControl } from '@angular/forms';
 
 
 @Injectable({
@@ -17,6 +17,16 @@ export class FormsService {
         }
         return false;
     }
+
+
+
+    displayClass(input: AbstractControl) {
+        return {
+            'is-valid': input.valid,
+            'is-invalid': input.touched && input.invalid
+        }
+    }
+
 
 
     //  displayErrorMessage(control: FormControl): string {

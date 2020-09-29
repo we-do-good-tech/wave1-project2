@@ -11,7 +11,7 @@ import { FormsService } from "../../services/forms.service";
 })
 export class ConfirmComponent {
 
-    constructor(private formsService: FormsService) { }
+    constructor(public formsService: FormsService) { }
 
     onSendConfirmCode(form: NgForm): void {
         console.log(form)
@@ -28,8 +28,6 @@ export class ConfirmComponent {
 
         console.log(form.value)
         console.log(codeToSend)
-        // אל תקח מהקודומנט ישירות 
-        // Array.from(document.getElementsByClassName('alert')).forEach(elem => elem.classList[elem.classList.contains('show') ? 'remove' : 'add']('show'))
     }
 
     onChange(event: any): void {

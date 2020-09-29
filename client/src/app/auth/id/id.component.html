@@ -6,9 +6,10 @@
 >
     <div class="input-group">
         <input
+            [ngClass]="this.formsService.displayClass(userId.control)"
             id="id-a"
             required
-            [type]="inputType"
+            type="number"
             ngModel
             pattern="^[0-9_-]{9,9}$"
             name="userId"
@@ -19,17 +20,10 @@
         <div
             id="toggle-icon"
             class="btn input-group-append input-group-text"
-            (click)="toggleVis()"
         >
-            <span *ngIf="inputType === 'text'">
+            <span>
                 <i
-                    class="fa fa-eye-slash"
-                    aria-hidden="true"
-                ></i>
-            </span>
-            <span *ngIf="inputType !== 'text'">
-                <i
-                    class="fa fa-eye"
+                    class="fa fa-user"
                     aria-hidden="true"
                 ></i>
             </span>
@@ -47,31 +41,3 @@
         כניסה
     </button>
 </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<app-http-error-messages></app-http-error-messages>

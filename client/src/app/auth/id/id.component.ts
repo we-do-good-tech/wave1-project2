@@ -10,7 +10,6 @@ import { FormsService } from 'src/app/services/forms.service';
     styleUrls: ['./id.component.scss']
 })
 export class IdComponent implements OnInit {
-    inputType: string = 'password';
 
     constructor(
         private authService: AuthService,
@@ -28,12 +27,9 @@ export class IdComponent implements OnInit {
         this.authService.checkUserId(form.value)
             .subscribe((result) => {
                 this.router.navigate(['/main/teacher'])
-            });
+            })
     }
 
-    toggleVis(): void {
-        this.inputType = this.inputType === 'text' ? 'password' : 'text';
-    }
 
 
 
