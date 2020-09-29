@@ -95,7 +95,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(true);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, "", "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, ".mainButton {\n  background-color: #2699fb;\n  padding: 10px;\n  color: #fff;\n  font-weight: 600;\n  width: 100%;\n  border: none;\n  outline: none;\n}", "",{"version":3,"sources":["webpack://src/styles.scss"],"names":[],"mappings":"AAOA;EACE,yBAAA;EACA,aAAA;EACA,WAAA;EACA,gBAAA;EACA,WAAA;EACA,YAAA;EACA,aAAA;AANF","sourcesContent":["$m-bg: whitesmoke;\r\n$s-bg: #5674c5;\r\n$m-color: #333333;\r\n$s-color: whitesmoke;\r\n$success: #14921e;\r\n$error: #df1f1f;\r\n\r\n.mainButton {\r\n  background-color: #2699fb;\r\n  padding: 10px;\r\n  color: #fff;\r\n  font-weight: 600;\r\n  width: 100%;\r\n  border: none;\r\n  outline: none;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -109,8 +109,8 @@ ___CSS_LOADER_EXPORT___.push([module.i, "", "",{"version":3,"sources":[],"names"
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\nirku\Desktop\development\big projects\project-reports\client\src\styles.scss */"+EN/");
-module.exports = __webpack_require__(/*! C:\Users\nirku\Desktop\development\big projects\project-reports\client\node_modules\bootstrap\dist\css\bootstrap.css */"+eM2");
+__webpack_require__(/*! C:\Users\yonda\OneDrive\שולחן העבודה\projectSign\project_report_time\client\src\styles.scss */"+EN/");
+module.exports = __webpack_require__(/*! C:\Users\yonda\OneDrive\שולחן העבודה\projectSign\project_report_time\client\node_modules\bootstrap\dist\css\bootstrap.css */"+eM2");
 
 
 /***/ }),

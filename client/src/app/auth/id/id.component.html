@@ -11,16 +11,11 @@
                 <input [ngClass]="this.formsService.displayClass(userId.control)" id="id-a" required type="number"
                     ngModel pattern="^[0-9_-]{9,9}$" name="userId" #userId="ngModel" class="form-control"
                     placeholder="הכנס ת.ז.">
-                <div id="toggle-icon" class="btn input-group-append input-group-text">
-                    <span>
-                        <i class="fas fa-user" aria-hidden="true"></i>
-                    </span>
-                </div>
             </div>
-            <div *ngIf="this.formsService.formControlStatus(userId.control)">
-                <small *ngIf="userId.errors.required">Required</small>
-                <small *ngIf="userId.errors.pattern">Invalid ID Must Include 9 numbers</small>
-            </div>
+        </div>
+        <div class="errorsContainer" *ngIf="this.formsService.formControlStatus(userId.control)">
+            <div class="error" *ngIf="userId.errors.required">שדה חובה!</div>
+            <div class="error" *ngIf="userId.errors.pattern">חובה להזין 9 מספרים</div>
         </div>
         <button class="mainButton" [disabled]="form.invalid">
             התחבר

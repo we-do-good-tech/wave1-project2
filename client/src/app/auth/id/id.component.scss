@@ -9,6 +9,7 @@ input::-webkit-inner-spin-button {
   width: 100%;
   flex-direction: column;
   align-items: center;
+  direction: rtl;
 }
 .wrapper h3 {
   color: #2699fb;
@@ -39,26 +40,18 @@ form button {
   margin-top: 20%;
   border-radius: 5px;
 }
-form input {
-  border-right: none;
-}
+
 .input-group label {
   font-size: 12px;
   color: #2699fb;
 }
 .idInput {
-  display: flex;
   width: 100%;
-  direction: ltr;
-  border-radius: 8px;
 }
-.idInput:focus {
-  box-shadow: 0 0 5px #2699fb;
-}
-#toggle-icon {
-  border-left: none;
-  border-radius: 0;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  direction: ltr;
+
+.error {
+  display: block;
+  float: right;
+  color: red;
+  font-size: 14px;
 }

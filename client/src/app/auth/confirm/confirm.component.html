@@ -1,5 +1,5 @@
 <div class="confirmWrapper">
-    <p class="m-3">נשלח מסרון עם קוד 4 ספרות</p>
+    <p class="m-3">נשלח מסרון, נא הזינו הקוד</p>
     <form #form="ngForm" appInputFocus (ngSubmit)="onSendConfirmCode(form)" class="m-3">
         <div class="smsCode">
             <input id="num-a" required type="number" pattern="^\d{1}$" name="first" autofocus ngModel="virtualkey"
@@ -11,11 +11,10 @@
             <input id="num-d" required type="number" pattern="^\d{1}$" name="fourth" ngModel="virtualkey"
                 #four="ngModel" (input)="onChange($event)">
         </div>
+        <div class="codeError">הסיסמא שגויה</div>
         <!-- <div *ngIf="form.invalid && form.submitted">Missig number</div> -->
+
         <app-keyboard></app-keyboard>
-        <button class="mainButton" id="btn-id" type="submit" [disabled]="form.invalid">
-            התחבר
-        </button>
     </form>
-    <button>שליחת קוד מחדש</button>
+    <small>לא הגיע קוד, שלח מחדש</small>
 </div>
