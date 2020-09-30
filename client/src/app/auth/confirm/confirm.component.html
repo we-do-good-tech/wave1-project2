@@ -1,54 +1,15 @@
 <div class="confirmWrapper">
     <p class="m-3">נשלח מסרון, נא הזינו הקוד</p>
-    <form
-        #form="ngForm"
-        appInputFocus
-        (ngSubmit)="onSendConfirmCode(form)"
-        class="m-3"
-    >
+    <form #form="ngForm" appInputFocus (ngSubmit)="onSendConfirmCode(form)" class="m-3">
         <div class="smsCode">
-            <input
-                id="num-a"
-                required
-                type="number"
-                pattern="^\d{1}$"
-                name="first"
-                autofocus
-                ngModel="virtualkey"
-                #one="ngModel"
-                (input)="onChange($event)"
-            >
-            <input
-                id="num-b"
-                required
-                type="number"
-                pattern="^\d{1}$"
-                name="second"
-                required
-                ngModel="virtualkey"
-                #two="ngModel"
-                (input)="onChange($event)"
-            >
-            <input
-                id="num-c"
-                required
-                type="number"
-                pattern="^\d{1}$"
-                name="third"
-                ngModel="virtualkey"
-                #three="ngModel"
-                (input)="onChange($event)"
-            >
-            <input
-                id="num-d"
-                required
-                type="number"
-                pattern="^\d{1}$"
-                name="fourth"
-                ngModel="virtualkey"
-                #four="ngModel"
-                (input)="onChange($event)"
-            >
+            <input id="num-a" required type="number" pattern="^\d{1}$" name="first" autofocus ngModel="virtualkey"
+                #one="ngModel" (input)="onChange($event)">
+            <input id="num-b" required type="number" pattern="^\d{1}$" name="second" required ngModel="virtualkey"
+                #two="ngModel" (input)="onChange($event)">
+            <input id="num-c" required type="number" pattern="^\d{1}$" name="third" ngModel="virtualkey"
+                #three="ngModel" (input)="onChange($event)">
+            <input id="num-d" required type="number" pattern="^\d{1}$" name="fourth" ngModel="virtualkey"
+                #four="ngModel" (input)="onChange($event)">
         </div>
         <div class="codeError">הסיסמא שגויה</div>
         <!-- <div *ngIf="form.invalid && form.submitted">Missig number</div> -->
@@ -63,9 +24,5 @@
     </form>
     <app-keyboard></app-keyboard>
     <small>לא הגיע קוד, שלח מחדש</small>
-<<<<<<< HEAD
 
 </div>
-=======
-</div>
->>>>>>> 17331084280a894bb473d179b5ee9d703c34a595

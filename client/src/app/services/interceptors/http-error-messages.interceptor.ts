@@ -1,33 +1,32 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import { catchError, tap } from "rxjs/operators";
 
 import {
-    HttpRequest,
-    HttpHandler,
-    HttpEvent,
-    HttpInterceptor
-} from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { HttpErrorMessagesService } from '../http-error-messages.service';
+  HttpRequest,
+  HttpHandler,
+  HttpEvent,
+  HttpInterceptor,
+} from "@angular/common/http";
+import { Observable, throwError } from "rxjs";
+import { HttpErrorMessagesService } from "../http-error-messages.service";
 
 @Injectable()
 export class HttpErrorMessagesInterceptor implements HttpInterceptor {
+  constructor(private httpErrorMessagesService: HttpErrorMessagesService) {}
 
-    constructor(private httpErrorMessagesService: HttpErrorMessagesService) { }
+  intercept(
+    request: HttpRequest<unknown>,
+    next: HttpHandler
+  ): Observable<HttpEvent<unknown>> {
+    return next.handle(request).pipe(
+      tap(() => {}),
+      catchError((error) => {
+        console.log(error.error.message);
 
-    intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-        return next.handle(request)
-            .pipe(
-                tap(() => {
+        this.httpErrorMessagesService.setMessage(error.error.message);
 
-                }),
-                catchError((error) => {
-                    console.log(error.error.message)
-
-                    this.httpErrorMessagesService.setMessage(error.error.message);
-
-                    return throwError(error);
-                })
-            )
-    }
+        return throwError(error);
+      })
+    );
+  }
 }

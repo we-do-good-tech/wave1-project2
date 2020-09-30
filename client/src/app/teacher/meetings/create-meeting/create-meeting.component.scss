@@ -1,0 +1,112 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: calc(100vh - 61.6px - 61px);
+  padding: 0;
+}
+.form {
+  width: 100vw;
+  height: 100%;
+}
+
+.topBox {
+  flex-basis: 50%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+
+  overflow: hidden;
+}
+.topBox h2 {
+  color: #2699fb;
+  font-weight: normal;
+}
+::placeholder {
+  color: #2699fb;
+}
+.topBox select,
+.topBox input {
+  direction: rtl;
+  width: 100%;
+  border: 1px solid #2699fb;
+  padding: 10px;
+  background-color: #fff;
+  color: #2699fb;
+  margin-top: 15px;
+}
+.errorMessage {
+  color: red;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 15px;
+}
+.topBox .meetingDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+}
+.topBox .meetingDetails .mettingDateTime {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  color: #2699fb;
+  margin-top: 10px;
+}
+.mettingDateTime input {
+  width: 100%;
+}
+.bottomBox {
+  flex-basis: 50%;
+  background-color: #eee;
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  //   justify-content: space-around;
+  //   margin-top: 15px;
+  overflow: hidden;
+}
+
+.meetStart,
+.meetEnd {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 45%;
+  height: 50px;
+  color: #2699fb;
+}
+.bottomBox textarea {
+  width: 75%;
+  height: 85px;
+  direction: rtl;
+
+  border: 2px solid #2699fb;
+}
+.activitiesContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  overflow: hidden;
+}
+.bottomBox button {
+  margin: 10px;
+  width: 75%;
+  margin: 20px 0;
+}
+form {
+  width: 100%;
+  overflow-x: hidden;
+}
