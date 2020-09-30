@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { AbstractControl, FormControl } from '@angular/forms';
 
@@ -20,7 +21,7 @@ export class FormsService {
 
 
 
-    displayClass(input: AbstractControl) {
+    displayClass(input: AbstractControl): { [key: string]: boolean } {
         return {
             'is-valid': input.valid,
             'is-invalid': input.touched && input.invalid

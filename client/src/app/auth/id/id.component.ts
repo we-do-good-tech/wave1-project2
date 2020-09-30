@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { FormsService } from 'src/app/services/forms.service';
+import { FormsService } from 'src/app/services/forms/forms.service';
 
 @Component({
     selector: 'app-id',
@@ -27,6 +27,8 @@ export class IdComponent implements OnInit {
         this.authService.checkUserId(form.value)
             .subscribe((result) => {
                 this.router.navigate(['/main/teacher'])
+
+                // this.router.navigate(['/auth/confirm'])
             })
     }
 
