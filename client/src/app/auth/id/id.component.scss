@@ -38,8 +38,10 @@ form {
 
 form button {
   margin-top: 20%;
-  border-radius: 5px;
+//   border-radius: 5px;
 }
+// עבר לסטייל הכפתור הכללי
+
 
 .input-group label {
   font-size: 12px;
@@ -49,9 +51,10 @@ form button {
   width: 100%;
 }
 
-.error {
-  display: block;
-  float: right;
-  color: red;
-  font-size: 14px;
-}
+// עבר לסטייל הכללי
+// .error {
+//   display: block;
+//   float: right;
+//   color: red;
+//   font-size: 14px;
+// }

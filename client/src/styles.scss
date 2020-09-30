@@ -13,4 +13,13 @@ $error: #df1f1f;
   width: 100%;
   border: none;
   outline: none;
+  border-radius: 3px;
 }
+
+.error-validate-form-message {
+  display: block;
+  float: right;
+  color: red;
+  font-size: 14px;
+}
+

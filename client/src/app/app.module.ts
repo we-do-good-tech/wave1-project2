@@ -6,7 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from "./shared/shared.module";
 
 import { AppComponent } from './app.component';
-import { HttpErrorMessagesInterceptor } from './services/http-error-messages.interceptor'
+import { HttpErrorMessagesInterceptor } from './services/interceptors/http-error-messages.interceptor'
 
 
 

@@ -52,9 +52,15 @@
         </div>
         <div class="codeError">הסיסמא שגויה</div>
         <!-- <div *ngIf="form.invalid && form.submitted">Missig number</div> -->
-
-
-        <app-keyboard></app-keyboard>
+        <!-- <button
+            class="mainButton"
+            id="btn-confirm"
+            type="submit"
+            [disabled]="form.invalid"
+        >
+            שלח
+        </button> -->
     </form>
+    <app-keyboard></app-keyboard>
     <small>לא הגיע קוד, שלח מחדש</small>
 </div>

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { ConfirmCode } from '../interfaces/ConfirmCode';
 import { UserId } from '../interfaces/UserId';
 
 @Injectable({
@@ -9,7 +10,8 @@ import { UserId } from '../interfaces/UserId';
 })
 export class AuthService {
 
-    isLog: boolean = false
+    isLog: boolean = false;
+
 
     constructor(private http: HttpClient) { }
 
@@ -18,10 +20,13 @@ export class AuthService {
             .pipe(
                 tap((result) => {
                     console.log(result)
-                    this.isLog = true
+                    this.isLog = true;
                 })
             )
     }
+
+
+    confirmCode(code: ConfirmCode) { }
 
 
 }

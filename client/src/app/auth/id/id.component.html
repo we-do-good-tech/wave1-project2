@@ -29,13 +29,13 @@
             *ngIf="this.formsService.formControlStatus(userId.control)"
         >
             <div
-                class="error"
+                class="error-validate-form-message"
                 *ngIf="userId.errors.required"
             >
                 שדה חובה!
             </div>
             <div
-                class="error"
+                class="error-validate-form-message"
                 *ngIf="userId.errors.pattern"
             >
                 חובה להזין 9 מספרים

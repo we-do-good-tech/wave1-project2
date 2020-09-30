@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ConfirmCode } from 'src/app/interfaces/ConfirmCode';
-import { FormsService } from "../../services/forms.service";
+import { FormsService } from "../../services/forms/forms.service";
 
 
 @Component({
