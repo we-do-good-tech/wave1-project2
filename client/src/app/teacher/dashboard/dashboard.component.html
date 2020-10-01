@@ -1,4 +1,21 @@
-<h3>שלום איציק</h3>
-<a [routerLink]="['../main/teacher/create-meeting']">+</a>
-<p>יצירת מפגש חדש</p>
-<a [routerLink]="['../main/teacher/meetings-table']">מפגשים קודמים</a>
+<div class="dashboardConatiner">
+    <div class="topBox">
+        <h3>שלום איציק</h3>
+    </div>
+    <div class="bottomBox">
+        <div class="newMeetingContainer">
+            <div class="plusButton">
+                <a routerLink="../../../main/teacher/create-meeting">
+                    <h2>+</h2>
+                </a>
+            </div>
+            <p>ליצירת מפגש חדש</p>
+        </div>
+        <a
+            class="oldMeetingLink"
+            routerLink="../../../main/teacher/meetings-table"
+        >
+            מפגשים קודמים
+        </a>
+    </div>
+</div>

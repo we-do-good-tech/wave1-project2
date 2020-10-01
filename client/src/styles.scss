@@ -1,10 +1,15 @@
-$m-bg: whitesmoke;
-$s-bg: #5674c5;
-$m-color: #333333;
-$s-color: whitesmoke;
-$success: #14921e;
-$error: #df1f1f;
-
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  height: 100%;
+  // height: calc(100vh -61.6px -61px);
+}
+main {
+  // height: calc(100vh -61.6px -61px);
+  height: 100%;
+}
 .mainButton {
   background-color: #2699fb;
   padding: 10px;
@@ -22,4 +27,3 @@ $error: #df1f1f;
   color: red;
   font-size: 14px;
 }
-
