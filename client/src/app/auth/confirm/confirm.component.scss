@@ -8,10 +8,12 @@ input::-webkit-inner-spin-button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 .confirmWrapper form {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 .codeError {
   text-align: center;
@@ -23,6 +25,9 @@ input::-webkit-inner-spin-button {
 .confirmWrapper form .smsCode {
   display: flex;
   justify-content: space-around;
+  width: 70%;
+  margin: auto;
+  align-items: center;
 }
 .confirmWrapper form .smsCode input {
   background: none;
@@ -32,6 +37,9 @@ input::-webkit-inner-spin-button {
   outline: none;
   width: 50px;
   direction: ltr;
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px;
 }
 app-keyboard {
   margin-top: 55px;
