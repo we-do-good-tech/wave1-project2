@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { ConfirmCode } from '../interfaces/ConfirmCode';
-import { UserId } from '../interfaces/UserId';
+import { TeacherId } from '../interfaces/TeacherId';
 
 @Injectable({
     providedIn: 'root'
@@ -15,8 +15,8 @@ export class AuthService {
 
     constructor(private http: HttpClient) { }
 
-    checkUserId(userId: UserId): Observable<any> {
-        return this.http.post<any>('fake/userId', userId)
+    authTeacherId(teacherId: TeacherId): Observable<any> {
+        return this.http.post<any>('api/auth/teacherId', teacherId)
             .pipe(
                 tap((result) => {
                     console.log(result)

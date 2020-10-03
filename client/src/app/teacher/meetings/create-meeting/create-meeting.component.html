@@ -1,57 +1,98 @@
 <div class="meetingsContainer">
-    <form class="form" [formGroup]="meetingForm" (ngSubmit)="onCreateMeeting()">
+    <form
+        class="form"
+        [formGroup]="meetingForm"
+        (ngSubmit)="onCreateMeeting()"
+    >
         <div class="title">
-            <h2>
-                יצירת מפגש
-            </h2>
+            <h2>יצירת מפגש</h2>
         </div>
-        <select [ngClass]="this.formsService.displayClass(getFormControl('studentName'))" formControlName="studentName">
+        <select
+            [ngClass]="this.formsService.displayClass(getFormControl('studentName'))"
+            formControlName="studentName"
+        >
             <option value>בחר</option>
-            <option *ngFor="let student of students" [value]="student">
+            <option
+                *ngFor="let student of students"
+                [value]="student"
+            >
                 {{student}}
             </option>
         </select>
         <div *ngIf="this.formsService.formControlStatus(getFormControl('studentName'))">
-            <div class="errorMessage" *ngIf="getFormControl('studentName').errors.required">
+            <div
+                class="errorMessage"
+                *ngIf="getFormControl('studentName').errors.required"
+            >
                 שדה חובה
             </div>
         </div>
-        <input [ngClass]="this.formsService.displayClass(getFormControl('meetingDate'))" type="date"
-            formControlName="meetingDate">
+        <input
+            [ngClass]="this.formsService.displayClass(getFormControl('meetingDate'))"
+            type="date"
+            formControlName="meetingDate"
+        >
         <div *ngIf="this.formsService.formControlStatus(getFormControl('meetingDate'))">
-            <div class="errorMessage" *ngIf="getFormControl('meetingDate').errors.required">
+            <div
+                class="errorMessage"
+                *ngIf="getFormControl('meetingDate').errors.required"
+            >
                 שדה חובה
             </div>
         </div>
         <div class="mettingsTime">
             <div class="meetStart">
                 <small>שעתהתחלה</small>
-                <input [ngClass]="this.formsService.displayClass(getFormControl('meetingStartTime'))" type="time"
-                    formControlName="meetingStartTime">
+                <input
+                    [ngClass]="this.formsService.displayClass(getFormControl('meetingStartTime'))"
+                    type="time"
+                    formControlName="meetingStartTime"
+                >
                 <div *ngIf="this.formsService.formControlStatus(getFormControl('meetingStartTime'))">
-                    <div class="errorMessage" *ngIf="getFormControl('meetingStartTime').errors.required">
+                    <div
+                        class="errorMessage"
+                        *ngIf="getFormControl('meetingStartTime').errors.required"
+                    >
                         שדה חובה
                     </div>
                 </div>
             </div>
             <div class="meetEnd">
                 <small>שעת סיום</small>
-                <input [ngClass]="this.formsService.displayClass(getFormControl('meetingEndTime'))" type="time"
-                    formControlName="meetingEndTime">
+                <input
+                    [ngClass]="this.formsService.displayClass(getFormControl('meetingEndTime'))"
+                    type="time"
+                    formControlName="meetingEndTime"
+                >
                 <div *ngIf="this.formsService.formControlStatus(getFormControl('meetingEndTime'))">
-                    <div class="errorMessage" *ngIf="getFormControl('meetingEndTime').errors.required">שדה חובה</div>
+                    <div
+                        class="errorMessage"
+                        *ngIf="getFormControl('meetingEndTime').errors.required"
+                    >
+                        שדה חובה
+                    </div>
                 </div>
             </div>
         </div>
         <div class="activitiesContainer">
-            <textarea placeholder="נושאים ופעיליות שעלו במפגש" formControlName="meetingActivitis" cols="5"
-                rows="5"></textarea>
-            <textarea placeholder="הערות" formControlName="meetingComments" cols="5" rows="5"></textarea>
+            <textarea
+                placeholder="נושאים ופעיליות שעלו במפגש"
+                formControlName="meetingActivitis"
+                cols="5"
+                rows="5"
+            ></textarea>
+            <textarea
+                placeholder="הערות"
+                formControlName="meetingComments"
+                cols="5"
+                rows="5"
+            ></textarea>
         </div>
-
-
-
-        <button [disabled]="meetingForm.invalid" type="submit" class="mainButton">
+        <button
+            [disabled]="meetingForm.invalid"
+            type="submit"
+            class="mainButton"
+        >
             צור פגישה
         </button>
     </form>
