@@ -1,10 +1,10 @@
 <div class="meetingsContainer">
-    <div class="title">
-        <h2>
-            יצירת מפגש
-        </h2>
-    </div>
     <form class="form" [formGroup]="meetingForm" (ngSubmit)="onCreateMeeting()">
+        <div class="title">
+            <h2>
+                יצירת מפגש
+            </h2>
+        </div>
         <select [ngClass]="this.formsService.displayClass(getFormControl('studentName'))" formControlName="studentName">
             <option value>בחר</option>
             <option *ngFor="let student of students" [value]="student">
