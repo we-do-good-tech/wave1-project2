@@ -145,13 +145,13 @@ class ConfirmComponent {
 }
 ConfirmComponent.ɵfac = function ConfirmComponent_Factory(t) { return new (t || ConfirmComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_forms_forms_service__WEBPACK_IMPORTED_MODULE_1__["FormsService"])); };
 ConfirmComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: ConfirmComponent, selectors: [["app-confirm"]], decls: 19, vars: 0, consts: [[1, "confirmWrapper"], [1, "m-3"], ["appInputFocus", "", 1, "m-3", 3, "ngSubmit"], ["form", "ngForm"], [1, "smsCode"], ["id", "num-a", "required", "", "type", "number", "pattern", "^\\d{1}$", "name", "first", "autofocus", "", "ngModel", "virtualkey", 3, "input"], ["one", "ngModel"], ["id", "num-b", "required", "", "type", "number", "pattern", "^\\d{1}$", "name", "second", "required", "", "ngModel", "virtualkey", 3, "input"], ["two", "ngModel"], ["id", "num-c", "required", "", "type", "number", "pattern", "^\\d{1}$", "name", "third", "ngModel", "virtualkey", 3, "input"], ["three", "ngModel"], ["id", "num-d", "required", "", "type", "number", "pattern", "^\\d{1}$", "name", "fourth", "ngModel", "virtualkey", 3, "input"], ["four", "ngModel"], [1, "codeError"]], template: function ConfirmComponent_Template(rf, ctx) { if (rf & 1) {
-        const _r208 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+        const _r11 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "p", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "\u05E0\u05E9\u05DC\u05D7 \u05DE\u05E1\u05E8\u05D5\u05DF, \u05E0\u05D0 \u05D4\u05D6\u05D9\u05E0\u05D5 \u05D4\u05E7\u05D5\u05D3");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "form", 2, 3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngSubmit", function ConfirmComponent_Template_form_ngSubmit_3_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r208); const _r203 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](4); return ctx.onSendConfirmCode(_r203); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngSubmit", function ConfirmComponent_Template_form_ngSubmit_3_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r11); const _r6 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](4); return ctx.onSendConfirmCode(_r6); });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "div", 4);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "input", 5, 6);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("input", function ConfirmComponent_Template_input_input_6_listener($event) { return ctx.onChange($event); });
