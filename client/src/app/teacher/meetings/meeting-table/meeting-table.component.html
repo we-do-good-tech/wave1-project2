@@ -1,1 +1,29 @@
-<p>meeting-table works!</p>
+<div class="container">
+    <div class="heading">
+        <div class="title">מפגשים שטרם אושר</div>
+        <div class="list">
+            <select>
+                <option value>בחר משתמש</option>
+                <option value>אבי</option>
+                <option value>בני</option>
+                <option value>גדי</option>
+            </select>
+        </div>
+    </div>
+    <div class="table">
+        <ul>
+            <li>מפגש</li>
+            <li>תאריך</li>
+            <li>סטטוס</li>
+        </ul>
+        <div class="meetings">
+            <app-meeting-table-item></app-meeting-table-item>
+            <app-meeting-table-item></app-meeting-table-item>
+            <app-meeting-table-item></app-meeting-table-item>
+            <app-meeting-table-item></app-meeting-table-item>
+            <app-meeting-table-item></app-meeting-table-item>
+            <app-meeting-table-item></app-meeting-table-item>
+        </div>
+    </div>
+    <button class="mainButton">שלח אישור מחדש</button>
+</div>

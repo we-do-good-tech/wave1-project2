@@ -1,16 +1,14 @@
 .meetingsContainer {
   width: 100%;
-  // height: calc(100vh - 61.6px - 61px);
+  height: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
-  // overflow-y: hidden;
 }
 
 h2 {
   color: #2699fb;
   font-weight: normal;
-  // margin-top: 61px;
   margin-bottom: 41px;
 }
 .title {
@@ -23,7 +21,6 @@ form {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  // background-color: purple;
 }
 
 form select,
@@ -47,7 +44,7 @@ form input {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 25%;
+  width: 45%;
   height: 50px;
 }
 .mettingsTime input {
@@ -59,12 +56,50 @@ form input {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 35px 0;
+  margin-top: 35px;
+  height: 200px;
 }
 .activitiesContainer textarea {
-  width: 65%;
-  height: 35%;
+  width: 100%;
+  height: 45%;
   margin: 10px 0;
   direction: rtl;
-  border: 2px solid #2699fb;
+  border: 1px solid #2699fb;
+}
+
+@media (max-height: 600px) {
+  form {
+    // background-color: red;
+    height: 70%;
+    margin: auto;
+  }
+  .activitiesContainer textarea {
+    width: 100%;
+    height: 85%;
+    margin: 5px 0;
+    direction: rtl;
+    border: 1px solid #2699fb;
+  }
+  ::placeholder {
+    font-size: 12px;
+  }
+  h2 {
+    margin: 0;
+    margin-top: 15px;
+  }
+  .title {
+    margin: 10px 0;
+  }
+  .activitiesContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // margin: 35px 0;
+    margin-top: 15px;
+    height: 150px;
+  }
+  button {
+    margin-top: 15px;
+  }
 }

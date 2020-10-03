@@ -1,12 +1,12 @@
 <div class="meetingsContainer">
-    <div class="title">
-        <h2>יצירת מפגש</h2>
-    </div>
     <form
         class="form"
         [formGroup]="meetingForm"
         (ngSubmit)="onCreateMeeting()"
     >
+        <div class="title">
+            <h2>יצירת מפגש</h2>
+        </div>
         <select
             [ngClass]="this.formsService.displayClass(getFormControl('studentName'))"
             formControlName="studentName"
@@ -48,9 +48,6 @@
                     formControlName="meetingStartTime"
                 >
                 <div *ngIf="this.formsService.formControlStatus(getFormControl('meetingStartTime'))">
-
-
-
                     <div
                         class="errorMessage"
                         *ngIf="getFormControl('meetingStartTime').errors.required"
@@ -87,9 +84,6 @@
                 rows="5"
             ></textarea>
         </div>
-
-
-
         <button
             [disabled]="meetingForm.invalid"
             type="submit"
