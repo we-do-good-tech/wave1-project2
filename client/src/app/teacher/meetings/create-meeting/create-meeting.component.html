@@ -25,22 +25,21 @@
         </div>
         <div class="mettingsTime">
             <div class="meetStart">
+                <small>שעתהתחלה</small>
                 <input [ngClass]="this.formsService.displayClass(getFormControl('meetingStartTime'))" type="time"
                     formControlName="meetingStartTime">
                 <div *ngIf="this.formsService.formControlStatus(getFormControl('meetingStartTime'))">
-
-
-
                     <div class="errorMessage" *ngIf="getFormControl('meetingStartTime').errors.required">
                         שדה חובה
                     </div>
                 </div>
             </div>
             <div class="meetEnd">
+                <small>שעת סיום</small>
                 <input [ngClass]="this.formsService.displayClass(getFormControl('meetingEndTime'))" type="time"
                     formControlName="meetingEndTime">
-                <div class="errorMessage" *ngIf="this.formsService.formControlStatus(getFormControl('meetingEndTime'))">
-                    <div *ngIf="getFormControl('meetingEndTime').errors.required">שדה חובה</div>
+                <div *ngIf="this.formsService.formControlStatus(getFormControl('meetingEndTime'))">
+                    <div class="errorMessage" *ngIf="getFormControl('meetingEndTime').errors.required">שדה חובה</div>
                 </div>
             </div>
         </div>
