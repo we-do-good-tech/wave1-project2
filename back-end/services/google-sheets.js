@@ -1,4 +1,3 @@
-
 const { google } = require('googleapis')
 const creds = require('../../lior-sheets.creds.json')
 const keys = require('../config/keys')
@@ -14,7 +13,7 @@ function authClient(callClient) {
 
     client.authorize(async (error, tokens) => {
         if (error) {
-            console.log(error);
+            // console.log(error);
             throw error
         }
         else {
@@ -64,7 +63,8 @@ function convertSheetsDataToObjectsArray(data) {
 
 exports.findTeacherById = async function (teacherId, callTeacher) {
     console.log(teacherId)
-    return authClient(async (clinet) => {
+    authClient(async (clinet) => {
+        console.log(clinet)
         try {
             const googleSheetsApi = await authSheets(clinet)
 
@@ -77,11 +77,11 @@ exports.findTeacherById = async function (teacherId, callTeacher) {
 
             const findTeacher = convertData.find((teacher) => teacher.id == teacherId)
 
-            callTeacher(findTeacher)
+            callTeacher(null, findTeacher)
         } catch (error) {
             console.log('ERROR')
             console.log(error)
-            callTeacher(error)
+            callTeacher(error, null)
         }
     })
 }

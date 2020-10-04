@@ -5,15 +5,15 @@ exports.authTeacherId = async function (request, response) {
     const { teacherId } = request.body
 
     try {
-        googleSheetsService.findTeacherById(teacherId, (teacher) => {
-            if (teacher) {
-                return response.status(200).send({
-                    message: 'USER FOUND',
-                    user: teacher
+        googleSheetsService.findTeacherById(teacherId, (error, teacher) => {
+            if (!teacher) {
+                return response.status(403).send({
+                    message: 'USER NOT FOUND'
                 })
             }
-            response.status(403).send({
-                message: 'USER NOT FOUND'
+            response.status(200).send({
+                message: 'USER FOUND',
+                user: teacher
             })
 
         })
