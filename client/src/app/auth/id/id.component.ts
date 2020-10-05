@@ -25,7 +25,7 @@ export class IdComponent implements OnInit {
         // console.log(form.value)
         this.authService.authTeacherId(form.value)
             .subscribe((result) => {
-                this.router.navigate(['/main/teacher'])
+                this.router.navigate(['/auth/confirm'])
                 // this.router.navigate(['/auth/confirm'])
             })
     }
