@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ConfirmCode } from 'src/app/interfaces/ConfirmCode';
+import { AuthService } from 'src/app/services/auth.service';
 import { FormsService } from "../../services/forms/forms.service";
 
 
@@ -11,7 +13,11 @@ import { FormsService } from "../../services/forms/forms.service";
 })
 export class ConfirmComponent {
 
-    constructor(public formsService: FormsService) { }
+    constructor(
+        public formsService: FormsService,
+        private authService: AuthService,
+        private router: Router
+    ) { }
 
     onSendConfirmCode(form: NgForm): void {
         console.log(form)
@@ -28,6 +34,10 @@ export class ConfirmComponent {
 
         console.log(form.value)
         console.log(codeToSend)
+        this.authService.confirmCode(codeToSend)
+            .subscribe((result) => {
+                this.router.navigate(['main/teacher'])
+            })
     }
 
     onChange(event: any): void {

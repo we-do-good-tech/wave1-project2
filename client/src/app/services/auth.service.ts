@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { ConfirmCode } from '../interfaces/ConfirmCode';
 import { TeacherId } from '../interfaces/TeacherId';
 
@@ -17,16 +17,20 @@ export class AuthService {
 
     authTeacherId(teacherId: TeacherId): Observable<any> {
         return this.http.post<any>('api/auth/teacherId', teacherId)
-            .pipe(
-                tap((result) => {
-                    console.log(result)
-                    this.isLog = true;
-                })
-            )
     }
 
 
-    confirmCode(code: ConfirmCode) { }
+    confirmCode(code: ConfirmCode): Observable<{ message: string }> {
+        return this.http.post<{ message: string, isLog: boolean }>('api/auth/confirm-code', code)
+            .pipe(
+                map((result) => {
+                    console.log(result)
+                    this.isLog = result.isLog
+                    return result
+                })
+            )
+
+    }
 
 
 }

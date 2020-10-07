@@ -1,9 +1,11 @@
 
 
 class ConfirmCode {
-    code
+    code = undefined
     constructor() {
-        this.createConfirmCode()
+        if (!this.code) {
+            this.createConfirmCode()
+        }
     }
 
     createConfirmCode() {

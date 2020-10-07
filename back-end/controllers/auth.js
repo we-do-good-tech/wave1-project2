@@ -27,8 +27,6 @@ exports.authTeacherId = async function (request, response) {
 
         sendMail(options)
 
-
-
         response.status(200).send({
             message: 'USER FOUND',
             user: teacher
@@ -40,6 +38,21 @@ exports.authTeacherId = async function (request, response) {
             message: 'ERROR UNKNOW'
         })
     }
+
+}
+
+
+exports.authConfirmCode = async function (request, response) {
+    const { code } = request.body
+
+    const confirmCode = new ConfirmCode()
+
+    console.log(confirmCode.getCode())
+
+    response.status(200).send({
+        isLog: true
+    })
+
 
 }
 
