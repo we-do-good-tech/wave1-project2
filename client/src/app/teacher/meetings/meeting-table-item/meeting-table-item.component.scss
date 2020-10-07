@@ -1,9 +1,10 @@
 .tableItem {
   width: 80%;
   height: 60px;
-  background-color: #ddd;
-  box-shadow: 0 0 2px #ccc;
+  background-color: #ffffff;
+  border: 1px solid #4a454580;
   margin: 0 auto;
+  border-radius: 5px;
 }
 ul {
   direction: rtl;
@@ -17,6 +18,6 @@ ul {
 }
 ul li {
   font-size: 14px;
-  color: #2699fb;
+  color: #4a4545;
   font-weight: bolder;
 }

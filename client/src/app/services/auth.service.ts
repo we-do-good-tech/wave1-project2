@@ -1,12 +1,12 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
-import { ConfirmCode } from '../interfaces/ConfirmCode';
-import { TeacherId } from '../interfaces/TeacherId';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { map, tap } from "rxjs/operators";
+import { ConfirmCode } from "../interfaces/ConfirmCode";
+import { TeacherId } from "../interfaces/TeacherId";
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: "root",
 })
 export class AuthService {
 

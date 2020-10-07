@@ -1,21 +1,22 @@
-require('dotenv').config()
-const cors = require('cors')
-const keys = require('./back-end/config/keys')
-const express = require('express')
-const path = require('path')
-const server = express()
+require("dotenv").config();
+const cors = require("cors");
+const keys = require("./back-end/config/keys");
+const express = require("express");
+const path = require("path");
+const server = express();
 
 
 
-server.use(cors())
-server.use(express.json())
-server.use(express.urlencoded({ extended: true }))
-server.use(express.static(path.join(__dirname, 'client/dist/reports')))
+server.use(cors());
+server.use(express.json());
+server.use(express.urlencoded({ extended: true }));
+server.use(express.static(path.join(__dirname, "client/dist/reports")));
 
-const authRoutes = require('./back-end/routes/auth')
+const authRoutes = require("./back-end/routes/auth");
 
 
-server.use('/api/auth', authRoutes)
+server.use("/api/auth", authRoutes);
+
 
 
 server.get('*', (request, response) => {

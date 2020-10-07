@@ -1,7 +1,7 @@
 const googleSheetsService = require("../services/google-sheets");
-const { sendMail } = require('../send-email/transporter')
-const { confirmCode } = require('../services/confirm-code')
-const keys = require('../config/keys')
+const { sendMail } = require("../send-email/transporter");
+const { confirmCode } = require("../services/confirm-code");
+const keys = require("../config/keys");
 
 exports.authTeacherId = async function (request, response) {
     const { teacherId } = request.body
@@ -61,6 +61,5 @@ exports.authConfirmCode = async function (request, response) {
         message: 'Wrong code'
     })
 
-}
 
-
+};

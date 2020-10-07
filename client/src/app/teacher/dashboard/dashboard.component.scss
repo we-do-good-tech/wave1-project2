@@ -10,11 +10,22 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
 }
+.topBox .content {
+  text-align: center;
+  width: 70%;
+  margin: auto;
+  color: #4a4545;
+  font-weight: bolder;
+  font-size: 18px;
+}
 .topBox h3 {
-  font-weight: normal;
-  color: #2699fb;
+  font-weight: bold;
+  font-size: 25pt;
+  color: #4a4545;
+  margin: 25px 0;
 }
 .bottomBox {
   width: 100%;
@@ -27,9 +38,19 @@
 .plusButton {
   width: 50px;
   height: 50px;
-  background-color: #2699fb;
+  background: linear-gradient(to top, #f0740e, #f0ab0e);
   border-radius: 50px;
   position: relative;
+  box-shadow: 0 0 5px #00000029;
+}
+.plusButtonBorder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 50px;
+  border: 5px solid #c9c2bc4d;
 }
 .plusButton a {
   color: #fff;
@@ -47,10 +68,12 @@
   justify-content: space-around;
 }
 .newMeetingContainer p {
-  color: #2699fb;
+  color: #4a4545;
+  font-size: 20pt;
   font-weight: bold;
 }
 
 .oldMeetingLink {
   text-decoration: underline;
+  color: #4a4545;
 }

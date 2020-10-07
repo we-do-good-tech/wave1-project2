@@ -47,7 +47,7 @@ app-keyboard {
 
 .confirmWrapper p {
   font-size: 24px;
-  color: #2699fb;
+  color: #4a4545;
   font-weight: 600;
 }
 .confirmWrapper small {
@@ -56,4 +56,8 @@ app-keyboard {
   cursor: pointer;
   line-height: 12px;
   margin: 10px 0;
+}
+button {
+  width: 80%;
+  margin: 0 auto;
 }
