@@ -1,6 +1,6 @@
 const googleSheetsService = require("../services/google-sheets");
 const { sendMail } = require("../send-email/transporter");
-const { ConfirmCode } = require("../services/confirm-code");
+const { confirmCode } = require("../services/confirm-code");
 const keys = require("../config/keys");
 
 exports.authTeacherId = async function (request, response) {
@@ -18,14 +18,14 @@ exports.authTeacherId = async function (request, response) {
       });
     }
 
-    const confirmCode = new ConfirmCode();
+    // const confirmCode = new ConfirmCode()
 
     let options = {
       from: keys.EMAIL_SENDER.auth.user,
       to: teacher.email,
       subject: "TEST",
       text: `TEST`,
-      html: `<strong>${ConfirmCode.getCode()}</strong>`,
+      html: `<strong>${confirmCode.getCode()}</strong>`,
     };
 
     sendMail(options);
@@ -48,7 +48,7 @@ exports.authConfirmCode = async function (request, response) {
 
   // const confirmCode = new ConfirmCode()
 
-  console.log(ConfirmCode.getCode());
+  console.log(confirmCode.getCode());
 
   response.status(200).send({
     isLog: true,

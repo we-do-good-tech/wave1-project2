@@ -14,27 +14,6 @@ const authRoutes = require("./back-end/routes/auth");
 
 server.use("/api/auth", authRoutes);
 
-class Itzik {
-  personName;
-  constructor() {
-    this.createName();
-  }
-
-  createName() {
-    this.personName = "Balili";
-  }
-
-  getName() {
-    return this.personName;
-  }
-}
-
-const itzik = new Itzik();
-
-console.log(itzik);
-
-console.log(itzik.getName());
-
 server.get("*", (request, response) => {
   response.sendFile(path.resolve("client/dist/reports/index.html"));
 });
