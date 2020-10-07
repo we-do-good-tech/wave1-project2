@@ -9,7 +9,8 @@ const routes: Routes = [
         component: IdComponent
     },
     {
-        path: 'confirm', component: ConfirmComponent
+        path: 'confirm',
+        component: ConfirmComponent
     }
 ]
 
