@@ -9,11 +9,13 @@ exports.authTeacherId = async function (request, response) {
     try {
         const teacher = await googleSheetsService.findTeacherById(teacherId, request.googleSheetsApi)
 
+        console.log(teacher)
         if (!teacher) {
             return response.status(403).send({
                 message: 'USER NOT FOUND'
             })
         }
+
 
         // const confirmCode = new ConfirmCode()
 
@@ -44,15 +46,20 @@ exports.authTeacherId = async function (request, response) {
 
 exports.authConfirmCode = async function (request, response) {
     const { code } = request.body
-
-
-
+    console.log(code)
     console.log(confirmCode.getCode())
 
-    response.status(200).send({
-        isLog: true
-    })
+    if (code == confirmCode.getCode()) {
+        // confirmCode.deleteCode()
+        return response.status(200).send({
+            message: 'User log',
+            isLog: true
+        })
+    }
 
+    response.status(403).send({
+        message: 'Wrong code'
+    })
 
 }
 

@@ -17,12 +17,6 @@ const authRoutes = require('./back-end/routes/auth')
 
 server.use('/api/auth', authRoutes)
 
-// const { confirmCode } = require('./back-end/services/confirm-code')
-
-// console.log(confirmCode)
-// console.log(confirmCode.code)
-// console.log(confirmCode.getCode())
-
 
 server.get('*', (request, response) => {
     response.sendFile(path.resolve('client/dist/reports/index.html'))

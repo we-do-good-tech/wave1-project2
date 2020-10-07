@@ -20,13 +20,13 @@ export class AuthService {
     }
 
 
-    confirmCode(code: ConfirmCode): Observable<{ message: string }> {
-        return this.http.post<{ message: string, isLog: boolean }>('api/auth/confirm-code', code)
+    confirmCode(code: ConfirmCode): Observable<string> {
+        return this.http.post<{ message: string, isLog: boolean }>('api/auth/teacher/confirm-code', code)
             .pipe(
                 map((result) => {
                     console.log(result)
                     this.isLog = result.isLog
-                    return result
+                    return result.message
                 })
             )
 

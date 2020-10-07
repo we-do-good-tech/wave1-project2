@@ -20,6 +20,11 @@ class ConfirmCode {
     }
 
 
+    deleteCode() {
+        this.code = null
+    }
+
+
     getCode() {
         return this.code
     }
