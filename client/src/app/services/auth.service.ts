@@ -6,29 +6,31 @@ import { ConfirmCode } from "../interfaces/ConfirmCode";
 import { TeacherId } from "../interfaces/TeacherId";
 
 @Injectable({
-  providedIn: "root",
+    providedIn: "root",
 })
 export class AuthService {
-  isLog: boolean = false;
 
-  constructor(private http: HttpClient) {}
+    isLog: boolean = false;
 
-  authTeacherId(teacherId: TeacherId): Observable<any> {
-    return this.http.post<any>("api/auth/teacherId", teacherId);
-  }
 
-  confirmCode(code: ConfirmCode): Observable<{ message: string }> {
-    return this.http
-      .post<{ message: string; isLog: boolean }>(
-        "api/auth/teacher/confirm-code",
-        code
-      )
-      .pipe(
-        map((result) => {
-          console.log(result);
-          this.isLog = result.isLog;
-          return result;
-        })
-      );
-  }
+    constructor(private http: HttpClient) { }
+
+    authTeacherId(teacherId: TeacherId): Observable<any> {
+        return this.http.post<any>('api/auth/teacherId', teacherId)
+    }
+
+
+    confirmCode(code: ConfirmCode): Observable<string> {
+        return this.http.post<{ message: string, isLog: boolean }>('api/auth/teacher/confirm-code', code)
+            .pipe(
+                map((result) => {
+                    console.log(result)
+                    this.isLog = result.isLog
+                    return result.message
+                })
+            )
+
+    }
+
+
 }

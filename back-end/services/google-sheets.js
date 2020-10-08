@@ -1,9 +1,5 @@
-const { google } = require('googleapis')
-const creds = require('../../lior-sheets.creds.json')
+
 const keys = require('../config/keys')
-
-
-
 
 async function getSeetsValues(googleSheetsApi, options) {
     const data = await googleSheetsApi.spreadsheets.values.get(options);
