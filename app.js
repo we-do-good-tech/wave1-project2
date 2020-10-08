@@ -18,7 +18,6 @@ server.use(express.static(path.join(__dirname, 'client/dist/reports')));
 server.use("/api/auth", authRoutes);
 
 
-function notDoAYNTHING() { }
 
 server.get('*', (request, response) => {
     response.sendFile(path.resolve('client/dist/reports/index.html'))
