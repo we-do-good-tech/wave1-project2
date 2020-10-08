@@ -1,17 +1,9 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
-body {
-  height: 100vh;
-  // height: calc(100vh -61.6px -61px);
-  overflow-x: hidden;
-}
-main {
-  height: calc(100vh - 68px);
-  // height: calc(100vh -61.6px);
-  // height: 100%;
-}
+
 .mainButton {
   background-color: #f0ab0e;
   padding: 10px;
