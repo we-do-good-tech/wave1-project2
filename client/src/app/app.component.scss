@@ -1,11 +1,24 @@
-main {
-  height: calc(100vh -61px);
-  // min-height: calc(100vh - 61.6px);
-  // height: 100%;
+#body {
   width: 100%;
-  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #eee;
 }
 
+main {
+  // border: 1px solid slategrey;
+  height: 100%;
+  background-color: #fff;
+  width: 375px;
+  width: calc(500px -350px);
+  overflow: auto;
+}
+app-header {
+  width: 375px;
+}
 app-http-error-messages {
   margin: 10px 0;
 }
