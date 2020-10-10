@@ -6,6 +6,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  overflow-y: auto;
 }
 
 h2 {
@@ -20,7 +21,10 @@ h2 {
 form {
   width: 80%;
   height: 100%;
-  display: flex;
+  // display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(5, 1fr);
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
@@ -41,6 +45,8 @@ form input {
 .errorMessage {
   color: red;
   font-size: 12px;
+  text-align: center;
+  margin: 0;
 }
 .mettingsTime {
   width: 100%;
@@ -91,8 +97,7 @@ form input {
 
 @media (max-height: 600px) {
   form {
-    // background-color: red;
-    height: 70%;
+    height: 90%;
     margin: auto;
   }
   .activitiesContainer textarea {
@@ -100,7 +105,7 @@ form input {
     height: 85%;
     margin: 5px 0;
     direction: rtl;
-    border: 1px solid #2699fb;
+    border: 1px solid #a3a3a3;
   }
   ::placeholder {
     font-size: 12px;
@@ -123,6 +128,7 @@ form input {
   }
   button {
     margin-top: 15px;
+    margin-bottom: 10px;
   }
   small {
     margin-top: 30px;

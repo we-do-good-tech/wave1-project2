@@ -1,61 +1,27 @@
 <div class="wrapper">
-    <!-- <div class="welcome">
-        <h3>כיף שבאת!</h3>
-        <p>שלום חונכים וחונכות להתחבר בבקשה</p>
-    </div> -->
     <div class="logo">
-        <img
-            src="../../../assets/Group 1764.svg"
-            alt
-        >
+        <img src="../../../assets/Group 1764.svg" alt>
     </div>
-    <form
-        #form="ngForm"
-        (ngSubmit)="onSendId(form)"
-    >
+    <form #form="ngForm" (ngSubmit)="onSendId(form)">
         <div class="input-group">
             <label for="teacherId">מספר מזהה</label>
             <div class="idInput">
-                <input
-                    [ngClass]="this.formsService.displayClass(teacherId.control)"
-                    id="id-a"
-                    required
-                    type="number"
-                    ngModel
-                    pattern="^[0-9_-]{4,6}$"
-                    name="teacherId"
-                    #teacherId="ngModel"
-                    class="form-control"
-                    placeholder="מספר מזהה"
-                >
+                <input [ngClass]="this.formsService.displayClass(teacherId.control)" id="id-a" required type="number"
+                    ngModel pattern="^[0-9_-]{4,6}$" name="teacherId" #teacherId="ngModel" class="form-control"
+                    placeholder="מספר מזהה">
             </div>
         </div>
-        <div
-            class="errorsContainer"
-            *ngIf="this.formsService.formControlStatus(teacherId.control)"
-        >
-            <div
-                class="error-validate-form-message"
-                *ngIf="teacherId.errors.required"
-            >
+        <div class="errorsContainer" *ngIf="this.formsService.formControlStatus(teacherId.control)">
+            <div class="error-validate-form-message" *ngIf="teacherId.errors.required">
                 שדה חובה!
             </div>
-            <div
-                class="error-validate-form-message"
-                *ngIf="teacherId.errors.pattern"
-            >
+            <div class="error-validate-form-message" *ngIf="teacherId.errors.pattern">
                 חובה להזין 4-6 מספרים
             </div>
         </div>
         <div class="loginButton">
-            <img
-                src="../../../assets/Group 1789.svg"
-                alt
-            >
-            <button
-                class="mainButton"
-                [disabled]="form.invalid"
-            >
+            <img src="../../../assets/Group 1789.svg" alt>
+            <button class="mainButton" [disabled]="form.invalid">
                 התחברו
             </button>
         </div>

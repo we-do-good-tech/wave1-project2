@@ -1,23 +1,12 @@
-#body {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background-color: #eee;
-}
-
 main {
-  // border: 1px solid slategrey;
   height: 100%;
+  width: 100vw;
   background-color: #fff;
-  width: 375px;
-  width: calc(500px -350px);
+
   overflow: auto;
 }
 app-header {
-  width: 375px;
+  // width: 375px;
 }
 app-http-error-messages {
   margin: 10px 0;
