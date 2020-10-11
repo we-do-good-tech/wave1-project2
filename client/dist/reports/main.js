@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\yonda\OneDrive\שולחן העבודה\projectSign\project_report_time\client\src\main.ts */"zUnb");
+module.exports = __webpack_require__(/*! C:\Users\nirku\Desktop\development\big projects\project-reports\client\src\main.ts */"zUnb");
 
 
 /***/ }),
@@ -409,6 +409,55 @@ HttpErrorMessagesService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵ
 
 /***/ }),
 
+/***/ "Xuht":
+/*!***********************************************!*\
+  !*** ./src/app/services/guards/auth.guard.ts ***!
+  \***********************************************/
+/*! exports provided: AuthGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthGuard", function() { return AuthGuard; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../auth.service */ "lGQG");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "tyNb");
+
+
+
+
+class AuthGuard {
+    constructor(authService, router) {
+        this.authService = authService;
+        this.router = router;
+    }
+    canActivate(next, state) {
+        const isLog = this.authService.getIsLog();
+        console.log(isLog);
+        // console.log(state)
+        if (isLog) {
+            // if (state.url === '/auth/id' || '/auth/confirm') {
+            //     this.router.navigate(['/main'])
+            //     return true
+            // }
+            return true;
+        }
+        this.router.navigate(["/auth/id"]);
+        return false;
+    }
+}
+AuthGuard.ɵfac = function AuthGuard_Factory(t) { return new (t || AuthGuard)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"])); };
+AuthGuard.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: AuthGuard, factory: AuthGuard.ɵfac, providedIn: "root" });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AuthGuard, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
+        args: [{
+                providedIn: "root",
+            }]
+    }], function () { return [{ type: _auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }]; }, null); })();
+
+
+/***/ }),
+
 /***/ "ZAI4":
 /*!*******************************!*\
   !*** ./src/app/app.module.ts ***!
@@ -583,9 +632,9 @@ function HttpErrorMessagesComponent_div_1_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const ctx_r210 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+    const ctx_r88 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", ctx_r210.message, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", ctx_r88.message, " ");
 } }
 class HttpErrorMessagesComponent {
     constructor(httpErrorMessages) {
@@ -736,20 +785,24 @@ class AuthService {
     getIsLog() {
         return this.isLog;
     }
+    getUserName() {
+        return this.userName;
+    }
     getIsLogChange() {
         return this.isLogChange.asObservable();
     }
     getAuthData() {
         const authData = this.getSessionStorage();
         if (!authData) {
-            // return this.clearLoginInfo()
-            return;
+            return this.clearLoginInfo();
+            // return
         }
         const now = new Date();
         const isValidTime = authData.expiresInDate.getTime() - now.getTime();
         console.log(isValidTime, 'IS TOKEN VALID TIME');
         if (isValidTime > 0) {
             this.token = authData.token;
+            this.userName = authData.userName;
             this.isLog = true;
             this.isLogChange.next(this.isLog);
             this.setTokenTimer(isValidTime / 1000);
@@ -763,12 +816,13 @@ class AuthService {
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((result) => {
             // console.log(result)
             if (result.token) {
-                this.token = result.token;
                 const expiresIn = result.tokenExpiresIn;
+                this.token = result.token;
+                this.userName = result.userName;
                 this.setTokenTimer(expiresIn);
                 const now = new Date();
                 const expiresInDate = new Date(now.getTime() + expiresIn * 1000);
-                this.saveSessionStorage(this.token, expiresInDate);
+                this.saveSessionStorage(this.token, expiresInDate, this.userName);
             }
             return result.message;
         }));
@@ -789,28 +843,33 @@ class AuthService {
             return result.message;
         }));
     }
-    saveSessionStorage(token, expiresIn) {
+    saveSessionStorage(token, expiresIn, userName) {
         sessionStorage.setItem('token', token);
         sessionStorage.setItem('expiresIn', expiresIn.toISOString());
+        sessionStorage.setItem('user-name', JSON.stringify(userName));
     }
     removeSessionStorage() {
         sessionStorage.removeItem('token');
         sessionStorage.removeItem('expiresIn');
+        sessionStorage.removeItem('user-name');
     }
     getSessionStorage() {
         const token = sessionStorage.getItem('token');
         const expiresInDate = sessionStorage.getItem('expiresIn');
+        const userName = JSON.parse(sessionStorage.getItem('user-name'));
         if (!token || !expiresInDate) {
             return;
         }
         return {
             token: token,
-            expiresInDate: new Date(expiresInDate)
+            expiresInDate: new Date(expiresInDate),
+            userName: userName
         };
     }
     clearLoginInfo() {
         this.token = null;
         this.isLog = false;
+        this.userName = null;
         this.isLogChange.next(this.isLog);
         this.router.navigate(['/']);
         clearTimeout(this.tokenTimer);
@@ -897,8 +956,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppRoutingModule", function() { return AppRoutingModule; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "tyNb");
-/* harmony import */ var _services_guards_not_auth_guard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./services/guards/not-auth.guard */ "h+8V");
-/* harmony import */ var _shared_not_found_not_found_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./shared/not-found/not-found.component */ "OoyU");
+/* harmony import */ var _services_guards_auth_guard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./services/guards/auth.guard */ "Xuht");
+/* harmony import */ var _services_guards_not_auth_guard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./services/guards/not-auth.guard */ "h+8V");
+/* harmony import */ var _shared_not_found_not_found_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./shared/not-found/not-found.component */ "OoyU");
+
 
 
 
@@ -914,15 +975,16 @@ const routes = [
     {
         path: "auth",
         loadChildren: () => Promise.all(/*! import() | auth-auth-module */[__webpack_require__.e("common"), __webpack_require__.e("auth-auth-module")]).then(__webpack_require__.bind(null, /*! ./auth/auth.module */ "Yj9t")).then((m) => m.AuthModule),
-        canActivate: [_services_guards_not_auth_guard__WEBPACK_IMPORTED_MODULE_2__["NotAuthGuard"]],
+        canActivate: [_services_guards_not_auth_guard__WEBPACK_IMPORTED_MODULE_3__["NotAuthGuard"]],
     },
     {
         path: "main",
         loadChildren: () => Promise.all(/*! import() | teacher-teacher-module */[__webpack_require__.e("common"), __webpack_require__.e("teacher-teacher-module")]).then(__webpack_require__.bind(null, /*! ./teacher/teacher.module */ "4+hN")).then((m) => m.TeacerModule),
+        canActivate: [_services_guards_auth_guard__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]]
     },
     {
         path: "**",
-        component: _shared_not_found_not_found_component__WEBPACK_IMPORTED_MODULE_3__["NotFoundComponent"],
+        component: _shared_not_found_not_found_component__WEBPACK_IMPORTED_MODULE_4__["NotFoundComponent"],
     },
 ];
 class AppRoutingModule {

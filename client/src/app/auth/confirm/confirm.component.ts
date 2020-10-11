@@ -3,6 +3,7 @@ import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { ConfirmCode } from "src/app/interfaces/ConfirmCode";
 import { AuthService } from "src/app/services/auth.service";
+import { LoaderService } from 'src/app/services/loader.service';
 import { FormsService } from "../../services/forms/forms.service";
 
 @Component({
@@ -14,7 +15,8 @@ export class ConfirmComponent implements OnInit {
     constructor(
         public formsService: FormsService,
         private authService: AuthService,
-        private router: Router
+        private router: Router,
+        private loaderService: LoaderService
     ) { }
 
 
@@ -25,6 +27,7 @@ export class ConfirmComponent implements OnInit {
     onSendConfirmCode(form: NgForm): void {
         // console.log(form);
         if (form.invalid) return;
+        this.loaderService.setStatus(true)
 
         let code: string = "";
         for (const num in form.value) {
