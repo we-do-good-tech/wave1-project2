@@ -12,7 +12,8 @@ async function verifyToken(request, response, next) {
 
         request.userData = {
             teacherEmail: decodedToken.teacherEmail,
-
+            teacherFirstName: decodedToken.teacherFirstName,
+            teacherLastName: decodedToken.teacherLastName
         }
 
         next()

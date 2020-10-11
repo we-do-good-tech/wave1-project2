@@ -31,7 +31,9 @@ exports.authTeacherId = async function (request, response) {
                 confirmCode.setTimeExpireConfirmCode()
 
                 const token = createToken({
-                    teacherEmail: teacher.email
+                    teacherEmail: teacher.email,
+                    teacherFirstName: teacher.firstName,
+                    teacherLastName: teacher.lastName
                 })
 
                 return response.status(200).send({

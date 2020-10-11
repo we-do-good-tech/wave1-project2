@@ -18,11 +18,11 @@ async function getSeetsValues(googleSheetsApi, options) {
 // }
 
 function convertSheetsDataToObjectsArray(data) {
-    return data.map(([id, name, lname, phone, email]) => {
+    return data.map(([id, firstName, lastName, phone, email]) => {
         return {
             id: id,
-            name: name,
-            lname: lname,
+            firstName: firstName,
+            lastName: lastName,
             phone: phone,
             email: email,
         };
