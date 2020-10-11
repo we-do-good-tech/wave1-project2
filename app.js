@@ -16,7 +16,7 @@ server.use(express.static(path.join(__dirname, 'client/dist/reports')));
 
 
 
-server.use("/api/auth", limiter, authRoutes);
+server.use("/api/auth", authRoutes);
 
 
 
