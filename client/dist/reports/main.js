@@ -145,6 +145,11 @@ class HttpErrorMessagesInterceptor {
         }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])((error) => {
             console.log(error.error.message);
             console.log(error);
+            let errorMassge = error.error.message;
+            if (error.statusText === 'Too Many Requests') {
+                errorMassge = error.error;
+            }
+            alert(errorMassge);
             this.httpErrorMessagesService.setMessage(error.error.message);
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(error);
         }));
@@ -379,7 +384,13 @@ class AuthGuard {
     }
     canActivate(next, state) {
         const isLog = this.authService.getIsLog();
+        console.log(isLog);
+        // console.log(state)
         if (isLog) {
+            // if (state.url === '/auth/id' || '/auth/confirm') {
+            //     this.router.navigate(['/main'])
+            //     return true
+            // }
             return true;
         }
         this.router.navigate(["/auth/id"]);
@@ -541,6 +552,49 @@ HttpErrorMessagesComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["�
 
 /***/ }),
 
+/***/ "h+8V":
+/*!***************************************************!*\
+  !*** ./src/app/services/guards/not-auth.guard.ts ***!
+  \***************************************************/
+/*! exports provided: NotAuthGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NotAuthGuard", function() { return NotAuthGuard; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../auth.service */ "lGQG");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "tyNb");
+
+
+
+
+class NotAuthGuard {
+    constructor(authService, router) {
+        this.authService = authService;
+        this.router = router;
+    }
+    canActivate(next, state) {
+        const isLog = this.authService.getIsLog();
+        if (!isLog) {
+            return true;
+        }
+        this.router.navigate(['/main/teacher']);
+        return false;
+    }
+}
+NotAuthGuard.ɵfac = function NotAuthGuard_Factory(t) { return new (t || NotAuthGuard)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"])); };
+NotAuthGuard.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: NotAuthGuard, factory: NotAuthGuard.ɵfac, providedIn: 'root' });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](NotAuthGuard, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
+        args: [{
+                providedIn: 'root'
+            }]
+    }], function () { return [{ type: _auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }]; }, null); })();
+
+
+/***/ }),
+
 /***/ "jQpT":
 /*!***************************************************!*\
   !*** ./src/app/shared/footer/footer.component.ts ***!
@@ -639,7 +693,7 @@ class AuthService {
     authTeacherId(teacherId) {
         return this.http.post('api/auth/teacherId', teacherId)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((result) => {
-            console.log(result);
+            // console.log(result)
             if (result.token) {
                 this.token = result.token;
                 const expiresIn = result.tokenExpiresIn;
@@ -654,7 +708,7 @@ class AuthService {
     confirmCode(code) {
         return this.http.post('api/auth/teacher/confirm-code', code)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((result) => {
-            console.log(result);
+            // console.log(result)
             this.isLog = result.isLog;
             this.isLogChange.next(this.isLog);
             return result.message;
@@ -663,7 +717,7 @@ class AuthService {
     resendConfirmCode() {
         return this.http.get('api/auth/new-confirm-code')
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((result) => {
-            console.log(result);
+            // console.log(result)
             return result.message;
         }));
     }
@@ -725,7 +779,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "tyNb");
 /* harmony import */ var _services_guards_auth_guard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./services/guards/auth.guard */ "Xuht");
-/* harmony import */ var _shared_not_found_not_found_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./shared/not-found/not-found.component */ "OoyU");
+/* harmony import */ var _services_guards_not_auth_guard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./services/guards/not-auth.guard */ "h+8V");
+/* harmony import */ var _shared_not_found_not_found_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./shared/not-found/not-found.component */ "OoyU");
+
 
 
 
@@ -741,6 +797,7 @@ const routes = [
     {
         path: "auth",
         loadChildren: () => Promise.all(/*! import() | auth-auth-module */[__webpack_require__.e("common"), __webpack_require__.e("auth-auth-module")]).then(__webpack_require__.bind(null, /*! ./auth/auth.module */ "Yj9t")).then((m) => m.AuthModule),
+        canActivate: [_services_guards_not_auth_guard__WEBPACK_IMPORTED_MODULE_3__["NotAuthGuard"]]
     },
     {
         path: "main",
@@ -749,7 +806,7 @@ const routes = [
     },
     {
         path: "**",
-        component: _shared_not_found_not_found_component__WEBPACK_IMPORTED_MODULE_3__["NotFoundComponent"],
+        component: _shared_not_found_not_found_component__WEBPACK_IMPORTED_MODULE_4__["NotFoundComponent"],
     },
 ];
 class AppRoutingModule {

@@ -7,6 +7,7 @@ const server = express();
 
 
 const authRoutes = require("./back-end/routes/auth");
+const { limiter } = require('./back-end/services/rate-limiter')
 
 server.use(cors());
 server.use(express.json());
@@ -15,7 +16,7 @@ server.use(express.static(path.join(__dirname, 'client/dist/reports')));
 
 
 
-server.use("/api/auth", authRoutes);
+server.use("/api/auth", limiter, authRoutes);
 
 
 

@@ -72,7 +72,7 @@ export class AuthService {
         }>('api/auth/teacherId', teacherId)
             .pipe(
                 map((result) => {
-                    console.log(result)
+                    // console.log(result)
                     if (result.token) {
                         this.token = result.token
 
@@ -98,7 +98,7 @@ export class AuthService {
         }>('api/auth/teacher/confirm-code', code)
             .pipe(
                 map((result) => {
-                    console.log(result)
+                    // console.log(result)
                     this.isLog = result.isLog
                     this.isLogChange.next(this.isLog)
                     return result.message
@@ -115,7 +115,7 @@ export class AuthService {
         }>('api/auth/new-confirm-code')
             .pipe(
                 map((result) => {
-                    console.log(result)
+                    // console.log(result)
                     return result.message
                 })
             )
