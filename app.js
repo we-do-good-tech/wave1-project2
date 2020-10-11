@@ -16,7 +16,9 @@ server.use(cors());
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(express.static(path.join(__dirname, 'client/dist/reports')));
+// server.use(express.static(path.resolve('client/dist/reports')))
 // server.use('*.*', express.static(appFolder, { maxAge: '1y' }));
+
 
 
 server.use("/api/auth", limiter, authRoutes);

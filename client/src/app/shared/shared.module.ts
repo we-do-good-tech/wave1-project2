@@ -5,13 +5,15 @@ import { HeaderComponent } from "./header/header.component";
 import { HttpErrorMessagesComponent } from "./http-error-messages/http-error-messages.component";
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FooterComponent } from './footer/footer.component';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
     declarations: [
         HeaderComponent,
         HttpErrorMessagesComponent,
         NotFoundComponent,
-        FooterComponent
+        FooterComponent,
+        LoaderComponent
     ],
     imports: [
         CommonModule,
@@ -21,8 +23,8 @@ import { FooterComponent } from './footer/footer.component';
         HeaderComponent,
         HttpErrorMessagesComponent,
         NotFoundComponent,
-        FooterComponent
-
+        FooterComponent,
+        LoaderComponent
     ]
 })
 export class SharedModule { }
