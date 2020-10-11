@@ -16,13 +16,16 @@ server.use(express.static(path.join(__dirname, 'client/dist/reports')));
 
 
 
-server.use("/api/auth", authRoutes);
+server.use("/api/auth", limiter, authRoutes);
 
 
+
+const appFolder = 'client/dist/reports';
 
 
 server.get('*', (request, response) => {
-    response.sendFile(path.resolve('client/dist/reports/index.html'))
+    // response.sendFile(path.resolve('client/dist/reports/index.html'))
+    response.status(200).sendFile(`/`, { root: appFolder });
 })
 
 
