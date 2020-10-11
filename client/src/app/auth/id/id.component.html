@@ -11,8 +11,8 @@
                     placeholder="מספר מזהה">
             </div>
         </div>
-        <div class="errorsContainer" *ngIf="this.formsService.formControlStatus(teacherId.control)">
-            <div class="error-validate-form-message" *ngIf="teacherId.errors.required">
+        <div class="errorsContainer">
+            <div class="error error-validate-form-message">
                 שדה חובה!
             </div>
             <div class="error-validate-form-message" *ngIf="teacherId.errors.pattern">

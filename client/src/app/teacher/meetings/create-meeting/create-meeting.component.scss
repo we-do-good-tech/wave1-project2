@@ -1,6 +1,5 @@
 .meetingsContainer {
   width: 100%;
-  // height: calc(100vh -10px);
   height: 90%;
   margin: auto 0;
   display: flex;
@@ -9,25 +8,15 @@
   overflow-y: auto;
 }
 
-h2 {
-  color: #2699fb;
-  font-weight: normal;
-  margin-bottom: 41px;
-}
-.title {
-  margin: 10px 0;
-}
-
 form {
   width: 80%;
   height: 100%;
-  // display: flex;
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(5, 1fr);
-  flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+}
+
+input[type="date"] {
+  text-align: center;
 }
 
 form select,
@@ -38,16 +27,18 @@ form input {
   padding: 10px;
   background-color: #fff;
   color: #4a4545;
-  margin: 15px 0;
   border-radius: 5px;
+  font-weight: bold;
 }
 
 .errorMessage {
-  color: red;
   font-size: 12px;
   text-align: center;
-  margin: 0;
+  float: right;
+  color: red;
+  height: 35px;
 }
+
 .mettingsTime {
   width: 100%;
   display: flex;
@@ -55,12 +46,15 @@ form input {
   direction: rtl;
   color: #4a4545;
 }
+.mettingsTime small {
+  width: 100%;
+  float: right;
+  margin-left: 50px;
+}
 .mettingsTime .meetStart,
 .mettingsTime .meetEnd {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 45%;
   height: 50px;
 }
@@ -71,7 +65,8 @@ form input {
 }
 
 .mettingsTime small {
-  margin-top: 20px;
+  text-align: center;
+  margin-top: 5px;
 }
 
 .activitiesContainer {
@@ -122,16 +117,13 @@ form input {
     display: flex;
     flex-direction: column;
     align-items: center;
-    // margin: 35px 0;
     margin-top: 45px;
     height: 150px;
   }
   button {
     margin-top: 15px;
-    margin-bottom: 10px;
   }
   small {
     margin-top: 30px;
-    // color: red;
   }
 }

@@ -40,8 +40,14 @@ input::-webkit-inner-spin-button {
 }
 
 form {
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+.errorsContainer {
+  grid-template: 1fr / 3fr;
 }
 .input-group {
   margin: 65px 0;
@@ -70,4 +76,11 @@ input {
 .loginButton img {
   width: 44%;
   margin-left: 50%;
+}
+.errorsContainer {
+  margin-top: -30px;
+  // margin-bottom: 1px;
+}
+.error {
+  height: 10px;
 }
