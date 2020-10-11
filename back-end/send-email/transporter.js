@@ -1,10 +1,10 @@
-const sendGrid = require('@sendgrid/mail')
+// const sendGrid = require('@sendgrid/mail')
 const nodemailer = require('nodemailer')
-const sendGridTransporter = require('nodemailer-sendgrid-transport')
+// const sendGridTransporter = require('nodemailer-sendgrid-transport')
 const keys = require('../config/keys')
 
 
-function sendMail(options) {
+function sendMail(options, callSuccess) {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -15,9 +15,11 @@ function sendMail(options) {
     transporter.sendMail(options, (error, info) => {
         if (error) {
             console.log(error)
+            callSuccess(error, null)
         }
 
         console.log(info)
+        callSuccess(null, true)
     })
 
 }

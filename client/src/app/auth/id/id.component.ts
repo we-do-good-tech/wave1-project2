@@ -22,12 +22,9 @@ export class IdComponent implements OnInit {
 
     onSendId(form: NgForm): void {
         if (form.invalid) return;
-        // console.log(form.value)
-        this.authService.authTeacherId(form.value)
-            .subscribe((result) => {
-                this.router.navigate(['/auth/confirm'])
-                // this.router.navigate(['/auth/confirm'])
-            })
+        this.authService.authTeacherId(form.value).subscribe((result) => {
+            this.router.navigate(['/auth/confirm'])
+        })
     }
 
 

@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
-// export interface HttpErrorMessage {
-//     message: string
-// }
+
 
 @Injectable({
     providedIn: 'root'
@@ -19,7 +17,7 @@ export class HttpErrorMessagesService {
     }
 
 
-    get getErrorMessage() {
+    getErrorMessageChnage(): Observable<string> {
         return this.errorMessageChnage.asObservable();
     }
 

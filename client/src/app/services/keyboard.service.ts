@@ -14,7 +14,7 @@ export class KeyboardService {
     }
 
 
-    get onKeyPress(): Observable<string> {
+    onKeyPress(): Observable<string> {
         return this.keyboardEvent.asObservable();
     }
 

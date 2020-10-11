@@ -15,7 +15,7 @@ export class VirtualKeyDirective implements OnInit {
 
     ngOnInit(): void {
 
-        this.keyboardService.onKeyPress.subscribe(key => {
+        this.keyboardService.onKeyPress().subscribe(key => {
             if (document.activeElement === this.formInputElement.nativeElement) {
                 this.ngModel.valueAccessor.writeValue(key);
 

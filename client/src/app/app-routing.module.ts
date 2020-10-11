@@ -17,9 +17,8 @@ const routes: Routes = [
     },
     {
         path: "main",
-        loadChildren: () =>
-            import("./teacher/teacher.module").then((m) => m.TeacerModule),
-        // canActivate: [AuthGuard]
+        loadChildren: () => import("./teacher/teacher.module").then((m) => m.TeacerModule),
+        canActivate: [AuthGuard]
     },
     {
         path: "**",

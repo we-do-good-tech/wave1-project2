@@ -19,6 +19,7 @@ server.use("/api/auth", authRoutes);
 
 
 
+
 server.get('*', (request, response) => {
     response.sendFile(path.resolve('client/dist/reports/index.html'))
 })

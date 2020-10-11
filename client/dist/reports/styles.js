@@ -109,8 +109,8 @@ ___CSS_LOADER_EXPORT___.push([module.i, "* {\n  margin: 0;\n  padding: 0;\n  box
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\yonda\OneDrive\שולחן העבודה\projectSign\project_report_time\client\src\styles.scss */"+EN/");
-module.exports = __webpack_require__(/*! C:\Users\yonda\OneDrive\שולחן העבודה\projectSign\project_report_time\client\node_modules\bootstrap\dist\css\bootstrap.css */"+eM2");
+__webpack_require__(/*! C:\Users\nirku\Desktop\development\big projects\project-reports\client\src\styles.scss */"+EN/");
+module.exports = __webpack_require__(/*! C:\Users\nirku\Desktop\development\big projects\project-reports\client\node_modules\bootstrap\dist\css\bootstrap.css */"+eM2");
 
 
 /***/ }),

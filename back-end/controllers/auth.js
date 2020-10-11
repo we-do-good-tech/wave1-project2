@@ -1,38 +1,54 @@
 const googleSheetsService = require("../services/google-sheets");
 const { sendMail } = require("../send-email/transporter");
 const { confirmCode } = require("../services/confirm-code");
+const { sendEmailConfirmCodeOptions } = require('../services/emails')
+const { createToken } = require('../services/tokens')
 const keys = require("../config/keys");
+
+
 
 exports.authTeacherId = async function (request, response) {
     const { teacherId } = request.body
 
     try {
-        const teacher = await googleSheetsService.findTeacherById(teacherId, request.googleSheetsApi)
+        const teacher = await googleSheetsService.findTeacherById(
+            teacherId,
+            request.googleSheetsApi
+        )
 
-        console.log(teacher)
+        // console.log(teacher)
         if (!teacher) {
             return response.status(403).send({
                 message: 'USER NOT FOUND'
             })
         }
 
+        const options = sendEmailConfirmCodeOptions(teacher.email, confirmCode.getConfirmCode())
 
-        // const confirmCode = new ConfirmCode()
+        // make error respone possiblle
+        sendMail(options, (error, success) => {
+            if (success) {
+                confirmCode.setTimeExpireConfirmCode()
 
-        let options = {
-            from: keys.EMAIL_SENDER.auth.user,
-            to: teacher.email,
-            subject: 'TEST',
-            text: `TEST`,
-            html: `<strong>${confirmCode.getCode()}</strong>`
-        }
+                const token = createToken({
+                    teacherEmail: teacher.email
+                })
 
-        sendMail(options)
+                return response.status(200).send({
+                    message: 'USER FOUND',
+                    token: token,
+                    user: teacher,
+                    tokenExpiresIn: keys.TOKENS.ACCESS_TOKEN.expiresIn,
+                    confirmCodeExpire: 60 * 2
+                })
+            }
 
-        response.status(200).send({
-            message: 'USER FOUND',
-            user: teacher
+            response.status(403).send({
+                message: 'EMAIL UNKNOW'
+            })
+
         })
+
     } catch (error) {
         // console.log('ERROR')
         // console.log(error)
@@ -44,13 +60,13 @@ exports.authTeacherId = async function (request, response) {
 }
 
 
+
 exports.authConfirmCode = async function (request, response) {
     const { code } = request.body
-    console.log(code)
-    console.log(confirmCode.getCode())
 
-    if (code == confirmCode.getCode()) {
-        // confirmCode.deleteCode()
+    if (code == confirmCode.getConfirmCode()) {
+        console.log('CODE IS CONFIRM')
+        confirmCode.deleteConfirmCode()
         return response.status(200).send({
             message: 'User log',
             isLog: true
@@ -63,3 +79,29 @@ exports.authConfirmCode = async function (request, response) {
 
 
 };
+
+
+exports.newConfirmCode = async function (request, response) {
+    const { teacherEmail } = request.userData
+
+    confirmCode.createConfirmCode()
+    // console.log(confirmCode.getConfirmCode())
+
+    const options = sendEmailConfirmCodeOptions(teacherEmail, confirmCode.getConfirmCode())
+
+    sendMail(options, (error, success) => {
+        if (success) {
+            confirmCode.setTimeExpireConfirmCode()
+
+            return response.status(200).send({
+                message: 'NEW CONFIRM CODE CREATED',
+                confirmCodeExpire: 60 * 2
+            })
+        }
+
+        response.status(403).send({
+            message: 'EMAIL UNKNOW'
+        })
+
+    })
+}
