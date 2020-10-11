@@ -14,8 +14,9 @@ export class HttpErrorMessagesComponent implements OnInit {
     constructor(private httpErrorMessages: HttpErrorMessagesService) { }
 
     ngOnInit(): void {
-        this.httpErrorMessages.getErrorMessage
+        this.httpErrorMessages.getErrorMessageChnage()
             .subscribe((message) => {
+                console.log(message)
                 this.message = message
             })
 

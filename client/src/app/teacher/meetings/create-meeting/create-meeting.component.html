@@ -1,23 +1,26 @@
 <div class="meetingsContainer">
     <form class="form" [formGroup]="meetingForm" (ngSubmit)="onCreateMeeting()">
-
-        <select class="selectUser" [ngClass]="this.formsService.displayClass(getFormControl('studentName'))"
-            formControlName="studentName">
-            <option value>בחר</option>
-            <option *ngFor="let student of students" [value]="student">
-                {{student}}
-            </option>
-        </select>
-        <div *ngIf="this.formsService.formControlStatus(getFormControl('studentName'))">
-            <div class="errorMessage">
-                שדה חובה
+        <div class="createFormInput">
+            <select class="selectUser" [ngClass]="this.formsService.displayClass(getFormControl('studentName'))"
+                formControlName="studentName">
+                <option value>בחר</option>
+                <option *ngFor="let student of students" [value]="student">
+                    {{student}}
+                </option>
+            </select>
+            <div *ngIf="this.formsService.formControlStatus(getFormControl('studentName'))">
+                <div class="errorMessage">
+                    שדה חובה
+                </div>
             </div>
         </div>
-        <input [ngClass]="this.formsService.displayClass(getFormControl('meetingDate'))" type="date"
-            formControlName="meetingDate">
-        <div *ngIf="this.formsService.formControlStatus(getFormControl('meetingDate'))">
-            <div class="errorMessage" *ngIf="getFormControl('meetingDate').errors.required">
-                שדה חובה
+        <div class="createFormInput">
+            <input [ngClass]="this.formsService.displayClass(getFormControl('meetingDate'))" type="date"
+                formControlName="meetingDate">
+            <div *ngIf="this.formsService.formControlStatus(getFormControl('meetingDate'))">
+                <div class="errorMessage" *ngIf="getFormControl('meetingDate').errors.required">
+                    שדה חובה
+                </div>
             </div>
         </div>
         <div class="mettingsTime">

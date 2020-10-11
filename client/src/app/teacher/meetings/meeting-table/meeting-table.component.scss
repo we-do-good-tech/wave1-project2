@@ -47,6 +47,9 @@
   background: #c9c2bc4d;
   margin-top: auto;
 }
+.table button {
+  margin-bottom: 50px;
+}
 ul {
   direction: rtl;
   display: flex;
@@ -80,5 +83,5 @@ app-meeting-table-item {
 
 button {
   width: 80%;
-  margin-bottom: 25px;
+  // margin-bottom: 60px;
 }

@@ -15,6 +15,11 @@ form {
   align-items: center;
 }
 
+.createFormInput {
+  display: flex;
+  flex-direction: column;
+}
+
 input[type="date"] {
   text-align: center;
 }
@@ -89,11 +94,16 @@ form input {
   border: 1px solid #a3a3a3;
   border-radius: 5px;
 }
+button {
+  margin-bottom: 50px;
+}
 
 @media (max-height: 600px) {
   form {
+    width: 95%;
     height: 90%;
     margin: auto;
+    overflow-y: auto;
   }
   .activitiesContainer textarea {
     width: 100%;
@@ -105,13 +115,10 @@ form input {
   ::placeholder {
     font-size: 12px;
   }
-  h2 {
-    margin: 0;
-    margin-top: 15px;
+  .createFormInput {
+    margin-bottom: 10px;
   }
-  .title {
-    margin: 10px 0;
-  }
+
   .activitiesContainer {
     width: 100%;
     display: flex;
@@ -121,7 +128,8 @@ form input {
     height: 150px;
   }
   button {
-    margin-top: 15px;
+    margin-bottom: 45px;
+    margin-top: 55px;
   }
   small {
     margin-top: 30px;

@@ -11,12 +11,13 @@
             <input id="num-d" required type="number" pattern="^\d{1}$" name="fourth" ngModel="virtualkey"
                 #four="ngModel" (input)="onChange($event)">
         </div>
-        <div class="codeError">הסיסמא שגויה</div>
+        <!-- <div class="codeError">הסיסמא שגויה</div> -->
         <!-- <div *ngIf="form.invalid && form.submitted">Missig number</div> -->
         <button class="mainButton" id="btn-confirm" type="submit" [disabled]="form.invalid">
             שלח
         </button>
     </form>
+    <small>Expire Time: 2 minutes</small>
     <app-keyboard></app-keyboard>
-    <!-- <small>לא הגיע קוד, שלח מחדש</small> -->
+    <small (click)="onResendConfirmCode()">לא הגיע קוד, שלח מחדש</small>
 </div>

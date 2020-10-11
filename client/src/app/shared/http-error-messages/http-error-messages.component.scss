@@ -1,34 +1,45 @@
-// .idError {
-//   font-weight: bold;
-//   position: absolute;
-//   left: 50%;
-//   top: -5%;
-//   transform: translateX(-50%);
-//   transition: 0.5s;
-//   z-index: -1;
-// }
-// .errorActive {
-//   top: 75px;
-// }
+.idError {
+  font-weight: bold;
+  position: absolute;
+  left: 50%;
+  top: -5%;
+  transform: translateX(-50%);
+  transition: 0.5s;
+  z-index: -1;
+}
+.userError {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+.errorActive {
+  top: 75px;
+}
 
-// div {
-//   width: 220px;
-//   height: 40px;
-//   display: flex;
-//   justify-content: space-around;
-//   align-items: center;
-//   background-color: lightcoral;
-//   color: #fff;
-//   border-radius: 4px;
-//   direction: rtl;
-//   margin: 10px 0;
-// }
-// .fa-sad-tear {
-//   font-size: 26px;
-// }
-// h5 {
-//   display: flex;
-//   justify-content: space-around;
-//   width: 100%;
-//   text-align: center;
-// }
+.userError {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.err {
+  width: 220px;
+  height: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: lightcoral;
+  color: #fff;
+  border-radius: 4px;
+  direction: rtl;
+  margin: 10px 0;
+}
+.fa-sad-tear {
+  font-size: 26px;
+}
+h5 {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  text-align: center;
+}

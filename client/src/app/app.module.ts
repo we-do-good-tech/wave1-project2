@@ -7,6 +7,8 @@ import { SharedModule } from "./shared/shared.module";
 
 import { AppComponent } from './app.component';
 import { HttpErrorMessagesInterceptor } from './services/interceptors/http-error-messages.interceptor'
+import { AuthInterceptor } from './services/interceptors/auth.interceptor';
+import { LoaderInterceptor } from './services/interceptors/loader.interceptor';
 
 
 
@@ -27,7 +29,17 @@ import { HttpErrorMessagesInterceptor } from './services/interceptors/http-error
     providers: [
         {
             provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
             useClass: HttpErrorMessagesInterceptor,
+            multi: true
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: LoaderInterceptor,
             multi: true
         }
     ],
