@@ -12,7 +12,7 @@ ul {
   width: 100%;
   margin: 0 auto;
   height: 100%;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   list-style: none;
 }
@@ -20,4 +20,5 @@ ul li {
   font-size: 14px;
   color: #4a4545;
   font-weight: bolder;
+  padding: 0 10px;
 }

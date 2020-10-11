@@ -3,7 +3,15 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+html,
+body {
+  min-height: calc(100vh -68px);
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
 .mainButton {
   background-color: #f0ab0e;
   padding: 10px;
