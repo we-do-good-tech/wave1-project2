@@ -55,13 +55,12 @@
         <p>נא לחתום לאישור מפגש</p>
         <div class="sign">
             <ng-signature-pad 
-                [showClearButton]="false" 
+                [showClearButton]="true" 
                 [showDoneButton]="true" 
                 [backgroundColor]="'white'"
                 (done)="saveImage($event)">
             </ng-signature-pad>
         </div>
     </div>
-    <img [src]="signatureImage" *ngIf="signatureImage" alt="">
-    <button (click)="onSendSignature()" class="mainButton">אישור</button>
+    <!-- <button (click)="onSendSignature()" class="mainButton">אישור</button> -->
 </div>

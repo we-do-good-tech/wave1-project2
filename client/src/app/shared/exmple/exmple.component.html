@@ -1,0 +1,57 @@
+
+<div class="container">
+     <div class="logo center-element ">
+         <img
+             src="../../../assets/Group 1764.svg"
+             alt
+         >
+     </div>
+    <form
+        #form="ngForm"
+        (ngSubmit)="onSendEmail(form)"
+    >
+           <div class="input-email">
+               <label for="teacherEmail" class="floating-right">דואר אלקטרוני</label>
+                   <input
+                       [ngClass]="this.formsService.displayClass(teacherEmail.control)"
+                       id="id-a"
+                       required
+                       type="email"
+                       ngModel
+                       pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                       name="teacherEmail"
+                       #teacherEmail="ngModel"
+                       class="form-control"
+                       placeholder="דואר אלקטרוני"
+                   >
+           <div
+               *ngIf="this.formsService.formControlStatus(teacherEmail.control)"
+           >
+               <div
+                   class="error-validate-form-message"
+                   *ngIf="teacherEmail.errors.required"
+               >
+                   שדה חובה!
+               </div>
+               <div
+                   class="error-validate-form-message"
+                   *ngIf="teacherEmail.errors.pattern"
+               >
+               דואר שגוי            
+            </div>
+           </div>
+           </div>
+        <div class="pepole-img floating-right ">
+            <img
+                src="../../../assets/Group 1789.svg"
+                alt
+            >
+        </div>
+            <button
+                class="mainButton"
+                [disabled]="form.invalid"
+            >
+                התחברו
+            </button>
+    </form>
+ </div>

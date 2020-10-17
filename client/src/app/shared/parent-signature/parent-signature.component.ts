@@ -11,9 +11,9 @@ export class ParentSignatureComponent implements OnInit {
 
     ngOnInit(): void { }
 
-    onSendSignature(): void {
-        console.log(this.signatureImage);
-    }
+    // onSendSignature(): void {
+    //     console.log(this.signatureImage);
+    // }
 
 
     saveImage(blob: Blob) {

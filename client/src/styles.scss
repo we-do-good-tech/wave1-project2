@@ -29,7 +29,19 @@ body {
 
 .error-validate-form-message {
   display: block;
+  // width: 100%;
   float: right;
   color: red;
-  font-size: 14px;
+  font-size: 16px;
+}
+
+
+.center-element {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.floating-right {
+  float: right;
 }

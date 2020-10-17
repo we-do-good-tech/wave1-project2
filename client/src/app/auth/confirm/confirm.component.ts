@@ -37,6 +37,7 @@ export class ConfirmComponent implements OnInit {
         // console.log(form.value);
         // console.log(codeToSend);
         this.authService.confirmCode(codeToSend).subscribe((result) => {
+            form.resetForm()
             this.router.navigate(["main/teacher"]);
         });
     }
