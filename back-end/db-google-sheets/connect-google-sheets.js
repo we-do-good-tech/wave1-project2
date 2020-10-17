@@ -1,6 +1,14 @@
+<<<<<<< HEAD
 const { google } = require("googleapis");
 // const creds = require('../../lior-sheets.creds.json')
 const keys = require("../config/keys");
+=======
+const { google } = require('googleapis')
+const creds = require('../../lior-sheets.creds.json')
+const JsonWebToken = require('jsonwebtoken')
+const keys = require('../config/keys')
+
+>>>>>>> refs/remotes/origin/master
 
 function authorizeClient(callClient) {
   console.log("authorizeClient");
@@ -21,7 +29,6 @@ function authorizeClient(callClient) {
     }
   });
 }
-
 function authSheets(client) {
   return google.sheets({ version: "v4", auth: client });
 }

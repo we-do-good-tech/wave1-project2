@@ -1,7 +1,7 @@
 class ConfirmCode {
     constructor() {
         if (!this.instance) {
-            this.createConfirmCode();
+            // this.createConfirmCode();
             ConfirmCode.instance = this;
         }
 

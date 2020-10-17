@@ -3,7 +3,7 @@ const authControllers = require('../controllers/auth')
 const { authSeets } = require('../middlewares/auth-sheets')
 const { verifyToken } = require('../middlewares/auth-token')
 
-router.post('/teacherId', authSeets, authControllers.authTeacherId)
+router.post('/teacherEmail', authSeets, authControllers.authTeacherId)
 
 router.get('/new-confirm-code', verifyToken, authControllers.newConfirmCode)
 

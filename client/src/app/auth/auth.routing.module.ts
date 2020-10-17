@@ -1,12 +1,12 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from '@angular/router';
-import { IdComponent } from "./id/id.component";
+import { EmailComponent } from "./email/email.component";
 import { ConfirmComponent } from "./confirm/confirm.component";
 
 const routes: Routes = [
     {
-        path: 'id',
-        component: IdComponent
+        path: 'email',
+        component: EmailComponent
     },
     {
         path: 'confirm',

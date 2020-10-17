@@ -6,11 +6,11 @@ import { FormsService } from 'src/app/services/forms/forms.service';
 import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
-    selector: 'app-id',
-    templateUrl: './id.component.html',
-    styleUrls: ['./id.component.scss']
+    selector: 'app-email',
+    templateUrl: './email.component.html',
+    styleUrls: ['./email.component.scss']
 })
-export class IdComponent implements OnInit {
+export class EmailComponent implements OnInit {
 
     constructor(
         private authService: AuthService,
@@ -26,8 +26,9 @@ export class IdComponent implements OnInit {
 
     onSendId(form: NgForm): void {
         if (form.invalid) return;
+        // console.log(form.value.teacherEmail)
         this.loaderService.setStatus(true)
-        this.authService.authTeacherId(form.value).subscribe((result) => {
+        this.authService.authTeacherEmail(form.value.teacherEmail).subscribe((result) => {
             this.router.navigate(['/auth/confirm'])
         })
     }

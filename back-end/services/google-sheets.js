@@ -1,10 +1,13 @@
 const keys = require('../config/keys')
+const axios = require('axios')
+const parseCSV = require('csv-parse')
+const fetch = require('node-fetch')
 
 
-async function getSeetsValues(googleSheetsApi, options) {
-    const data = await googleSheetsApi.spreadsheets.values.get(options);
-    return data.data.values;
-}
+// async function getSeetsValues(googleSheetsApi, options) {
+//     const data = await googleSheetsApi.spreadsheets.values.get(options);
+//     return data.data.values;
+// }
 
 // async function updateSheets(googleSheetsApi) {
 //     const options = {
@@ -18,7 +21,7 @@ async function getSeetsValues(googleSheetsApi, options) {
 // }
 
 function convertSheetsDataToObjectsArray(data) {
-    return data.map(([id, firstName, lastName, phone, email]) => {
+    return data.map(([id, firstName, lastName, phone, email], index) => {
         return {
             id: id,
             firstName: firstName,
@@ -29,23 +32,45 @@ function convertSheetsDataToObjectsArray(data) {
     });
 }
 
-exports.findTeacherById = async function (teacherId, googleSheetsApi) {
-    // console.log(teacherId)
-
-    const data = await getSeetsValues(googleSheetsApi, {
-        spreadsheetId: keys.GOOGLE_SHEETS.spreadsheetId,
-        range: 'Coaches!A2:E4'
+function convertCSV(data) {
+    return new Promise((resolve, reject) => {
+        parseCSV(data, {}, (error, data) => {
+            if (data[1]) {
+                resolve(data[1])
+            } else {
+                resolve(undefined)
+            }
+        })
     })
+}
 
-    const convertData = convertSheetsDataToObjectsArray(data)
+exports.findTeacherByEmail = async function (teacherEmail, authorizationToken) {
+    // console.log(teacherId)
+    console.log(authorizationToken)
+    const spreadsheetId = keys.GOOGLE_SHEETS.spreadsheetId
+    const sheetId = keys.GOOGLE_SHEETS.sheetsIds.coaches
+    const query = `select * where E='${teacherEmail}'`;
+    // const sheetId = '622666265'
 
-    const findTeacher = convertData.find((teacher) => teacher.id == teacherId)
+    try {
+        const foundUser = await fetch(`https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tqx=out:csv&gid=${sheetId}&tq=${encodeURI(query)}`, {
+            method: 'GET',
+            headers: authorizationToken
+        })
 
-    // console.log(findTeacher)
+        const textResponse = await foundUser.text()
+        console.log(textResponse)
 
-    return await findTeacher
+        const convertData = await convertCSV(textResponse)
+        if (!convertData) {
+            return
+        }
 
-
+        return convertSheetsDataToObjectsArray([convertData])[0]
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
 }
 
 

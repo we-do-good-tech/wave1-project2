@@ -20,8 +20,16 @@ server.use(express.static(path.join(__dirname, "client/dist/reports")));
 server.use("/api/auth", authRoutes);
 
 server.get("*", (request, response) => {
-  response.sendFile(path.resolve("client/dist/reports/index.html"));
-  // response.status(200).sendFile(`/`, { root: appFolder + '/' + 'index.html' });
+    response.sendFile(path.resolve("client/dist/reports/index.html"));
+    // response.status(200).sendFile(`/`, { root: appFolder + '/' + 'index.html' });
 });
+
+
+
+
+
+
+
+
 
 server.listen(process.env.PORT || 3000, () => console.log("Listening"));

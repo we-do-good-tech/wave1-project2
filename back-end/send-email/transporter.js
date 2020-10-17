@@ -18,7 +18,7 @@ function sendMail(options, callSuccess) {
             callSuccess(error, null)
         }
 
-        console.log(info)
+        // console.log(info)
         callSuccess(null, true)
     })
 
