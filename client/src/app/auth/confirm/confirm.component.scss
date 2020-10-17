@@ -11,19 +11,43 @@ input::-webkit-inner-spin-button {
   width: 100%;
   height: 100%;
   overflow-y: auto;
+  margin-top: -50px;
 }
 .confirmWrapper form {
   display: flex;
   flex-direction: column;
   width: 100%;
   overflow-y: auto;
-  // justify-content: space-around;
 }
 .codeError {
-  text-align: center;
   margin-top: 10px;
-  color: red;
+  margin-bottom: 10px;
+  color: #d1372a;
   direction: rtl;
+  font-size: 12px;
+  // animation: errorEnter 1s ease-in;
+  position: relative;
+  width: 100%;
+  // left: 50%;
+  // transform: translateX(-25%);
+  background-color: gray;
+}
+span {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  // animation: errorEnter 1s ease;
+}
+@keyframes errorEnter {
+  from {
+    left: 0;
+    // opacity: 0;
+  }
+  to {
+    left: 50%;
+    transform: translateX(-50%);
+    // opacity: 1;
+  }
 }
 
 .confirmWrapper form .smsCode {
@@ -45,9 +69,6 @@ input::-webkit-inner-spin-button {
   font-weight: bold;
   font-size: 24px;
 }
-app-keyboard {
-  // margin-top: 55px;
-}
 
 .confirmWrapper p {
   font-size: 24px;
@@ -65,4 +86,7 @@ button {
   width: 80%;
   margin: 0 auto;
   margin-top: 15px;
+}
+
+@media (max-height: 500px) {
 }

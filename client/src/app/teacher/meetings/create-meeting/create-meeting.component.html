@@ -1,6 +1,7 @@
 <div class="meetingsContainer">
     <form class="form" [formGroup]="meetingForm" (ngSubmit)="onCreateMeeting()">
         <div class="createFormInput">
+            <label>בחר מהרשימה</label>
             <select class="selectUser" [ngClass]="this.formsService.displayClass(getFormControl('studentName'))"
                 formControlName="studentName">
                 <option value>בחר</option>
@@ -15,6 +16,7 @@
             </div>
         </div>
         <div class="createFormInput">
+            <label>בחר תאריך</label>
             <input [ngClass]="this.formsService.displayClass(getFormControl('meetingDate'))" type="date"
                 formControlName="meetingDate">
             <div *ngIf="this.formsService.formControlStatus(getFormControl('meetingDate'))">
@@ -46,11 +48,18 @@
             </div>
         </div>
         <div class="activitiesContainer">
-            <textarea placeholder="נושאים ופעיליות שעלו במפגש" formControlName="meetingActivitis" cols="5"
-                rows="5"></textarea>
-            <textarea placeholder="הערות" formControlName="meetingComments" cols="5" rows="5"></textarea>
+            <textarea
+                placeholder="נושאים ופעיליות שעלו במפגש: למשל - מה נלמד, באיזה שלב החונך והחניך נמצאים ומה היו תכני המפגש."
+                formControlName="meetingActivitis" id="activea" class="txtArea textAreaOne" cols="5" rows="5">
+        </textarea>
+            <label class="activitiesLabel"><small>נושאים ופעילויות שעלו במפגש</small></label>
+            <textarea placeholder="הערות חשובות: לדוגמא, לתלמיד היה קושי להתרכז." class="txtArea textAreaTwo"
+                formControlName="meetingComments" cols="5" rows="5">
+        </textarea>
+            <label class="commentsLabel"><small>הערות חשובות</small></label>
         </div>
-        <button [disabled]="meetingForm.invalid" type="submit" class="mainButton">
+        <button [class.disabledButton]="meetingForm.invalid" (click)="createMeeting()" [disabled]="meetingForm.invalid"
+            type="submit" class="mainButton">
             צור פגישה
         </button>
     </form>

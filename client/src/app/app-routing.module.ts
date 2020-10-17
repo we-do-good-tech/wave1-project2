@@ -1,3 +1,4 @@
+import { ParentSignatureComponent } from "./shared/parent-signature/parent-signature.component";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { AuthGuard } from "./services/guards/auth.guard";
@@ -20,6 +21,10 @@ const routes: Routes = [
     loadChildren: () =>
       import("./teacher/teacher.module").then((m) => m.TeacerModule),
     // canActivate: [AuthGuard]
+  },
+  {
+    path: "parent-signature",
+    component: ParentSignatureComponent,
   },
   {
     path: "**",

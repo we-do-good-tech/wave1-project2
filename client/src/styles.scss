@@ -5,13 +5,12 @@
 }
 html,
 body {
-  min-height: calc(100vh -68px);
+  // min-height: calc(100vh -68px);
   height: 100%;
   width: 100%;
   overflow: hidden;
-  margin: 0;
-  padding: 0;
 }
+
 .mainButton {
   background-color: #f0ab0e;
   padding: 10px;
@@ -21,6 +20,11 @@ body {
   border: none;
   outline: none;
   border-radius: 3px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.mainButton:active {
+  transform: scale(0.8);
 }
 
 .error-validate-form-message {

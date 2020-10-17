@@ -1,3 +1,5 @@
+import { Router } from "@angular/router";
+import { fas } from "@fortawesome/free-solid-svg-icons";
 import { Component, OnInit } from "@angular/core";
 import {
   FormBuilder,
@@ -19,7 +21,8 @@ export class CreateMeetingComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    public formsService: FormsService
+    public formsService: FormsService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -39,5 +42,8 @@ export class CreateMeetingComponent implements OnInit {
 
   getFormControl(controlName: string): FormControl {
     return this.meetingForm.get(controlName) as FormControl;
+  }
+  createMeeting() {
+    this.router.navigate(["../../../main/teacher/meeting-seccess"]);
   }
 }

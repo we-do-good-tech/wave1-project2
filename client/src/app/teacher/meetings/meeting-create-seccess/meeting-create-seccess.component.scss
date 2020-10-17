@@ -101,7 +101,7 @@ p {
   margin-top: 20px;
 }
 .endButton img {
-  width: 200px;
+  width: 30%;
   margin-left: 20%;
 }
 button {
@@ -114,5 +114,11 @@ p span {
   color: #d1372a;
   text-decoration: underline;
 }
-@media (max-height: 1000px) {
+@media (max-height: 600px) {
+  .succesContainer {
+    overflow-y: auto;
+  }
+  .endButton img {
+    width: 30%;
+  }
 }

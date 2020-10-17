@@ -5,14 +5,13 @@ input::-webkit-inner-spin-button {
 }
 
 .wrapper {
-  display: grid;
+  display: flex;
   width: 80%;
+  flex-direction: column;
   height: 80%;
   margin: 0 auto;
   align-items: center;
   direction: rtl;
-  grid-template-columns: 1fr;
-  grid-template-rows: 30% auto 30%;
 }
 .wrapper h3 {
   color: #2699fb;
