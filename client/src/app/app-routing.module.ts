@@ -7,7 +7,7 @@ import { NotFoundComponent } from "./shared/not-found/not-found.component";
 const routes: Routes = [
     {
         path: "",
-        redirectTo: "auth/id",
+        redirectTo: "auth/email",
         pathMatch: "full",
     },
     {

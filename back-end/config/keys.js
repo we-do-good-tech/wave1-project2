@@ -3,6 +3,11 @@ module.exports = {
     GOOGLE_SHEETS: {
         spreadsheetId: process.env.SPREADSHEETS_ID,
         scope: process.env.SEETS_SCOPE,
+        sheetsIds: {
+            coaches: '1647665051',
+            childrens: '622666265',
+            reports: '1036824419'
+        }
     },
     EMAIL_SENDER: {
         auth: {

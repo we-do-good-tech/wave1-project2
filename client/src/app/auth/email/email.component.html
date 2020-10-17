@@ -10,38 +10,38 @@
         (ngSubmit)="onSendId(form)"
     >
         <div class="input-group">
-            <label for="teacherId">מספר מזהה</label>
+            <label for="teacherEmail">דואר אלקטרוני</label>
             <div class="idInput">
                 <input
-                    [ngClass]="this.formsService.displayClass(teacherId.control)"
+                    [ngClass]="this.formsService.displayClass(teacherEmail.control)"
                     id="id-a"
                     required
-                    type="number"
+                    type="email"
                     ngModel
-                    pattern="^[0-9_-]{4,6}$"
-                    name="teacherId"
-                    #teacherId="ngModel"
+                    pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                    name="teacherEmail"
+                    #teacherEmail="ngModel"
                     class="form-control"
-                    placeholder="מספר מזהה"
+                    placeholder="דואר אלקטרוני"
                 >
             </div>
         </div>
         <div
             class="errorsContainer"
-            *ngIf="this.formsService.formControlStatus(teacherId.control)"
+            *ngIf="this.formsService.formControlStatus(teacherEmail.control)"
         >
             <div
                 class="error-validate-form-message"
-                *ngIf="teacherId.errors.required"
+                *ngIf="teacherEmail.errors.required"
             >
                 שדה חובה!
             </div>
             <div
                 class="error-validate-form-message"
-                *ngIf="teacherId.errors.pattern"
+                *ngIf="teacherEmail.errors.pattern"
             >
-                חובה להזין 4-6 מספרים
-            </div>
+            דואר שגוי            
+         </div>
         </div>
         <div class="loginButton">
             <img

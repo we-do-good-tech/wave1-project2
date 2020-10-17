@@ -632,9 +632,9 @@ function HttpErrorMessagesComponent_div_1_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const ctx_r88 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+    const ctx_r16 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", ctx_r88.message, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", ctx_r16.message, " ");
 } }
 class HttpErrorMessagesComponent {
     constructor(httpErrorMessages) {
@@ -811,10 +811,10 @@ class AuthService {
             this.clearLoginInfo();
         }
     }
-    authTeacherId(teacherId) {
-        return this.http.post('api/auth/teacherId', teacherId)
+    authTeacherEmail(teacherEmail) {
+        return this.http.post('api/auth/teacherEmail', { teacherEmail: teacherEmail })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((result) => {
-            // console.log(result)
+            console.log(result);
             if (result.token) {
                 const expiresIn = result.tokenExpiresIn;
                 this.token = result.token;
@@ -969,7 +969,7 @@ __webpack_require__.r(__webpack_exports__);
 const routes = [
     {
         path: "",
-        redirectTo: "auth/id",
+        redirectTo: "auth/email",
         pathMatch: "full",
     },
     {

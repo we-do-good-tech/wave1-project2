@@ -1,4 +1,4 @@
-const { authSheets, authorizeClient } = require('../db-google-sheets/connect-google-sheets')
+const { authorizeClient } = require('../db-google-sheets/connect-google-sheets')
 
 
 async function authSeets(request, response, next) {
@@ -7,22 +7,17 @@ async function authSeets(request, response, next) {
         if (error) {
             console.log('CLIENT ERROR')
             return response.status(400).send({
-                message: 'unauthorize sheets'
+                message: 'Unauthorize'
             })
         } else {
-            const sheets = authSheets(client)
-            // console.log(sheets)
-            request.googleSheetsApi = sheets
-
-            next()
+            client.getRequestHeaders()
+                .then((authorizationToken) => {
+                    request.authorizationToken = authorizationToken
+                    next()
+                })
         }
     })
 }
-
-
-
-
-
 
 
 module.exports = {

@@ -4,17 +4,19 @@ const { confirmCode } = require("../services/confirm-code");
 const { sendEmailConfirmCodeOptions } = require("../services/emails");
 const { createToken } = require("../services/tokens");
 const keys = require("../config/keys");
+const axios = require('axios')
+const parseSVC = require('csv-parse')
 
 exports.authTeacherId = async function (request, response) {
-    const { teacherId } = request.body;
+    const { teacherEmail } = request.body;
 
     try {
-        const teacher = await googleSheetsService.findTeacherById(
-            teacherId,
-            request.googleSheetsApi
+        const teacher = await googleSheetsService.findTeacherByEmail(
+            teacherEmail,
+            request.authorizationToken
         );
 
-        // console.log(teacher)
+        console.log(teacher)
         if (!teacher) {
             return response.status(403).send({
                 message: "משתמש לא נמצא",
@@ -57,7 +59,7 @@ exports.authTeacherId = async function (request, response) {
         });
     } catch (error) {
         // console.log('ERROR')
-        // console.log(error)
+        console.log(error)
         response.status(500).send({
             message: "ERROR UNKNOW",
         });

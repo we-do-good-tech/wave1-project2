@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { map, tap } from "rxjs/operators";
 import { AuthTokenData } from '../interfaces/AuthLogInData';
 import { ConfirmCode } from "../interfaces/ConfirmCode";
-import { TeacherId, UserName } from "../interfaces/TeacherId";
+import { UserName } from "../interfaces/TeacherId";
 
 @Injectable({
     providedIn: "root",
@@ -70,17 +70,17 @@ export class AuthService {
     }
 
 
-    authTeacherId(teacherId: TeacherId): Observable<string> {
+    authTeacherEmail(teacherEmail: string): Observable<string> {
         return this.http.post<{
             message: string,
             token: string,
             confirmCodeExpire: number,
             tokenExpiresIn: number,
             userName: UserName
-        }>('api/auth/teacherId', teacherId)
+        }>('api/auth/teacherEmail', { teacherEmail: teacherEmail })
             .pipe(
                 map((result) => {
-                    // console.log(result)
+                    console.log(result)
                     if (result.token) {
                         const expiresIn = result.tokenExpiresIn
 
