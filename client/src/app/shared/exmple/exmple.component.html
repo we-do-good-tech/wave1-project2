@@ -1,6 +1,6 @@
 
 <div class="container">
-     <div class="logo center-element ">
+     <div class="logo  center-element">
          <img
              src="../../../assets/Group 1764.svg"
              alt
@@ -41,8 +41,9 @@
             </div>
            </div>
            </div>
-        <div class="pepole-img floating-right ">
+        <div class="w-img floating-right">
             <img
+                class="pepole-img"
                 src="../../../assets/Group 1789.svg"
                 alt
             >
@@ -50,6 +51,7 @@
             <button
                 class="mainButton"
                 [disabled]="form.invalid"
+                [class.disabledButton]="form.invalid"
             >
                 התחברו
             </button>

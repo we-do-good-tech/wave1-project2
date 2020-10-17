@@ -50,6 +50,7 @@
                 alt
             >
             <button
+                [class.disabledButton]="form.invalid"
                 class="mainButton"
                 [disabled]="form.invalid"
             >
