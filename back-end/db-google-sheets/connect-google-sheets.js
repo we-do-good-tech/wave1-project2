@@ -1,14 +1,7 @@
-<<<<<<< HEAD
 const { google } = require("googleapis");
-// const creds = require('../../lior-sheets.creds.json')
+const creds = require("../../lior-sheets.creds.json");
+const JsonWebToken = require("jsonwebtoken");
 const keys = require("../config/keys");
-=======
-const { google } = require('googleapis')
-const creds = require('../../lior-sheets.creds.json')
-const JsonWebToken = require('jsonwebtoken')
-const keys = require('../config/keys')
-
->>>>>>> refs/remotes/origin/master
 
 function authorizeClient(callClient) {
   console.log("authorizeClient");
