@@ -24,7 +24,7 @@ export class EmailComponent implements OnInit {
     }
 
 
-    onSendId(form: NgForm): void {
+    onSendEmail(form: NgForm): void {
         if (form.invalid) return;
         // console.log(form.value.teacherEmail)
         this.loaderService.setStatus(true)

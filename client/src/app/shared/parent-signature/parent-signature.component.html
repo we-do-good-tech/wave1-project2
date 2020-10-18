@@ -1,5 +1,4 @@
 <div class="parentSigantureContainer">
-
     <div class="meetingTeacher">
         <p>ישראל ישראלי - חונכות חברתית</p>
     </div>
@@ -54,8 +53,16 @@
     </div>
     <div class="parentSignatureCnavas">
         <p>נא לחתום לאישור מפגש</p>
-        <signature-canvas></signature-canvas>
-    </div>
+        <div class="sign">
+            <div class="pSignaturePad">
+                <ng-signature-pad #sp [showClearButton]="false" [showDoneButton]="true" [format]="'base64'"
+                    [backgroundColor]="'white'" (done)="saveImage($event)" [doneButtonClass]="'padConfirmButton'"
+                    [doneButtonText]="'אישור'">
 
-    <button class="mainButton">אישור</button>
+                </ng-signature-pad>
+            </div>
+        </div>
+    </div>
+    <img [src]="signatureImage" *ngIf="signatureImage" alt="">
+    <!-- <button class="mainButton">אישור</button> -->
 </div>
