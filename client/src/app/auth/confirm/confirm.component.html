@@ -15,7 +15,7 @@
         <!-- <div *ngIf="form.invalid && form.submitted" class="codeError animate__animated animate__headShake"> <span>
                 חסרה ספרה </span>
         </div> -->
-        <button class="mainButton" id="btn-confirm" type="submit" [disabled]="form.invalid">
+        <button [class.disabledButton] class="mainButton" id="btn-confirm" type="submit" [disabled]="form.invalid">
             שלח
         </button>
     </form>

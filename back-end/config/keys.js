@@ -18,7 +18,7 @@ module.exports = {
     TOKENS: {
         ACCESS_TOKEN: {
             secretTokenKey: process.env.SECRET_ACCESS_TOKEN_KEY,
-            expiresIn: 60 * 10
+            expiresIn: 60 * 30
 
         }
     }

@@ -4,6 +4,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { AuthGuard } from "./services/guards/auth.guard";
 import { NotAuthGuard } from "./services/guards/not-auth.guard";
 import { NotFoundComponent } from "./shared/not-found/not-found.component";
+import { ExmpleComponent } from "./shared/exmple/exmple.component";
 
 const routes: Routes = [
   {
@@ -11,16 +12,24 @@ const routes: Routes = [
     redirectTo: "auth/email",
     pathMatch: "full",
   },
+  // {
+  //     path: "",
+  //     redirectTo: "x",
+  //     pathMatch: "full",
+  // },
+  // {
+  //     path: 'x', component: ExmpleComponent
+  // },
   {
     path: "auth",
     loadChildren: () => import("./auth/auth.module").then((m) => m.AuthModule),
-    // canActivate: [NotAuthGuard],
+    canActivate: [NotAuthGuard],
   },
   {
     path: "main",
     loadChildren: () =>
       import("./teacher/teacher.module").then((m) => m.TeacerModule),
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
     path: "parent-signature",

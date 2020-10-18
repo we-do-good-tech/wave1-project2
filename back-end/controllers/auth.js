@@ -4,8 +4,7 @@ const { confirmCode } = require("../services/confirm-code");
 const { sendEmailConfirmCodeOptions } = require("../services/emails");
 const { createToken } = require("../services/tokens");
 const keys = require("../config/keys");
-const axios = require('axios')
-const parseSVC = require('csv-parse')
+
 
 exports.authTeacherId = async function (request, response) {
     const { teacherEmail } = request.body;
@@ -31,32 +30,56 @@ exports.authTeacherId = async function (request, response) {
         );
 
         // make error respone possiblle
-        sendMail(options, (error, success) => {
-            if (success) {
-                confirmCode.setTimeExpireConfirmCode();
+        sendMail(options)
 
-                const token = createToken({
-                    teacherEmail: teacher.email,
-                    teacherFirstName: teacher.firstName,
-                    teacherLastName: teacher.lastName,
-                });
+        confirmCode.setTimeExpireConfirmCode();
 
-                return response.status(200).send({
-                    message: "USER FOUND",
-                    token: token,
-                    tokenExpiresIn: keys.TOKENS.ACCESS_TOKEN.expiresIn,
-                    confirmCodeExpire: 60 * 2,
-                    userName: {
-                        firstName: teacher.firstName,
-                        lastName: teacher.lastName
-                    }
-                });
-            }
-
-            response.status(403).send({
-                message: "EMAIL UNKNOW",
-            });
+        const token = createToken({
+            teacherId: teacher.id,
+            teacherEmail: teacher.email,
+            teacherFirstName: teacher.firstName,
+            teacherLastName: teacher.lastName,
         });
+
+
+
+        return response.status(200).send({
+            message: "USER FOUND",
+            token: token,
+            tokenExpiresIn: keys.TOKENS.ACCESS_TOKEN.expiresIn,
+            confirmCodeExpire: 60 * 2,
+            userName: {
+                firstName: teacher.firstName,
+                lastName: teacher.lastName
+            }
+        });
+        // sendMail(options, (error, success) => {
+        //     console.log(error, success)
+        //     if (success) {
+        //         confirmCode.setTimeExpireConfirmCode();
+
+        //         const token = createToken({
+        //             teacherEmail: teacher.email,
+        //             teacherFirstName: teacher.firstName,
+        //             teacherLastName: teacher.lastName,
+        //         });
+
+        //         return response.status(200).send({
+        //             message: "USER FOUND",
+        //             token: token,
+        //             tokenExpiresIn: keys.TOKENS.ACCESS_TOKEN.expiresIn,
+        //             confirmCodeExpire: 60 * 2,
+        //             userName: {
+        //                 firstName: teacher.firstName,
+        //                 lastName: teacher.lastName
+        //             }
+        //         });
+        //     }
+
+        //     response.status(403).send({
+        //         message: "EMAIL UNKNOW",
+        //     });
+        // });
     } catch (error) {
         // console.log('ERROR')
         console.log(error)

@@ -1,7 +1,7 @@
 const keys = require('../config/keys')
-const axios = require('axios')
-const parseCSV = require('csv-parse')
 const fetch = require('node-fetch')
+const { convertCSV } = require('../helpers/csv')
+const { convertSheetsDataToObjectsArray } = require('../helpers/tojson')
 
 
 // async function getSeetsValues(googleSheetsApi, options) {
@@ -20,29 +20,10 @@ const fetch = require('node-fetch')
 //     console.log(x)
 // }
 
-function convertSheetsDataToObjectsArray(data) {
-    return data.map(([id, firstName, lastName, phone, email], index) => {
-        return {
-            id: id,
-            firstName: firstName,
-            lastName: lastName,
-            phone: phone,
-            email: email,
-        };
-    });
-}
 
-function convertCSV(data) {
-    return new Promise((resolve, reject) => {
-        parseCSV(data, {}, (error, data) => {
-            if (data[1]) {
-                resolve(data[1])
-            } else {
-                resolve(undefined)
-            }
-        })
-    })
-}
+
+
+
 
 exports.findTeacherByEmail = async function (teacherEmail, authorizationToken) {
     // console.log(teacherId)
@@ -66,7 +47,35 @@ exports.findTeacherByEmail = async function (teacherEmail, authorizationToken) {
             return
         }
 
-        return convertSheetsDataToObjectsArray([convertData])[0]
+        return convertSheetsDataToObjectsArray(convertData, 'TEACHERS')[0]
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
+
+
+module.exports.findStudents = async function (teacherId, authorizationToken) {
+    const spreadsheetId = keys.GOOGLE_SHEETS.spreadsheetId
+    const sheetId = keys.GOOGLE_SHEETS.sheetsIds.childrens
+    const query = `select * where D=${Number(teacherId)}`;
+
+    console.log(teacherId)
+    try {
+        const foundStudents = await fetch(`https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tqx=out:csv&gid=${sheetId}&tq=${encodeURI(query)}`, {
+            method: 'GET',
+            headers: authorizationToken
+        })
+
+        const textResponse = await foundStudents.text()
+
+        const convertData = await convertCSV(textResponse)
+        if (!convertData) {
+            return
+        }
+
+        return convertSheetsDataToObjectsArray(convertData, 'CHILDRENS')
     } catch (error) {
         console.log(error)
         throw error

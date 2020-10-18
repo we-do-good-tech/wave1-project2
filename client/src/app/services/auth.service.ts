@@ -13,6 +13,7 @@ import { UserName } from "../interfaces/TeacherId";
 export class AuthService {
 
     private isLog: boolean;
+    private isAuth: boolean
     private isLogChange: BehaviorSubject<boolean>
     private token: string
     private tokenTimer: NodeJS.Timer
@@ -80,7 +81,6 @@ export class AuthService {
         }>('api/auth/teacherEmail', { teacherEmail: teacherEmail })
             .pipe(
                 map((result) => {
-                    console.log(result)
                     if (result.token) {
                         const expiresIn = result.tokenExpiresIn
 
@@ -108,12 +108,14 @@ export class AuthService {
             .pipe(
                 map((result) => {
                     // console.log(result)
+                    this.isAuth = true
                     this.isLog = result.isLog
                     this.isLogChange.next(this.isLog)
+
+                    sessionStorage.setItem('is-auth', JSON.stringify(this.isAuth))
                     return result.message
                 })
             )
-
     }
 
 
@@ -142,6 +144,7 @@ export class AuthService {
         sessionStorage.removeItem('token')
         sessionStorage.removeItem('expiresIn')
         sessionStorage.removeItem('user-name')
+        sessionStorage.removeItem('is-auth')
     }
 
 
@@ -149,20 +152,21 @@ export class AuthService {
         const token = sessionStorage.getItem('token')
         const expiresInDate = sessionStorage.getItem('expiresIn')
         const userName = JSON.parse(sessionStorage.getItem('user-name'))
+        const isAuth = JSON.parse(sessionStorage.getItem('is-auth'))
 
-        if (!token || !expiresInDate) {
+        if (!token || !expiresInDate || !isAuth) {
             return
         }
 
         return {
             token: token,
             expiresInDate: new Date(expiresInDate),
-            userName: userName
+            userName: userName,
         }
 
     }
 
-    private clearLoginInfo(): void {
+    clearLoginInfo(): void {
         this.token = null
         this.isLog = false
         this.userName = null

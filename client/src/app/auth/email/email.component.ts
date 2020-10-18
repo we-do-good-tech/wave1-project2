@@ -13,8 +13,8 @@ import { LoaderService } from 'src/app/services/loader.service';
 export class EmailComponent implements OnInit {
 
     constructor(
-        private authService: AuthService,
         public formsService: FormsService,
+        private authService: AuthService,
         private router: Router,
         private loaderService: LoaderService
     ) { }

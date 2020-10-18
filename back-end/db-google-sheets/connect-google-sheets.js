@@ -3,6 +3,7 @@ const creds = require("../../lior-sheets.creds.json");
 const keys = require("../config/keys");
 
 function authorizeClient(callClient) {
+  ``;
   console.log("authorizeClient");
 
   const client = new google.auth.JWT(

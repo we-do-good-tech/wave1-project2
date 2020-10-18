@@ -6,6 +6,7 @@ const path = require("path");
 const server = express();
 
 const authRoutes = require("./back-end/routes/auth");
+const teacherRoutes = require('./back-end/routes/teacher')
 const { limiter } = require("./back-end/services/rate-limiter");
 
 const appFolder = "client/dist/reports";
@@ -18,6 +19,7 @@ server.use(express.static(path.join(__dirname, "client/dist/reports")));
 // server.use('*.*', express.static(appFolder, { maxAge: '1y' }));
 
 server.use("/api/auth", authRoutes);
+server.use('/api/teacher', teacherRoutes)
 
 server.get("*", (request, response) => {
     response.sendFile(path.resolve("client/dist/reports/index.html"));
@@ -26,7 +28,13 @@ server.get("*", (request, response) => {
 
 
 
+const array = [
+    ['a', 'b', 'c', 'd'],
+    [1, 2, 3, 4],
+    [5, 6, 7, 8]
+]
 
+console.log(array.slice(1, array.length))
 
 
 
