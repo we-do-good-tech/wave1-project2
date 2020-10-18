@@ -89,7 +89,7 @@ exports.authTeacherId = async function (request, response) {
 exports.authConfirmCode = async function (request, response) {
     const { code } = request.body;
 
-    if (code == confirmCode.getConfirmCode()) {
+    if (code === confirmCode.getConfirmCode()) {
         console.log("CODE IS CONFIRM");
         confirmCode.deleteConfirmCode();
         return response.status(200).send({

@@ -1,3 +1,3 @@
 export interface ConfirmCode {
-    code: number
+    code: string
 }

@@ -14,7 +14,6 @@ export class LoaderComponent implements OnInit {
 
     ngOnInit(): void {
         this.loaderService.getLoadStatus().subscribe((result) => {
-            console.log(result)
             this.isLoad = result
         })
     }

@@ -7,13 +7,15 @@ import { VirtualKeyDirective } from "../directives/virtual-key";
 import { InputFocusDirective } from '../directives/focus.directive';
 import { AuthRoutingModule } from "./auth.routing.module";
 import { SharedModule } from '../shared/shared.module';
+import { LimitInputDirective } from "../directives/limit-input.directive";
 
 @NgModule({
     declarations: [
         EmailComponent,
         ConfirmComponent,
         VirtualKeyDirective,
-        InputFocusDirective
+        InputFocusDirective,
+        LimitInputDirective
     ],
     imports: [
         CommonModule,

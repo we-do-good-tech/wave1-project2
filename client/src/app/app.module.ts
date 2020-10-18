@@ -11,34 +11,35 @@ import { AuthInterceptor } from "./services/interceptors/auth.interceptor";
 import { LoaderInterceptor } from "./services/interceptors/loader.interceptor";
 import { SignaturePadModule } from "@ng-plus/signature-pad";
 
+
 @NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    SharedModule,
-    SignaturePadModule,
-  ],
-  exports: [SharedModule],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpErrorMessagesInterceptor,
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: LoaderInterceptor,
-      multi: true,
-    },
-  ],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        SharedModule,
+        SignaturePadModule,
+    ],
+    exports: [SharedModule],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true,
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HttpErrorMessagesInterceptor,
+            multi: true,
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: LoaderInterceptor,
+            multi: true,
+        },
+    ],
+    bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

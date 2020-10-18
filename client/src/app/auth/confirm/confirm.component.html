@@ -1,23 +1,24 @@
 <div class="confirmWrapper">
     <p class="m-3">נשלח מסרון, נא הזינו הקוד</p>
-    <form #form="ngForm" appInputFocus (ngSubmit)="onSendConfirmCode(form)" class="m-3">
+    <form  #form="ngForm" appInputFocus  class="m-3">
         <div class="smsCode">
-            <input id="num-a" required type="number" pattern="^\d{1}$" name="first" autofocus ngModel="virtualkey"
-                #one="ngModel" (input)="onChange($event)">
-            <input id="num-b" required type="number" pattern="^\d{1}$" name="second" required ngModel="virtualkey"
-                #two="ngModel" (input)="onChange($event)">
+            <input #first
+             id="num-a"  
+             required 
+             type="number" 
+             pattern="^\d{1}$" 
+             name="first" 
+             autofocus 
+             ngModel="virtualkey"
+                #one="ngModel" 
+                >
+            <input id="num-b" required type="number" pattern="^\d{1}$" name="second"  ngModel="virtualkey"
+                #two="ngModel">
             <input id="num-c" required type="number" pattern="^\d{1}$" name="third" ngModel="virtualkey"
-                #three="ngModel" (input)="onChange($event)">
+                #three="ngModel">
             <input id="num-d" required type="number" pattern="^\d{1}$" name="fourth" ngModel="virtualkey"
-                #four="ngModel" (input)="onChange($event)">
+                #four="ngModel">
         </div>
-        <div class="codeError animate__animated animate__headShake"><span>קוד שגוי, נסה שנית</span></div>
-        <!-- <div *ngIf="form.invalid && form.submitted" class="codeError animate__animated animate__headShake"> <span>
-                חסרה ספרה </span>
-        </div> -->
-        <button [class.disabledButton] class="mainButton" id="btn-confirm" type="submit" [disabled]="form.invalid">
-            שלח
-        </button>
     </form>
     <small>Expire Time: 2 minutes</small>
     <app-keyboard></app-keyboard>

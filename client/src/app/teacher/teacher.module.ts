@@ -9,7 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MeetingCreateSuccessComponent } from './meetings/meeting-create-success/meeting-create-success.component';
 import { SingleMeetingComponent } from './meetings/single-meeting/single-meeting.component';
 import { MeetingTableComponent } from './meetings/meeting-table/meeting-table.component';
-import { MeetingTableItemComponent } from './meetings/meeting-table-item/meeting-table-item.component';
+import { MeetingTableItemComponent } from './meetings/meeting-table/meeting-table-item/meeting-table-item.component';
 
 
 

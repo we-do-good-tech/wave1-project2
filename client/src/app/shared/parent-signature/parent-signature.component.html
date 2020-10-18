@@ -55,14 +55,18 @@
         <p>נא לחתום לאישור מפגש</p>
         <div class="sign">
             <div class="pSignaturePad">
-                <ng-signature-pad #sp [showClearButton]="false" [showDoneButton]="true" [format]="'base64'"
-                    [backgroundColor]="'white'" (done)="saveImage($event)" [doneButtonClass]="'padConfirmButton'"
-                    [doneButtonText]="'אישור'">
-
+                <ng-signature-pad 
+                    [showClearButton]="false" 
+                    [showDoneButton]="true"
+                    [emitOnDragEnd]="true"
+                    [format]="'base64'"
+                    [backgroundColor]="'white'"  
+                    (done)="saveImage($event)" 
+                    [doneButtonClass]="isCanvasWrite ? 'padConfirmButton' : 'disabledButton'"
+                    [doneButtonText]="'אישור'"
+                    >
                 </ng-signature-pad>
             </div>
         </div>
     </div>
-    <img [src]="signatureImage" *ngIf="signatureImage" alt="">
-    <!-- <button class="mainButton">אישור</button> -->
 </div>
