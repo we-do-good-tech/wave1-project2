@@ -316,6 +316,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "qCKp");
 /* harmony import */ var _http_error_messages_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../http-error-messages.service */ "UvWv");
 /* harmony import */ var _loader_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../loader.service */ "5dVO");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../auth.service */ "lGQG");
+
 
 
 
@@ -323,9 +325,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class HttpErrorMessagesInterceptor {
-    constructor(httpErrorMessagesService, loaderService) {
+    constructor(httpErrorMessagesService, loaderService, authServcie) {
         this.httpErrorMessagesService = httpErrorMessagesService;
         this.loaderService = loaderService;
+        this.authServcie = authServcie;
     }
     intercept(request, next) {
         return next.handle(request).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["tap"])((result) => {
@@ -337,17 +340,20 @@ class HttpErrorMessagesInterceptor {
             if (error.statusText === "Too Many Requests") {
                 errorMassge = error.error;
             }
+            if (errorMassge === 'Unauthorize') {
+                this.authServcie.clearLoginInfo();
+            }
             // alert(errorMassge)
             this.httpErrorMessagesService.setMessage(error.error.message);
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(error);
         }));
     }
 }
-HttpErrorMessagesInterceptor.ɵfac = function HttpErrorMessagesInterceptor_Factory(t) { return new (t || HttpErrorMessagesInterceptor)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_http_error_messages_service__WEBPACK_IMPORTED_MODULE_3__["HttpErrorMessagesService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_loader_service__WEBPACK_IMPORTED_MODULE_4__["LoaderService"])); };
+HttpErrorMessagesInterceptor.ɵfac = function HttpErrorMessagesInterceptor_Factory(t) { return new (t || HttpErrorMessagesInterceptor)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_http_error_messages_service__WEBPACK_IMPORTED_MODULE_3__["HttpErrorMessagesService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_loader_service__WEBPACK_IMPORTED_MODULE_4__["LoaderService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"])); };
 HttpErrorMessagesInterceptor.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: HttpErrorMessagesInterceptor, factory: HttpErrorMessagesInterceptor.ɵfac });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpErrorMessagesInterceptor, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
-    }], function () { return [{ type: _http_error_messages_service__WEBPACK_IMPORTED_MODULE_3__["HttpErrorMessagesService"] }, { type: _loader_service__WEBPACK_IMPORTED_MODULE_4__["LoaderService"] }]; }, null); })();
+    }], function () { return [{ type: _http_error_messages_service__WEBPACK_IMPORTED_MODULE_3__["HttpErrorMessagesService"] }, { type: _loader_service__WEBPACK_IMPORTED_MODULE_4__["LoaderService"] }, { type: _auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"] }]; }, null); })();
 
 
 /***/ }),
@@ -1082,7 +1088,6 @@ class AuthService {
     authTeacherEmail(teacherEmail) {
         return this.http.post('api/auth/teacherEmail', { teacherEmail: teacherEmail })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((result) => {
-            console.log(result);
             if (result.token) {
                 const expiresIn = result.tokenExpiresIn;
                 this.token = result.token;
@@ -1372,8 +1377,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./services/guards/auth.guard */ "Xuht");
 /* harmony import */ var _services_guards_not_auth_guard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./services/guards/not-auth.guard */ "h+8V");
 /* harmony import */ var _shared_not_found_not_found_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./shared/not-found/not-found.component */ "OoyU");
-/* harmony import */ var _shared_exmple_exmple_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./shared/exmple/exmple.component */ "I4s0");
-
 
 
 
@@ -1383,19 +1386,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const routes = [
-    // {
-    //     path: "",
-    //     redirectTo: "auth/email",
-    //     pathMatch: "full",
-    // },
     {
         path: "",
-        redirectTo: "x",
+        redirectTo: "auth/email",
         pathMatch: "full",
     },
-    {
-        path: 'x', component: _shared_exmple_exmple_component__WEBPACK_IMPORTED_MODULE_6__["ExmpleComponent"]
-    },
+    // {
+    //     path: "",
+    //     redirectTo: "x",
+    //     pathMatch: "full",
+    // },
+    // {
+    //     path: 'x', component: ExmpleComponent
+    // },
     {
         path: "auth",
         loadChildren: () => __webpack_require__.e(/*! import() | auth-auth-module */ "auth-auth-module").then(__webpack_require__.bind(null, /*! ./auth/auth.module */ "Yj9t")).then((m) => m.AuthModule),

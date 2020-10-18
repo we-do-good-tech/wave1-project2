@@ -81,7 +81,6 @@ export class AuthService {
         }>('api/auth/teacherEmail', { teacherEmail: teacherEmail })
             .pipe(
                 map((result) => {
-                    console.log(result)
                     if (result.token) {
                         const expiresIn = result.tokenExpiresIn
 
@@ -167,7 +166,7 @@ export class AuthService {
 
     }
 
-    private clearLoginInfo(): void {
+    clearLoginInfo(): void {
         this.token = null
         this.isLog = false
         this.userName = null

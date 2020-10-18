@@ -3,14 +3,15 @@ const JsonWebToken = require('jsonwebtoken')
 
 async function verifyToken(request, response, next) {
 
-    console.log('AUTH TOKEN MIDDLEWERE')
 
     try {
+        console.log('AUTH TOKEN MIDDLEWERE')
         const token = request.headers.authorization.split(' ')[1]
 
         const decodedToken = await JsonWebToken.verify(token, keys.TOKENS.ACCESS_TOKEN.secretTokenKey)
 
         request.userData = {
+            teacherId: decodedToken.teacherId,
             teacherEmail: decodedToken.teacherEmail,
             teacherFirstName: decodedToken.teacherFirstName,
             teacherLastName: decodedToken.teacherLastName

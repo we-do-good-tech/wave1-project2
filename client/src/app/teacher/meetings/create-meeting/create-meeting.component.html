@@ -5,8 +5,8 @@
             <select class="selectUser" [ngClass]="this.formsService.displayClass(getFormControl('studentName'))"
                 formControlName="studentName">
                 <option value>בחר</option>
-                <option *ngFor="let student of students" [value]="student">
-                    {{student}}
+                <option *ngFor="let student of students | async" [value]="student?.firstName">
+                    {{student?.firstName}}
                 </option>
             </select>
             <div *ngIf="this.formsService.formControlStatus(getFormControl('studentName'))">

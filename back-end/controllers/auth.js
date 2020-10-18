@@ -35,12 +35,13 @@ exports.authTeacherId = async function (request, response) {
         confirmCode.setTimeExpireConfirmCode();
 
         const token = createToken({
+            teacherId: teacher.id,
             teacherEmail: teacher.email,
             teacherFirstName: teacher.firstName,
             teacherLastName: teacher.lastName,
         });
 
-        request.ahi = 10
+
 
         return response.status(200).send({
             message: "USER FOUND",

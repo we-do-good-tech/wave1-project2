@@ -7,19 +7,19 @@ import { NotFoundComponent } from "./shared/not-found/not-found.component";
 import { ExmpleComponent } from './shared/exmple/exmple.component';
 
 const routes: Routes = [
-    // {
-    //     path: "",
-    //     redirectTo: "auth/email",
-    //     pathMatch: "full",
-    // },
     {
         path: "",
-        redirectTo: "x",
+        redirectTo: "auth/email",
         pathMatch: "full",
     },
-    {
-        path: 'x', component: ExmpleComponent
-    },
+    // {
+    //     path: "",
+    //     redirectTo: "x",
+    //     pathMatch: "full",
+    // },
+    // {
+    //     path: 'x', component: ExmpleComponent
+    // },
     {
         path: "auth",
         loadChildren: () => import("./auth/auth.module").then((m) => m.AuthModule),

@@ -4,9 +4,9 @@
         <div class="list">
             <select>
                 <option value>בחר משתמש</option>
-                <option value>אבי</option>
-                <option value>בני</option>
-                <option value>גדי</option>
+                <option *ngFor="let student of students | async" [value]="student?.firstName">
+                    {{student?.firstName}}
+                </option>
             </select>
         </div>
     </div>
