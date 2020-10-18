@@ -31,14 +31,11 @@
             נושאים ופעלויות שעלו במפגש
         </p>
         <div class="importantCommentsContent">
-
             כאן יירשמו הערות רלוונטיות עבור אותו מפגש,
             מה נלמד, באיזה שלב החנוך והחניך נמצאים ומה היו תכני המםגש. האם
         </div>
     </div>
     <div class="confirmCheckbox">
-        <!-- <input type="checkbox" id="comfirm" name="comfirm" value="confirm">
-        <label for="comfirm">קראתי ואני מאשר בחתימתי</label><br> -->
         <div class="grid">
             <label class="checkbox path">
                 <input type="checkbox" name="comfirm">
@@ -55,14 +52,12 @@
         <p>נא לחתום לאישור מפגש</p>
         <div class="sign">
             <div class="pSignaturePad">
-                <ng-signature-pad #sp [showClearButton]="false" [showDoneButton]="true" [format]="'base64'"
+                <ng-signature-pad #sp [showClearButton]="false" [clearButtonText]="'נקה'"
+                    [clearButtonClass]="'cleanButton'" [showDoneButton]="true" [format]="'base64'"
                     [backgroundColor]="'white'" (done)="saveImage($event)" [doneButtonClass]="'padConfirmButton'"
                     [doneButtonText]="'אישור'">
-
                 </ng-signature-pad>
             </div>
         </div>
     </div>
-    <img [src]="signatureImage" *ngIf="signatureImage" alt="">
-    <!-- <button class="mainButton">אישור</button> -->
 </div>
