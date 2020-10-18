@@ -1,20 +1,18 @@
 function convertSheetsDataToObjectsArray(data, sheetName) {
     switch (sheetName) {
         case 'TEACHERS':
-            return data.map(([id, firstName, lastName, phone, email], index) => {
+            return data.map(([id, fullName, email], index) => {
                 return {
                     id: id,
-                    firstName: firstName,
-                    lastName: lastName,
-                    phone: phone,
+                    firstName: fullName.split(' ').slice(0, 1)[0],
                     email: email,
                 };
             });
         case 'CHILDRENS':
-            return data.map(([id, firstName, parentEmail, teacherId, ticketNo], index) => {
+            return data.map(([id, studentName, parentEmail, ticketNo, teacherId], index) => {
                 return {
                     id: id,
-                    firstName: firstName,
+                    studentName: studentName,
                     parentEmail: parentEmail,
                     ticketNo: ticketNo,
                 };

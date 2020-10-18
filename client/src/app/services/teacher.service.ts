@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { stringify } from 'querystring';
 import { Observable, of, Subject } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { Meeting } from '../interfaces/Meeting';
+import { Report } from '../interfaces/Meeting';
 import { Student } from '../interfaces/Student';
 
 @Injectable({
@@ -15,11 +15,12 @@ export class TeacherService {
 
     constructor(private http: HttpClient) { }
 
+    createReport(report: Report) {
 
-    createMeeting(meeting: Meeting) { }
+    }
 
 
-    getSingleMeeting(meetingId: string) { }
+    // getSingleReport(meetingId: string) { }
 
 
     getStudents(): Observable<Student[]> {
@@ -36,4 +37,7 @@ export class TeacherService {
             )
 
     }
+
+
+
 }

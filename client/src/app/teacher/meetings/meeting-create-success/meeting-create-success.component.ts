@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-meeting-create-seccess',
-  templateUrl: './meeting-create-seccess.component.html',
-  styleUrls: ['./meeting-create-seccess.component.scss']
+    selector: 'app-meeting-create-success',
+    templateUrl: './meeting-create-success.component.html',
+    styleUrls: ['./meeting-create-success.component.scss']
 })
-export class MeetingCreateSeccessComponent implements OnInit {
+export class MeetingCreateSuccessComponent implements OnInit {
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
 }

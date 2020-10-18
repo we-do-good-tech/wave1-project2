@@ -38,9 +38,7 @@ exports.authTeacherId = async function (request, response) {
             teacherId: teacher.id,
             teacherEmail: teacher.email,
             teacherFirstName: teacher.firstName,
-            teacherLastName: teacher.lastName,
         });
-
 
 
         return response.status(200).send({
@@ -50,7 +48,6 @@ exports.authTeacherId = async function (request, response) {
             confirmCodeExpire: 60 * 2,
             userName: {
                 firstName: teacher.firstName,
-                lastName: teacher.lastName
             }
         });
         // sendMail(options, (error, success) => {

@@ -19,3 +19,10 @@ module.exports.getStudents = async function (request, response) {
         });
     }
 }
+
+
+module.exports.createReport = async function (request, response) {
+    console.log(request.body)
+
+    response.send('ok')
+}

@@ -14,7 +14,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "tyNb");
 /* harmony import */ var _meetings_create_meeting_create_meeting_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./meetings/create-meeting/create-meeting.component */ "5gOy");
 /* harmony import */ var _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dashboard/dashboard.component */ "uh8t");
-/* harmony import */ var _meetings_meeting_create_seccess_meeting_create_seccess_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./meetings/meeting-create-seccess/meeting-create-seccess.component */ "DdGT");
+/* harmony import */ var _meetings_meeting_create_success_meeting_create_success_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./meetings/meeting-create-success/meeting-create-success.component */ "asT0");
 /* harmony import */ var _meetings_meeting_table_meeting_table_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./meetings/meeting-table/meeting-table.component */ "C7mD");
 /* harmony import */ var _meetings_single_meeting_single_meeting_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./meetings/single-meeting/single-meeting.component */ "ySkb");
 /* harmony import */ var _teacher_main_teacher_main_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./teacher-main/teacher-main.component */ "6sbq");
@@ -51,7 +51,7 @@ const routes = [
             // },
             {
                 path: "meeting-seccess",
-                component: _meetings_meeting_create_seccess_meeting_create_seccess_component__WEBPACK_IMPORTED_MODULE_4__["MeetingCreateSeccessComponent"],
+                component: _meetings_meeting_create_success_meeting_create_success_component__WEBPACK_IMPORTED_MODULE_4__["MeetingCreateSuccessComponent"],
             },
             {
                 path: "meeting-summary",
@@ -95,7 +95,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./dashboard/dashboard.component */ "uh8t");
 /* harmony import */ var _meetings_create_meeting_create_meeting_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./meetings/create-meeting/create-meeting.component */ "5gOy");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/forms */ "3Pt+");
-/* harmony import */ var _meetings_meeting_create_seccess_meeting_create_seccess_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./meetings/meeting-create-seccess/meeting-create-seccess.component */ "DdGT");
+/* harmony import */ var _meetings_meeting_create_success_meeting_create_success_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./meetings/meeting-create-success/meeting-create-success.component */ "asT0");
 /* harmony import */ var _meetings_single_meeting_single_meeting_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./meetings/single-meeting/single-meeting.component */ "ySkb");
 /* harmony import */ var _meetings_meeting_table_meeting_table_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./meetings/meeting-table/meeting-table.component */ "C7mD");
 /* harmony import */ var _meetings_meeting_table_item_meeting_table_item_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./meetings/meeting-table-item/meeting-table-item.component */ "CWA/");
@@ -124,7 +124,7 @@ TeacerModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjec
 (function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsetNgModuleScope"](TeacerModule, { declarations: [_teacher_main_teacher_main_component__WEBPACK_IMPORTED_MODULE_2__["TeacherMainComponent"],
         _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_5__["DashboardComponent"],
         _meetings_create_meeting_create_meeting_component__WEBPACK_IMPORTED_MODULE_6__["CreateMeetingComponent"],
-        _meetings_meeting_create_seccess_meeting_create_seccess_component__WEBPACK_IMPORTED_MODULE_8__["MeetingCreateSeccessComponent"],
+        _meetings_meeting_create_success_meeting_create_success_component__WEBPACK_IMPORTED_MODULE_8__["MeetingCreateSuccessComponent"],
         _meetings_single_meeting_single_meeting_component__WEBPACK_IMPORTED_MODULE_9__["SingleMeetingComponent"],
         _meetings_meeting_table_meeting_table_component__WEBPACK_IMPORTED_MODULE_10__["MeetingTableComponent"],
         _meetings_meeting_table_item_meeting_table_item_component__WEBPACK_IMPORTED_MODULE_11__["MeetingTableItemComponent"]], imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
@@ -138,7 +138,7 @@ TeacerModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjec
                     _teacher_main_teacher_main_component__WEBPACK_IMPORTED_MODULE_2__["TeacherMainComponent"],
                     _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_5__["DashboardComponent"],
                     _meetings_create_meeting_create_meeting_component__WEBPACK_IMPORTED_MODULE_6__["CreateMeetingComponent"],
-                    _meetings_meeting_create_seccess_meeting_create_seccess_component__WEBPACK_IMPORTED_MODULE_8__["MeetingCreateSeccessComponent"],
+                    _meetings_meeting_create_success_meeting_create_success_component__WEBPACK_IMPORTED_MODULE_8__["MeetingCreateSuccessComponent"],
                     _meetings_single_meeting_single_meeting_component__WEBPACK_IMPORTED_MODULE_9__["SingleMeetingComponent"],
                     _meetings_meeting_table_meeting_table_component__WEBPACK_IMPORTED_MODULE_10__["MeetingTableComponent"],
                     _meetings_meeting_table_item_meeting_table_item_component__WEBPACK_IMPORTED_MODULE_11__["MeetingTableItemComponent"]
@@ -184,10 +184,10 @@ function CreateMeetingComponent_option_8_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const student_r734 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("value", student_r734 == null ? null : student_r734.firstName);
+    const student_r530 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("value", student_r530 == null ? null : student_r530.ticketNo);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", student_r734 == null ? null : student_r734.firstName, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", student_r530 == null ? null : student_r530.studentName, " ");
 } }
 function CreateMeetingComponent_div_10_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
@@ -206,9 +206,9 @@ function CreateMeetingComponent_div_15_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, CreateMeetingComponent_div_15_div_1_Template, 2, 0, "div", 21);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const ctx_r731 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+    const ctx_r527 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r731.getFormControl("meetingDate").errors.required);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r527.getFormControl("meetingDate").errors.required);
 } }
 function CreateMeetingComponent_div_21_div_1_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 20);
@@ -220,9 +220,9 @@ function CreateMeetingComponent_div_21_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, CreateMeetingComponent_div_21_div_1_Template, 2, 0, "div", 21);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const ctx_r732 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+    const ctx_r528 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r732.getFormControl("meetingStartTime").errors.required);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r528.getFormControl("meetingStartTime").errors.required);
 } }
 function CreateMeetingComponent_div_26_div_1_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 20);
@@ -234,9 +234,9 @@ function CreateMeetingComponent_div_26_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, CreateMeetingComponent_div_26_div_1_Template, 2, 0, "div", 21);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const ctx_r733 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+    const ctx_r529 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r733.getFormControl("meetingEndTime").errors.required);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r529.getFormControl("meetingEndTime").errors.required);
 } }
 class CreateMeetingComponent {
     constructor(formBuilder, formsService, router, teacherService) {
@@ -248,7 +248,7 @@ class CreateMeetingComponent {
     ngOnInit() {
         this.students = this.teacherService.getStudents();
         this.meetingForm = this.formBuilder.group({
-            studentName: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]],
+            ticketNo: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]],
             meetingDate: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]],
             meetingStartTime: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]],
             meetingEndTime: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]],
@@ -257,7 +257,20 @@ class CreateMeetingComponent {
         });
     }
     onCreateMeeting() {
-        console.log(this.meetingForm.value);
+        const { ticketNo, meetingDate, meetingStartTime, meetingEndTime, meetingActivitis, meetingComments } = this.meetingForm.value;
+        // const now = Date.now()
+        // if (now > new Date(meetingDate).getTime()) {
+        //     console.log('DATE IS PASS OVER')
+        // }
+        let start = meetingStartTime.split(':');
+        let end = meetingEndTime.split(':');
+        let range = new Date(0, 0, 0, end[0], end[1], 0).getTime() - new Date(0, 0, 0, start[0], start[1], 0).getTime();
+        if (range < 0)
+            return;
+        let minutes = range / 1000 / 60;
+        let hours = Math.floor(minutes / 60);
+        let restMinutes = (minutes % 60);
+        console.log(hours + ':' + restMinutes);
     }
     getFormControl(controlName) {
         return this.meetingForm.get(controlName);
@@ -267,7 +280,7 @@ class CreateMeetingComponent {
     }
 }
 CreateMeetingComponent.ɵfac = function CreateMeetingComponent_Factory(t) { return new (t || CreateMeetingComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_forms_forms_service__WEBPACK_IMPORTED_MODULE_2__["FormsService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_teacher_service__WEBPACK_IMPORTED_MODULE_4__["TeacherService"])); };
-CreateMeetingComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: CreateMeetingComponent, selectors: [["app-create-meeting"]], decls: 40, vars: 15, consts: [[1, "meetingsContainer"], [1, "form", 3, "formGroup", "ngSubmit"], [1, "createFormInput"], ["formControlName", "studentName", 1, "selectUser", 3, "ngClass"], ["value", ""], [3, "value", 4, "ngFor", "ngForOf"], [4, "ngIf"], ["type", "date", "formControlName", "meetingDate", 3, "ngClass"], [1, "mettingsTime"], [1, "meetStart"], ["type", "time", "formControlName", "meetingStartTime", 3, "ngClass"], [1, "meetEnd"], ["type", "time", "formControlName", "meetingEndTime", 3, "ngClass"], [1, "activitiesContainer"], ["placeholder", "\u05E0\u05D5\u05E9\u05D0\u05D9\u05DD \u05D5\u05E4\u05E2\u05D9\u05DC\u05D9\u05D5\u05EA \u05E9\u05E2\u05DC\u05D5 \u05D1\u05DE\u05E4\u05D2\u05E9: \u05DC\u05DE\u05E9\u05DC - \u05DE\u05D4 \u05E0\u05DC\u05DE\u05D3, \u05D1\u05D0\u05D9\u05D6\u05D4 \u05E9\u05DC\u05D1 \u05D4\u05D7\u05D5\u05E0\u05DA \u05D5\u05D4\u05D7\u05E0\u05D9\u05DA \u05E0\u05DE\u05E6\u05D0\u05D9\u05DD \u05D5\u05DE\u05D4 \u05D4\u05D9\u05D5 \u05EA\u05DB\u05E0\u05D9 \u05D4\u05DE\u05E4\u05D2\u05E9.", "formControlName", "meetingActivitis", "id", "activea", "cols", "5", "rows", "5", 1, "txtArea", "textAreaOne"], [1, "activitiesLabel"], ["placeholder", "\u05D4\u05E2\u05E8\u05D5\u05EA \u05D7\u05E9\u05D5\u05D1\u05D5\u05EA: \u05DC\u05D3\u05D5\u05D2\u05DE\u05D0, \u05DC\u05EA\u05DC\u05DE\u05D9\u05D3 \u05D4\u05D9\u05D4 \u05E7\u05D5\u05E9\u05D9 \u05DC\u05D4\u05EA\u05E8\u05DB\u05D6.", "formControlName", "meetingComments", "cols", "5", "rows", "5", 1, "txtArea", "textAreaTwo"], [1, "commentsLabel"], ["type", "submit", 1, "mainButton", 3, "disabled", "click"], [3, "value"], [1, "errorMessage"], ["class", "errorMessage", 4, "ngIf"]], template: function CreateMeetingComponent_Template(rf, ctx) { if (rf & 1) {
+CreateMeetingComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: CreateMeetingComponent, selectors: [["app-create-meeting"]], decls: 42, vars: 14, consts: [[1, "meetingsContainer"], [1, "form", 3, "formGroup", "ngSubmit"], [1, "createFormInput"], ["formControlName", "ticketNo", 1, "selectUser", 3, "ngClass"], ["value", ""], [3, "value", 4, "ngFor", "ngForOf"], [4, "ngIf"], ["type", "date", "formControlName", "meetingDate", 3, "ngClass"], [1, "mettingsTime"], [1, "meetStart"], ["type", "time", "formControlName", "meetingStartTime", 3, "ngClass"], [1, "meetEnd"], ["type", "time", "formControlName", "meetingEndTime", 3, "ngClass"], [1, "activitiesContainer"], ["placeholder", "\u05E0\u05D5\u05E9\u05D0\u05D9\u05DD \u05D5\u05E4\u05E2\u05D9\u05DC\u05D9\u05D5\u05EA \u05E9\u05E2\u05DC\u05D5 \u05D1\u05DE\u05E4\u05D2\u05E9: \u05DC\u05DE\u05E9\u05DC - \u05DE\u05D4 \u05E0\u05DC\u05DE\u05D3, \u05D1\u05D0\u05D9\u05D6\u05D4 \u05E9\u05DC\u05D1 \u05D4\u05D7\u05D5\u05E0\u05DA \u05D5\u05D4\u05D7\u05E0\u05D9\u05DA \u05E0\u05DE\u05E6\u05D0\u05D9\u05DD \u05D5\u05DE\u05D4 \u05D4\u05D9\u05D5 \u05EA\u05DB\u05E0\u05D9 \u05D4\u05DE\u05E4\u05D2\u05E9.", "formControlName", "meetingActivitis", "id", "activea", "cols", "5", "rows", "5", 1, "txtArea", "textAreaOne"], [1, "activitiesLabel"], ["placeholder", "\u05D4\u05E2\u05E8\u05D5\u05EA \u05D7\u05E9\u05D5\u05D1\u05D5\u05EA: \u05DC\u05D3\u05D5\u05D2\u05DE\u05D0, \u05DC\u05EA\u05DC\u05DE\u05D9\u05D3 \u05D4\u05D9\u05D4 \u05E7\u05D5\u05E9\u05D9 \u05DC\u05D4\u05EA\u05E8\u05DB\u05D6.", "formControlName", "meetingComments", "cols", "5", "rows", "5", 1, "txtArea", "textAreaTwo"], [1, "commentsLabel"], ["type", "submit", 1, "mainButton", 3, "click"], [3, "value"], [1, "errorMessage"], ["class", "errorMessage", 4, "ngIf"]], template: function CreateMeetingComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "form", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngSubmit", function CreateMeetingComponent_Template_form_ngSubmit_1_listener() { return ctx.onCreateMeeting(); });
@@ -307,27 +320,30 @@ CreateMeetingComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵd
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](26, CreateMeetingComponent_div_26_Template, 2, 1, "div", 6);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](27, "div", 13);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](28, "textarea", 14);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](29, "        ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](27, "p");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](28, "time");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](30, "label", 15);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](31, "small");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](32, "\u05E0\u05D5\u05E9\u05D0\u05D9\u05DD \u05D5\u05E4\u05E2\u05D9\u05DC\u05D5\u05D9\u05D5\u05EA \u05E9\u05E2\u05DC\u05D5 \u05D1\u05DE\u05E4\u05D2\u05E9");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](29, "div", 13);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](30, "textarea", 14);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](31, "        ");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](33, "textarea", 16);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](34, "        ");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](35, "label", 17);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](36, "small");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](37, "\u05D4\u05E2\u05E8\u05D5\u05EA \u05D7\u05E9\u05D5\u05D1\u05D5\u05EA");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](32, "label", 15);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](33, "small");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](34, "\u05E0\u05D5\u05E9\u05D0\u05D9\u05DD \u05D5\u05E4\u05E2\u05D9\u05DC\u05D5\u05D9\u05D5\u05EA \u05E9\u05E2\u05DC\u05D5 \u05D1\u05DE\u05E4\u05D2\u05E9");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](35, "textarea", 16);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](36, "        ");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](38, "button", 18);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function CreateMeetingComponent_Template_button_click_38_listener() { return ctx.createMeeting(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](39, " \u05E6\u05D5\u05E8 \u05E4\u05D2\u05D9\u05E9\u05D4 ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](37, "label", 17);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](38, "small");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](39, "\u05D4\u05E2\u05E8\u05D5\u05EA \u05D7\u05E9\u05D5\u05D1\u05D5\u05EA");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](40, "button", 18);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function CreateMeetingComponent_Template_button_click_40_listener() { return ctx.createMeeting(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](41, " \u05E6\u05D5\u05E8 \u05E4\u05D2\u05D9\u05E9\u05D4 ");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -335,11 +351,11 @@ CreateMeetingComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵd
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("formGroup", ctx.meetingForm);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", ctx.formsService.displayClass(ctx.getFormControl("studentName")));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", ctx.formsService.displayClass(ctx.getFormControl("ticketNo")));
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](9, 13, ctx.students));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](9, 12, ctx.students));
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.formsService.formControlStatus(ctx.getFormControl("studentName")));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.formsService.formControlStatus(ctx.getFormControl("ticketNo")));
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", ctx.formsService.displayClass(ctx.getFormControl("meetingDate")));
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
@@ -352,9 +368,8 @@ CreateMeetingComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵd
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", ctx.formsService.displayClass(ctx.getFormControl("meetingEndTime")));
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.formsService.formControlStatus(ctx.getFormControl("meetingEndTime")));
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](12);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](14);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵclassProp"]("disabledButton", ctx.meetingForm.invalid);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("disabled", ctx.meetingForm.invalid);
     } }, directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["ɵangular_packages_forms_forms_y"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormGroupDirective"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["SelectControlValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControlName"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgClass"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgSelectOption"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["ɵangular_packages_forms_forms_x"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgForOf"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["DefaultValueAccessor"]], pipes: [_angular_common__WEBPACK_IMPORTED_MODULE_5__["AsyncPipe"]], styles: [".meetingsContainer[_ngcontent-%COMP%] {\n  width: 100%;\n  height: 90%;\n  margin: auto 0;\n  display: flex;\n  align-items: center;\n  flex-direction: column;\n  overflow-y: auto;\n}\n\nform[_ngcontent-%COMP%] {\n  width: 80%;\n  height: 100%;\n  display: grid;\n  align-items: center;\n}\n\n.createFormInput[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n}\n\n.createFormInput[_ngcontent-%COMP%]   label[_ngcontent-%COMP%] {\n  text-align: center;\n  font-size: 14px;\n}\n\nlabel[_ngcontent-%COMP%] {\n  color: black;\n}\n\ninput[type=date][_ngcontent-%COMP%] {\n  text-align: center;\n}\n\nform[_ngcontent-%COMP%]   select[_ngcontent-%COMP%], form[_ngcontent-%COMP%]   input[_ngcontent-%COMP%] {\n  direction: rtl;\n  width: 100%;\n  border: 1px solid #4a4545;\n  padding: 10px;\n  background-color: #fff;\n  color: #4a4545;\n  border-radius: 5px;\n  font-weight: bold;\n  text-align: center;\n}\n\n.errorMessage[_ngcontent-%COMP%] {\n  font-size: 12px;\n  text-align: center;\n  float: right;\n  color: red;\n  height: 35px;\n}\n\n.mettingsTime[_ngcontent-%COMP%] {\n  width: 100%;\n  display: flex;\n  justify-content: space-between;\n  direction: rtl;\n  color: #4a4545;\n}\n\n.mettingsTime[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  width: 100%;\n  float: right;\n  margin-left: 50px;\n}\n\n.mettingsTime[_ngcontent-%COMP%]   .meetStart[_ngcontent-%COMP%], .mettingsTime[_ngcontent-%COMP%]   .meetEnd[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  width: 45%;\n  height: 50px;\n}\n\n.mettingsTime[_ngcontent-%COMP%]   input[_ngcontent-%COMP%] {\n  width: 100%;\n  font-weight: bold;\n  text-align: center;\n}\n\n.mettingsTime[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  text-align: center;\n  margin-top: 5px;\n}\n\n.activitiesContainer[_ngcontent-%COMP%] {\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  margin-top: 35px;\n  height: 80%;\n  direction: rtl;\n  float: right;\n}\n\n.errorMessage[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\n  font-size: 14px;\n  color: red;\n}\n\n.activitiesContainer[_ngcontent-%COMP%]   textarea[_ngcontent-%COMP%] {\n  width: 100%;\n  height: 75%;\n  margin: 10px 0;\n  direction: rtl;\n  border: 1px solid #a3a3a3;\n  border-radius: 5px;\n  outline: none;\n  padding: 5px;\n}\n\n.activitiesContainer[_ngcontent-%COMP%]   textarea[_ngcontent-%COMP%]:focus {\n  border: 2px solid black;\n}\n\nbutton[_ngcontent-%COMP%] {\n  margin-bottom: 75px;\n}\n\n.activitiesContainer[_ngcontent-%COMP%]   .activitiesLabel[_ngcontent-%COMP%], .activitiesContainer[_ngcontent-%COMP%]   .commentsLabel[_ngcontent-%COMP%] {\n  float: right;\n  width: 100%;\n  position: relative;\n  padding: 5px 0;\n}\n\n.activitiesContainer[_ngcontent-%COMP%]   .activitiesLabel[_ngcontent-%COMP%]   small[_ngcontent-%COMP%], .activitiesContainer[_ngcontent-%COMP%]   .commentsLabel[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  position: absolute;\n  right: 0;\n  font-size: 12px;\n}\n\n.textAreaOne[_ngcontent-%COMP%]:focus    + .activitiesLabel[_ngcontent-%COMP%] {\n  display: block;\n}\n\n.textAreaTwo[_ngcontent-%COMP%]:focus    + .commentsLabel[_ngcontent-%COMP%] {\n  display: block;\n}\n\n.activitiesLabel[_ngcontent-%COMP%] {\n  order: 1;\n}\n\n.textAreaOne[_ngcontent-%COMP%] {\n  order: 2;\n}\n\n.commentsLabel[_ngcontent-%COMP%] {\n  order: 3;\n}\n\n.textAreaTwo[_ngcontent-%COMP%] {\n  order: 4;\n}\n\n.activitiesLabel[_ngcontent-%COMP%], .commentsLabel[_ngcontent-%COMP%] {\n  display: none;\n}\n\n@media (max-height: 600px) {\n  form[_ngcontent-%COMP%] {\n    width: 95%;\n    height: 90%;\n    margin: auto;\n    overflow-y: auto;\n  }\n\n  .activitiesContainer[_ngcontent-%COMP%]   textarea[_ngcontent-%COMP%] {\n    width: 100%;\n    height: 15%;\n    margin: 5px 0;\n    direction: rtl;\n    border: 1px solid #a3a3a3;\n  }\n\n  [_ngcontent-%COMP%]::-moz-placeholder {\n    font-size: 12px;\n  }\n\n  [_ngcontent-%COMP%]::placeholder {\n    font-size: 12px;\n  }\n\n  .createFormInput[_ngcontent-%COMP%] {\n    margin-bottom: 10px;\n  }\n\n  .activitiesContainer[_ngcontent-%COMP%] {\n    width: 100%;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    margin-top: 45px;\n    height: 350px;\n  }\n\n  button[_ngcontent-%COMP%] {\n    margin-bottom: 45px;\n    margin-top: 55px;\n  }\n\n  small[_ngcontent-%COMP%] {\n    margin-top: 30px;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdGVhY2hlci9tZWV0aW5ncy9jcmVhdGUtbWVldGluZy9jcmVhdGUtbWVldGluZy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFdBQUE7RUFDQSxXQUFBO0VBQ0EsY0FBQTtFQUNBLGFBQUE7RUFDQSxtQkFBQTtFQUNBLHNCQUFBO0VBQ0EsZ0JBQUE7QUFDRjs7QUFFQTtFQUNFLFVBQUE7RUFDQSxZQUFBO0VBQ0EsYUFBQTtFQUNBLG1CQUFBO0FBQ0Y7O0FBRUE7RUFDRSxhQUFBO0VBQ0Esc0JBQUE7QUFDRjs7QUFDQTtFQUNFLGtCQUFBO0VBQ0EsZUFBQTtBQUVGOztBQUFBO0VBQ0UsWUFBQTtBQUdGOztBQUFBO0VBQ0Usa0JBQUE7QUFHRjs7QUFBQTs7RUFFRSxjQUFBO0VBQ0EsV0FBQTtFQUNBLHlCQUFBO0VBQ0EsYUFBQTtFQUNBLHNCQUFBO0VBQ0EsY0FBQTtFQUNBLGtCQUFBO0VBQ0EsaUJBQUE7RUFDQSxrQkFBQTtBQUdGOztBQUFBO0VBQ0UsZUFBQTtFQUNBLGtCQUFBO0VBQ0EsWUFBQTtFQUNBLFVBQUE7RUFDQSxZQUFBO0FBR0Y7O0FBQUE7RUFDRSxXQUFBO0VBQ0EsYUFBQTtFQUNBLDhCQUFBO0VBQ0EsY0FBQTtFQUNBLGNBQUE7QUFHRjs7QUFEQTtFQUNFLFdBQUE7RUFDQSxZQUFBO0VBQ0EsaUJBQUE7QUFJRjs7QUFGQTs7RUFFRSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSxVQUFBO0VBQ0EsWUFBQTtBQUtGOztBQUhBO0VBQ0UsV0FBQTtFQUNBLGlCQUFBO0VBQ0Esa0JBQUE7QUFNRjs7QUFIQTtFQUNFLGtCQUFBO0VBQ0EsZUFBQTtBQU1GOztBQUhBO0VBQ0UsV0FBQTtFQUNBLGFBQUE7RUFDQSxzQkFBQTtFQUVBLGdCQUFBO0VBQ0EsV0FBQTtFQUNBLGNBQUE7RUFDQSxZQUFBO0FBS0Y7O0FBSEE7RUFDRSxlQUFBO0VBQ0EsVUFBQTtBQU1GOztBQUpBO0VBQ0UsV0FBQTtFQUNBLFdBQUE7RUFDQSxjQUFBO0VBQ0EsY0FBQTtFQUNBLHlCQUFBO0VBQ0Esa0JBQUE7RUFDQSxhQUFBO0VBQ0EsWUFBQTtBQU9GOztBQUpBO0VBQ0UsdUJBQUE7QUFPRjs7QUFKQTtFQUNFLG1CQUFBO0FBT0Y7O0FBTEE7O0VBR0UsWUFBQTtFQUNBLFdBQUE7RUFDQSxrQkFBQTtFQUNBLGNBQUE7QUFPRjs7QUFMQTs7RUFFRSxrQkFBQTtFQUNBLFFBQUE7RUFDQSxlQUFBO0FBUUY7O0FBTEE7RUFDRSxjQUFBO0FBUUY7O0FBTkE7RUFDRSxjQUFBO0FBU0Y7O0FBUEE7RUFDRSxRQUFBO0FBVUY7O0FBUkE7RUFDRSxRQUFBO0FBV0Y7O0FBVEE7RUFDRSxRQUFBO0FBWUY7O0FBVkE7RUFDRSxRQUFBO0FBYUY7O0FBWEE7O0VBRUUsYUFBQTtBQWNGOztBQVhBO0VBQ0U7SUFDRSxVQUFBO0lBQ0EsV0FBQTtJQUNBLFlBQUE7SUFDQSxnQkFBQTtFQWNGOztFQVpBO0lBQ0UsV0FBQTtJQUNBLFdBQUE7SUFDQSxhQUFBO0lBQ0EsY0FBQTtJQUNBLHlCQUFBO0VBZUY7O0VBYkE7SUFDRSxlQUFBO0VBZ0JGOztFQWpCQTtJQUNFLGVBQUE7RUFnQkY7O0VBZEE7SUFDRSxtQkFBQTtFQWlCRjs7RUFkQTtJQUNFLFdBQUE7SUFDQSxhQUFBO0lBQ0Esc0JBQUE7SUFDQSxtQkFBQTtJQUNBLGdCQUFBO0lBQ0EsYUFBQTtFQWlCRjs7RUFmQTtJQUNFLG1CQUFBO0lBQ0EsZ0JBQUE7RUFrQkY7O0VBaEJBO0lBQ0UsZ0JBQUE7RUFtQkY7QUFDRiIsImZpbGUiOiJzcmMvYXBwL3RlYWNoZXIvbWVldGluZ3MvY3JlYXRlLW1lZXRpbmcvY3JlYXRlLW1lZXRpbmcuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubWVldGluZ3NDb250YWluZXIge1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIGhlaWdodDogOTAlO1xyXG4gIG1hcmdpbjogYXV0byAwO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gIG92ZXJmbG93LXk6IGF1dG87XHJcbn1cclxuXHJcbmZvcm0ge1xyXG4gIHdpZHRoOiA4MCU7XHJcbiAgaGVpZ2h0OiAxMDAlO1xyXG4gIGRpc3BsYXk6IGdyaWQ7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxufVxyXG5cclxuLmNyZWF0ZUZvcm1JbnB1dCB7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG59XHJcbi5jcmVhdGVGb3JtSW5wdXQgbGFiZWwge1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICBmb250LXNpemU6IDE0cHg7XHJcbn1cclxubGFiZWwge1xyXG4gIGNvbG9yOiBibGFjaztcclxufVxyXG5cclxuaW5wdXRbdHlwZT1cImRhdGVcIl0ge1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxufVxyXG5cclxuZm9ybSBzZWxlY3QsXHJcbmZvcm0gaW5wdXQge1xyXG4gIGRpcmVjdGlvbjogcnRsO1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIGJvcmRlcjogMXB4IHNvbGlkICM0YTQ1NDU7XHJcbiAgcGFkZGluZzogMTBweDtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmO1xyXG4gIGNvbG9yOiAjNGE0NTQ1O1xyXG4gIGJvcmRlci1yYWRpdXM6IDVweDtcclxuICBmb250LXdlaWdodDogYm9sZDtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuXHJcbi5lcnJvck1lc3NhZ2Uge1xyXG4gIGZvbnQtc2l6ZTogMTJweDtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgZmxvYXQ6IHJpZ2h0O1xyXG4gIGNvbG9yOiByZWQ7XHJcbiAgaGVpZ2h0OiAzNXB4O1xyXG59XHJcblxyXG4ubWV0dGluZ3NUaW1lIHtcclxuICB3aWR0aDogMTAwJTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcclxuICBkaXJlY3Rpb246IHJ0bDtcclxuICBjb2xvcjogIzRhNDU0NTtcclxufVxyXG4ubWV0dGluZ3NUaW1lIHNtYWxsIHtcclxuICB3aWR0aDogMTAwJTtcclxuICBmbG9hdDogcmlnaHQ7XHJcbiAgbWFyZ2luLWxlZnQ6IDUwcHg7XHJcbn1cclxuLm1ldHRpbmdzVGltZSAubWVldFN0YXJ0LFxyXG4ubWV0dGluZ3NUaW1lIC5tZWV0RW5kIHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgd2lkdGg6IDQ1JTtcclxuICBoZWlnaHQ6IDUwcHg7XHJcbn1cclxuLm1ldHRpbmdzVGltZSBpbnB1dCB7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgZm9udC13ZWlnaHQ6IGJvbGQ7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcblxyXG4ubWV0dGluZ3NUaW1lIHNtYWxsIHtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgbWFyZ2luLXRvcDogNXB4O1xyXG59XHJcblxyXG4uYWN0aXZpdGllc0NvbnRhaW5lciB7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gIC8vIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgbWFyZ2luLXRvcDogMzVweDtcclxuICBoZWlnaHQ6IDgwJTtcclxuICBkaXJlY3Rpb246IHJ0bDtcclxuICBmbG9hdDogcmlnaHQ7XHJcbn1cclxuLmVycm9yTWVzc2FnZSA+IGRpdiB7XHJcbiAgZm9udC1zaXplOiAxNHB4O1xyXG4gIGNvbG9yOiByZWQ7XHJcbn1cclxuLmFjdGl2aXRpZXNDb250YWluZXIgdGV4dGFyZWEge1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIGhlaWdodDogNzUlO1xyXG4gIG1hcmdpbjogMTBweCAwO1xyXG4gIGRpcmVjdGlvbjogcnRsO1xyXG4gIGJvcmRlcjogMXB4IHNvbGlkICNhM2EzYTM7XHJcbiAgYm9yZGVyLXJhZGl1czogNXB4O1xyXG4gIG91dGxpbmU6IG5vbmU7XHJcbiAgcGFkZGluZzogNXB4O1xyXG59XHJcblxyXG4uYWN0aXZpdGllc0NvbnRhaW5lciB0ZXh0YXJlYTpmb2N1cyB7XHJcbiAgYm9yZGVyOiAycHggc29saWQgYmxhY2s7XHJcbn1cclxuXHJcbmJ1dHRvbiB7XHJcbiAgbWFyZ2luLWJvdHRvbTogNzVweDtcclxufVxyXG4uYWN0aXZpdGllc0NvbnRhaW5lciAuYWN0aXZpdGllc0xhYmVsLFxyXG4uYWN0aXZpdGllc0NvbnRhaW5lciAuY29tbWVudHNMYWJlbCB7XHJcbiAgLy8gdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gIGZsb2F0OiByaWdodDtcclxuICB3aWR0aDogMTAwJTtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgcGFkZGluZzogNXB4IDA7XHJcbn1cclxuLmFjdGl2aXRpZXNDb250YWluZXIgLmFjdGl2aXRpZXNMYWJlbCBzbWFsbCxcclxuLmFjdGl2aXRpZXNDb250YWluZXIgLmNvbW1lbnRzTGFiZWwgc21hbGwge1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICByaWdodDogMDtcclxuICBmb250LXNpemU6IDEycHg7XHJcbn1cclxuXHJcbi50ZXh0QXJlYU9uZTpmb2N1cyArIC5hY3Rpdml0aWVzTGFiZWwge1xyXG4gIGRpc3BsYXk6IGJsb2NrO1xyXG59XHJcbi50ZXh0QXJlYVR3bzpmb2N1cyArIC5jb21tZW50c0xhYmVsIHtcclxuICBkaXNwbGF5OiBibG9jaztcclxufVxyXG4uYWN0aXZpdGllc0xhYmVsIHtcclxuICBvcmRlcjogMTtcclxufVxyXG4udGV4dEFyZWFPbmUge1xyXG4gIG9yZGVyOiAyO1xyXG59XHJcbi5jb21tZW50c0xhYmVsIHtcclxuICBvcmRlcjogMztcclxufVxyXG4udGV4dEFyZWFUd28ge1xyXG4gIG9yZGVyOiA0O1xyXG59XHJcbi5hY3Rpdml0aWVzTGFiZWwsXHJcbi5jb21tZW50c0xhYmVsIHtcclxuICBkaXNwbGF5OiBub25lO1xyXG59XHJcblxyXG5AbWVkaWEgKG1heC1oZWlnaHQ6IDYwMHB4KSB7XHJcbiAgZm9ybSB7XHJcbiAgICB3aWR0aDogOTUlO1xyXG4gICAgaGVpZ2h0OiA5MCU7XHJcbiAgICBtYXJnaW46IGF1dG87XHJcbiAgICBvdmVyZmxvdy15OiBhdXRvO1xyXG4gIH1cclxuICAuYWN0aXZpdGllc0NvbnRhaW5lciB0ZXh0YXJlYSB7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIGhlaWdodDogMTUlO1xyXG4gICAgbWFyZ2luOiA1cHggMDtcclxuICAgIGRpcmVjdGlvbjogcnRsO1xyXG4gICAgYm9yZGVyOiAxcHggc29saWQgI2EzYTNhMztcclxuICB9XHJcbiAgOjpwbGFjZWhvbGRlciB7XHJcbiAgICBmb250LXNpemU6IDEycHg7XHJcbiAgfVxyXG4gIC5jcmVhdGVGb3JtSW5wdXQge1xyXG4gICAgbWFyZ2luLWJvdHRvbTogMTBweDtcclxuICB9XHJcblxyXG4gIC5hY3Rpdml0aWVzQ29udGFpbmVyIHtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAgbWFyZ2luLXRvcDogNDVweDtcclxuICAgIGhlaWdodDogMzUwcHg7XHJcbiAgfVxyXG4gIGJ1dHRvbiB7XHJcbiAgICBtYXJnaW4tYm90dG9tOiA0NXB4O1xyXG4gICAgbWFyZ2luLXRvcDogNTVweDtcclxuICB9XHJcbiAgc21hbGwge1xyXG4gICAgbWFyZ2luLXRvcDogMzBweDtcclxuICB9XHJcbn1cclxuIl19 */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](CreateMeetingComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
@@ -431,10 +446,10 @@ function MeetingTableComponent_option_8_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const student_r757 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("value", student_r757 == null ? null : student_r757.firstName);
+    const student_r34 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("value", student_r34 == null ? null : student_r34.firstName);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", student_r757 == null ? null : student_r757.firstName, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", student_r34 == null ? null : student_r34.firstName, " ");
 } }
 class MeetingTableComponent {
     constructor(teacherService) {
@@ -548,29 +563,79 @@ MeetingTableItemComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵ
 
 /***/ }),
 
-/***/ "DdGT":
-/*!*********************************************************************************************!*\
-  !*** ./src/app/teacher/meetings/meeting-create-seccess/meeting-create-seccess.component.ts ***!
-  \*********************************************************************************************/
-/*! exports provided: MeetingCreateSeccessComponent */
+/***/ "IPfh":
+/*!*********************************************!*\
+  !*** ./src/app/services/teacher.service.ts ***!
+  \*********************************************/
+/*! exports provided: TeacherService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MeetingCreateSeccessComponent", function() { return MeetingCreateSeccessComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TeacherService", function() { return TeacherService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "qCKp");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
+
+
+
+
+
+class TeacherService {
+    constructor(http) {
+        this.http = http;
+    }
+    createReport(report) {
+    }
+    // getSingleReport(meetingId: string) { }
+    getStudents() {
+        if (this.students) {
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(this.students);
+        }
+        return this.http.get('api/teacher/students')
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])((result) => {
+            console.log(result);
+            this.students = result;
+            return this.students;
+        }));
+    }
+}
+TeacherService.ɵfac = function TeacherService_Factory(t) { return new (t || TeacherService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"])); };
+TeacherService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: TeacherService, factory: TeacherService.ɵfac, providedIn: 'root' });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](TeacherService, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
+        args: [{
+                providedIn: 'root'
+            }]
+    }], function () { return [{ type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"] }]; }, null); })();
+
+
+/***/ }),
+
+/***/ "asT0":
+/*!*********************************************************************************************!*\
+  !*** ./src/app/teacher/meetings/meeting-create-success/meeting-create-success.component.ts ***!
+  \*********************************************************************************************/
+/*! exports provided: MeetingCreateSuccessComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MeetingCreateSuccessComponent", function() { return MeetingCreateSuccessComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "tyNb");
 
 
 
-class MeetingCreateSeccessComponent {
+class MeetingCreateSuccessComponent {
     constructor() {
     }
     ngOnInit() {
     }
 }
-MeetingCreateSeccessComponent.ɵfac = function MeetingCreateSeccessComponent_Factory(t) { return new (t || MeetingCreateSeccessComponent)(); };
-MeetingCreateSeccessComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: MeetingCreateSeccessComponent, selectors: [["app-meeting-create-seccess"]], decls: 26, vars: 0, consts: [[1, "succesContainer"], [1, "success"], ["src", "../../../../assets/Group 1815.svg", "alt", ""], [1, "progressBar"], [1, "bar"], [1, "thanksContent"], ["routerLink", "../../../main/teacher/meetings-table"], [1, "endButton"], ["src", "../../../../assets/Group 1789.svg", "alt", ""], [1, "mainButton"]], template: function MeetingCreateSeccessComponent_Template(rf, ctx) { if (rf & 1) {
+MeetingCreateSuccessComponent.ɵfac = function MeetingCreateSuccessComponent_Factory(t) { return new (t || MeetingCreateSuccessComponent)(); };
+MeetingCreateSuccessComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: MeetingCreateSuccessComponent, selectors: [["app-meeting-create-success"]], decls: 26, vars: 0, consts: [[1, "succesContainer"], [1, "success"], ["src", "../../../../assets/Group 1815.svg", "alt", ""], [1, "progressBar"], [1, "bar"], [1, "thanksContent"], ["routerLink", "../../../main/teacher/meetings-table"], [1, "endButton"], ["src", "../../../../assets/Group 1789.svg", "alt", ""], [1, "mainButton"]], template: function MeetingCreateSuccessComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "img", 2);
@@ -609,64 +674,15 @@ MeetingCreateSeccessComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    } }, directives: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterLink"]], styles: [".succesContainer[_ngcontent-%COMP%] {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: flex-start;\n  direction: rtl;\n}\n\n.success[_ngcontent-%COMP%] {\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n}\n\n.success[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n  width: 50px;\n}\n\nh3[_ngcontent-%COMP%] {\n  font-size: 20px;\n  color: #89b242;\n}\n\n.progressBar[_ngcontent-%COMP%] {\n  width: 100%;\n  display: flex;\n  align-items: center;\n  justify-content: space-around;\n  flex-direction: column;\n}\n\nsmall[_ngcontent-%COMP%] {\n  width: 75px;\n  margin-left: 5px;\n  direction: rtl;\n  font-size: 16px;\n  text-align: center;\n}\n\np[_ngcontent-%COMP%] {\n  font-size: 12px;\n}\n\n.bar[_ngcontent-%COMP%] {\n  width: 80%;\n  margin: 0 auto;\n  height: 15px;\n  border-radius: 50px;\n  background-color: #fff;\n  border: 2px solid #111;\n  position: relative;\n  display: flex;\n  justify-content: space-around;\n}\n\n.bar[_ngcontent-%COMP%]::before {\n  content: \"\";\n  width: 50%;\n  height: 100%;\n  left: 0;\n  top: 0;\n  position: absolute;\n  border-top-left-radius: 50px;\n  border-bottom-left-radius: 50px;\n  background-color: #f0ab0e;\n}\n\n.bar[_ngcontent-%COMP%]   .successBar[_ngcontent-%COMP%] {\n  position: absolute;\n  left: 0;\n  top: 0;\n  height: 100%;\n  width: 50%;\n  border-bottom-left-radius: 50px;\n  border-top-left-radius: 50px;\n  background-color: #000;\n}\n\n.thanksContent[_ngcontent-%COMP%] {\n  text-align: center;\n  color: #4a4545;\n  font-size: 24px;\n}\n\n.thanksContent[_ngcontent-%COMP%]   .fa-heart[_ngcontent-%COMP%] {\n  font-size: 40px;\n}\n\n.endButton[_ngcontent-%COMP%] {\n  width: 100%;\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  flex-direction: column;\n  margin-top: 20px;\n}\n\n.endButton[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n  width: 30%;\n  margin-left: 20%;\n}\n\nbutton[_ngcontent-%COMP%] {\n  width: 75%;\n}\n\np[_ngcontent-%COMP%] {\n  color: #4a4545;\n}\n\np[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  color: #d1372a;\n  text-decoration: underline;\n}\n\n@media (max-height: 600px) {\n  .succesContainer[_ngcontent-%COMP%] {\n    overflow-y: auto;\n  }\n\n  .endButton[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n    width: 30%;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdGVhY2hlci9tZWV0aW5ncy9tZWV0aW5nLWNyZWF0ZS1zZWNjZXNzL21lZXRpbmctY3JlYXRlLXNlY2Nlc3MuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxXQUFBO0VBQ0EsWUFBQTtFQUNBLGFBQUE7RUFDQSxzQkFBQTtFQUNBLG1CQUFBO0VBQ0EsMkJBQUE7RUFDQSxjQUFBO0FBQ0Y7O0FBQ0E7RUFDRSxXQUFBO0VBQ0EsYUFBQTtFQUNBLHNCQUFBO0VBQ0EsbUJBQUE7RUFDQSx1QkFBQTtBQUVGOztBQVNBO0VBQ0UsV0FBQTtBQU5GOztBQVlBO0VBQ0UsZUFBQTtFQUNBLGNBQUE7QUFURjs7QUFXQTtFQUNFLFdBQUE7RUFDQSxhQUFBO0VBQ0EsbUJBQUE7RUFDQSw2QkFBQTtFQUNBLHNCQUFBO0FBUkY7O0FBVUE7RUFDRSxXQUFBO0VBQ0EsZ0JBQUE7RUFDQSxjQUFBO0VBQ0EsZUFBQTtFQUNBLGtCQUFBO0FBUEY7O0FBU0E7RUFDRSxlQUFBO0FBTkY7O0FBUUE7RUFDRSxVQUFBO0VBQ0EsY0FBQTtFQUNBLFlBQUE7RUFDQSxtQkFBQTtFQUNBLHNCQUFBO0VBQ0Esc0JBQUE7RUFDQSxrQkFBQTtFQUNBLGFBQUE7RUFDQSw2QkFBQTtBQUxGOztBQU9BO0VBQ0UsV0FBQTtFQUNBLFVBQUE7RUFDQSxZQUFBO0VBQ0EsT0FBQTtFQUNBLE1BQUE7RUFDQSxrQkFBQTtFQUNBLDRCQUFBO0VBQ0EsK0JBQUE7RUFDQSx5QkFBQTtBQUpGOztBQU1BO0VBQ0Usa0JBQUE7RUFDQSxPQUFBO0VBQ0EsTUFBQTtFQUNBLFlBQUE7RUFDQSxVQUFBO0VBQ0EsK0JBQUE7RUFDQSw0QkFBQTtFQUNBLHNCQUFBO0FBSEY7O0FBTUE7RUFDRSxrQkFBQTtFQUNBLGNBQUE7RUFDQSxlQUFBO0FBSEY7O0FBS0E7RUFDRSxlQUFBO0FBRkY7O0FBSUE7RUFDRSxXQUFBO0VBQ0EsYUFBQTtFQUNBLDJCQUFBO0VBQ0EsbUJBQUE7RUFDQSxzQkFBQTtFQUNBLGdCQUFBO0FBREY7O0FBR0E7RUFDRSxVQUFBO0VBQ0EsZ0JBQUE7QUFBRjs7QUFFQTtFQUNFLFVBQUE7QUFDRjs7QUFDQTtFQUNFLGNBQUE7QUFFRjs7QUFBQTtFQUNFLGNBQUE7RUFDQSwwQkFBQTtBQUdGOztBQURBO0VBQ0U7SUFDRSxnQkFBQTtFQUlGOztFQUZBO0lBQ0UsVUFBQTtFQUtGO0FBQ0YiLCJmaWxlIjoic3JjL2FwcC90ZWFjaGVyL21lZXRpbmdzL21lZXRpbmctY3JlYXRlLXNlY2Nlc3MvbWVldGluZy1jcmVhdGUtc2VjY2Vzcy5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5zdWNjZXNDb250YWluZXIge1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIGhlaWdodDogMTAwJTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtc3RhcnQ7XHJcbiAgZGlyZWN0aW9uOiBydGw7XHJcbn1cclxuLnN1Y2Nlc3Mge1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG59XHJcbi8vIC5zdWNjZXNzT3V0ZXIge1xyXG4vLyAgIHdpZHRoOiA3NXB4O1xyXG4vLyAgIGhlaWdodDogNzVweDtcclxuLy8gICBib3JkZXItcmFkaXVzOiA1MHB4O1xyXG4vLyAgIGJvcmRlcjogNXB4IHNvbGlkICNjOWMyYmM0ZDtcclxuLy8gICBkaXNwbGF5OiBmbGV4O1xyXG4vLyAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbi8vICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbi8vIH1cclxuLnN1Y2Nlc3MgaW1nIHtcclxuICB3aWR0aDogNTBweDtcclxuICAvLyBmb250LXNpemU6IDUwcHg7XHJcbiAgLy8gY29sb3I6ICM4OWIyNDI7XHJcbiAgLy8gYm94LXNoYWRvdzogMCAwIDMwcHggIzAwMDAwMDI5O1xyXG4gIC8vIGJvcmRlci1yYWRpdXM6IDMwcHg7XHJcbn1cclxuaDMge1xyXG4gIGZvbnQtc2l6ZTogMjBweDtcclxuICBjb2xvcjogIzg5YjI0MjtcclxufVxyXG4ucHJvZ3Jlc3NCYXIge1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWFyb3VuZDtcclxuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG59XHJcbnNtYWxsIHtcclxuICB3aWR0aDogNzVweDtcclxuICBtYXJnaW4tbGVmdDogNXB4O1xyXG4gIGRpcmVjdGlvbjogcnRsO1xyXG4gIGZvbnQtc2l6ZTogMTZweDtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxucCB7XHJcbiAgZm9udC1zaXplOiAxMnB4O1xyXG59XHJcbi5iYXIge1xyXG4gIHdpZHRoOiA4MCU7XHJcbiAgbWFyZ2luOiAwIGF1dG87XHJcbiAgaGVpZ2h0OiAxNXB4O1xyXG4gIGJvcmRlci1yYWRpdXM6IDUwcHg7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZjtcclxuICBib3JkZXI6IDJweCBzb2xpZCAjMTExO1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYXJvdW5kO1xyXG59XHJcbi5iYXI6OmJlZm9yZSB7XHJcbiAgY29udGVudDogXCJcIjtcclxuICB3aWR0aDogNTAlO1xyXG4gIGhlaWdodDogMTAwJTtcclxuICBsZWZ0OiAwO1xyXG4gIHRvcDogMDtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgYm9yZGVyLXRvcC1sZWZ0LXJhZGl1czogNTBweDtcclxuICBib3JkZXItYm90dG9tLWxlZnQtcmFkaXVzOiA1MHB4O1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICNmMGFiMGU7XHJcbn1cclxuLmJhciAuc3VjY2Vzc0JhciB7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIGxlZnQ6IDA7XHJcbiAgdG9wOiAwO1xyXG4gIGhlaWdodDogMTAwJTtcclxuICB3aWR0aDogNTAlO1xyXG4gIGJvcmRlci1ib3R0b20tbGVmdC1yYWRpdXM6IDUwcHg7XHJcbiAgYm9yZGVyLXRvcC1sZWZ0LXJhZGl1czogNTBweDtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMDAwO1xyXG59XHJcblxyXG4udGhhbmtzQ29udGVudCB7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gIGNvbG9yOiAjNGE0NTQ1O1xyXG4gIGZvbnQtc2l6ZTogMjRweDtcclxufVxyXG4udGhhbmtzQ29udGVudCAuZmEtaGVhcnQge1xyXG4gIGZvbnQtc2l6ZTogNDBweDtcclxufVxyXG4uZW5kQnV0dG9uIHtcclxuICB3aWR0aDogMTAwJTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogZmxleC1zdGFydDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgbWFyZ2luLXRvcDogMjBweDtcclxufVxyXG4uZW5kQnV0dG9uIGltZyB7XHJcbiAgd2lkdGg6IDMwJTtcclxuICBtYXJnaW4tbGVmdDogMjAlO1xyXG59XHJcbmJ1dHRvbiB7XHJcbiAgd2lkdGg6IDc1JTtcclxufVxyXG5wIHtcclxuICBjb2xvcjogIzRhNDU0NTtcclxufVxyXG5wIHNwYW4ge1xyXG4gIGNvbG9yOiAjZDEzNzJhO1xyXG4gIHRleHQtZGVjb3JhdGlvbjogdW5kZXJsaW5lO1xyXG59XHJcbkBtZWRpYSAobWF4LWhlaWdodDogNjAwcHgpIHtcclxuICAuc3VjY2VzQ29udGFpbmVyIHtcclxuICAgIG92ZXJmbG93LXk6IGF1dG87XHJcbiAgfVxyXG4gIC5lbmRCdXR0b24gaW1nIHtcclxuICAgIHdpZHRoOiAzMCU7XHJcbiAgfVxyXG59XHJcbiJdfQ== */"] });
-/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](MeetingCreateSeccessComponent, [{
+    } }, directives: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterLink"]], styles: [".succesContainer[_ngcontent-%COMP%] {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: flex-start;\n  direction: rtl;\n}\n\n.success[_ngcontent-%COMP%] {\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n}\n\n.success[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n  width: 50px;\n}\n\nh3[_ngcontent-%COMP%] {\n  font-size: 20px;\n  color: #89b242;\n}\n\n.progressBar[_ngcontent-%COMP%] {\n  width: 100%;\n  display: flex;\n  align-items: center;\n  justify-content: space-around;\n  flex-direction: column;\n}\n\nsmall[_ngcontent-%COMP%] {\n  width: 75px;\n  margin-left: 5px;\n  direction: rtl;\n  font-size: 16px;\n  text-align: center;\n}\n\np[_ngcontent-%COMP%] {\n  font-size: 12px;\n}\n\n.bar[_ngcontent-%COMP%] {\n  width: 80%;\n  margin: 0 auto;\n  height: 15px;\n  border-radius: 50px;\n  background-color: #fff;\n  border: 2px solid #111;\n  position: relative;\n  display: flex;\n  justify-content: space-around;\n}\n\n.bar[_ngcontent-%COMP%]::before {\n  content: \"\";\n  width: 50%;\n  height: 100%;\n  left: 0;\n  top: 0;\n  position: absolute;\n  border-top-left-radius: 50px;\n  border-bottom-left-radius: 50px;\n  background-color: #f0ab0e;\n}\n\n.bar[_ngcontent-%COMP%]   .successBar[_ngcontent-%COMP%] {\n  position: absolute;\n  left: 0;\n  top: 0;\n  height: 100%;\n  width: 50%;\n  border-bottom-left-radius: 50px;\n  border-top-left-radius: 50px;\n  background-color: #000;\n}\n\n.thanksContent[_ngcontent-%COMP%] {\n  text-align: center;\n  color: #4a4545;\n  font-size: 24px;\n}\n\n.thanksContent[_ngcontent-%COMP%]   .fa-heart[_ngcontent-%COMP%] {\n  font-size: 40px;\n}\n\n.endButton[_ngcontent-%COMP%] {\n  width: 100%;\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  flex-direction: column;\n  margin-top: 20px;\n}\n\n.endButton[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n  width: 30%;\n  margin-left: 20%;\n}\n\nbutton[_ngcontent-%COMP%] {\n  width: 75%;\n}\n\np[_ngcontent-%COMP%] {\n  color: #4a4545;\n}\n\np[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  color: #d1372a;\n  text-decoration: underline;\n}\n\n@media (max-height: 600px) {\n  .succesContainer[_ngcontent-%COMP%] {\n    overflow-y: auto;\n  }\n\n  .endButton[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n    width: 30%;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdGVhY2hlci9tZWV0aW5ncy9tZWV0aW5nLWNyZWF0ZS1zdWNjZXNzL21lZXRpbmctY3JlYXRlLXN1Y2Nlc3MuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxXQUFBO0VBQ0EsWUFBQTtFQUNBLGFBQUE7RUFDQSxzQkFBQTtFQUNBLG1CQUFBO0VBQ0EsMkJBQUE7RUFDQSxjQUFBO0FBQ0Y7O0FBQ0E7RUFDRSxXQUFBO0VBQ0EsYUFBQTtFQUNBLHNCQUFBO0VBQ0EsbUJBQUE7RUFDQSx1QkFBQTtBQUVGOztBQVNBO0VBQ0UsV0FBQTtBQU5GOztBQVlBO0VBQ0UsZUFBQTtFQUNBLGNBQUE7QUFURjs7QUFXQTtFQUNFLFdBQUE7RUFDQSxhQUFBO0VBQ0EsbUJBQUE7RUFDQSw2QkFBQTtFQUNBLHNCQUFBO0FBUkY7O0FBVUE7RUFDRSxXQUFBO0VBQ0EsZ0JBQUE7RUFDQSxjQUFBO0VBQ0EsZUFBQTtFQUNBLGtCQUFBO0FBUEY7O0FBU0E7RUFDRSxlQUFBO0FBTkY7O0FBUUE7RUFDRSxVQUFBO0VBQ0EsY0FBQTtFQUNBLFlBQUE7RUFDQSxtQkFBQTtFQUNBLHNCQUFBO0VBQ0Esc0JBQUE7RUFDQSxrQkFBQTtFQUNBLGFBQUE7RUFDQSw2QkFBQTtBQUxGOztBQU9BO0VBQ0UsV0FBQTtFQUNBLFVBQUE7RUFDQSxZQUFBO0VBQ0EsT0FBQTtFQUNBLE1BQUE7RUFDQSxrQkFBQTtFQUNBLDRCQUFBO0VBQ0EsK0JBQUE7RUFDQSx5QkFBQTtBQUpGOztBQU1BO0VBQ0Usa0JBQUE7RUFDQSxPQUFBO0VBQ0EsTUFBQTtFQUNBLFlBQUE7RUFDQSxVQUFBO0VBQ0EsK0JBQUE7RUFDQSw0QkFBQTtFQUNBLHNCQUFBO0FBSEY7O0FBTUE7RUFDRSxrQkFBQTtFQUNBLGNBQUE7RUFDQSxlQUFBO0FBSEY7O0FBS0E7RUFDRSxlQUFBO0FBRkY7O0FBSUE7RUFDRSxXQUFBO0VBQ0EsYUFBQTtFQUNBLDJCQUFBO0VBQ0EsbUJBQUE7RUFDQSxzQkFBQTtFQUNBLGdCQUFBO0FBREY7O0FBR0E7RUFDRSxVQUFBO0VBQ0EsZ0JBQUE7QUFBRjs7QUFFQTtFQUNFLFVBQUE7QUFDRjs7QUFDQTtFQUNFLGNBQUE7QUFFRjs7QUFBQTtFQUNFLGNBQUE7RUFDQSwwQkFBQTtBQUdGOztBQURBO0VBQ0U7SUFDRSxnQkFBQTtFQUlGOztFQUZBO0lBQ0UsVUFBQTtFQUtGO0FBQ0YiLCJmaWxlIjoic3JjL2FwcC90ZWFjaGVyL21lZXRpbmdzL21lZXRpbmctY3JlYXRlLXN1Y2Nlc3MvbWVldGluZy1jcmVhdGUtc3VjY2Vzcy5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5zdWNjZXNDb250YWluZXIge1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIGhlaWdodDogMTAwJTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtc3RhcnQ7XHJcbiAgZGlyZWN0aW9uOiBydGw7XHJcbn1cclxuLnN1Y2Nlc3Mge1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG59XHJcbi8vIC5zdWNjZXNzT3V0ZXIge1xyXG4vLyAgIHdpZHRoOiA3NXB4O1xyXG4vLyAgIGhlaWdodDogNzVweDtcclxuLy8gICBib3JkZXItcmFkaXVzOiA1MHB4O1xyXG4vLyAgIGJvcmRlcjogNXB4IHNvbGlkICNjOWMyYmM0ZDtcclxuLy8gICBkaXNwbGF5OiBmbGV4O1xyXG4vLyAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbi8vICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbi8vIH1cclxuLnN1Y2Nlc3MgaW1nIHtcclxuICB3aWR0aDogNTBweDtcclxuICAvLyBmb250LXNpemU6IDUwcHg7XHJcbiAgLy8gY29sb3I6ICM4OWIyNDI7XHJcbiAgLy8gYm94LXNoYWRvdzogMCAwIDMwcHggIzAwMDAwMDI5O1xyXG4gIC8vIGJvcmRlci1yYWRpdXM6IDMwcHg7XHJcbn1cclxuaDMge1xyXG4gIGZvbnQtc2l6ZTogMjBweDtcclxuICBjb2xvcjogIzg5YjI0MjtcclxufVxyXG4ucHJvZ3Jlc3NCYXIge1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWFyb3VuZDtcclxuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG59XHJcbnNtYWxsIHtcclxuICB3aWR0aDogNzVweDtcclxuICBtYXJnaW4tbGVmdDogNXB4O1xyXG4gIGRpcmVjdGlvbjogcnRsO1xyXG4gIGZvbnQtc2l6ZTogMTZweDtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxucCB7XHJcbiAgZm9udC1zaXplOiAxMnB4O1xyXG59XHJcbi5iYXIge1xyXG4gIHdpZHRoOiA4MCU7XHJcbiAgbWFyZ2luOiAwIGF1dG87XHJcbiAgaGVpZ2h0OiAxNXB4O1xyXG4gIGJvcmRlci1yYWRpdXM6IDUwcHg7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZjtcclxuICBib3JkZXI6IDJweCBzb2xpZCAjMTExO1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYXJvdW5kO1xyXG59XHJcbi5iYXI6OmJlZm9yZSB7XHJcbiAgY29udGVudDogXCJcIjtcclxuICB3aWR0aDogNTAlO1xyXG4gIGhlaWdodDogMTAwJTtcclxuICBsZWZ0OiAwO1xyXG4gIHRvcDogMDtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgYm9yZGVyLXRvcC1sZWZ0LXJhZGl1czogNTBweDtcclxuICBib3JkZXItYm90dG9tLWxlZnQtcmFkaXVzOiA1MHB4O1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICNmMGFiMGU7XHJcbn1cclxuLmJhciAuc3VjY2Vzc0JhciB7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIGxlZnQ6IDA7XHJcbiAgdG9wOiAwO1xyXG4gIGhlaWdodDogMTAwJTtcclxuICB3aWR0aDogNTAlO1xyXG4gIGJvcmRlci1ib3R0b20tbGVmdC1yYWRpdXM6IDUwcHg7XHJcbiAgYm9yZGVyLXRvcC1sZWZ0LXJhZGl1czogNTBweDtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMDAwO1xyXG59XHJcblxyXG4udGhhbmtzQ29udGVudCB7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gIGNvbG9yOiAjNGE0NTQ1O1xyXG4gIGZvbnQtc2l6ZTogMjRweDtcclxufVxyXG4udGhhbmtzQ29udGVudCAuZmEtaGVhcnQge1xyXG4gIGZvbnQtc2l6ZTogNDBweDtcclxufVxyXG4uZW5kQnV0dG9uIHtcclxuICB3aWR0aDogMTAwJTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogZmxleC1zdGFydDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgbWFyZ2luLXRvcDogMjBweDtcclxufVxyXG4uZW5kQnV0dG9uIGltZyB7XHJcbiAgd2lkdGg6IDMwJTtcclxuICBtYXJnaW4tbGVmdDogMjAlO1xyXG59XHJcbmJ1dHRvbiB7XHJcbiAgd2lkdGg6IDc1JTtcclxufVxyXG5wIHtcclxuICBjb2xvcjogIzRhNDU0NTtcclxufVxyXG5wIHNwYW4ge1xyXG4gIGNvbG9yOiAjZDEzNzJhO1xyXG4gIHRleHQtZGVjb3JhdGlvbjogdW5kZXJsaW5lO1xyXG59XHJcbkBtZWRpYSAobWF4LWhlaWdodDogNjAwcHgpIHtcclxuICAuc3VjY2VzQ29udGFpbmVyIHtcclxuICAgIG92ZXJmbG93LXk6IGF1dG87XHJcbiAgfVxyXG4gIC5lbmRCdXR0b24gaW1nIHtcclxuICAgIHdpZHRoOiAzMCU7XHJcbiAgfVxyXG59XHJcbiJdfQ== */"] });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](MeetingCreateSuccessComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
-                selector: 'app-meeting-create-seccess',
-                templateUrl: './meeting-create-seccess.component.html',
-                styleUrls: ['./meeting-create-seccess.component.scss']
+                selector: 'app-meeting-create-success',
+                templateUrl: './meeting-create-success.component.html',
+                styleUrls: ['./meeting-create-success.component.scss']
             }]
     }], function () { return []; }, null); })();
-
-
-/***/ }),
-
-/***/ "IPfh":
-/*!*********************************************!*\
-  !*** ./src/app/services/teacher.service.ts ***!
-  \*********************************************/
-/*! exports provided: TeacherService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TeacherService", function() { return TeacherService; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "qCKp");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
-
-
-
-
-
-class TeacherService {
-    constructor(http) {
-        this.http = http;
-    }
-    createMeeting(meeting) { }
-    getSingleMeeting(meetingId) { }
-    getStudents() {
-        if (this.students) {
-            return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(this.students);
-        }
-        return this.http.get('api/teacher/students')
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])((result) => {
-            console.log(result);
-            this.students = result;
-            return this.students;
-        }));
-    }
-}
-TeacherService.ɵfac = function TeacherService_Factory(t) { return new (t || TeacherService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"])); };
-TeacherService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: TeacherService, factory: TeacherService.ɵfac, providedIn: 'root' });
-/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](TeacherService, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
-        args: [{
-                providedIn: 'root'
-            }]
-    }], function () { return [{ type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"] }]; }, null); })();
 
 
 /***/ }),

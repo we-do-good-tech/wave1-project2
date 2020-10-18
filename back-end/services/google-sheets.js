@@ -29,8 +29,8 @@ exports.findTeacherByEmail = async function (teacherEmail, authorizationToken) {
     // console.log(teacherId)
     console.log(authorizationToken)
     const spreadsheetId = keys.GOOGLE_SHEETS.spreadsheetId
-    const sheetId = keys.GOOGLE_SHEETS.sheetsIds.coaches
-    const query = `select * where E='${teacherEmail}'`;
+    const sheetId = keys.GOOGLE_SHEETS.sheetsIds.teachers
+    const query = `select * where C='${teacherEmail}'`;
     // const sheetId = '622666265'
 
     try {
@@ -59,7 +59,7 @@ exports.findTeacherByEmail = async function (teacherEmail, authorizationToken) {
 module.exports.findStudents = async function (teacherId, authorizationToken) {
     const spreadsheetId = keys.GOOGLE_SHEETS.spreadsheetId
     const sheetId = keys.GOOGLE_SHEETS.sheetsIds.childrens
-    const query = `select * where D=${Number(teacherId)}`;
+    const query = `select * where E=${Number(teacherId)}`;
 
     console.log(teacherId)
     try {
@@ -80,6 +80,11 @@ module.exports.findStudents = async function (teacherId, authorizationToken) {
         console.log(error)
         throw error
     }
+}
+
+
+module.exports.createReport = async function (report, authorizationToken) {
+
 }
 
 
