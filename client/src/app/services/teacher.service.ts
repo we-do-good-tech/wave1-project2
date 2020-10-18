@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { stringify } from 'querystring';
 import { Observable, of, Subject } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { Report } from '../interfaces/Meeting';
+import { Report } from '../interfaces/Report';
 import { Student } from '../interfaces/Student';
 
 @Injectable({

@@ -1,48 +1,26 @@
 <app-http-error-messages></app-http-error-messages>
 <div class="wrapper">
     <div class="logo animate_animated animate_flipInX">
-        <img
-            src="../../../assets/Group 1764.svg"
-            alt
-        >
+        <img src="../../../assets/Group 1764.svg" alt>
     </div>
-    <form
-        #form="ngForm"
-        (ngSubmit)="onSendEmail(form)"
-    >
+    <form #form="ngForm" (ngSubmit)="onSendEmail(form)">
         <div class="input-group">
             <label for="teacherEmail">דואר אלקטרוני</label>
             <div class="idInput">
-                <input
-                    [ngClass]="this.formsService.displayClass(teacherEmail.control)"
-                    id="id-a"
-                    required
-                    type="email"
-                    ngModel
-                    pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-                    name="teacherEmail"
-                    #teacherEmail="ngModel"
-                    class="form-control"
-                    placeholder="דואר אלקטרוני"
-                >
+                <input [ngClass]="this.formsService.displayClass(teacherEmail.control)" id="id-a" required type="email"
+                    ngModel pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" name="teacherEmail"
+                    #teacherEmail="ngModel" class="form-control" placeholder="דואר אלקטרוני">
             </div>
         </div>
-        <div
-            class="errorsContainer"
-            *ngIf="this.formsService.formControlStatus(teacherEmail.control)"
-        >
-            <div
-                class="error-validate-form-message"
-                *ngIf="teacherEmail.errors.required"
-            >
+        <div class="errorsContainer" *ngIf="this.formsService.formControlStatus(teacherEmail.control)">
+            <div class="error-validate-form-message animate__animated animate__headShake"
+                *ngIf="teacherEmail.errors.required">
                 שדה חובה!
             </div>
-            <div
-                class="error-validate-form-message"
-                *ngIf="teacherEmail.errors.pattern"
-            >
-            דואר שגוי            
-         </div>
+            <div class="error-validate-form-message animate__animated animate__headShake"
+                *ngIf="teacherEmail.errors.pattern">
+                דואר שגוי
+            </div>
         </div>
         <div class="loginButton">
             <img

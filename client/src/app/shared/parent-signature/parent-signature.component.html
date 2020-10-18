@@ -54,13 +54,15 @@
     <div class="parentSignatureCnavas">
         <p>נא לחתום לאישור מפגש</p>
         <div class="sign">
-            <ng-signature-pad 
-                [showClearButton]="true" 
-                [showDoneButton]="true" 
-                [backgroundColor]="'white'"
-                (done)="saveImage($event)">
-            </ng-signature-pad>
+            <div class="pSignaturePad">
+                <ng-signature-pad #sp [showClearButton]="false" [showDoneButton]="true" [format]="'base64'"
+                    [backgroundColor]="'white'" (done)="saveImage($event)" [doneButtonClass]="'padConfirmButton'"
+                    [doneButtonText]="'אישור'">
+
+                </ng-signature-pad>
+            </div>
         </div>
     </div>
-    <!-- <button (click)="onSendSignature()" class="mainButton">אישור</button> -->
+    <img [src]="signatureImage" *ngIf="signatureImage" alt="">
+    <!-- <button class="mainButton">אישור</button> -->
 </div>
