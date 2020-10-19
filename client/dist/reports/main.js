@@ -668,7 +668,7 @@ class LimitInputDirective {
         console.log(value);
         if (String(value).length > 1) {
             // value = value.slice(1, 2);
-            value = '9';
+            // value = '9'
         }
     }
 }
