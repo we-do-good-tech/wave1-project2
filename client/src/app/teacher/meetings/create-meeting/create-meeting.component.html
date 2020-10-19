@@ -1,4 +1,6 @@
-<app-header [headerClass]="'header-green'" [backButton]="true" [pathUrl]="'/main/teacher'"></app-header>
+<app-header  styleElement [changeClass]="'header-green'" [selector]="'#the-header'">
+    <a [routerLink]="['/main/teacher']"> < </a>
+</app-header>
 <div class="meetingsContainer">
     <form class="form" [formGroup]="meetingForm" (ngSubmit)="onCreateMeeting()">
         <div class="createFormInput">

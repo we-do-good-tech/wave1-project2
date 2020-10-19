@@ -12,8 +12,12 @@ import { LoaderInterceptor } from "./services/interceptors/loader.interceptor";
 import { SignaturePadModule } from "@ng-plus/signature-pad";
 
 
+
+
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [
+        AppComponent,
+    ],
     imports: [
         BrowserModule,
         HttpClientModule,

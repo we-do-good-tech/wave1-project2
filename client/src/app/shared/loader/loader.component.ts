@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
@@ -6,16 +7,21 @@ import { LoaderService } from 'src/app/services/loader.service';
     templateUrl: './loader.component.html',
     styleUrls: ['./loader.component.scss']
 })
-export class LoaderComponent implements OnInit {
+export class LoaderComponent implements OnInit, OnDestroy {
 
     isLoad: boolean
+    subLoadStatusChange: Subscription
 
     constructor(private loaderService: LoaderService) { }
 
     ngOnInit(): void {
-        this.loaderService.getLoadStatus().subscribe((result) => {
+        this.subLoadStatusChange = this.loaderService.getLoadStatusChange().subscribe((result) => {
             this.isLoad = result
         })
+    }
+
+    ngOnDestroy(): void {
+        this.subLoadStatusChange.unsubscribe()
     }
 
 }

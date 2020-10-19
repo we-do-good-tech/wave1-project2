@@ -92,15 +92,15 @@ exports.authConfirmCode = async function (request, response) {
     if (code === confirmCode.getConfirmCode()) {
         console.log("CODE IS CONFIRM");
         confirmCode.deleteConfirmCode();
-        return response.status(200).send({
+        response.status(200).send({
             message: "User log",
             isLog: true,
         });
+    } else {
+        response.status(403).send({
+            message: "Wrong code",
+        });
     }
-
-    response.status(403).send({
-        message: "Wrong code",
-    });
 };
 
 exports.newConfirmCode = async function (request, response) {

@@ -1,6 +1,7 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
+import { Subscription } from 'rxjs';
 import { ConfirmCode } from "src/app/interfaces/ConfirmCode";
 import { AuthService } from "src/app/services/auth.service";
 import { KeyboardService } from 'src/app/services/keyboard.service';
@@ -12,7 +13,10 @@ import { FormsService } from "../../services/forms/forms.service";
     templateUrl: "./confirm.component.html",
     styleUrls: ["./confirm.component.scss"],
 })
-export class ConfirmComponent implements AfterViewInit {
+export class ConfirmComponent implements AfterViewInit, OnDestroy {
+
+    subFormChange: Subscription
+
     constructor(
         public formsService: FormsService,
         private authService: AuthService,
@@ -26,7 +30,7 @@ export class ConfirmComponent implements AfterViewInit {
     @ViewChild('first') firstInput: ElementRef
 
     ngAfterViewInit(): void {
-        this.form.valueChanges.subscribe((result) => {
+        this.subFormChange = this.form.valueChanges.subscribe((result) => {
             console.log(result)
             if (this.form.valid) {
                 let code: string = "";
@@ -56,5 +60,10 @@ export class ConfirmComponent implements AfterViewInit {
         this.authService.resendConfirmCode().subscribe((result) => {
             console.log(result);
         });
+    }
+
+
+    ngOnDestroy(): void {
+        this.subFormChange.unsubscribe()
     }
 }

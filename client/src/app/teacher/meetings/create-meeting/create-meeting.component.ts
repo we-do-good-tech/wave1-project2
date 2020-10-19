@@ -67,7 +67,7 @@ export class CreateMeetingComponent implements OnInit {
     }
 
     createMeeting() {
-        // this.router.navigate(["../../../main/teacher/meeting-seccess"]);
+        this.router.navigate(["/main/teacher/meeting/", 123]);
     }
 
 

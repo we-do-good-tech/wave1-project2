@@ -1,4 +1,8 @@
-<app-header [headerClass]="'header-green'"></app-header>
+<app-header  styleElement [changeClass]="'header-green'" [selector]="'#the-header'">
+   
+</app-header>
+   
+
 <div class="succesContainer">
     <!-- <div class="successOuter"> -->
     <div class="success">
@@ -16,11 +20,11 @@
     <div class="thanksContent">
         כל הכבוד! <br> תודה על העשייה ועל שיתוף הפעולה <br>
         <p>פרטי המפגש נשלחו להורה</p>
-        <p>ניתן לעקוב אחרי <span routerLink="../../../main/teacher/meetings-table">מפגשים שטרם אושרו</span> </p>
+        <p>ניתן לעקוב אחרי <span [routerLink]="['/main/teacher/meetings-table']">מפגשים שטרם אושרו</span> </p>
         <!-- <i class="fas fa-heart"></i> -->
     </div>
     <div class="endButton">
         <img src="../../../../assets/Group 1789.svg" alt="">
-        <button class="mainButton">סיום</button>
+        <button [routerLink]="['/main/teacher']" class="mainButton">סיום</button>
     </div>
 </div>

@@ -1,4 +1,5 @@
-<header [ngClass]="headerClass" >
+<header id="the-header" >
         <img  src="../../../assets/Group 1772.svg" alt="">
+        <ng-content></ng-content>
 </header>
-<a class="btn btn-primary" *ngIf="backButton" [routerLink]="[pathUrl]" > < </a>
+<!-- <a class="btn btn-primary" *ngIf="backButton" [routerLink]="[pathUrl]" > < </a> -->

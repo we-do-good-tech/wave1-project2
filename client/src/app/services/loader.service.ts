@@ -16,7 +16,7 @@ export class LoaderService {
     }
 
 
-    getLoadStatus(): Observable<boolean> {
+    getLoadStatusChange(): Observable<boolean> {
         return this.loadStatusChange.asObservable()
     }
 

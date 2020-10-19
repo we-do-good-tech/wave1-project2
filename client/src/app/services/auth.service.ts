@@ -2,10 +2,11 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from "rxjs";
-import { map, tap } from "rxjs/operators";
+import { map } from "rxjs/operators";
 import { AuthTokenData } from '../interfaces/AuthLogInData';
 import { ConfirmCode } from "../interfaces/ConfirmCode";
 import { UserName } from "../interfaces/TeacherId";
+
 
 @Injectable({
     providedIn: "root",
@@ -172,8 +173,8 @@ export class AuthService {
         this.userName = null
         this.isLogChange.next(this.isLog)
         this.router.navigate(['/'])
-        clearTimeout(this.tokenTimer)
         this.removeSessionStorage()
+        clearTimeout(this.tokenTimer)
     }
 
 
