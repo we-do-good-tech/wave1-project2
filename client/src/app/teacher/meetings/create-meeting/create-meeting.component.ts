@@ -7,6 +7,7 @@ import {
     Validators,
 } from "@angular/forms";
 import { FormsService } from "src/app/services/forms/forms.service";
+import { FormsValidatorsService } from "../../../services/forms/forms-validators.service";
 import { TeacherService } from 'src/app/services/teacher.service';
 import { Student } from 'src/app/interfaces/Student';
 import { Observable } from 'rxjs';
@@ -35,7 +36,7 @@ export class CreateMeetingComponent implements OnInit {
 
         this.meetingForm = this.formBuilder.group({
             ticketNo: [null, [Validators.required]],
-            meetingDate: [null, [Validators.required]],
+            meetingDate: [null, [Validators.required, FormsValidatorsService.limitDate]],
             meetingStartTime: [null, [Validators.required]],
             meetingEndTime: [null, [Validators.required]],
             meetingActivitis: [null, []],
@@ -67,7 +68,7 @@ export class CreateMeetingComponent implements OnInit {
     }
 
     createMeeting() {
-        this.router.navigate(["/main/teacher/meeting/", 123]);
+        // this.router.navigate(["/main/teacher/meeting/", 123]);
     }
 
 

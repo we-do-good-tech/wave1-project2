@@ -50,7 +50,6 @@
                 </div>
             </div>
         </div>
-        <p>time</p>
         <div class="activitiesContainer">
             <textarea
                 placeholder="נושאים ופעיליות שעלו במפגש: למשל - מה נלמד, באיזה שלב החונך והחניך נמצאים ומה היו תכני המפגש."
@@ -62,7 +61,7 @@
         </textarea>
             <label class="commentsLabel"><small>הערות חשובות</small></label>
         </div>
-        <button [class.disabledButton]="meetingForm.invalid" (click)="createMeeting()" 
+        <button [class.disabledButton]="meetingForm.invalid" 
             type="submit" class="mainButton">
             צור פגישה
         </button>
