@@ -12,6 +12,10 @@ import { SignaturePadModule } from "@ng-plus/signature-pad";
 import { KeyboardComponent } from './keyboard/keyboard.component';
 import { KeyboardButtonComponent } from './keyboard/keyboard-button/keyboard-button.component';
 import { ExmpleComponent } from './exmple/exmple.component';
+import { LimitInputDirective } from "../directives/limit-input.directive";
+import { InputFocusDirective } from "../directives/focus.directive";
+import { VirtualKeyDirective } from "../directives/virtual-key";
+import { StyleElementDirective } from "../directives/style.element.directive";
 
 
 @NgModule({
@@ -24,9 +28,19 @@ import { ExmpleComponent } from './exmple/exmple.component';
         ParentSignatureComponent,
         KeyboardComponent,
         KeyboardButtonComponent,
-        ExmpleComponent
+        ExmpleComponent,
+        VirtualKeyDirective,
+        InputFocusDirective,
+        LimitInputDirective,
+        StyleElementDirective
+
     ],
-    imports: [CommonModule, RouterModule, SignaturePadModule, FormsModule],
+    imports: [
+        CommonModule,
+        RouterModule,
+        SignaturePadModule,
+        FormsModule
+    ],
     exports: [
         HeaderComponent,
         HttpErrorMessagesComponent,
@@ -35,7 +49,11 @@ import { ExmpleComponent } from './exmple/exmple.component';
         LoaderComponent,
         KeyboardComponent,
         KeyboardButtonComponent,
-        ExmpleComponent
+        ExmpleComponent,
+        VirtualKeyDirective,
+        InputFocusDirective,
+        LimitInputDirective,
+        StyleElementDirective
     ],
 })
 export class SharedModule { }

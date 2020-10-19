@@ -1,4 +1,6 @@
-<div class="tableContainer">
+<app-header  styleElement [changeClass]="'header-red'" [selector]="'#the-header'">
+    <a [routerLink]="['/main/teacher']"> < </a>
+</app-header><div class="tableContainer">
     <div class="heading">
         <div class="title">מפגשים שטרם אושרו</div>
         <div class="list">
@@ -17,12 +19,7 @@
             <li>סטטוס</li>
         </ul>
         <div class="meetings">
-            <app-meeting-table-item></app-meeting-table-item>
-            <app-meeting-table-item></app-meeting-table-item>
-            <app-meeting-table-item></app-meeting-table-item>
-            <app-meeting-table-item></app-meeting-table-item>
-            <app-meeting-table-item></app-meeting-table-item>
-            <app-meeting-table-item></app-meeting-table-item>
+            <app-meeting-table-item *ngFor="let meeting of meeting"></app-meeting-table-item>
         </div>
         <button class="mainButton">שלח אישור מחדש</button>
     </div>

@@ -63,3 +63,19 @@ body {
   background-color: #afaaa7;
   color: #e3dcd6;
 }
+
+.header-green {
+  text-align: center;
+  background: linear-gradient(to top, #6dac18, #d6f27b);
+  color: #ffffff;
+  padding: 10px;
+  box-shadow: 0 3px 6px #00000029;
+}
+
+.header-red {
+  text-align: center;
+  background: linear-gradient(to top, #ac2e18, #f2ba7b);
+  color: #ffffff;
+  padding: 10px;
+  box-shadow: 0 3px 6px #00000029;
+}

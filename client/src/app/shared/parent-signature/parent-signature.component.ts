@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 
 @Component({
     selector: "app-parent-signature",
@@ -6,30 +6,26 @@ import { Component, OnInit } from "@angular/core";
     styleUrls: ["./parent-signature.component.scss"],
 })
 export class ParentSignatureComponent implements OnInit {
-    signatureImage;
+
+    signatureImage: Blob
+    isCanvasWrite: boolean
+
+
     constructor() { }
 
     ngOnInit(): void { }
 
-    onSendSignature(): void {
-        console.log(this.signatureImage);
-    }
-    // onSendSignature(): void {
-    //     console.log(this.signatureImage);
-    // }
 
-    saveImage(blob) {
+    saveImage(blob: Blob) {
         // Do something with the blob.
-        console.log("clil");
+        this.isCanvasWrite = true
+
         this.signatureImage = blob;
 
-        console.log(blob);
-    }
-    test(sp) {
-        console.log("test");
 
-        console.log(sp);
-        sp.clearButtonClass = "colors";
-        return sp;
     }
+
+
+
+
 }

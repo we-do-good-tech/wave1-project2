@@ -24,10 +24,14 @@ const routes: Routes = [
                 path: "meetings-table",
                 component: MeetingTableComponent,
             },
-            // {
-            //     path: 'meeting/:id',
-            //     component: SingleMeetingComponent
-            // },
+            {
+                path: 'meeting/:id',
+                component: SingleMeetingComponent
+            },
+            {
+                path: 'meeting/:id/resend-sign',
+                component: SingleMeetingComponent
+            },
             {
                 path: "meeting-seccess",
                 component: MeetingCreateSuccessComponent,

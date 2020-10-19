@@ -12,6 +12,8 @@ export class MeetingTableComponent implements OnInit {
 
     students: Observable<Student[]>
 
+    meeting: number[] = [1, 2, 3, 4, 5, 6]
+
     constructor(private teacherService: TeacherService) { }
 
     ngOnInit(): void {

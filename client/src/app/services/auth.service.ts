@@ -2,10 +2,16 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { BehaviorSubject, Observable } from "rxjs";
+<<<<<<< HEAD
 import { map, tap } from "rxjs/operators";
 import { AuthTokenData } from "../interfaces/AuthLogInData";
+=======
+import { map } from "rxjs/operators";
+import { AuthTokenData } from '../interfaces/AuthLogInData';
+>>>>>>> refs/remotes/origin/master
 import { ConfirmCode } from "../interfaces/ConfirmCode";
 import { UserName } from "../interfaces/TeacherId";
+
 
 @Injectable({
   providedIn: "root",
@@ -152,6 +158,7 @@ export class AuthService {
       return;
     }
 
+<<<<<<< HEAD
     return {
       token: token,
       expiresInDate: new Date(expiresInDate),
@@ -174,4 +181,45 @@ export class AuthService {
       this.clearLoginInfo();
     }, time * 1000);
   }
+=======
+
+    private getSessionStorage(): AuthTokenData {
+        const token = sessionStorage.getItem('token')
+        const expiresInDate = sessionStorage.getItem('expiresIn')
+        const userName = JSON.parse(sessionStorage.getItem('user-name'))
+        const isAuth = JSON.parse(sessionStorage.getItem('is-auth'))
+
+        if (!token || !expiresInDate || !isAuth) {
+            return
+        }
+
+        return {
+            token: token,
+            expiresInDate: new Date(expiresInDate),
+            userName: userName,
+        }
+
+    }
+
+    clearLoginInfo(): void {
+        this.token = null
+        this.isLog = false
+        this.userName = null
+        this.isLogChange.next(this.isLog)
+        this.router.navigate(['/'])
+        this.removeSessionStorage()
+        clearTimeout(this.tokenTimer)
+    }
+
+
+
+    private setTokenTimer(time: number): void {
+        this.tokenTimer = setTimeout(() => {
+            this.clearLoginInfo()
+        }, time * 1000)
+    }
+
+
+
+>>>>>>> refs/remotes/origin/master
 }
