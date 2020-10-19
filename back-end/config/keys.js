@@ -4,9 +4,9 @@ module.exports = {
         spreadsheetId: process.env.SPREADSHEETS_ID,
         scope: process.env.SEETS_SCOPE,
         sheetsIds: {
-            coaches: '1647665051',
-            childrens: '622666265',
-            reports: '1036824419'
+            teachers: process.env.SHEET_ID_TEACHERS,
+            childrens: process.env.SHEET_ID_CHILDRENS,
+            reports: process.env.SHEET_ID_REPORTS
         }
     },
     EMAIL_SENDER: {
@@ -18,8 +18,9 @@ module.exports = {
     TOKENS: {
         ACCESS_TOKEN: {
             secretTokenKey: process.env.SECRET_ACCESS_TOKEN_KEY,
-            expiresIn: 60 * 30
+            expiresIn: 60 * 120
 
         }
     }
 };
+

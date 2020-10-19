@@ -1,4 +1,3 @@
-<app-http-error-messages></app-http-error-messages>
 <div class="wrapper">
     <div class="logo animate_animated animate_flipInX">
         <img src="../../../assets/Group 1764.svg" alt>
@@ -12,6 +11,7 @@
                     #teacherEmail="ngModel" class="form-control" placeholder="דואר אלקטרוני">
             </div>
         </div>
+        <app-http-error-messages></app-http-error-messages>
         <div class="errorsContainer" *ngIf="this.formsService.formControlStatus(teacherEmail.control)">
             <div class="error-validate-form-message animate__animated animate__headShake"
                 *ngIf="teacherEmail.errors.required">

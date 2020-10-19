@@ -29,7 +29,7 @@ const routes: Routes = [
     path: "main",
     loadChildren: () =>
       import("./teacher/teacher.module").then((m) => m.TeacerModule),
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: "parent-signature",

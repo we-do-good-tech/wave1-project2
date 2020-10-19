@@ -6,7 +6,7 @@ import { TeacherRoutingModule } from "./teacher.routing";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreateMeetingComponent } from './meetings/create-meeting/create-meeting.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MeetingCreateSeccessComponent } from './meetings/meeting-create-seccess/meeting-create-seccess.component';
+import { MeetingCreateSuccessComponent } from './meetings/meeting-create-success/meeting-create-success.component';
 import { SingleMeetingComponent } from './meetings/single-meeting/single-meeting.component';
 import { MeetingTableComponent } from './meetings/meeting-table/meeting-table.component';
 import { MeetingTableItemComponent } from './meetings/meeting-table-item/meeting-table-item.component';
@@ -18,7 +18,7 @@ import { MeetingTableItemComponent } from './meetings/meeting-table-item/meeting
         TeacherMainComponent,
         DashboardComponent,
         CreateMeetingComponent,
-        MeetingCreateSeccessComponent,
+        MeetingCreateSuccessComponent,
         SingleMeetingComponent,
         MeetingTableComponent,
         MeetingTableItemComponent

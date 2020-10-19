@@ -11,7 +11,9 @@
             <input id="num-d" required type="number" pattern="^\d{1}$" name="fourth" ngModel="virtualkey"
                 #four="ngModel" (input)="onChange($event)">
         </div>
-        <div class="codeError animate__animated animate__headShake"><span>קוד שגוי, נסה שנית</span></div>
+
+        <!-- <div class="codeError animate__animated animate__headShake"><span>קוד שגוי, נסה שנית</span></div> -->
+        <app-http-error-messages></app-http-error-messages>
         <!-- <div *ngIf="form.invalid && form.submitted" class="codeError animate__animated animate__headShake"> <span>
                 חסרה ספרה </span>
         </div> -->

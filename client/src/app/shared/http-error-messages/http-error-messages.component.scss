@@ -43,3 +43,19 @@ h5 {
   width: 100%;
   text-align: center;
 }
+
+.codeError {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: #d1372a;
+  direction: rtl;
+  font-size: 12px;
+  position: relative;
+  width: 100%;
+}
+
+span {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}

@@ -2,14 +2,14 @@
     <form class="form" [formGroup]="meetingForm" (ngSubmit)="onCreateMeeting()">
         <div class="createFormInput">
             <label>בחר מהרשימה</label>
-            <select class="selectUser" [ngClass]="this.formsService.displayClass(getFormControl('studentName'))"
-                formControlName="studentName">
+            <select class="selectUser" [ngClass]="this.formsService.displayClass(getFormControl('ticketNo'))"
+                formControlName="ticketNo">
                 <option value>בחר</option>
-                <option *ngFor="let student of students | async" [value]="student?.firstName">
-                    {{student?.firstName}}
+                <option *ngFor="let student of students | async" [value]="student?.ticketNo">
+                    {{student?.studentName}}
                 </option>
             </select>
-            <div *ngIf="this.formsService.formControlStatus(getFormControl('studentName'))">
+            <div *ngIf="this.formsService.formControlStatus(getFormControl('ticketNo'))">
                 <div class="errorMessage">
                     שדה חובה
                 </div>
@@ -58,9 +58,10 @@
         </textarea>
             <label class="commentsLabel"><small>הערות חשובות</small></label>
         </div>
-        <button [class.disabledButton]="meetingForm.invalid" (click)="createMeeting()" [disabled]="meetingForm.invalid"
-            type="submit" class="mainButton">
+        <button [class.disabledButton]="meetingForm.invalid" (click)="createMeeting()" type="submit" class="mainButton">
             צור פגישה
         </button>
     </form>
 </div>
+
+<!-- [disabled]="meetingForm.invalid -->
