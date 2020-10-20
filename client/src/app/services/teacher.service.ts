@@ -11,15 +11,28 @@ import { Student } from '../interfaces/Student';
 export class TeacherService {
 
     private students: Student[]
+    private reports: Report[]
 
     constructor(private http: HttpClient) { }
 
-    createReport(report: Report) {
 
+    createReport(report: Report): Observable<{ message: string }> {
+        return this.http.post<{ message: string }>('api/teacher/create-report', report)
     }
 
 
-    // getSingleReport(meetingId: string) { }
+    getReportsNotConfirm(): Observable<Report[]> {
+        if (this.reports) {
+            return of(this.reports)
+        }
+        return this.http.get<Report[]>('api/teacher/reports-unconfirm')
+            .pipe(
+                tap((result) => {
+                    console.log(result)
+                    this.reports = result
+                })
+            )
+    }
 
 
     getStudents(): Observable<Student[]> {
@@ -31,7 +44,6 @@ export class TeacherService {
                 tap((result) => {
                     console.log(result)
                     this.students = result
-                    return this.students
                 })
             )
 

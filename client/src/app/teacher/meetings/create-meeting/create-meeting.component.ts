@@ -1,5 +1,5 @@
-import { Router } from "@angular/router";
-import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { AfterContentChecked, AfterViewInit, Component, OnInit } from "@angular/core";
 import {
     FormBuilder,
     FormControl,
@@ -10,8 +10,9 @@ import { FormsService } from "src/app/services/forms/forms.service";
 import { FormsValidatorsService } from "../../../services/forms/forms-validators.service";
 import { TeacherService } from 'src/app/services/teacher.service';
 import { Student } from 'src/app/interfaces/Student';
-import { Observable } from 'rxjs';
 import { timesRange, conculateRangeToTime } from "../../../services/helpers/time.range";
+import { Report } from 'src/app/interfaces/Report';
+import { MeetingsService } from 'src/app/services/meetings.service';
 
 
 @Component({
@@ -19,23 +20,27 @@ import { timesRange, conculateRangeToTime } from "../../../services/helpers/time
     templateUrl: "./create-meeting.component.html",
     styleUrls: ["./create-meeting.component.scss"],
 })
-export class CreateMeetingComponent implements OnInit {
+export class CreateMeetingComponent implements OnInit, AfterViewInit {
 
-    students: Observable<Student[]>
+    students: Student[]
     meetingForm: FormGroup;
 
     constructor(
         private formBuilder: FormBuilder,
         public formsService: FormsService,
         private router: Router,
-        private teacherService: TeacherService
-    ) { }
+        private route: ActivatedRoute,
+        private teacherService: TeacherService,
+        private meetingService: MeetingsService
+    ) {
+        this.students = []
+    }
 
     ngOnInit(): void {
-        this.students = this.teacherService.getStudents()
+        this.route.data.subscribe((result) => this.students = result.students)
 
         this.meetingForm = this.formBuilder.group({
-            ticketNo: [null, [
+            studentName: [null, [
                 Validators.required
             ]],
             meetingDate: [null, [
@@ -51,15 +56,20 @@ export class CreateMeetingComponent implements OnInit {
                     Validators.required
                 ]],
 
-            }, {validator: FormsValidatorsService.getTimeRange}),
+            }, { validator: FormsValidatorsService.getTimeRange }),
             meetingActivitis: [null, []],
             meetingComments: [null, []],
         });
     }
 
-    onCreateMeeting() : void{
+
+    ngAfterViewInit(): void {
+        this.setMeetingFormValues()
+    }
+
+    onCreateMeeting(): void {
         const {
-            ticketNo,
+            studentName,
             meetingDate,
             meetingActivitis,
             meetingComments,
@@ -68,25 +78,47 @@ export class CreateMeetingComponent implements OnInit {
                 meetingEndTime,
             }
         } = this.meetingForm.value
-       
-      const report = {
-        ticketNo:ticketNo,
-        meetingDate: meetingDate,
-        meetingActivitis: meetingActivitis,
-        meetingStartTime:meetingStartTime,
-        meetingEndTime: meetingEndTime,
-        totalMeetingHours:conculateRangeToTime(timesRange(meetingStartTime, meetingEndTime)),
-        meetingComments:meetingComments,
-      }
 
-      console.log(report)
+        const student = this.students.find((s) => s.studentName === studentName)
+        const report: Report = {
+            studentName: studentName,
+            ticketNo: student.ticketNo,
+            reportDate: meetingDate,
+            reportActivitis: meetingActivitis,
+            reportStartTime: meetingStartTime,
+            reportEndTime: meetingEndTime,
+            reportRangeTimne: conculateRangeToTime(timesRange(meetingStartTime, meetingEndTime)),
+            reportComments: meetingComments,
+            parentEmail: student.parentEmail,
+            isParentSign: false,
+            parentSignImageUrl: null
+        }
 
+        // console.log(report)
+        this.meetingService.setReport(report)
+        this.router.navigate(['/main/teacher/meeting-new'])
     }
 
 
     getFormControl(controlName: string): FormControl {
-        return this.meetingForm.get(controlName) as FormControl || 
-        this.meetingForm.controls.times.get(controlName) as FormControl
+        return this.meetingForm.get(controlName) as FormControl || this.meetingForm.controls.times.get(controlName) as FormControl
+    }
+
+
+    setMeetingFormValues() {
+        const report = this.meetingService.getReportCreated()
+        if (report) {
+            this.meetingForm.patchValue({
+                studentName: report.studentName,
+                meetingDate: report.reportDate,
+                meetingActivitis: report.reportActivitis,
+                meetingComments: report.reportComments,
+                times: {
+                    meetingStartTime: report.reportStartTime,
+                    meetingEndTime: report.reportEndTime
+                }
+            })
+        }
     }
 
 }

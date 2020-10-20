@@ -23,13 +23,13 @@ const routes: Routes = [
   {
     path: "auth",
     loadChildren: () => import("./auth/auth.module").then((m) => m.AuthModule),
-    // canActivate: [NotAuthGuard],
+    canActivate: [NotAuthGuard],
   },
   {
     path: "main",
     loadChildren: () =>
       import("./teacher/teacher.module").then((m) => m.TeacerModule),
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: "parent-signature",

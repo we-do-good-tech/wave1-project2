@@ -9,7 +9,7 @@ import { environment } from "../environments/environment.prod";
 })
 export class AppComponent {
     constructor(private authService: AuthService) {
-        // this.authService.getAuthData()
+        this.authService.getAuthData()
         // console.log(environment)
     }
 }

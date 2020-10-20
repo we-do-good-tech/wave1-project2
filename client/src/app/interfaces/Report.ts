@@ -1,12 +1,14 @@
 export interface Report {
+    studentName: string
     reportDate: string | Date
     reportStartTime: string
     reportEndTime: string
+    reportRangeTimne: string
     reportActivitis: string
     reportComments: string
-    parentSign: boolean
-    parentSignImageUrl: string
+    isParentSign?: boolean
+    parentSignImageUrl?: string
+    parentEmail?: string
     ticketNo: number
 }
 
-// date	S_Hour	E_Hour	hours	notes	remarks	par_Sig	par_Sig_HtperLink	sovh_No
