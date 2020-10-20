@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from "@angular/router";
-import { AfterContentChecked, AfterViewInit, Component, OnInit } from "@angular/core";
+import { AfterContentChecked, AfterContentInit, AfterViewInit, Component, OnInit } from "@angular/core";
 import {
     FormBuilder,
     FormControl,
@@ -20,7 +20,7 @@ import { MeetingsService } from 'src/app/services/meetings.service';
     templateUrl: "./create-meeting.component.html",
     styleUrls: ["./create-meeting.component.scss"],
 })
-export class CreateMeetingComponent implements OnInit, AfterViewInit {
+export class CreateMeetingComponent implements OnInit, AfterContentInit {
 
     students: Student[]
     meetingForm: FormGroup;
@@ -63,7 +63,7 @@ export class CreateMeetingComponent implements OnInit, AfterViewInit {
     }
 
 
-    ngAfterViewInit(): void {
+    ngAfterContentInit(): void {
         this.setMeetingFormValues()
     }
 

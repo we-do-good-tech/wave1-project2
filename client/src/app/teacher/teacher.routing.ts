@@ -40,12 +40,14 @@ const routes: Routes = [
                 }
             },
             {
-                path: "meeting/:id/resend-sign",
+                path: "meeting/:ticketNo",
                 component: SingleMeetingComponent,
+                canActivate: [SingleMeetingToOperationGuard]
             },
             {
                 path: "meeting-success",
                 component: MeetingCreateSuccessComponent,
+                canActivate: [SingleMeetingToOperationGuard]
             },
         ],
     },

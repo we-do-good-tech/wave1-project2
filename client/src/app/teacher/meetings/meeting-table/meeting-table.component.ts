@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from "rxjs";
 import { Report } from 'src/app/interfaces/Report';
 import { Student } from "src/app/interfaces/Student";
+import { MeetingsService } from 'src/app/services/meetings.service';
 
 
 @Component({
@@ -18,7 +19,10 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
     subStudents: Subscription
     sunReports: Subscription
 
-    constructor(private route: ActivatedRoute) {
+    constructor(
+        private route: ActivatedRoute,
+        private router: Router,
+        private meetingsService: MeetingsService) {
         this.students = []
         this.reports = []
     }
@@ -26,6 +30,13 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.subStudents = this.route.data.subscribe((result) => { this.students = result.students })
         this.sunReports = this.route.data.subscribe((result) => { this.reports = result.reports })
+    }
+
+
+    getReportSignAgain(report: Report) {
+        console.log(report)
+        this.meetingsService.setReport(report)
+        this.router.navigate(['/main/teacher/meeting', report.ticketNo])
     }
 
 

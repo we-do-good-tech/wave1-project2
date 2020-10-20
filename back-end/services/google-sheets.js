@@ -22,10 +22,6 @@ const { convertSheetsDataToObjectsArray } = require('../helpers/tojson')
 // }
 
 
-
-
-
-
 exports.findTeacherByEmail = async function (teacherEmail, authorizationToken) {
     const spreadsheetId = keys.GOOGLE_SHEETS.spreadsheetId
     const sheetId = keys.GOOGLE_SHEETS.sheetsIds.teachers
@@ -83,13 +79,12 @@ module.exports.findStudents = async function (teacherId, authorizationToken) {
 
 module.exports.save = async function (report, authorizationToken) {
     const spreadsheetId = keys.GOOGLE_SHEETS.spreadsheetId
-    // 'https://sheets.googleapis.com/v4/spreadsheets/1iT7Cu_tBxdMXXfQp7vTGXPg2VUEv79mMtcbufN5k4AA/values/Reports%21A%3AZ:append?valueInputOption=USER_ENTERED'
+
     try {
 
         const saveReport = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Reports%21A%3AZ:append?valueInputOption=USER_ENTERED`, {
             method: 'POST',
             headers: authorizationToken,
-            // body: '{"values":[["2020-10-14","20:37","22:39","02:02","DASDAS","DASDASD",false,null,"15"]]}'
             body: `{"values":[
                 [
                     "${report.reportDate}",
@@ -106,35 +101,7 @@ module.exports.save = async function (report, authorizationToken) {
             ]}`
         })
 
-
-
-
-
-
-        // const sheets = await google.sheets({ version: 'v4', auth: theClient })
-        // const saveReport = await sheets.spreadsheets.values.append({
-        //     spreadsheetId: keys.GOOGLE_SHEETS.spreadsheetId,
-        //     range: 'Reports!A:Z',
-        //     valueInputOption: 'USER_ENTERED',
-        //     resource: {
-        //         values: [
-        //             [
-        //                 report.reportDate,
-        //                 report.reportStartTime,
-        //                 report.reportEndTime,
-        //                 report.reportRangeTimne,
-        //                 report.reportActivitis,
-        //                 report.reportComments,
-        //                 report.isParentSign,
-        //                 report.parentSignImageUrl,
-        //                 report.ticketNo,
-        //                 report.teacherId
-        //             ]
-        //         ]
-        //     }
-        // })
         const jsonResponse = await saveReport.json()
-        console.log(jsonResponse)
 
         return jsonResponse
     } catch (error) {

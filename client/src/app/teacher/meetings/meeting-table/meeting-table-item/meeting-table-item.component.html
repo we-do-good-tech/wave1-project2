@@ -1,5 +1,5 @@
 <div class="tableItem">
-    <ul [routerLink]="['/main/teacher/meeting/123/resend-sign']">
+    <ul (click)="onSendConfirmSignAgain(report)">
         <li>08</li>
         <li>{{report?.reportDate}}</li>
         <li>ממתין לאישור</li>

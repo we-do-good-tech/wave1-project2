@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { Report } from 'src/app/interfaces/Report';
 
 @Component({
@@ -8,7 +8,7 @@ import { Report } from 'src/app/interfaces/Report';
 })
 export class MeetingTableItemComponent implements OnInit {
 
-    @Output() sendSignAgain: EventEmitter<any> = new EventEmitter<any>()
+    @Output() sendSignAgain: EventEmitter<Report> = new EventEmitter<Report>()
     @Input() report: Report
 
     constructor() { }
@@ -16,8 +16,8 @@ export class MeetingTableItemComponent implements OnInit {
     ngOnInit(): void { }
 
 
-    onSendConfirmSignAgain(): void {
-        this.sendSignAgain.emit()
+    onSendConfirmSignAgain(report: Report): void {
+        this.sendSignAgain.emit(report)
 
     }
 }

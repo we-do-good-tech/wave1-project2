@@ -1,6 +1,5 @@
-<app-header styleElement [changeClass]="'header-green'" [selector]="'#the-header'">
-    <!-- <a [routerLink]="['/main/teacher/create-meeting']"></a> -->
-    <a class="backArrow" [routerLink]="['/main/teacher/create-meeting']">
+<app-header styleElement [changeClass]="mode === 'new-report' ? 'header-green' : 'header-red'" [selector]="'#the-header'">
+    <a class="backArrow" [routerLink]="mode === 'new-report' ? ['/main/teacher/create-meeting'] : ['/main/teacher/meetings-table'] ">
         <i class="fas fa-arrow-left"></i> </a>
 </app-header>
 <div class="singleMeetingContainer">
@@ -42,8 +41,9 @@
         </div>
     </div>
 
-    <div class="editButton">
-        <a [routerLink]="['/main/teacher/create-meeting']">עריכה <i class="fas fa-pencil-alt"></i></a>
+    <div *ngIf="mode === 'new-report'" class="editButton">
+        <a  [routerLink]="['/main/teacher/create-meeting']">עריכה <i class="fas fa-pencil-alt"></i></a>
     </div>
-    <button class="mainButton" (click)="onSendReport()">אישור</button>
+    <button *ngIf="mode === 'new-report'" class="mainButton" (click)="onSendReport()">אישור</button>
+    <button *ngIf="mode === 'resend-sign'" class="mainButton" (click)="onResendSign()">שלח לאישור</button>
 </div>
