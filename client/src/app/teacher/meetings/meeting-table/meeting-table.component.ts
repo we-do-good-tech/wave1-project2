@@ -35,6 +35,8 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
 
     getReportSignAgain(report: Report) {
         console.log(report)
+        const findStudent = this.students.find((s) => s.ticketNo === report.ticketNo)
+        report.studentName = findStudent.studentName
         this.meetingsService.setReport(report)
         this.router.navigate(['/main/teacher/meeting', report.ticketNo])
     }

@@ -45,7 +45,8 @@ export class SingleMeetingComponent implements OnInit, OnDestroy {
 
     onResendSign(): void {
         if (this.report) {
-
+            alert('עוד לא עובד')
+            return
         }
     }
 
