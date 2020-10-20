@@ -11,6 +11,7 @@ import { FormsValidatorsService } from "../../../services/forms/forms-validators
 import { TeacherService } from 'src/app/services/teacher.service';
 import { Student } from 'src/app/interfaces/Student';
 import { Observable } from 'rxjs';
+import { timesRange, conculateRangeToTime } from "../../../services/helpers/time.range";
 
 
 @Component({
@@ -23,7 +24,6 @@ export class CreateMeetingComponent implements OnInit {
     students: Observable<Student[]>
     meetingForm: FormGroup;
 
-
     constructor(
         private formBuilder: FormBuilder,
         public formsService: FormsService,
@@ -35,55 +35,58 @@ export class CreateMeetingComponent implements OnInit {
         this.students = this.teacherService.getStudents()
 
         this.meetingForm = this.formBuilder.group({
-            ticketNo: [null, [Validators.required]],
-            meetingDate: [null, [Validators.required, FormsValidatorsService.limitDate]],
-            meetingStartTime: [null, [Validators.required]],
-            meetingEndTime: [null, [Validators.required]],
+            ticketNo: [null, [
+                Validators.required
+            ]],
+            meetingDate: [null, [
+                Validators.required,
+                FormsValidatorsService.limitDate(90),
+                FormsValidatorsService.blockOverDate
+            ]],
+            times: this.formBuilder.group({
+                meetingStartTime: [null, [
+                    Validators.required
+                ]],
+                meetingEndTime: [null, [
+                    Validators.required
+                ]],
+
+            }, {validator: FormsValidatorsService.getTimeRange}),
             meetingActivitis: [null, []],
             meetingComments: [null, []],
         });
     }
 
-    onCreateMeeting() {
+    onCreateMeeting() : void{
         const {
             ticketNo,
             meetingDate,
-            meetingStartTime,
-            meetingEndTime,
             meetingActivitis,
-            meetingComments
+            meetingComments,
+            times: {
+                meetingStartTime,
+                meetingEndTime,
+            }
         } = this.meetingForm.value
+       
+      const report = {
+        ticketNo:ticketNo,
+        meetingDate: meetingDate,
+        meetingActivitis: meetingActivitis,
+        meetingStartTime:meetingStartTime,
+        meetingEndTime: meetingEndTime,
+        totalMeetingHours:conculateRangeToTime(timesRange(meetingStartTime, meetingEndTime)),
+        meetingComments:meetingComments,
+      }
 
-
-        // const now = Date.now()
-        // if (now > new Date(meetingDate).getTime()) {
-        //     console.log('DATE IS PASS OVER')
-        // }
-
+      console.log(report)
 
     }
+
 
     getFormControl(controlName: string): FormControl {
-        return this.meetingForm.get(controlName) as FormControl;
+        return this.meetingForm.get(controlName) as FormControl || 
+        this.meetingForm.controls.times.get(controlName) as FormControl
     }
-
-    createMeeting() {
-        // this.router.navigate(["/main/teacher/meeting/", 123]);
-    }
-
-
-    getTimeRange(meetingStartTime, meetingEndTime) {
-        let start = meetingStartTime.split(':')
-        let end = meetingEndTime.split(':')
-
-        let range = new Date(0, 0, 0, end[0], end[1], 0).getTime() - new Date(0, 0, 0, start[0], start[1], 0).getTime()
-        if (range < 0) return
-        let minutes = range / 1000 / 60
-        let hours = Math.floor(minutes / 60)
-        let restMinutes = (minutes % 60)
-        console.log(hours + ':' + restMinutes)
-    }
-
-
 
 }

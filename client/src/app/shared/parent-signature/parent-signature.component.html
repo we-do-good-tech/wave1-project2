@@ -1,3 +1,4 @@
+<app-header styleElement [changeClass]="'header-green'" [selector]="'#the-header'"></app-header>
 <div class="parentSigantureContainer">
     <div class="meetingTeacher">
         <p>ישראל ישראלי - חונכות חברתית</p>
@@ -31,14 +32,11 @@
             נושאים ופעלויות שעלו במפגש
         </p>
         <div class="importantCommentsContent">
-
             כאן יירשמו הערות רלוונטיות עבור אותו מפגש,
             מה נלמד, באיזה שלב החנוך והחניך נמצאים ומה היו תכני המםגש. האם
         </div>
     </div>
     <div class="confirmCheckbox">
-        <!-- <input type="checkbox" id="comfirm" name="comfirm" value="confirm">
-        <label for="comfirm">קראתי ואני מאשר בחתימתי</label><br> -->
         <div class="grid">
             <label class="checkbox path">
                 <input type="checkbox" name="comfirm">
@@ -55,16 +53,10 @@
         <p>נא לחתום לאישור מפגש</p>
         <div class="sign">
             <div class="pSignaturePad">
-                <ng-signature-pad 
-                    [showClearButton]="false" 
-                    [showDoneButton]="true"
-                    [emitOnDragEnd]="true"
-                    [format]="'base64'"
-                    [backgroundColor]="'white'"  
-                    (done)="saveImage($event)" 
+                <ng-signature-pad [showClearButton]="false" [showDoneButton]="true" [emitOnDragEnd]="true"
+                    [format]="'base64'" [backgroundColor]="'white'" (done)="saveImage($event)"
                     [doneButtonClass]="isCanvasWrite ? 'padConfirmButton' : 'disabledButton'"
-                    [doneButtonText]="'אישור'"
-                    >
+                    [doneButtonText]="'אישור'">
                 </ng-signature-pad>
             </div>
         </div>

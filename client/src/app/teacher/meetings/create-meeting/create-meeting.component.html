@@ -1,5 +1,6 @@
-<app-header  styleElement [changeClass]="'header-green'" [selector]="'#the-header'">
-    <a [routerLink]="['/main/teacher']"> < </a>
+<app-header styleElement [changeClass]="'header-green'" [selector]="'#the-header'">
+    <a class="backArrow" [routerLink]="['/main/teacher']">
+        <i class="fas fa-arrow-left"></i> </a>
 </app-header>
 <div class="meetingsContainer">
     <form class="form" [formGroup]="meetingForm" (ngSubmit)="onCreateMeeting()">
@@ -26,9 +27,15 @@
                 <div class="errorMessage" *ngIf="getFormControl('meetingDate').errors.required">
                     שדה חובה
                 </div>
+                <div class="errorMessage" *ngIf="getFormControl('meetingDate').errors.limitDate">
+                    תאריך לא תקין
+                 </div>
+                <div class="errorMessage" *ngIf="getFormControl('meetingDate').errors.blockOverDate">
+                    תאריך לא תקין
+                </div>
             </div>
         </div>
-        <div class="mettingsTime">
+        <div class="mettingsTime" formGroupName="times">
             <div class="meetStart">
                 <small>שעתהתחלה</small>
                 <input [ngClass]="this.formsService.displayClass(getFormControl('meetingStartTime'))" type="time"
@@ -37,6 +44,7 @@
                     <div class="errorMessage" *ngIf="getFormControl('meetingStartTime').errors.required">
                         שדה חובה
                     </div>
+
                 </div>
             </div>
             <div class="meetEnd">
@@ -48,6 +56,9 @@
                         שדה חובה
                     </div>
                 </div>
+            </div>
+            <div *ngIf="getFormControl('times').errors?.getTimeRange">
+                שעה לא תקינה
             </div>
         </div>
         <div class="activitiesContainer">

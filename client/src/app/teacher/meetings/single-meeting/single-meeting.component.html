@@ -1,5 +1,7 @@
-<app-header  styleElement [changeClass]="'header-green'" [selector]="'#the-header'">
-    <a [routerLink]="['/main/teacher/create-meeting']"></a>
+<app-header styleElement [changeClass]="'header-green'" [selector]="'#the-header'">
+    <!-- <a [routerLink]="['/main/teacher/create-meeting']"></a> -->
+    <a class="backArrow" [routerLink]="['/main/teacher/create-meeting']">
+        <i class="fas fa-arrow-left"></i> </a>
 </app-header>
 <div class="singleMeetingContainer">
     <div class="meetingNumber">
