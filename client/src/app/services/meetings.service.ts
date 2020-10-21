@@ -15,7 +15,6 @@ export class MeetingsService {
         this.report = { ...report }
     }
 
-
     getReportCreated(): Report {
         if (this.report) return this.report
         return undefined

@@ -69,7 +69,7 @@ exports.authConfirmCode = async function (request, response) {
         });
     }
 
-    response.status(403).send({
+    response.status(401).send({
         message: "קוד שגוי, נסה שנית",
     });
 };

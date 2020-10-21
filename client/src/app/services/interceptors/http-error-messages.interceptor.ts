@@ -29,9 +29,9 @@ export class HttpErrorMessagesInterceptor implements HttpInterceptor {
                 // console.log(result)
             }),
             catchError((error) => {
-                // console.log(error.error.message);
+                console.log(error.error.message);
                 // console.log(error);
-                let errorMassge:string = error.error.message;
+                let errorMassge: string = error.error.message;
 
                 if (error.statusText === "Too Many Requests") {
                     errorMassge = error.error;

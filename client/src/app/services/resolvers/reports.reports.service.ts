@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Report } from 'src/app/interfaces/Report';
+import { LoaderService } from '../loader.service';
 import { TeacherService } from '../teacher.service';
 
 @Injectable({
@@ -9,12 +10,13 @@ import { TeacherService } from '../teacher.service';
 })
 export class ReportsResolverService implements Resolve<Report[]> {
 
-    constructor(private teacherService: TeacherService) { }
+    constructor(private teacherService: TeacherService, private loaderService: LoaderService) { }
 
     resolve(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Observable<Report[]> {
+        this.loaderService.setStatus(true)
         return this.teacherService.getReportsNotConfirm()
     }
 

@@ -418,7 +418,7 @@ class HttpErrorMessagesInterceptor {
         return next.handle(request).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["tap"])((result) => {
             // console.log(result)
         }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])((error) => {
-            // console.log(error.error.message);
+            console.log(error.error.message);
             // console.log(error);
             let errorMassge = error.error.message;
             if (error.statusText === "Too Many Requests") {
@@ -1448,6 +1448,7 @@ class LoaderComponent {
     }
     ngOnInit() {
         this.subLoadStatusChange = this.loaderService.getLoadStatusChange().subscribe((result) => {
+            console.log(result);
             this.isLoad = result;
         });
     }
