@@ -1,18 +1,13 @@
 import { ActivatedRoute, Router } from "@angular/router";
-import { AfterContentChecked, AfterContentInit, AfterViewInit, Component, OnInit } from "@angular/core";
-import {
-    FormBuilder,
-    FormControl,
-    FormGroup,
-    Validators,
-} from "@angular/forms";
+import { AfterContentInit, AfterViewInit, Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { FormBuilder, FormControl, FormGroup, Validators, } from "@angular/forms";
 import { FormsService } from "src/app/services/forms/forms.service";
 import { FormsValidatorsService } from "../../../services/forms/forms-validators.service";
-import { TeacherService } from 'src/app/services/teacher.service';
 import { Student } from 'src/app/interfaces/Student';
 import { timesRange, conculateRangeToTime } from "../../../services/helpers/time.range";
 import { Report } from 'src/app/interfaces/Report';
 import { MeetingsService } from 'src/app/services/meetings.service';
+import { timeList } from "../../../services/helpers/times.list";
 
 
 @Component({
@@ -20,20 +15,25 @@ import { MeetingsService } from 'src/app/services/meetings.service';
     templateUrl: "./create-meeting.component.html",
     styleUrls: ["./create-meeting.component.scss"],
 })
-export class CreateMeetingComponent implements OnInit, AfterContentInit {
+export class CreateMeetingComponent implements OnInit, AfterContentInit, AfterViewInit {
 
     students: Student[]
     meetingForm: FormGroup;
+    timeList: string[]
 
     constructor(
         private formBuilder: FormBuilder,
         public formsService: FormsService,
-        private router: Router,
         private route: ActivatedRoute,
-        private teacherService: TeacherService,
-        private meetingService: MeetingsService
-    ) {
+        private meetingService: MeetingsService) {
         this.students = []
+        this.timeList = timeList(8, 24, 10)
+    }
+
+    // @ViewChild('dateInput') pick: ElementRef
+
+    ngAfterViewInit() {
+        // console.log(this.pick.nativeElement)
     }
 
     ngOnInit(): void {
@@ -50,16 +50,18 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit {
             ]],
             times: this.formBuilder.group({
                 meetingStartTime: [null, [
-                    Validators.required
+
                 ]],
                 meetingEndTime: [null, [
-                    Validators.required
+
                 ]],
 
-            }, { validator: FormsValidatorsService.getTimeRange }),
+            }, { validator: FormsValidatorsService.PositiveTimeRange }),
             meetingActivitis: [null, []],
             meetingComments: [null, []],
         });
+
+        this.checkDateAndAddValidateTime()
     }
 
 
@@ -94,9 +96,9 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit {
             parentSignImageUrl: null
         }
 
-        // console.log(report)
-        this.meetingService.setReport(report)
-        this.router.navigate(['/main/teacher/meeting-new'])
+        console.log(report)
+        // this.meetingService.setReport(report)
+        // this.router.navigate(['/main/teacher/meeting-new'])
     }
 
 
@@ -119,6 +121,25 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit {
                 }
             })
         }
+    }
+
+
+    checkDateAndAddValidateTime() {
+        this.getFormControl('meetingDate').valueChanges.subscribe((result) => {
+            const meetingDate = new Date(result).toLocaleDateString()
+            const dateToday = new Date().toLocaleDateString()
+            const startTime = this.getFormControl('meetingStartTime')
+            const endTime = this.getFormControl('meetingEndTime')
+            if (meetingDate === dateToday) {
+                startTime.setValidators([Validators.required, FormsValidatorsService.blockOverTime])
+                endTime.setValidators([Validators.required, FormsValidatorsService.blockOverTime])
+            } else {
+                startTime.setValidators([Validators.required])
+                endTime.setValidators([Validators.required])
+            }
+            startTime.updateValueAndValidity()
+            endTime.updateValueAndValidity()
+        })
     }
 
 }

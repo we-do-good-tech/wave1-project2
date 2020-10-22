@@ -1448,7 +1448,7 @@ class LoaderComponent {
     }
     ngOnInit() {
         this.subLoadStatusChange = this.loaderService.getLoadStatusChange().subscribe((result) => {
-            console.log(result);
+            console.log(result, 'LOADER');
             this.isLoad = result;
         });
     }
@@ -1623,10 +1623,10 @@ const routes = [
     //     path: "",
     //     redirectTo: "parent-signature",
     //     pathMatch: "full",
-    // },
-    // {
-    //     path: 'x', component: ExmpleComponent
-    // },
+    //   },
+    //   {
+    //       path: 'x', component: ExmpleComponent
+    //   },
     {
         path: "auth",
         loadChildren: () => __webpack_require__.e(/*! import() | auth-auth-module */ "auth-auth-module").then(__webpack_require__.bind(null, /*! ./auth/auth.module */ "Yj9t")).then((m) => m.AuthModule),

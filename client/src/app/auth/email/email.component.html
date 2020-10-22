@@ -7,13 +7,13 @@
         <div class="input-group">
             <label for="teacherEmail">דואר אלקטרוני</label>
             <div class="idInput">
-                <input [ngClass]="this.formsService.displayClass(teacherEmail.control)" id="id-a" required type="email"
+                <input id="id-a" required type="email"
                     ngModel pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" name="teacherEmail"
                     #teacherEmail="ngModel" class="form-control" placeholder="דואר אלקטרוני">
             </div>
         </div>
         <app-http-error-messages></app-http-error-messages>
-        <div class="errorsContainer" *ngIf="this.formsService.formControlStatus(teacherEmail.control)">
+        <div class="errorsContainer" *ngIf="this.formsService.formControlStatus(teacherEmail.control) && form.submitted">
             <div class="error-validate-form-message animate__animated animate__headShake"
                 *ngIf="teacherEmail.errors.required">
                 שדה חובה!
@@ -25,7 +25,7 @@
         </div>
         <div class="loginButton">
             <img src="../../../assets/Group 1789.svg" alt>
-            <button [class.disabledButton]="form.invalid" class="mainButton" [disabled]="form.invalid">
+            <button  class="mainButton" >
                 התחברו
             </button>
         </div>

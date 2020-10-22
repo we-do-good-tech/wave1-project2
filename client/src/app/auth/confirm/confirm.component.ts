@@ -31,7 +31,6 @@ export class ConfirmComponent implements AfterViewInit, OnDestroy {
 
     ngAfterViewInit(): void {
         this.subFormChange = this.form.valueChanges.subscribe((result) => {
-            console.log(result)
             if (this.form.valid) {
                 let code: string = "";
 
@@ -58,7 +57,7 @@ export class ConfirmComponent implements AfterViewInit, OnDestroy {
         this.form.resetForm()
         this.keyBoardService.setElement(this.firstInput.nativeElement)
         this.authService.resendConfirmCode().subscribe((result) => {
-            console.log(result);
+            // console.log(result);
         });
     }
 

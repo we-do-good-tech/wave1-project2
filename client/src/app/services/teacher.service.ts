@@ -17,11 +17,13 @@ export class TeacherService {
 
 
     createReport(report: Report): Observable<{ message: string }> {
+        this.reports.push(report)
         return this.http.post<{ message: string }>('api/teacher/create-report', report)
     }
 
 
     getReportsNotConfirm(): Observable<Report[]> {
+        console.log(this.reports)
         if (this.reports) {
             return of(this.reports)
         }
