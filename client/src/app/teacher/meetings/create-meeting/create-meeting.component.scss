@@ -1,191 +1,93 @@
 .meetingsContainer {
   width: 100%;
-  height: 90%;
-  margin: auto 0;
+  height: calc(100vh - 68px);
   display: flex;
   align-items: center;
   flex-direction: column;
   overflow-y: auto;
 }
-
 form {
-  width: 80%;
-  height: 100%;
-  display: grid;
+  width: 100%;
+  display: flex;
   align-items: center;
+  flex-direction: column;
+  margin: 10px 0;
 }
 
-.createFormInput {
-  display: flex;
-  flex-direction: column;
-}
-.createFormInput label {
-  text-align: center;
-  font-size: 14px;
+input,
+button,
+select,
+textarea {
+  width: 80%;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #000;
+  direction: rtl;
 }
 label {
-  color: black;
-}
-
-input[type="date"] {
-  text-align: center;
-}
-
-form select,
-form input {
+  display: flex;
+  width: 80%;
   direction: rtl;
-  width: 100%;
-  border: 1px solid #4a4545;
-  padding: 10px;
-  background-color: #fff;
-  color: #4a4545;
-  border-radius: 5px;
-  font-weight: bold;
-  text-align: center;
+  font-size: 14px;
 }
-
-.errorMessage {
-  font-size: 12px;
-  text-align: center;
-  float: right;
-  color: red;
-  height: 35px;
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  bottom: 0;
+  color: transparent;
+  cursor: pointer;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%;
+  outline: none;
 }
 
 .mettingsTime {
-  width: 100%;
+  width: 80%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  direction: rtl;
   color: #4a4545;
+  margin-top: 10px;
 }
-.mettingsTime small {
-  width: 100%;
-  float: right;
-  margin-left: 50px;
+.mettingsTime label {
+  font-size: 10px;
 }
-.mettingsTime .meetStart,
-.mettingsTime .meetEnd {
+.meetEnd {
+  width: 50%;
   display: flex;
   flex-direction: column;
-  width: 45%;
-  height: 50px;
+  direction: rtl;
 }
-.mettingsTime input {
-  width: 100%;
-  font-weight: bold;
-  text-align: center;
-}
-
-.mettingsTime small {
-  text-align: center;
-  margin-top: 5px;
+.meetStart {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
 }
 
 .activitiesContainer {
   width: 100%;
   display: flex;
   flex-direction: column;
-  // align-items: center;
-  margin-top: 35px;
-  height: 80%;
+  align-items: center;
+  margin-top: 15px;
+}
+::placeholder {
   direction: rtl;
-  float: right;
 }
-.errorMessage > div {
-  font-size: 14px;
-  color: red;
-}
-.activitiesContainer textarea {
-  width: 100%;
-  height: 75%;
+button {
   margin: 10px 0;
-  direction: rtl;
-  border: 1px solid #a3a3a3;
-  border-radius: 5px;
-  outline: none;
+}
+::placeholder {
   padding: 5px;
 }
 
-.activitiesContainer textarea:focus {
+textarea:focus {
   border: 2px solid black;
 }
 
-button {
-  margin-bottom: 75px;
-}
-.activitiesContainer .activitiesLabel,
-.activitiesContainer .commentsLabel {
-  // text-align: center;
-  float: right;
-  width: 100%;
-  position: relative;
-  padding: 5px 0;
-}
-.activitiesContainer .activitiesLabel small,
-.activitiesContainer .commentsLabel small {
-  position: absolute;
-  right: 0;
-  font-size: 12px;
-}
-
-.textAreaOne:focus + .activitiesLabel {
-  display: block;
-}
-.textAreaTwo:focus + .commentsLabel {
-  display: block;
-}
-.activitiesLabel {
-  order: 1;
-}
-.textAreaOne {
-  order: 2;
-}
-.commentsLabel {
-  order: 3;
-}
-.textAreaTwo {
-  order: 4;
-}
-.activitiesLabel,
-.commentsLabel {
-  display: none;
-}
-
 @media (max-height: 600px) {
-  form {
-    width: 95%;
-    height: 90%;
-    margin: auto;
-    overflow-y: auto;
-  }
-  .activitiesContainer textarea {
-    width: 100%;
-    height: 15%;
-    margin: 5px 0;
-    direction: rtl;
-    border: 1px solid #a3a3a3;
-  }
   ::placeholder {
     font-size: 12px;
-  }
-  .createFormInput {
-    margin-bottom: 10px;
-  }
-
-  .activitiesContainer {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 45px;
-    height: 350px;
-  }
-  button {
-    margin-bottom: 45px;
-    margin-top: 55px;
-  }
-  small {
-    margin-top: 30px;
   }
 }

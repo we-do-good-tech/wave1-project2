@@ -6,11 +6,9 @@
     <form #form="ngForm" (ngSubmit)="onSendEmail(form)">
         <div class="input-group">
             <label for="teacherEmail">דואר אלקטרוני</label>
-            <div class="idInput">
-                <input [ngClass]="this.formsService.displayClass(teacherEmail.control)" id="id-a" required type="email"
-                    ngModel pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" name="teacherEmail"
-                    #teacherEmail="ngModel" class="form-control" placeholder="דואר אלקטרוני">
-            </div>
+            <input [ngClass]="this.formsService.displayClass(teacherEmail.control)" id="id-a" required type="email"
+                ngModel pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" name="teacherEmail"
+                #teacherEmail="ngModel" class="form-control" placeholder="דואר אלקטרוני">
         </div>
         <app-http-error-messages></app-http-error-messages>
         <div class="errorsContainer" *ngIf="this.formsService.formControlStatus(teacherEmail.control)">
@@ -24,7 +22,9 @@
             </div>
         </div>
         <div class="loginButton">
-            <img src="../../../assets/Group 1789.svg" alt>
+            <div class="buttonImage">
+                <img src="../../../assets/Group 1789.svg" alt>
+            </div>
             <button [class.disabledButton]="form.invalid" class="mainButton" [disabled]="form.invalid">
                 התחברו
             </button>
