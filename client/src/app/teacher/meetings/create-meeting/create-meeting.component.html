@@ -9,7 +9,7 @@
             <select [ngClass]="this.formsService.displayClass(getFormControl('studentName'))"
                 formControlName="studentName">
                 <option value>בחר</option>
-                <option *ngFor="let student of students" [value]="student?.studentName">
+                <option *ngFor="let student of students" [ngValue]="student">
                     {{student?.studentName}}
                 </option>
             </select>

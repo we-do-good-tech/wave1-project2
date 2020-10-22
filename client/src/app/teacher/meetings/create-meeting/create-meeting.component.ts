@@ -81,22 +81,24 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, AfterVi
             }
         } = this.meetingForm.value
 
-        const student = this.students.find((s) => s.studentName === studentName)
-        const report: Report = {
-            studentName: studentName,
-            ticketNo: student.ticketNo,
-            reportDate: meetingDate,
-            reportActivitis: meetingActivitis,
-            reportStartTime: meetingStartTime,
-            reportEndTime: meetingEndTime,
-            reportRangeTimne: conculateRangeToTime(timesRange(meetingStartTime, meetingEndTime)),
-            reportComments: meetingComments,
-            parentEmail: student.parentEmail,
-            isParentSign: false,
-            parentSignImageUrl: null
-        }
+        console.log(studentName)
 
-        console.log(report)
+        // const student = this.students.find((s) => s.studentName === studentName)
+        // const report: Report = {
+        //     studentName: studentName,
+        //     ticketNo: student.ticketNo,
+        //     reportDate: meetingDate,
+        //     reportActivitis: meetingActivitis,
+        //     reportStartTime: meetingStartTime,
+        //     reportEndTime: meetingEndTime,
+        //     reportRangeTimne: conculateRangeToTime(timesRange(meetingStartTime, meetingEndTime)),
+        //     reportComments: meetingComments,
+        //     parentEmail: student.parentEmail,
+        //     isParentSign: false,
+        //     parentSignImageUrl: null
+        // }
+
+        // console.log(report)
         // this.meetingService.setReport(report)
         // this.router.navigate(['/main/teacher/meeting-new'])
     }
