@@ -1,11 +1,10 @@
 const parseCSV = require('csv-parse')
 
-
 function convertCSV(data) {
     return new Promise((resolve, reject) => {
-        parseCSV(data, {}, (error, data) => {
-            if (data[1]) {
-                resolve(data.slice(1, data.length))
+        parseCSV(data, {}, (error, result) => {
+            if (result[1]) {
+                resolve(result.slice(1, result.length))
             } else {
                 resolve(undefined)
             }

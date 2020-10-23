@@ -15,7 +15,7 @@ import { timeList } from "../../../services/helpers/times.list";
     templateUrl: "./create-meeting.component.html",
     styleUrls: ["./create-meeting.component.scss"],
 })
-export class CreateMeetingComponent implements OnInit, AfterContentInit, AfterViewInit {
+export class CreateMeetingComponent implements OnInit, AfterContentInit {
 
     students: Student[]
     meetingForm: FormGroup;
@@ -25,22 +25,18 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, AfterVi
         private formBuilder: FormBuilder,
         public formsService: FormsService,
         private route: ActivatedRoute,
+        private router: Router,
         private meetingService: MeetingsService) {
         this.students = []
         this.timeList = timeList(8, 24, 10)
     }
 
-    // @ViewChild('dateInput') pick: ElementRef
-
-    ngAfterViewInit() {
-        // console.log(this.pick.nativeElement)
-    }
 
     ngOnInit(): void {
         this.route.data.subscribe((result) => this.students = result.students)
 
         this.meetingForm = this.formBuilder.group({
-            studentName: [null, [
+            studentInfo: [null, [
                 Validators.required
             ]],
             meetingDate: [null, [
@@ -71,7 +67,7 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, AfterVi
 
     onCreateMeeting(): void {
         const {
-            studentName,
+            studentInfo,
             meetingDate,
             meetingActivitis,
             meetingComments,
@@ -81,26 +77,23 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, AfterVi
             }
         } = this.meetingForm.value
 
-        console.log(studentName)
+        const report: Report = {
+            studentName: studentInfo.studentName,
+            ticketNo: studentInfo.ticketNo,
+            reportDate: meetingDate,
+            reportActivitis: meetingActivitis,
+            reportStartTime: meetingStartTime,
+            reportEndTime: meetingEndTime,
+            reportRangeTimne: conculateRangeToTime(timesRange(meetingStartTime, meetingEndTime)),
+            reportComments: meetingComments,
+            parentEmail: studentInfo.parentEmail,
+            isParentSign: false,
+            parentSignImageUrl: null
+        }
 
-        // const student = this.students.find((s) => s.studentName === studentName)
-        // const report: Report = {
-        //     studentName: studentName,
-        //     ticketNo: student.ticketNo,
-        //     reportDate: meetingDate,
-        //     reportActivitis: meetingActivitis,
-        //     reportStartTime: meetingStartTime,
-        //     reportEndTime: meetingEndTime,
-        //     reportRangeTimne: conculateRangeToTime(timesRange(meetingStartTime, meetingEndTime)),
-        //     reportComments: meetingComments,
-        //     parentEmail: student.parentEmail,
-        //     isParentSign: false,
-        //     parentSignImageUrl: null
-        // }
-
-        // console.log(report)
-        // this.meetingService.setReport(report)
-        // this.router.navigate(['/main/teacher/meeting-new'])
+        console.log(report)
+        this.meetingService.setReport(report)
+        this.router.navigate(['/main/teacher/meeting-new'])
     }
 
 

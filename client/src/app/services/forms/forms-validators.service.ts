@@ -42,7 +42,7 @@ export class FormsValidatorsService {
     static blockOverTime(control: AbstractControl): ValidationErrors {
         let value = control.value
         let now = new Date()
-        let currentDate = now.toLocaleDateString().split('/')
+        let currentDate = now.toLocaleDateString().split('/').length === 1 ? now.toLocaleDateString().split('.') : now.toLocaleDateString().split('/')
 
         if (value) {
             let time = value.split(':')

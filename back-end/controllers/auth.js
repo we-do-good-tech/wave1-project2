@@ -4,13 +4,17 @@ const { confirmCode } = require("../services/confirm-code");
 const { sendEmailConfirmCodeOptions } = require("../services/emails");
 const { createToken } = require("../services/tokens");
 const keys = require("../config/keys");
+const { convertSheetsDataToObjectsArray } = require('../helpers/tojson')
 
-exports.authTeacherId = async function (request, response) {
+exports.authTeacherEmail = async function (request, response) {
     const { teacherEmail } = request.body;
+    const query = `select * where C='${teacherEmail}'`;
+    const sheetId = keys.GOOGLE_SHEETS.sheetsIds.teachers
 
     try {
-        const teacher = await googleSheetsService.findTeacherByEmail(
-            teacherEmail,
+        const teacher = await googleSheetsService.find(
+            query,
+            sheetId,
             request.sheetsClientData.authorizationToken
         );
 
@@ -21,10 +25,12 @@ exports.authTeacherId = async function (request, response) {
             });
         }
 
+        const toJson = convertSheetsDataToObjectsArray(teacher, 'TEACHERS')[0]
+
         confirmCode.createConfirmCode();
 
         const options = sendEmailConfirmCodeOptions(
-            teacher.email,
+            toJson.email,
             confirmCode.getConfirmCode()
         );
 
@@ -34,9 +40,9 @@ exports.authTeacherId = async function (request, response) {
         confirmCode.setTimeExpireConfirmCode();
 
         const token = createToken({
-            teacherId: teacher.id,
-            teacherEmail: teacher.email,
-            teacherFirstName: teacher.firstName,
+            teacherId: toJson.id,
+            teacherEmail: toJson.email,
+            teacherFirstName: toJson.firstName,
         });
 
         return response.status(200).send({
@@ -45,7 +51,7 @@ exports.authTeacherId = async function (request, response) {
             tokenExpiresIn: keys.TOKENS.ACCESS_TOKEN.expiresIn,
             confirmCodeExpire: 60 * 2,
             userName: {
-                firstName: teacher.firstName,
+                firstName: toJson.firstName,
             },
         });
     } catch (error) {
@@ -84,18 +90,12 @@ exports.newConfirmCode = async function (request, response) {
         confirmCode.getConfirmCode()
     );
 
-    sendMail(options, (error, success) => {
-        if (success) {
-            confirmCode.setTimeExpireConfirmCode();
+    sendMail(options)
 
-            return response.status(200).send({
-                message: "נשלח קוד חדש",
-                confirmCodeExpire: 60 * 2,
-            });
-        }
+    confirmCode.setTimeExpireConfirmCode();
 
-        response.status(403).send({
-            message: "EMAIL UNKNOW",
-        });
+    return response.status(200).send({
+        message: "נשלח קוד חדש",
+        confirmCodeExpire: 60 * 2,
     });
 };

@@ -14,12 +14,12 @@ const routes: Routes = [
     },
     // {
     //     path: "",
-    //     redirectTo: "parent-signature",
+    //     redirectTo: "x",
     //     pathMatch: "full",
-    //   },
-    //   {
-    //       path: 'x', component: ExmpleComponent
-    //   },
+    // },
+    // {
+    //     path: 'x', component: ExmpleComponent
+    // },
     {
         path: "auth",
         loadChildren: () => import("./auth/auth.module").then((m) => m.AuthModule),

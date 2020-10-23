@@ -17,7 +17,6 @@ export class TeacherService {
 
 
     createReport(report: Report): Observable<{ message: string }> {
-        this.reports.push(report)
         return this.http.post<{ message: string }>('api/teacher/create-report', report)
     }
 

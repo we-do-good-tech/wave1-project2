@@ -1,15 +1,22 @@
 const googleSheetsService = require("../services/google-sheets");
 const keys = require("../config/keys");
+const { convertSheetsDataToObjectsArray } = require('../helpers/tojson')
+
+
 
 module.exports.getStudents = async function (request, response) {
+    const query = `select * where E=${Number(request.userData.teacherId)}`;
+    const sheetId = keys.GOOGLE_SHEETS.sheetsIds.childrens
 
     try {
-        const sdudents = await googleSheetsService.findStudents(
-            request.userData.teacherId,
-            request.sheetsClientData.authorizationToken
+        const sdudents = await googleSheetsService.find(
+            query,
+            sheetId,
+            request.sheetsClientData.authorizationToken,
         )
 
-        response.status(200).send(sdudents)
+        const toJson = convertSheetsDataToObjectsArray(sdudents, 'CHILDRENS')
+        response.status(200).send(toJson)
     } catch (error) {
         console.log(error)
         response.status(500).send({
@@ -21,23 +28,28 @@ module.exports.getStudents = async function (request, response) {
 
 module.exports.createReport = async function (request, response) {
     const { ticketNo, reportDate, reportActivitis, reportComments, reportStartTime, reportEndTime, reportRangeTimne, isParentSign, parentSignImageUrl } = request.body
-    const report = {
-        ticketNo: ticketNo,
-        reportDate: reportDate,
-        reportActivitis: reportActivitis,
-        reportComments: reportComments,
-        reportStartTime: reportStartTime,
-        reportEndTime: reportEndTime,
-        reportRangeTimne: reportRangeTimne,
-        isParentSign: isParentSign,
-        parentSignImageUrl: parentSignImageUrl,
-        teacherId: request.userData.teacherId
-    }
+
+    let body = `{"values":[
+        [
+            "${reportDate}",
+            "${reportStartTime}",
+            "${reportEndTime}",
+            "${reportRangeTimne}",
+            "${reportActivitis}",
+            "${reportComments}",
+            ${isParentSign},
+            ${parentSignImageUrl},
+            "${ticketNo}",
+            "${request.userData.teacherId}",
+            "${new Date(reportDate).getMonth() + 1}"
+        ]
+    ]}`
 
 
     try {
         const reportCreated = await googleSheetsService.save(
-            report,
+            body,
+            keys.GOOGLE_SHEETS.sheetsNames.reports,
             request.sheetsClientData.authorizationToken
         )
 
@@ -61,17 +73,43 @@ module.exports.createReport = async function (request, response) {
 
 
 module.exports.getReportsUnConfirm = async function (request, response) {
+    const sheetId = keys.GOOGLE_SHEETS.sheetsIds.reports
+    const query = `select A,B,C,D,E,F,I where J=${Number(request.userData.teacherId)}and G=${false}`;
+
     try {
-        const reports = await googleSheetsService.findReports(
-            request.userData.teacherId,
+        const reports = await googleSheetsService.find(
+            query,
+            sheetId,
             request.sheetsClientData.authorizationToken
         )
 
-        return response.status(200).send(reports)
+        if (!reports) {
+            return response.status(200).send([]);
+        }
+
+        const toJson = convertSheetsDataToObjectsArray(reports, 'REPORTS')
+
+        return response.status(200).send(toJson)
     } catch (error) {
         console.log(error)
         response.status(500).send({
             message: "ERROR UNKNOW",
         });
+    }
+}
+
+
+module.exports.getStats = async function (request, response) {
+    const sheetId = keys.GOOGLE_SHEETS.sheetsIds.stats
+    const qurey = `select * where A=${Number(request.userData.teacherId)}`
+
+    try {
+        const stats = await googleSheetsService.find(
+            qurey,
+            sheetId,
+            request.sheetsClientData.authorizationToken
+        )
+    } catch (error) {
+
     }
 }

@@ -29,6 +29,13 @@ function convertSheetsDataToObjectsArray(data, sheetName) {
                     ticketNo: ticketNo
                 }
             })
+        case 'STATS':
+            return data.map(([totalHours, meetingsCount]) => {
+                return {
+                    totalHours: totalHours,
+                    meetingsCount: meetingsCount
+                }
+            })
         default:
             return null
     }
