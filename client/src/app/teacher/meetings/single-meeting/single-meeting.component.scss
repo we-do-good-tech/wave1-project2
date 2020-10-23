@@ -1,17 +1,22 @@
 .singleMeetingContainer {
   width: 100%;
-  display: grid;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
   text-align: center;
-  height: 100vh;
+  height: calc(100vh - 68px);
+  overflow-y: auto;
 }
-.meetingNumber h4 {
-  font-size: 20px;
-  color: #4a4545;
-}
+// .meetingNumber h4 {
+//   font-size: 20px;
+//   color: #4a4545;
+// }
 .meetingTeacher p {
   font-weight: bold;
   font-size: 16px;
   color: #6dac18;
+  margin-top: 100px;
 }
 .meetingDateAndTime {
   width: 80%;

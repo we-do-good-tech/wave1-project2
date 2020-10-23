@@ -4,50 +4,74 @@
 </app-header>
 <div class="meetingsContainer">
     <form class="form" [formGroup]="meetingForm" (ngSubmit)="onCreateMeeting()">
-        <!-- <div class="createFormInput"> -->
         <label>בחר מהרשימה</label>
-        <select class="selectUser" [ngClass]="this.formsService.displayClass(getFormControl('ticketNo'))"
-            formControlName="ticketNo">
+        <select [ngClass]="this.formsService.displayClass(getFormControl('studentName'))" formControlName="studentName">
             <option value>בחר</option>
-            <option *ngFor="let student of students | async" [value]="student?.ticketNo">
+            <option *ngFor="let student of students"
+                [ngValue]="{sName:student?.studentName, sTicketNo:student?.ticketNo, sParentEmail:student?.parentEmail}">
                 {{student?.studentName}}
             </option>
         </select>
-        <div class="errorMessage" *ngIf="this.formsService.formControlStatus(getFormControl('ticketNo'))">
-            <div>
+        <div *ngIf="this.formsService.formControlStatus(getFormControl('studentName'))">
+            <div class="errorMessage">
                 שדה חובה
             </div>
         </div>
-        <!-- </div> -->
-        <!-- <div class="createFormInput"> -->
         <label>בחר תאריך</label>
         <input [ngClass]="this.formsService.displayClass(getFormControl('meetingDate'))" type="date"
             formControlName="meetingDate">
-        <div class="errorMessage" *ngIf="this.formsService.formControlStatus(getFormControl('meetingDate'))">
-            <div *ngIf="getFormControl('meetingDate').errors.required">
+        <div *ngIf="this.formsService.formControlStatus(getFormControl('meetingDate'))">
+            <div class="errorMessage" *ngIf="getFormControl('meetingDate').errors.required">
                 שדה חובה
             </div>
+            <div class="errorMessage"
+                *ngIf="getFormControl('meetingDate').errors.limitDate && !getFormControl('meetingDate').errors.required">
+                לא ניתן ליצור מפגש שהתקיים לפני יותר מ-3 חודשים
+            </div>
+            <div class="errorMessage" *ngIf="getFormControl('meetingDate').errors.blockOverDate">
+                תאריך לא תקין
+            </div>
         </div>
-        <!-- </div> -->
-        <div class="mettingsTime">
+        <div class="mettingsTime" formGroupName="times">
             <div class="meetStart">
                 <label>שעת התחלה</label>
-                <input [ngClass]="this.formsService.displayClass(getFormControl('meetingStartTime'))" type="time"
-                    formControlName="meetingStartTime">
-                <div *ngIf="this.formsService.formControlStatus(getFormControl('meetingStartTime'))">
-                    <div class="errorMessage" *ngIf="getFormControl('meetingStartTime').errors.required">
+                <select formControlName="meetingStartTime"
+                    [ngClass]="this.formsService.displayClass(getFormControl('meetingStartTime'))">
+                    <option value>--:--</option>
+                    <option *ngFor="let time of timeList" [value]="time">{{time}}</option>
+                </select>
+                <!-- <input [ngClass]="this.formsService.displayClass(getFormControl('meetingStartTime'))" type="time" step="60"
+              formControlName="meetingStartTime" class="without_ampm"> -->
+                <div class="errorMessage"
+                    *ngIf="this.formsService.formControlStatus(getFormControl('meetingStartTime'))">
+                    <div class="errorMessage" *ngIf=" getFormControl('meetingStartTime').errors.required">
                         שדה חובה
                     </div>
+                    <div class="errorMessage" *ngIf="getFormControl('meetingStartTime').errors.blockOverTime">
+                        שעה לא חוקית
+                    </div>
+
                 </div>
             </div>
             <div class="meetEnd">
                 <label>שעת סיום</label>
-                <input [ngClass]="this.formsService.displayClass(getFormControl('meetingEndTime'))" type="time"
-                    formControlName="meetingEndTime">
-                <div *ngIf="this.formsService.formControlStatus(getFormControl('meetingEndTime'))">
+                <select formControlName="meetingEndTime"
+                    [ngClass]="this.formsService.displayClass(getFormControl('meetingEndTime'))">
+                    <option value>--:--</option>
+                    <option *ngFor="let time of timeList" [value]="time">{{time}}</option>
+                </select>
+                <!-- <input [ngClass]="this.formsService.displayClass(getFormControl('meetingEndTime'))" type="time"
+              formControlName="meetingEndTime"> -->
+                <div class="errorMessage" *ngIf="this.formsService.formControlStatus(getFormControl('meetingEndTime'))">
                     <div class="errorMessage" *ngIf="getFormControl('meetingEndTime').errors.required">
                         שדה חובה
                     </div>
+                    <div class="errorMessage" *ngIf="getFormControl('meetingEndTime').errors.blockOverTime">
+                        שעה לא חוקית
+                    </div>
+                </div>
+                <div class="errorMessage" *ngIf="getFormControl('times').errors?.PositiveTimeRange">
+                    שעה לא תקינה
                 </div>
             </div>
         </div>
@@ -62,11 +86,9 @@
                 formControlName="meetingComments" cols="5" rows="5">
         </textarea>
         </div>
-        <button [disabled]="meetingForm.invalid" [class.disabledButton]="meetingForm.invalid" (click)="createMeeting()"
-            type="submit" class="mainButton">
+        <!-- [disabled]="meetingForm.invalid"  -->
+        <button [class.disabledButton]="meetingForm.invalid" type="submit" class="mainButton">
             צור פגישה
         </button>
     </form>
 </div>
-
-<!-- [disabled]="meetingForm.invalid -->

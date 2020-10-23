@@ -22,6 +22,17 @@ function authorizeClient(callClient) {
     });
 }
 
+
+// async function authSheets(client) {
+//     try {
+//         const sheets = await google.sheets({ version: 'v4', auth: client })
+//         return sheets
+//     } catch (error) {
+//         console.log(error)
+//         throw error
+//     }
+// }
+
 module.exports = {
     authorizeClient,
 };

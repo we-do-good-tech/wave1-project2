@@ -6,46 +6,58 @@ import { MeetingCreateSuccessComponent } from "./meetings/meeting-create-success
 import { MeetingTableComponent } from "./meetings/meeting-table/meeting-table.component";
 import { SingleMeetingComponent } from "./meetings/single-meeting/single-meeting.component";
 import { TeacherMainComponent } from "./teacher-main/teacher-main.component";
+import { SingleMeetingToOperationGuard } from '../services/guards/single-meeting-to-operation.guard';
+import { StudentsResolverService } from '../services/resolvers/students.resolver.service';
+import { ReportsResolverService } from '../services/resolvers/reports.reports.service';
 
 const routes: Routes = [
-  {
-    path: "teacher",
-    component: TeacherMainComponent,
-    children: [
-      {
-        path: "",
-        component: DashboardComponent,
-      },
-      {
-        path: "create-meeting",
-        component: CreateMeetingComponent,
-      },
-      {
-        path: "meetings-table",
-        component: MeetingTableComponent,
-      },
-      {
-        path: "meeting/:id",
-        component: SingleMeetingComponent,
-      },
-      {
-        path: "meeting/:id/resend-sign",
-        component: SingleMeetingComponent,
-      },
-      {
-        path: "meeting-success",
-        component: MeetingCreateSuccessComponent,
-      },
-      {
-        path: "meeting-summary",
-        component: SingleMeetingComponent,
-      },
-    ],
-  },
+    {
+        path: "teacher",
+        component: TeacherMainComponent,
+        children: [
+            {
+                path: "",
+                component: DashboardComponent,
+            },
+            {
+                path: "create-meeting",
+                component: CreateMeetingComponent,
+                resolve: {
+                    students: StudentsResolverService
+                }
+            },
+            {
+                path: "meeting-new",
+                component: SingleMeetingComponent,
+                canActivate: [SingleMeetingToOperationGuard]
+            },
+            {
+                path: "meetings-table",
+                component: MeetingTableComponent,
+                resolve: {
+                    students: StudentsResolverService,
+                    reports: ReportsResolverService
+                }
+            },
+            {
+                path: "meeting/:ticketNo",
+                component: SingleMeetingComponent,
+                canActivate: [SingleMeetingToOperationGuard]
+            },
+            {
+                path: "meeting-success",
+                component: MeetingCreateSuccessComponent,
+                canActivate: [SingleMeetingToOperationGuard],
+                resolve: {
+                    reports: ReportsResolverService
+                }
+            },
+        ],
+    },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
 })
-export class TeacherRoutingModule {}
+export class TeacherRoutingModule { }

@@ -1,27 +1,28 @@
-<app-header styleElement [changeClass]="'header-green'" [selector]="'#the-header'">
-    <!-- <a [routerLink]="['/main/teacher/create-meeting']"></a> -->
-    <a class="backArrow" [routerLink]="['/main/teacher/create-meeting']">
+<app-header styleElement [changeClass]="mode === 'new-report' ? 'header-green' : 'header-red'"
+    [selector]="'#the-header'">
+    <a class="backArrow"
+        [routerLink]="mode === 'new-report' ? ['/main/teacher/create-meeting'] : ['/main/teacher/meetings-table'] ">
         <i class="fas fa-arrow-left"></i> </a>
 </app-header>
 <div class="singleMeetingContainer">
-    <div class="meetingNumber">
+    <!-- <div class="meetingNumber">
         <h4>סיכום מפגש 6</h4>
-    </div>
+    </div> -->
     <div class="meetingTeacher">
-        <p>ישראל ישראלי - חונכות חברתית</p>
+        <p> {{report?.studentName}}</p>
     </div>
     <div class="meetingDateAndTime">
         <div class="totalHours">
-            01:00
+            {{report?.reportRangeTimne}}
             <small>סה"כ שעות</small>
         </div>
         <div class="separator"></div>
         <div class="dateAndTime">
             <div class="time">
-                14:00-13:00
+                {{report?.reportEndTime}}-{{report?.reportStartTime}}
             </div>
             <div class="date">
-                29/09/2020
+                {{report?.reportDate}}
             </div>
         </div>
     </div>
@@ -30,26 +31,21 @@
             נושאים ופעלויות שעלו במפגש
         </p>
         <div class="topicsContent">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Necessitatibus corrupti nesciunt minus! Itaque,
-            placeat deleniti facere est quos corrupti veniam, aliquid quisquam amet quae rem esse, aspernatur dolore
-            maxime eligendi? Sapiente asperiores, velit provident dolorum repellat voluptas ratione eos quas commodi
-            consequatur perferendis expedita mollitia, facilis ut quos a quisquam.
+            {{report?.reportActivitis}}
         </div>
     </div>
     <div class="importantComments">
         <p class="header">
-            נושאים ופעלויות שעלו במפגש; בהנ9ם
+            הערות
         </p>
         <div class="importantCommentsContent">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Necessitatibus corrupti nesciunt minus! Itaque,
-            placeat deleniti facere est quos corrupti veniam, aliquid quisquam amet quae rem esse, aspernatur dolore
-            maxime eligendi? Sapiente asperiores, velit provident dolorum repellat voluptas ratione eos quas commodi
-            consequatur perferendis expedita mollitia, facilis ut quos a quisquam.
+            {{report?.reportComments}}
         </div>
     </div>
 
-    <div class="editButton">
+    <div *ngIf="mode === 'new-report'" class="editButton">
         <a [routerLink]="['/main/teacher/create-meeting']">עריכה <i class="fas fa-pencil-alt"></i></a>
     </div>
-    <button class="mainButton">אישור</button>
+    <button *ngIf="mode === 'new-report'" class="mainButton" (click)="onSendReport()">אישור</button>
+    <button *ngIf="mode === 'resend-sign'" class="mainButton" (click)="onResendSign()">שלח לאישור</button>
 </div>

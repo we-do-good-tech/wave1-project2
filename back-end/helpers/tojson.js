@@ -17,6 +17,18 @@ function convertSheetsDataToObjectsArray(data, sheetName) {
                     ticketNo: ticketNo,
                 };
             });
+        case 'REPORTS':
+            return data.map(([reportDate, reportStartTime, reportEndTime, reportRangeTimne, reportActivitis, reportComments, ticketNo]) => {
+                return {
+                    reportDate: reportDate,
+                    reportStartTime: reportStartTime,
+                    reportEndTime: reportEndTime,
+                    reportRangeTimne: reportRangeTimne,
+                    reportActivitis: reportActivitis,
+                    reportComments: reportComments,
+                    ticketNo: ticketNo
+                }
+            })
         default:
             return null
     }

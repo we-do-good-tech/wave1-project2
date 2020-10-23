@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { Router } from '@angular/router';
+import { from } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormsService } from 'src/app/services/forms/forms.service';
 import { LoaderService } from 'src/app/services/loader.service';
@@ -10,7 +11,7 @@ import { LoaderService } from 'src/app/services/loader.service';
     templateUrl: './email.component.html',
     styleUrls: ['./email.component.scss']
 })
-export class EmailComponent implements OnInit {
+export class EmailComponent {
 
     constructor(
         public formsService: FormsService,
@@ -19,18 +20,14 @@ export class EmailComponent implements OnInit {
         private loaderService: LoaderService
     ) { }
 
-    ngOnInit(): void {
-
-    }
-
-
     onSendEmail(form: NgForm): void {
+        console.log(form)
         if (form.invalid) return;
         // console.log(form.value.teacherEmail)
         this.loaderService.setStatus(true)
         this.authService.authTeacherEmail(form.value.teacherEmail).subscribe((result) => {
             this.router.navigate(['/auth/confirm'])
-        })
+        }, () => form.resetForm())
     }
 
 

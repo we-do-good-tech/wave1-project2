@@ -1,88 +1,164 @@
-import { Router } from "@angular/router";
-import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
 import {
-    FormBuilder,
-    FormControl,
-    FormGroup,
-    Validators,
+  AfterContentInit,
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from "@angular/core";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
 } from "@angular/forms";
 import { FormsService } from "src/app/services/forms/forms.service";
-import { TeacherService } from 'src/app/services/teacher.service';
-import { Student } from 'src/app/interfaces/Student';
-import { Observable } from 'rxjs';
-
+import { FormsValidatorsService } from "../../../services/forms/forms-validators.service";
+import { Student } from "src/app/interfaces/Student";
+import {
+  timesRange,
+  conculateRangeToTime,
+} from "../../../services/helpers/time.range";
+import { Report } from "src/app/interfaces/Report";
+import { MeetingsService } from "src/app/services/meetings.service";
+import { timeList } from "../../../services/helpers/times.list";
 
 @Component({
-    selector: "app-create-meeting",
-    templateUrl: "./create-meeting.component.html",
-    styleUrls: ["./create-meeting.component.scss"],
+  selector: "app-create-meeting",
+  templateUrl: "./create-meeting.component.html",
+  styleUrls: ["./create-meeting.component.scss"],
 })
-export class CreateMeetingComponent implements OnInit {
+export class CreateMeetingComponent
+  implements OnInit, AfterContentInit, AfterViewInit {
+  students: Student[];
+  meetingForm: FormGroup;
+  timeList: string[];
 
-    students: Observable<Student[]>
-    meetingForm: FormGroup;
+  constructor(
+    private formBuilder: FormBuilder,
+    public formsService: FormsService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private meetingService: MeetingsService
+  ) {
+    this.students = [];
+    this.timeList = timeList(8, 24, 5);
+  }
 
+  // @ViewChild('dateInput') pick: ElementRef
 
-    constructor(
-        private formBuilder: FormBuilder,
-        public formsService: FormsService,
-        private router: Router,
-        private teacherService: TeacherService
-    ) { }
+  ngAfterViewInit() {
+    // console.log(this.pick.nativeElement)
+  }
 
-    ngOnInit(): void {
-        this.students = this.teacherService.getStudents()
+  ngOnInit(): void {
+    this.route.data.subscribe((result) => (this.students = result.students));
 
-        this.meetingForm = this.formBuilder.group({
-            ticketNo: [null, [Validators.required]],
-            meetingDate: [null, [Validators.required]],
-            meetingStartTime: [null, [Validators.required]],
-            meetingEndTime: [null, [Validators.required]],
-            meetingActivitis: [null, []],
-            meetingComments: [null, []],
-        });
+    this.meetingForm = this.formBuilder.group({
+      studentName: [null, [Validators.required]],
+      meetingDate: [
+        null,
+        [
+          Validators.required,
+          FormsValidatorsService.limitDate(90),
+          FormsValidatorsService.blockOverDate,
+        ],
+      ],
+      times: this.formBuilder.group(
+        {
+          meetingStartTime: [null, []],
+          meetingEndTime: [null, []],
+        },
+        { validator: FormsValidatorsService.PositiveTimeRange }
+      ),
+      meetingActivitis: [null, []],
+      meetingComments: [null, []],
+    });
+
+    this.checkDateAndAddValidateTime();
+  }
+
+  ngAfterContentInit(): void {
+    this.setMeetingFormValues();
+  }
+
+  onCreateMeeting(): void {
+    const {
+      studentName,
+      meetingDate,
+      meetingActivitis,
+      meetingComments,
+      times: { meetingStartTime, meetingEndTime },
+    } = this.meetingForm.value;
+    console.log(studentName);
+
+    const report: Report = {
+      studentName: studentName.sName,
+      ticketNo: studentName.sTicketNo,
+      reportDate: meetingDate,
+      reportActivitis: meetingActivitis,
+      reportStartTime: meetingStartTime,
+      reportEndTime: meetingEndTime,
+      reportRangeTimne: conculateRangeToTime(
+        timesRange(meetingStartTime, meetingEndTime)
+      ),
+      reportComments: meetingComments,
+      parentEmail: studentName.sParentEmail,
+      isParentSign: false,
+      parentSignImageUrl: null,
+    };
+
+    console.log(report);
+    this.meetingService.setReport(report);
+    this.router.navigate(["/main/teacher/meeting-new"]);
+  }
+
+  getFormControl(controlName: string): FormControl {
+    return (
+      (this.meetingForm.get(controlName) as FormControl) ||
+      (this.meetingForm.controls.times.get(controlName) as FormControl)
+    );
+  }
+
+  setMeetingFormValues() {
+    const report = this.meetingService.getReportCreated();
+    console.log(report)
+    if (report) {
+      this.meetingForm.patchValue({
+        studentName: report.studentName,
+        meetingDate: report.reportDate,
+        meetingActivitis: report.reportActivitis,
+        meetingComments: report.reportComments,
+        times: {
+          meetingStartTime: report.reportStartTime,
+          meetingEndTime: report.reportEndTime,
+        },
+      });
     }
+  }
 
-    onCreateMeeting() {
-        const {
-            ticketNo,
-            meetingDate,
-            meetingStartTime,
-            meetingEndTime,
-            meetingActivitis,
-            meetingComments
-        } = this.meetingForm.value
-
-
-        // const now = Date.now()
-        // if (now > new Date(meetingDate).getTime()) {
-        //     console.log('DATE IS PASS OVER')
-        // }
-
-
-    }
-
-    getFormControl(controlName: string): FormControl {
-        return this.meetingForm.get(controlName) as FormControl;
-    }
-
-    createMeeting() {
-        this.router.navigate(["/main/teacher/meeting/", 123]);
-    }
-
-
-    getTimeRange(meetingStartTime, meetingEndTime) {
-        let start = meetingStartTime.split(':')
-        let end = meetingEndTime.split(':')
-
-        let range = new Date(0, 0, 0, end[0], end[1], 0).getTime() - new Date(0, 0, 0, start[0], start[1], 0).getTime()
-        if (range < 0) return
-        let minutes = range / 1000 / 60
-        let hours = Math.floor(minutes / 60)
-        let restMinutes = (minutes % 60)
-        console.log(hours + ':' + restMinutes)
-    }
-
-
-
+  checkDateAndAddValidateTime() {
+    this.getFormControl("meetingDate").valueChanges.subscribe((result) => {
+      const meetingDate = new Date(result).toLocaleDateString();
+      const dateToday = new Date().toLocaleDateString();
+      const startTime = this.getFormControl("meetingStartTime");
+      const endTime = this.getFormControl("meetingEndTime");
+      if (meetingDate === dateToday) {
+        startTime.setValidators([
+          Validators.required,
+          FormsValidatorsService.blockOverTime,
+        ]);
+        endTime.setValidators([
+          Validators.required,
+          FormsValidatorsService.blockOverTime,
+        ]);
+      } else {
+        startTime.setValidators([Validators.required]);
+        endTime.setValidators([Validators.required]);
+      }
+      startTime.updateValueAndValidity();
+      endTime.updateValueAndValidity();
+    });
+  }
 }

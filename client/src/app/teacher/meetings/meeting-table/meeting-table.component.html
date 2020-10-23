@@ -8,8 +8,8 @@
         <div class="list">
             <select>
                 <option value>בחר משתמש</option>
-                <option *ngFor="let student of students | async" [value]="student?.firstName">
-                    {{student?.firstName}}
+                <option *ngFor="let student of students" [value]="student?.studentName">
+                    {{student?.studentName}}
                 </option>
             </select>
         </div>
@@ -21,8 +21,7 @@
             <li>סטטוס</li>
         </ul>
         <div class="meetings">
-            <app-meeting-table-item *ngFor="let meeting of meeting"></app-meeting-table-item>
+            <app-meeting-table-item *ngFor="let report of reports" [report]="report" (sendSignAgain)="getReportSignAgain($event)" ></app-meeting-table-item>
         </div>
-        <button class="mainButton">שלח אישור מחדש</button>
     </div>
 </div>

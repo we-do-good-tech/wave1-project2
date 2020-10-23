@@ -1,6 +1,6 @@
 <div class="confirmWrapper">
     <p class="m-3">נשלח מסרון, נא הזינו הקוד</p>
-    <form #form="ngForm" appInputFocus class="m-3">
+    <form #form="ngForm" appInputFocus>
         <div class="smsCode">
             <input #first id="num-a" required type="number" pattern="^\d{1}$" name="first" autofocus
                 ngModel="virtualkey" #one="ngModel">
@@ -11,9 +11,10 @@
             <input id="num-d" required type="number" pattern="^\d{1}$" name="fourth" ngModel="virtualkey"
                 #four="ngModel">
         </div>
-        <app-http-error-messages></app-http-error-messages>
-
     </form>
+    <div class="errors">
+        <app-http-error-messages></app-http-error-messages>
+    </div>
     <app-keyboard></app-keyboard>
     <small (click)="onResendConfirmCode()">לא הגיע קוד, שלח מחדש</small>
 </div>

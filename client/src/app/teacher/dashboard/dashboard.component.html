@@ -12,7 +12,7 @@
         <!-- <div class="newMeetingContainer">
             <div class="plusButtonBorder">
                 <div class="plusButton">
-                    <a routerLink="../../../main/teacher/create-meeting">
+                    <a [routerLink]="['/main/teacher/create-meeting']">
                         <h2>+</h2>
                     </a>
                 </div>
@@ -26,8 +26,9 @@
         </div>
     </div>
     <div class="oldMeetings">
-        <a class="oldMeetingLink" routerLink="../../../main/teacher/meetings-table">
+        <a class="oldMeetingLink" [routerLink]="['/main/teacher/meetings-table']">
             ישנם מפגשים שטרם אושרו <span>!</span>
         </a>
     </div>
 </div>
+<app-loader></app-loader>

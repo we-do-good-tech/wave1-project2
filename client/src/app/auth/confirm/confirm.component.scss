@@ -10,7 +10,7 @@ input::-webkit-inner-spin-button {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   overflow-y: auto;
 }
 .confirmWrapper form {
@@ -18,6 +18,11 @@ input::-webkit-inner-spin-button {
   flex-direction: column;
   width: 100%;
   overflow-y: auto;
+}
+.errors {
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 20px;
 }
 .codeError {
   margin-top: 10px;
