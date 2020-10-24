@@ -6,7 +6,14 @@ module.exports = {
         sheetsIds: {
             teachers: process.env.SHEET_ID_TEACHERS,
             childrens: process.env.SHEET_ID_CHILDRENS,
-            reports: process.env.SHEET_ID_REPORTS
+            reports: process.env.SHEET_ID_REPORTS,
+            stats: process.env.SHEET_ID_TEACHER_STATS
+        },
+        sheetsNames: {
+            reports: process.env.SHEETS_NAME_REPORTS,
+            teachers: process.env.SHEET_NAME_TEACHERS,
+            childrens: process.env.SHEET_NAME_CHILDRENS,
+            stats: process.env.SHETT_NAME_TEACHER_STATS
         }
     },
     EMAIL_SENDER: {

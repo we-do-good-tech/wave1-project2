@@ -6,9 +6,9 @@
     <div class="heading">
         <div class="title">מפגשים שטרם אושרו</div>
         <div class="list">
-            <select>
-                <option value>בחר משתמש</option>
-                <option *ngFor="let student of students" [value]="student?.studentName">
+            <select [(ngModel)]="studentSelected" name="studentSelected">
+                <option value="">בחר משתמש</option>
+                <option *ngFor="let student of students" [value]="student?.ticketNo">
                     {{student?.studentName}}
                 </option>
             </select>
@@ -21,8 +21,10 @@
             <li>סטטוס</li>
         </ul>
         <div class="meetings">
-            <app-meeting-table-item *ngFor="let report of reports" [report]="report"
-                (sendSignAgain)="getReportSignAgain($event)"></app-meeting-table-item>
+            <div *ngIf="(reports | filter: studentSelected:'ticketNo').length === 0">No Repots</div>
+            <app-meeting-table-item *ngFor="let report of reports | filter: studentSelected:'ticketNo';
+                let i = index;" [index]="i +1" [report]="report" (sendSignAgain)="getReportSignAgain($event)">
+            </app-meeting-table-item>
         </div>
     </div>
 </div>

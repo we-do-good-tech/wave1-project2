@@ -22,3 +22,19 @@ ul li {
   font-weight: bolder;
   padding: 0 10px;
 }
+ul li:last-child {
+  color: #d1372a;
+  direction: rtl;
+}
+li span {
+  width: 18px;
+  height: 18px;
+  background-color: #d1372a;
+  color: #fff;
+  border-radius: 50px;
+  display: inline-block;
+  text-align: center;
+  font-size: 12px;
+  text-decoration: none;
+  margin-left: 33px;
+}

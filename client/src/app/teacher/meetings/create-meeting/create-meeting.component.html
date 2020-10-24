@@ -7,9 +7,7 @@
         <label>בחר תלמיד מהרשימה</label>
         <select [ngClass]="this.formsService.displayClass(getFormControl('studentName'))" formControlName="studentName">
             <option value>בחר</option>
-
-            <option *ngFor="let student of students"
-                [ngValue]="{sName:student?.studentName, sTicketNo:student?.ticketNo, sParentEmail:student?.parentEmail}">
+            <option *ngFor="let student of students" [value]="student?.studentName">
                 {{student?.studentName}}
             </option>
         </select>
@@ -41,8 +39,6 @@
                     <option value>--:-- <i class="fas fa-clock"></i></option>
                     <option *ngFor="let time of timeList" [value]="time">{{time}}</option>
                 </select>
-                <!-- <input [ngClass]="this.formsService.displayClass(getFormControl('meetingStartTime'))" type="time" step="60"
-              formControlName="meetingStartTime" class="without_ampm"> -->
                 <div class="errorMessage"
                     *ngIf="this.formsService.formControlStatus(getFormControl('meetingStartTime'))">
                     <div class="errorMessage" *ngIf=" getFormControl('meetingStartTime').errors.required">
@@ -61,8 +57,6 @@
                     <option disabled value>--:-- <i class="fas fa-clock"></i></option>
                     <option *ngFor="let time of timeList" [value]="time">{{time}}</option>
                 </select>
-                <!-- <input [ngClass]="this.formsService.displayClass(getFormControl('meetingEndTime'))" type="time"
-              formControlName="meetingEndTime"> -->
                 <div class="errorMessage" *ngIf="this.formsService.formControlStatus(getFormControl('meetingEndTime'))">
                     <div class="errorMessage" *ngIf="getFormControl('meetingEndTime').errors.required">
                         שדה חובה
@@ -88,7 +82,8 @@
         </textarea>
         </div>
         <!-- [disabled]="meetingForm.invalid"  -->
-        <button [class.disabledButton]="meetingForm.invalid" type="submit" class="mainButton">
+        <button [class.disabledButton]="meetingForm.invalid" [disabled]="meetingForm.invalid" type="submit"
+            class="mainButton">
             צור פגישה
         </button>
     </form>

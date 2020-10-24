@@ -1,12 +1,5 @@
 import { ActivatedRoute, Router } from "@angular/router";
-import {
-  AfterContentInit,
-  AfterViewInit,
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-} from "@angular/core";
+import { AfterContentInit, Component, OnInit } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -21,16 +14,16 @@ import {
   conculateRangeToTime,
 } from "../../../services/helpers/time.range";
 import { Report } from "src/app/interfaces/Report";
-import { MeetingsService } from "src/app/services/meetings.service";
+import { ReportsService } from "src/app/services/reports.service";
 import { timeList } from "../../../services/helpers/times.list";
+import { StudentsService } from "src/app/services/students.service";
 
 @Component({
   selector: "app-create-meeting",
   templateUrl: "./create-meeting.component.html",
   styleUrls: ["./create-meeting.component.scss"],
 })
-export class CreateMeetingComponent
-  implements OnInit, AfterContentInit, AfterViewInit {
+export class CreateMeetingComponent implements OnInit, AfterContentInit {
   students: Student[];
   meetingForm: FormGroup;
   timeList: string[];
@@ -40,21 +33,18 @@ export class CreateMeetingComponent
     public formsService: FormsService,
     private route: ActivatedRoute,
     private router: Router,
-    private meetingService: MeetingsService
+    private studentsService: StudentsService,
+    private reportsService: ReportsService
   ) {
     this.students = [];
-    this.timeList = timeList(8, 24, 5);
-  }
-
-  // @ViewChild('dateInput') pick: ElementRef
-
-  ngAfterViewInit() {
-    // console.log(this.pick.nativeElement)
+    this.timeList = timeList(8, 24, 10);
   }
 
   ngOnInit(): void {
-    this.route.data.subscribe((result) => (this.students = result.students));
-    console.log(this.students);
+    this.route.data.subscribe((result) => {
+      console.log(result);
+      this.students = result.students;
+    });
 
     this.meetingForm = this.formBuilder.group({
       studentName: [null, [Validators.required]],
@@ -92,11 +82,16 @@ export class CreateMeetingComponent
       meetingComments,
       times: { meetingStartTime, meetingEndTime },
     } = this.meetingForm.value;
-    console.log(studentName);
+
+    const student = this.studentsService.findStudent(
+      studentName,
+      "studentName"
+    );
+    console.log(student);
 
     const report: Report = {
-      studentName: studentName.sName,
-      ticketNo: studentName.sTicketNo,
+      studentName: studentName,
+      ticketNo: student.ticketNo,
       reportDate: meetingDate,
       reportActivitis: meetingActivitis,
       reportStartTime: meetingStartTime,
@@ -105,13 +100,13 @@ export class CreateMeetingComponent
         timesRange(meetingStartTime, meetingEndTime)
       ),
       reportComments: meetingComments,
-      parentEmail: studentName.sParentEmail,
+      parentEmail: student.parentEmail,
       isParentSign: false,
       parentSignImageUrl: null,
     };
 
     console.log(report);
-    this.meetingService.setReport(report);
+    this.reportsService.setReport(report);
     this.router.navigate(["/main/teacher/meeting-new"]);
   }
 
@@ -123,7 +118,7 @@ export class CreateMeetingComponent
   }
 
   setMeetingFormValues() {
-    const report = this.meetingService.getReportCreated();
+    const report = this.reportsService.getReportCreated();
     console.log(report);
     if (report) {
       this.meetingForm.patchValue({

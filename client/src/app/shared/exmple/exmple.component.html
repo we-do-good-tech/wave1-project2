@@ -1,6 +1,13 @@
+<div class="col-xs-12">
+    <input type="text"
+          placeholder="Choose date"
+          class="form-control"
+          bsDatepicker>
+  </div>
 
 <div class="container">
-     <div class="logo  center-element">
+
+     <!-- <div class="logo  center-element">
          <img
              src="../../../assets/Group 1764.svg"
              alt
@@ -14,7 +21,6 @@
                <label for="teacherEmail" class="floating-right">דואר אלקטרוני</label>
                    <input
                        [ngClass]="this.formsService.displayClass(teacherEmail.control)"
-                       id="id-a"
                        required
                        type="email"
                        ngModel
@@ -24,6 +30,7 @@
                        class="form-control"
                        placeholder="דואר אלקטרוני"
                    >
+
            <div
                *ngIf="this.formsService.formControlStatus(teacherEmail.control)"
            >
@@ -50,10 +57,8 @@
         </div>
             <button
                 class="mainButton"
-                [disabled]="form.invalid"
-                [class.disabledButton]="form.invalid"
             >
                 התחברו
             </button>
-    </form>
+    </form> -->
  </div>

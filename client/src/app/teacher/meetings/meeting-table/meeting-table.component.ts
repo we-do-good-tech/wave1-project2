@@ -3,7 +3,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { Report } from "src/app/interfaces/Report";
 import { Student } from "src/app/interfaces/Student";
-import { MeetingsService } from "src/app/services/meetings.service";
+import { ReportsService } from "src/app/services/reports.service";
+// import { FilterPipe } from "../../../services/pipes/filter.pipe";
 
 @Component({
   selector: "app-meeting-table",
@@ -13,6 +14,7 @@ import { MeetingsService } from "src/app/services/meetings.service";
 export class MeetingTableComponent implements OnInit, OnDestroy {
   students: Student[];
   reports: Report[];
+  studentSelected: string;
 
   subStudents: Subscription;
   sunReports: Subscription;
@@ -20,7 +22,7 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private meetingsService: MeetingsService
+    private reportsService: ReportsService
   ) {
     this.students = [];
     this.reports = [];
@@ -41,7 +43,7 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
       (s) => s.ticketNo === report.ticketNo
     );
     report.studentName = findStudent.studentName;
-    this.meetingsService.setReport(report);
+    this.reportsService.setReport(report);
     this.router.navigate(["/main/teacher/meeting", report.ticketNo]);
   }
 

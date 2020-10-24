@@ -4,12 +4,16 @@ import { AppRoutingModule } from "./app-routing.module";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ReactiveFormsModule } from "@angular/forms";
 import { SharedModule } from "./shared/shared.module";
+import { SignaturePadModule } from "@ng-plus/signature-pad";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
+
 
 import { AppComponent } from "./app.component";
 import { HttpErrorMessagesInterceptor } from "./services/interceptors/http-error-messages.interceptor";
 import { AuthInterceptor } from "./services/interceptors/auth.interceptor";
 import { LoaderInterceptor } from "./services/interceptors/loader.interceptor";
-import { SignaturePadModule } from "@ng-plus/signature-pad";
+
 
 
 
@@ -25,6 +29,8 @@ import { SignaturePadModule } from "@ng-plus/signature-pad";
         ReactiveFormsModule,
         SharedModule,
         SignaturePadModule,
+        BrowserAnimationsModule,
+        // BsDatepickerModule.forRoot()
     ],
     exports: [SharedModule],
     providers: [

@@ -62,10 +62,7 @@ select option:checked {
   background-color: #f0ab0e;
   color: #fff;
 }
-option .fa-clock {
-  font-size: 12px;
-  color: black;
-}
+
 .mettingsTime label {
   font-size: 10px;
   direction: rtl;
@@ -83,11 +80,6 @@ option .fa-clock {
   display: flex;
   flex-direction: column;
   direction: rtl;
-}
-
-.mettingsTime select {
-  max-height: 200px;
-  overflow-y: auto;
 }
 
 .activitiesContainer {
@@ -116,7 +108,4 @@ textarea:focus {
   ::placeholder {
     font-size: 12px;
   }
-}
-.without_ampm::-webkit-datetime-edit-ampm-field {
-  display: none;
 }

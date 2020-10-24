@@ -67,18 +67,13 @@
   z-index: -1;
   border: 5px solid #c9c2bc4d;
   border-radius: 50px;
-
-  // background-color: red;
 }
 
 .addNewMeetingButton {
   text-decoration: none;
   color: #fff;
-  font-size: 40px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  font-size: 32px;
+  margin-top: 3px;
 }
 
 .newMeetingContainer {

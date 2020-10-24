@@ -10,6 +10,8 @@ router.post('/create-report', verifyToken, authSeets, teacherController.createRe
 
 router.get('/reports-unconfirm', verifyToken, authSeets, teacherController.getReportsUnConfirm)
 
+router.get('/reports/stats', verifyToken, authSeets, teacherController.getReportsStats)
+
 
 
 module.exports = router
