@@ -12,13 +12,16 @@ import { LoaderComponent } from "./loader/loader.component";
 import { ParentSignatureComponent } from "./parent-signature/parent-signature.component";
 import { KeyboardButtonComponent } from './keyboard/keyboard-button/keyboard-button.component';
 import { ExmpleComponent } from './exmple/exmple.component';
-import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
+// import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
 import { KeyboardComponent } from './keyboard/keyboard.component';
 
 import { LimitInputDirective } from "../directives/limit-input.directive";
 import { InputFocusDirective } from "../directives/focus.directive";
 import { VirtualKeyDirective } from "../directives/virtual-key";
 import { StyleElementDirective } from "../directives/style.element.directive";
+
+import { FilterPipe } from "../services/pipes/filter.pipe";
+import { HebrewMountNamePipe } from "../services/pipes/hebrew-mount-name.pipe"
 
 
 
@@ -36,15 +39,16 @@ import { StyleElementDirective } from "../directives/style.element.directive";
         VirtualKeyDirective,
         InputFocusDirective,
         LimitInputDirective,
-        StyleElementDirective
-
+        StyleElementDirective,
+        FilterPipe,
+        HebrewMountNamePipe
     ],
     imports: [
         CommonModule,
         RouterModule,
         SignaturePadModule,
         FormsModule,
-        BsDatepickerModule.forRoot()
+        // BsDatepickerModule.forRoot()
     ],
     exports: [
         HeaderComponent,
@@ -58,7 +62,9 @@ import { StyleElementDirective } from "../directives/style.element.directive";
         VirtualKeyDirective,
         InputFocusDirective,
         LimitInputDirective,
-        StyleElementDirective
+        StyleElementDirective,
+        FilterPipe,
+        HebrewMountNamePipe
     ],
 })
 export class SharedModule { }

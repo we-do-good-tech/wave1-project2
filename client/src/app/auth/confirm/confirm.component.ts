@@ -48,7 +48,7 @@ export class ConfirmComponent implements AfterViewInit, OnDestroy {
                     this.router.navigate(["main/teacher"]);
                 });
             }
-        })
+        }, () => this.form.resetForm())
     }
 
 

@@ -10,7 +10,7 @@ router.post('/create-report', verifyToken, authSeets, teacherController.createRe
 
 router.get('/reports-unconfirm', verifyToken, authSeets, teacherController.getReportsUnConfirm)
 
-router.get('/reports/stats', verifyToken, authSeets, teacherController.getStats)
+router.get('/reports/stats', verifyToken, authSeets, teacherController.getReportsStats)
 
 
 

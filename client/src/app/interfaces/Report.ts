@@ -12,3 +12,9 @@ export interface Report {
     ticketNo: number
 }
 
+
+export interface ReportStats {
+    totalHours: string
+    count: string
+    limitHours: string
+}

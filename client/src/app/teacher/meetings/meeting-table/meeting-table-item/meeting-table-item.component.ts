@@ -10,6 +10,7 @@ export class MeetingTableItemComponent implements OnInit {
 
     @Output() sendSignAgain: EventEmitter<Report> = new EventEmitter<Report>()
     @Input() report: Report
+    @Input() index: number
 
     constructor() { }
 

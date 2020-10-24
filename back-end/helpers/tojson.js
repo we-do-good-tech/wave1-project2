@@ -9,7 +9,7 @@ function convertSheetsDataToObjectsArray(data, sheetName) {
                 };
             });
         case 'CHILDRENS':
-            return data.map(([id, studentName, parentEmail, ticketNo, teacherId], index) => {
+            return data.map(([id, studentName, parentEmail, ticketNo], index) => {
                 return {
                     id: id,
                     studentName: studentName,
@@ -29,11 +29,12 @@ function convertSheetsDataToObjectsArray(data, sheetName) {
                     ticketNo: ticketNo
                 }
             })
-        case 'STATS':
-            return data.map(([totalHours, meetingsCount]) => {
+        case 'REPORTS_STATS':
+            return data.map(([totalHours, repostsCount, limitHours]) => {
                 return {
                     totalHours: totalHours,
-                    meetingsCount: meetingsCount
+                    repostsCount: repostsCount,
+                    limitHours: limitHours
                 }
             })
         default:

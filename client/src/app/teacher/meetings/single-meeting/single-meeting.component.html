@@ -1,11 +1,13 @@
-<app-header styleElement [changeClass]="mode === 'new-report' ? 'header-green' : 'header-red'" [selector]="'#the-header'">
-    <a class="backArrow" [routerLink]="mode === 'new-report' ? ['/main/teacher/create-meeting'] : ['/main/teacher/meetings-table'] ">
+<app-header styleElement [changeClass]="mode === 'new-report' ? 'header-green' : 'header-red'"
+    [selector]="'#the-header'">
+    <a class="backArrow"
+        [routerLink]="mode === 'new-report' ? ['/main/teacher/create-meeting'] : ['/main/teacher/meetings-table'] ">
         <i class="fas fa-arrow-left"></i> </a>
 </app-header>
 <div class="singleMeetingContainer">
-    <div class="meetingNumber">
+    <!-- <div class="meetingNumber">
         <h4>סיכום מפגש 6</h4>
-    </div>
+    </div> -->
     <div class="meetingTeacher">
         <p> {{report?.studentName}}</p>
     </div>
@@ -29,7 +31,7 @@
             נושאים ופעלויות שעלו במפגש
         </p>
         <div class="topicsContent">
-          {{report?.reportActivitis}}
+            {{report?.reportActivitis}}
         </div>
     </div>
     <div class="importantComments">
@@ -37,12 +39,12 @@
             הערות
         </p>
         <div class="importantCommentsContent">
-          {{report?.reportComments}}
+            {{report?.reportComments}}
         </div>
     </div>
 
     <div *ngIf="mode === 'new-report'" class="editButton">
-        <a  [routerLink]="['/main/teacher/create-meeting']">עריכה <i class="fas fa-pencil-alt"></i></a>
+        <a [routerLink]="['/main/teacher/create-meeting']">עריכה <i class="fas fa-pencil-alt"></i></a>
     </div>
     <button *ngIf="mode === 'new-report'" class="mainButton" (click)="onSendReport()">אישור</button>
     <button *ngIf="mode === 'resend-sign'" class="mainButton" (click)="onResendSign()">שלח לאישור</button>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserName } from 'src/app/interfaces/TeacherId';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoaderService } from 'src/app/services/loader.service';
-import { MeetingsService } from 'src/app/services/meetings.service';
+import { ReportsService } from 'src/app/services/reports.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -13,11 +13,14 @@ export class DashboardComponent implements OnInit {
 
     userName: UserName
 
-    constructor(private authService: AuthService, private loaderService: LoaderService, private meetingService: MeetingsService) { }
+    constructor(
+        private authService: AuthService,
+        private loaderService: LoaderService,
+        private reportsService: ReportsService) { }
 
     ngOnInit(): void {
         this.loaderService.setStatus(false)
-        this.meetingService.setReport(undefined)
+        this.reportsService.setReport(undefined)
         this.userName = this.authService.getUserName()
     }
 

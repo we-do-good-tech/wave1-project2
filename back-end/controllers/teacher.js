@@ -1,11 +1,12 @@
 const googleSheetsService = require("../services/google-sheets");
 const keys = require("../config/keys");
-const { convertSheetsDataToObjectsArray } = require('../helpers/tojson')
+const { convertSheetsDataToObjectsArray } = require('../helpers/tojson');
+
 
 
 
 module.exports.getStudents = async function (request, response) {
-    const query = `select * where E=${Number(request.userData.teacherId)}`;
+    const query = `select * where F=${Number(request.userData.teacherId)}`;
     const sheetId = keys.GOOGLE_SHEETS.sheetsIds.childrens
 
     try {
@@ -99,17 +100,25 @@ module.exports.getReportsUnConfirm = async function (request, response) {
 }
 
 
-module.exports.getStats = async function (request, response) {
+module.exports.getReportsStats = async function (request, response) {
     const sheetId = keys.GOOGLE_SHEETS.sheetsIds.stats
-    const qurey = `select * where A=${Number(request.userData.teacherId)}`
+    const qurey = `select B,C,D where A=${Number(request.userData.teacherId)}`
 
     try {
-        const stats = await googleSheetsService.find(
+        const repostsStats = await googleSheetsService.find(
             qurey,
             sheetId,
             request.sheetsClientData.authorizationToken
         )
-    } catch (error) {
 
+        const toJson = convertSheetsDataToObjectsArray(repostsStats, 'REPORTS_STATS')[0]
+        console.log(toJson)
+        // REPORTS_STATS
+        response.status(200).send(toJson);
+    } catch (error) {
+        console.log(error)
+        response.status(500).send({
+            message: "ERROR UNKNOW",
+        });
     }
 }

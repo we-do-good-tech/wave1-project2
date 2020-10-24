@@ -8,7 +8,8 @@ import { SingleMeetingComponent } from "./meetings/single-meeting/single-meeting
 import { TeacherMainComponent } from "./teacher-main/teacher-main.component";
 import { SingleMeetingToOperationGuard } from '../services/guards/single-meeting-to-operation.guard';
 import { StudentsResolverService } from '../services/resolvers/students.resolver.service';
-import { ReportsResolverService } from '../services/resolvers/reports.reports.service';
+import { ReportsResolverService } from '../services/resolvers/reports.resolver.service';
+import { ReportsStatsResolverService } from "../services/resolvers/reports.stats.resolver.service";
 
 const routes: Routes = [
     {
@@ -47,9 +48,9 @@ const routes: Routes = [
             {
                 path: "meeting-success",
                 component: MeetingCreateSuccessComponent,
-                canActivate: [SingleMeetingToOperationGuard],
+                // canActivate: [SingleMeetingToOperationGuard],
                 resolve: {
-                    reports: ReportsResolverService
+                    reportsStats: ReportsStatsResolverService
                 }
             },
         ],
