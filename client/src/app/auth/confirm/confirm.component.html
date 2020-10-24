@@ -11,6 +11,7 @@
             <input id="num-d" required type="number" pattern="^\d{1}$" name="fourth" ngModel="virtualkey"
                 #four="ngModel">
         </div>
+        <!-- <div *ngIf="form.valid">{{onSendCode(form)}}</div> -->
     </form>
     <div class="errors">
         <app-http-error-messages></app-http-error-messages>

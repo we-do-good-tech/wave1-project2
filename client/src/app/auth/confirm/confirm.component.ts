@@ -29,6 +29,7 @@ export class ConfirmComponent implements AfterViewInit, OnDestroy {
     @ViewChild('form') form: NgForm
     @ViewChild('first') firstInput: ElementRef
 
+
     ngAfterViewInit(): void {
         this.subFormChange = this.form.valueChanges.subscribe((result) => {
             if (this.form.valid) {
@@ -46,9 +47,9 @@ export class ConfirmComponent implements AfterViewInit, OnDestroy {
                 this.authService.confirmCode(codeToSend).subscribe((result) => {
                     this.form.resetForm()
                     this.router.navigate(["main/teacher"]);
-                });
+                }, () => this.form.resetForm());
             }
-        }, () => this.form.resetForm())
+        })
     }
 
 

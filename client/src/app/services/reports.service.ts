@@ -36,14 +36,14 @@ export class ReportsService {
 
 
     getReportsNotConfirm(): Observable<Report[]> {
-        console.log(this.reports);
+        // console.log(this.reports);
         if (this.reports) {
             return of(this.reports);
         }
         return this.http.get<Report[]>("api/teacher/reports-unconfirm")
             .pipe(
                 tap((result) => {
-                    console.log(result);
+                    // console.log(result);
                     this.reports = result;
                 })
             );

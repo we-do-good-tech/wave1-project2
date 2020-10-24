@@ -19,6 +19,7 @@ import { LimitInputDirective } from "../directives/limit-input.directive";
 import { InputFocusDirective } from "../directives/focus.directive";
 import { VirtualKeyDirective } from "../directives/virtual-key";
 import { StyleElementDirective } from "../directives/style.element.directive";
+import { StyleElemetSelectedDirective } from "../directives/style-elemet-selected.directive";
 
 import { FilterPipe } from "../services/pipes/filter.pipe";
 import { HebrewMountNamePipe } from "../services/pipes/hebrew-mount-name.pipe"
@@ -40,6 +41,7 @@ import { HebrewMountNamePipe } from "../services/pipes/hebrew-mount-name.pipe"
         InputFocusDirective,
         LimitInputDirective,
         StyleElementDirective,
+        StyleElemetSelectedDirective,
         FilterPipe,
         HebrewMountNamePipe
     ],
@@ -63,6 +65,7 @@ import { HebrewMountNamePipe } from "../services/pipes/hebrew-mount-name.pipe"
         InputFocusDirective,
         LimitInputDirective,
         StyleElementDirective,
+        StyleElemetSelectedDirective,
         FilterPipe,
         HebrewMountNamePipe
     ],

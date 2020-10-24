@@ -15,8 +15,11 @@ form {
   direction: rtl;
 }
 
+button {
+  width: 80%;
+}
+
 input,
-button,
 select,
 textarea {
   width: 80%;
@@ -25,6 +28,7 @@ textarea {
   border: 1px solid #000;
   direction: rtl;
   outline: none;
+  background-color: white;
 }
 
 label {
@@ -56,12 +60,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 select {
   text-align: center;
 }
-select option:checked {
-  background: none;
-  box-shadow: none;
-  background-color: #f0ab0e;
-  color: #fff;
-}
+// select option:hover {
+//   background: none;
+//   box-shadow: none;
+//   background-color: #f0ab0e;
+//   color: #fff;
+// }
+
+
 
 .mettingsTime label {
   font-size: 10px;

@@ -21,7 +21,7 @@ export class StudentsService {
         return this.http.get<Student[]>("api/teacher/students")
             .pipe(
                 tap((result) => {
-                    console.log(result);
+                    // console.log(result);
                     this.students = result;
                 })
             );

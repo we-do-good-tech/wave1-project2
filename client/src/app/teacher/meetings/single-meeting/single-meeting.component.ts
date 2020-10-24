@@ -25,7 +25,7 @@ export class SingleMeetingComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.report = this.reportsService.getReportCreated();
-        console.log(this.report);
+        // console.log(this.report);
         this.sunParams = this.route.paramMap.subscribe((params: ParamMap) => {
             if (params.has("ticketNo")) {
                 this.mode = "resend-sign";
