@@ -314,6 +314,7 @@ class StyleElemetSelectedDirective {
     }
     ngOnInit() {
     }
+    // (focus)="a.size=10" (blur)="a.size=1" (change)="a.size=1" style="z-index: 1000;"
     selected() {
         if (this.elementSelectedIndex > 0) {
             this.containerElement.nativeElement[this.elementSelectedIndex].style.backgroundColor = 'white';

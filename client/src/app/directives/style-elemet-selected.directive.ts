@@ -12,6 +12,7 @@ export class StyleElemetSelectedDirective implements OnInit {
 
     ngOnInit(): void {
     }
+    // (focus)="a.size=10" (blur)="a.size=1" (change)="a.size=1" style="z-index: 1000;"
 
 
     @HostListener('click')

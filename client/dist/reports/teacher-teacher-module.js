@@ -286,10 +286,10 @@ function CreateMeetingComponent_option_10_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const student_r231 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("value", student_r231 == null ? null : student_r231.studentName);
+    const student_r251 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("value", student_r251 == null ? null : student_r251.studentName);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", student_r231 == null ? null : student_r231.studentName, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", student_r251 == null ? null : student_r251.studentName, " ");
 } }
 function CreateMeetingComponent_div_11_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
@@ -320,23 +320,23 @@ function CreateMeetingComponent_div_15_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](3, CreateMeetingComponent_div_15_div_3_Template, 2, 0, "div", 15);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const ctx_r224 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+    const ctx_r244 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r224.getFormControl("meetingDate").errors.required);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r244.getFormControl("meetingDate").errors.required);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r224.getFormControl("meetingDate").errors.limitDate && !ctx_r224.getFormControl("meetingDate").errors.required);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r244.getFormControl("meetingDate").errors.limitDate && !ctx_r244.getFormControl("meetingDate").errors.required);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r224.getFormControl("meetingDate").errors.blockOverDate);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r244.getFormControl("meetingDate").errors.blockOverDate);
 } }
 function CreateMeetingComponent_option_25_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "option", 25);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const time_r235 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("value", time_r235);
+    const time_r255 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("value", time_r255);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](time_r235);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](time_r255);
 } }
 function CreateMeetingComponent_div_26_div_1_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 26);
@@ -354,21 +354,21 @@ function CreateMeetingComponent_div_26_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, CreateMeetingComponent_div_26_div_2_Template, 2, 0, "div", 15);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const ctx_r227 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+    const ctx_r247 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r227.getFormControl("meetingStartTime").errors.required);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r247.getFormControl("meetingStartTime").errors.required);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r227.getFormControl("meetingStartTime").errors.blockOverTime);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r247.getFormControl("meetingStartTime").errors.blockOverTime);
 } }
 function CreateMeetingComponent_option_34_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "option", 25);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const time_r238 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("value", time_r238);
+    const time_r258 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("value", time_r258);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](time_r238);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](time_r258);
 } }
 function CreateMeetingComponent_div_35_div_1_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 26);
@@ -386,11 +386,11 @@ function CreateMeetingComponent_div_35_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, CreateMeetingComponent_div_35_div_2_Template, 2, 0, "div", 15);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const ctx_r229 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+    const ctx_r249 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r229.getFormControl("meetingEndTime").errors.required);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r249.getFormControl("meetingEndTime").errors.required);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r229.getFormControl("meetingEndTime").errors.blockOverTime);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r249.getFormControl("meetingEndTime").errors.blockOverTime);
 } }
 function CreateMeetingComponent_div_36_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 26);
@@ -503,8 +503,7 @@ class CreateMeetingComponent {
     }
 }
 CreateMeetingComponent.ɵfac = function CreateMeetingComponent_Factory(t) { return new (t || CreateMeetingComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_forms_forms_service__WEBPACK_IMPORTED_MODULE_5__["FormsService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_students_service__WEBPACK_IMPORTED_MODULE_7__["StudentsService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_reports_service__WEBPACK_IMPORTED_MODULE_8__["ReportsService"])); };
-CreateMeetingComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: CreateMeetingComponent, selectors: [["app-create-meeting"]], decls: 50, vars: 20, consts: [["styleElement", "", 3, "changeClass", "selector"], [1, "backArrow", 3, "routerLink"], [1, "fas", "fa-arrow-left"], [1, "meetingsContainer"], [1, "form", 3, "formGroup", "ngSubmit"], ["formControlName", "studentName", 3, "ngClass"], ["value", ""], [3, "value", 4, "ngFor", "ngForOf"], [4, "ngIf"], ["type", "date", "formControlName", "meetingDate", 3, "ngClass"], ["formGroupName", "times", 1, "mettingsTime"], [1, "meetStart"], ["formControlName", "meetingStartTime", 2, "z-index", "1000", 3, "ngClass", "focus", "blur", "change"], ["a", ""], [1, "fas", "fa-clock"], ["class", "errorMessage", 4, "ngIf"], [1, "meetEnd"], ["formControlName", "meetingEndTime", 3, "ngClass"], ["disabled", "", "value", ""], [1, "activitiesContainer"], [1, "activitiesLabel"], ["placeholder", "\u05E0\u05D5\u05E9\u05D0\u05D9\u05DD \u05D5\u05E4\u05E2\u05D9\u05DC\u05D9\u05D5\u05EA \u05E9\u05E2\u05DC\u05D5 \u05D1\u05DE\u05E4\u05D2\u05E9: \u05DC\u05DE\u05E9\u05DC - \u05DE\u05D4 \u05E0\u05DC\u05DE\u05D3, \u05D1\u05D0\u05D9\u05D6\u05D4 \u05E9\u05DC\u05D1 \u05D4\u05D7\u05D5\u05E0\u05DA \u05D5\u05D4\u05D7\u05E0\u05D9\u05DA \u05E0\u05DE\u05E6\u05D0\u05D9\u05DD \u05D5\u05DE\u05D4 \u05D4\u05D9\u05D5 \u05EA\u05DB\u05E0\u05D9 \u05D4\u05DE\u05E4\u05D2\u05E9.", "formControlName", "meetingActivitis", "id", "activea", "cols", "5", "rows", "5", 1, "txtArea", "textAreaOne"], [1, "commentsLabel"], ["placeholder", "\u05D4\u05E2\u05E8\u05D5\u05EA \u05D7\u05E9\u05D5\u05D1\u05D5\u05EA: \u05DC\u05D3\u05D5\u05D2\u05DE\u05D0, \u05DC\u05EA\u05DC\u05DE\u05D9\u05D3 \u05D4\u05D9\u05D4 \u05E7\u05D5\u05E9\u05D9 \u05DC\u05D4\u05EA\u05E8\u05DB\u05D6.", "formControlName", "meetingComments", "cols", "5", "rows", "5", 1, "txtArea", "textAreaTwo"], ["type", "submit", 1, "mainButton", 3, "disabled"], [3, "value"], [1, "errorMessage"]], template: function CreateMeetingComponent_Template(rf, ctx) { if (rf & 1) {
-        const _r241 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+CreateMeetingComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: CreateMeetingComponent, selectors: [["app-create-meeting"]], decls: 50, vars: 20, consts: [["styleElement", "", 3, "changeClass", "selector"], [1, "backArrow", 3, "routerLink"], [1, "fas", "fa-arrow-left"], [1, "meetingsContainer"], [1, "form", 3, "formGroup", "ngSubmit"], ["formControlName", "studentName", 3, "ngClass"], ["value", ""], [3, "value", 4, "ngFor", "ngForOf"], [4, "ngIf"], ["type", "date", "formControlName", "meetingDate", 3, "ngClass"], ["formGroupName", "times", 1, "mettingsTime"], [1, "meetStart"], ["formControlName", "meetingStartTime", 3, "ngClass"], ["a", ""], [1, "fas", "fa-clock"], ["class", "errorMessage", 4, "ngIf"], [1, "meetEnd"], ["formControlName", "meetingEndTime", 3, "ngClass"], ["disabled", "", "value", ""], [1, "activitiesContainer"], [1, "activitiesLabel"], ["placeholder", "\u05E0\u05D5\u05E9\u05D0\u05D9\u05DD \u05D5\u05E4\u05E2\u05D9\u05DC\u05D9\u05D5\u05EA \u05E9\u05E2\u05DC\u05D5 \u05D1\u05DE\u05E4\u05D2\u05E9: \u05DC\u05DE\u05E9\u05DC - \u05DE\u05D4 \u05E0\u05DC\u05DE\u05D3, \u05D1\u05D0\u05D9\u05D6\u05D4 \u05E9\u05DC\u05D1 \u05D4\u05D7\u05D5\u05E0\u05DA \u05D5\u05D4\u05D7\u05E0\u05D9\u05DA \u05E0\u05DE\u05E6\u05D0\u05D9\u05DD \u05D5\u05DE\u05D4 \u05D4\u05D9\u05D5 \u05EA\u05DB\u05E0\u05D9 \u05D4\u05DE\u05E4\u05D2\u05E9.", "formControlName", "meetingActivitis", "id", "activea", "cols", "5", "rows", "5", 1, "txtArea", "textAreaOne"], [1, "commentsLabel"], ["placeholder", "\u05D4\u05E2\u05E8\u05D5\u05EA \u05D7\u05E9\u05D5\u05D1\u05D5\u05EA: \u05DC\u05D3\u05D5\u05D2\u05DE\u05D0, \u05DC\u05EA\u05DC\u05DE\u05D9\u05D3 \u05D4\u05D9\u05D4 \u05E7\u05D5\u05E9\u05D9 \u05DC\u05D4\u05EA\u05E8\u05DB\u05D6.", "formControlName", "meetingComments", "cols", "5", "rows", "5", 1, "txtArea", "textAreaTwo"], ["type", "submit", 1, "mainButton", 3, "disabled"], [3, "value"], [1, "errorMessage"]], template: function CreateMeetingComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "app-header", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "i", 2);
@@ -534,7 +533,6 @@ CreateMeetingComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵd
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](19, "\u05E9\u05E2\u05EA \u05D4\u05EA\u05D7\u05DC\u05D4");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](20, "select", 12, 13);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("focus", function CreateMeetingComponent_Template_select_focus_20_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r241); const _r225 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](21); return _r225.size = 10; })("blur", function CreateMeetingComponent_Template_select_blur_20_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r241); const _r225 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](21); return _r225.size = 1; })("change", function CreateMeetingComponent_Template_select_change_20_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r241); const _r225 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](21); return _r225.size = 1; });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](22, "option", 6);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](23, "--:-- ");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](24, "i", 14);
