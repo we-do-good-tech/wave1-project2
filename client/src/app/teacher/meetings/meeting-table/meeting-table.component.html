@@ -21,7 +21,8 @@
             <li>סטטוס</li>
         </ul>
         <div class="meetings">
-            <app-meeting-table-item *ngFor="let report of reports" [report]="report" (sendSignAgain)="getReportSignAgain($event)" ></app-meeting-table-item>
+            <app-meeting-table-item *ngFor="let report of reports" [report]="report"
+                (sendSignAgain)="getReportSignAgain($event)"></app-meeting-table-item>
         </div>
     </div>
 </div>

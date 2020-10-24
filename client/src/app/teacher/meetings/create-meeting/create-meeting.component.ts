@@ -54,6 +54,7 @@ export class CreateMeetingComponent
 
   ngOnInit(): void {
     this.route.data.subscribe((result) => (this.students = result.students));
+    console.log(this.students);
 
     this.meetingForm = this.formBuilder.group({
       studentName: [null, [Validators.required]],
@@ -123,7 +124,7 @@ export class CreateMeetingComponent
 
   setMeetingFormValues() {
     const report = this.meetingService.getReportCreated();
-    console.log(report)
+    console.log(report);
     if (report) {
       this.meetingForm.patchValue({
         studentName: report.studentName,

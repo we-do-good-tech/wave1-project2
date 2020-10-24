@@ -4,9 +4,10 @@
 </app-header>
 <div class="meetingsContainer">
     <form class="form" [formGroup]="meetingForm" (ngSubmit)="onCreateMeeting()">
-        <label>בחר מהרשימה</label>
+        <label>בחר תלמיד מהרשימה</label>
         <select [ngClass]="this.formsService.displayClass(getFormControl('studentName'))" formControlName="studentName">
             <option value>בחר</option>
+
             <option *ngFor="let student of students"
                 [ngValue]="{sName:student?.studentName, sTicketNo:student?.ticketNo, sParentEmail:student?.parentEmail}">
                 {{student?.studentName}}
@@ -37,7 +38,7 @@
                 <label>שעת התחלה</label>
                 <select formControlName="meetingStartTime"
                     [ngClass]="this.formsService.displayClass(getFormControl('meetingStartTime'))">
-                    <option value>--:--</option>
+                    <option value>--:-- <i class="fas fa-clock"></i></option>
                     <option *ngFor="let time of timeList" [value]="time">{{time}}</option>
                 </select>
                 <!-- <input [ngClass]="this.formsService.displayClass(getFormControl('meetingStartTime'))" type="time" step="60"
@@ -57,7 +58,7 @@
                 <label>שעת סיום</label>
                 <select formControlName="meetingEndTime"
                     [ngClass]="this.formsService.displayClass(getFormControl('meetingEndTime'))">
-                    <option value>--:--</option>
+                    <option disabled value>--:-- <i class="fas fa-clock"></i></option>
                     <option *ngFor="let time of timeList" [value]="time">{{time}}</option>
                 </select>
                 <!-- <input [ngClass]="this.formsService.displayClass(getFormControl('meetingEndTime'))" type="time"
