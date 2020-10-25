@@ -21,9 +21,7 @@ export class EmailComponent {
     ) { }
 
     onSendEmail(form: NgForm): void {
-        console.log(form)
         if (form.invalid) return;
-        // console.log(form.value.teacherEmail)
         this.loaderService.setStatus(true)
         this.authService.authTeacherEmail(form.value.teacherEmail).subscribe((result) => {
             this.router.navigate(['/auth/confirm'])

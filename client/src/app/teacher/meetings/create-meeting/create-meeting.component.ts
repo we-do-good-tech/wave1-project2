@@ -29,6 +29,7 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
     meetingForm: FormGroup;
     timeList: string[];
     subStudents: Subscription
+    subValuesChanges: Subscription
 
     constructor(
         private formBuilder: FormBuilder,
@@ -137,7 +138,7 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
     }
 
     checkDateAndAddValidateTime() {
-        this.getFormControl("meetingDate").valueChanges.subscribe((result) => {
+        this.subValuesChanges = this.getFormControl("meetingDate").valueChanges.subscribe((result) => {
             const meetingDate = new Date(result).toLocaleDateString();
             const dateToday = new Date().toLocaleDateString();
             const startTime = this.getFormControl("meetingStartTime");
@@ -163,6 +164,7 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
 
     ngOnDestroy(): void {
         this.subStudents.unsubscribe()
+        this.subValuesChanges.unsubscribe()
     }
 
 
