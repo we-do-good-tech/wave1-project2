@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from "@angular/router";
-import { AfterContentInit, Component, OnInit } from "@angular/core";
+import { AfterContentInit, Component, OnDestroy, OnInit } from "@angular/core";
 import {
     FormBuilder,
     FormControl,
@@ -17,16 +17,18 @@ import { Report } from "src/app/interfaces/Report";
 import { ReportsService } from "src/app/services/reports.service";
 import { timeList } from "../../../services/helpers/times.list";
 import { StudentsService } from "src/app/services/students.service";
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: "app-create-meeting",
     templateUrl: "./create-meeting.component.html",
     styleUrls: ["./create-meeting.component.scss"],
 })
-export class CreateMeetingComponent implements OnInit, AfterContentInit {
+export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestroy {
     students: Student[];
     meetingForm: FormGroup;
     timeList: string[];
+    subStudents: Subscription
 
     constructor(
         private formBuilder: FormBuilder,
@@ -41,7 +43,7 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit {
     }
 
     ngOnInit(): void {
-        this.route.data.subscribe((result) => {
+        this.subStudents = this.route.data.subscribe((result) => {
             // console.log(result);
             this.students = result.students;
         });
@@ -157,4 +159,13 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit {
             endTime.updateValueAndValidity();
         });
     }
+
+
+    ngOnDestroy(): void {
+        this.subStudents.unsubscribe()
+    }
+
+
 }
+
+

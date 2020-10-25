@@ -7,7 +7,7 @@
         <div class="title">מפגשים שטרם אושרו</div>
         <div class="list">
             <select [(ngModel)]="studentSelected" name="studentSelected">
-                <option value>כולם</option>
+                <option value> כולם</option>
                 <option *ngFor="let student of students" [value]="student?.ticketNo">
                     {{student?.studentName}}
                 </option>

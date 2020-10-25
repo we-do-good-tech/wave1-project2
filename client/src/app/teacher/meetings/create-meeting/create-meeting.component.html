@@ -35,7 +35,7 @@
         <div class="mettingsTime" formGroupName="times">
             <div class="meetStart">
                 <label>שעת התחלה</label>
-                <select formControlName="meetingStartTime" #a
+                <select formControlName="meetingStartTime"
                     [ngClass]="this.formsService.displayClass(getFormControl('meetingStartTime'))">
                     <option value>--:-- <i class="fas fa-clock"></i></option>
                     <option *ngFor="let time of timeList" [value]="time">{{time}}</option>
