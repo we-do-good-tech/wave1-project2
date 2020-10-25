@@ -66,7 +66,7 @@ export class FormsValidatorsService {
         let end = times.get("meetingEndTime").value;
 
         if (start && end) {
-            if (timesRange(start, end) < 0) {
+            if (timesRange(start, end) <= 0) {
                 return {
                     PositiveTimeRange: true,
                 };
