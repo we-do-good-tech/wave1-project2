@@ -47,7 +47,10 @@ export class ConfirmComponent implements AfterViewInit, OnDestroy {
                 this.authService.confirmCode(codeToSend).subscribe((result) => {
                     this.form.resetForm()
                     this.router.navigate(["main/teacher"]);
-                }, () => this.form.resetForm());
+                }, () => {
+                    this.form.resetForm()
+                    this.keyBoardService.setElement(this.firstInput.nativeElement)
+                });
             }
         })
     }
@@ -59,6 +62,7 @@ export class ConfirmComponent implements AfterViewInit, OnDestroy {
         this.keyBoardService.setElement(this.firstInput.nativeElement)
         this.authService.resendConfirmCode().subscribe((result) => {
             // console.log(result);
+            alert('נשלח קוד חדש למייל')
         });
     }
 
