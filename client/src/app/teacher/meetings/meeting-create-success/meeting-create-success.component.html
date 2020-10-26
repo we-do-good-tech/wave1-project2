@@ -1,16 +1,13 @@
 <app-header styleElement [changeClass]="'header-green'" [selector]="'#the-header'"></app-header>
 
 <div class="succesContainer">
-    <!-- <div class="successOuter"> -->
     <div class="success">
         <img src="../../../../assets/Group 1815.svg" alt>
-        <!-- <i class="fas fa-check-circle"></i> -->
-        <!-- </div> -->
     </div>
     <h3>מפגש נוצר בהצלחה</h3>
     <div class="progressBar">
         <div class="bar">
-            <div #progressTime class="progressTime"></div>
+            <div [ngStyle]="{width: progress}" class="progressTime"></div>
         </div>
     </div>
     <small>{{reporstStats?.limitHours}} שעות</small>
@@ -25,7 +22,6 @@
             ניתן לעקוב אחרי
             <span [routerLink]="['/main/teacher/meetings-table']">מפגשים שטרם אושרו</span>
         </p>
-        <!-- <i class="fas fa-heart"></i> -->
     </div>
     <div class="endButton">
         <img src="../../../../assets/Group 1789.svg" alt>

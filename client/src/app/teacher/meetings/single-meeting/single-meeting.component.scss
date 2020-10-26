@@ -1,78 +1,33 @@
 .singleMeetingContainer {
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
   flex-direction: column;
   text-align: center;
   height: calc(100vh - 68px);
   overflow-y: auto;
+  justify-content: space-between;
 }
 
-.meetingTeacher p {
-  font-weight: bold;
-  font-size: 16px;
-  color: #6dac18;
-  margin-top: 100px;
-}
-.meetingDateAndTime {
-  width: 80%;
-  display: flex;
-  justify-content: space-around;
-  margin: 0 auto;
-}
-.separator {
-  height: 30px;
-  width: 2px;
-  background-color: #6dac18;
-}
-.totalHours {
-  font-size: 18px;
-  font-weight: bold;
-  color: #6dac18;
+.buttons {
+  padding-top: 1rem;
   display: flex;
   flex-direction: column;
-}
-.totalHours small {
-  font-size: 10px;
-}
-.dateAndTime {
-  display: flex;
+  align-items: center;
   justify-content: space-around;
-}
-.dateAndTime .time {
-  font-size: 18px;
-  color: #6dac18;
-  margin-right: 10px;
-}
-.dateAndTime .date {
-  font-size: 18px;
-  font-weight: bold;
-  color: #6dac18;
-}
-.header {
-  font-size: 16px;
-  font-weight: bold;
-  color: #4a4545;
-}
-.topicsContent,
-.importantCommentsContent {
-  height: 150px;
-  width: 80%;
-  //   border: 1px solid black;
-  border-radius: 5px;
-  overflow-y: auto;
-  margin: 10px auto;
-  direction: rtl;
 }
 
 button {
   width: 75%;
   margin: 0 auto;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
+
 .editButton a {
   text-decoration: underline;
   margin: 15px 0;
   color: #f0ab0e;
+}
+
+.editButton {
+  margin: 15px 0 ;
 }

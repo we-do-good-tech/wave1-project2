@@ -9,10 +9,8 @@ import { HttpErrorMessagesComponent } from "./http-error-messages/http-error-mes
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { FooterComponent } from "./footer/footer.component";
 import { LoaderComponent } from "./loader/loader.component";
-import { ParentSignatureComponent } from "./parent-signature/parent-signature.component";
 import { KeyboardButtonComponent } from './keyboard/keyboard-button/keyboard-button.component';
 import { ExmpleComponent } from './exmple/exmple.component';
-// import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
 import { KeyboardComponent } from './keyboard/keyboard.component';
 
 import { LimitInputDirective } from "../directives/limit-input.directive";
@@ -22,7 +20,8 @@ import { StyleElementDirective } from "../directives/style.element.directive";
 import { StyleElemetSelectedDirective } from "../directives/style-elemet-selected.directive";
 
 import { FilterPipe } from "../services/pipes/filter.pipe";
-import { HebrewMountNamePipe } from "../services/pipes/hebrew-mount-name.pipe"
+import { HebrewMountNamePipe } from "../services/pipes/hebrew-mount-name.pipe";
+import { MeetingInfoComponent } from './meeting-info/meeting-info.component'
 
 
 
@@ -33,7 +32,6 @@ import { HebrewMountNamePipe } from "../services/pipes/hebrew-mount-name.pipe"
         NotFoundComponent,
         FooterComponent,
         LoaderComponent,
-        ParentSignatureComponent,
         KeyboardComponent,
         KeyboardButtonComponent,
         ExmpleComponent,
@@ -43,14 +41,14 @@ import { HebrewMountNamePipe } from "../services/pipes/hebrew-mount-name.pipe"
         StyleElementDirective,
         StyleElemetSelectedDirective,
         FilterPipe,
-        HebrewMountNamePipe
+        HebrewMountNamePipe,
+        MeetingInfoComponent
     ],
     imports: [
         CommonModule,
         RouterModule,
         SignaturePadModule,
         FormsModule,
-        // BsDatepickerModule.forRoot()
     ],
     exports: [
         HeaderComponent,
@@ -67,7 +65,8 @@ import { HebrewMountNamePipe } from "../services/pipes/hebrew-mount-name.pipe"
         StyleElementDirective,
         StyleElemetSelectedDirective,
         FilterPipe,
-        HebrewMountNamePipe
+        HebrewMountNamePipe,
+        MeetingInfoComponent
     ],
 })
 export class SharedModule { }

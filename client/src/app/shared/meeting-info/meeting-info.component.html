@@ -1,0 +1,33 @@
+<div class="meetingInfoContainer">
+    <div class="meetingDateAndTime">
+        <div class="totalHours">
+            {{report?.reportRangeTimne}}
+            <small>סה"כ שעות</small>
+        </div>
+        <div class="separator"></div>
+        <div class="dateAndTime">
+            <div class="time">
+                {{report?.reportEndTime}}-{{report?.reportStartTime}}
+            </div>
+            <div class="date">
+                {{report?.reportDate}}
+            </div>
+        </div>
+    </div>
+    <div class="topicsAndActivities">
+        <p class="header">
+            נושאים ופעלויות שעלו במפגש
+        </p>
+        <div class="topicsContent">
+            {{report?.reportActivitis}}
+        </div>
+    </div>
+    <div class="importantComments">
+        <p class="header">
+            הערות
+        </p>
+        <div class="importantCommentsContent">
+            {{report?.reportComments}}
+        </div>
+    </div>
+</div>

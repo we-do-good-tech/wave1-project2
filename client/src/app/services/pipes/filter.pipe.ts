@@ -7,6 +7,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FilterPipe implements PipeTransform {
 
     transform(itemsArray: any[], filterBy: string, propery: string): any[] {
+        console.log(filterBy, propery)
 
         if (filterBy) {
             return itemsArray.filter((item) => {

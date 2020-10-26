@@ -1,4 +1,3 @@
-import { ParentSignatureComponent } from "./shared/parent-signature/parent-signature.component";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { AuthGuard } from "./services/guards/auth.guard";
@@ -33,7 +32,7 @@ const routes: Routes = [
     },
     {
         path: "parent-signature",
-        component: ParentSignatureComponent,
+        loadChildren: () => import('./signature/signature.module').then((m) => m.SignatureModule),
     },
     {
         path: "**",

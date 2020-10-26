@@ -1,52 +1,17 @@
 <app-header styleElement [changeClass]="mode === 'new-report' ? 'header-green' : 'header-red'"
     [selector]="'#the-header'">
     <a class="backArrow"
-        [routerLink]="mode === 'new-report' ? ['/main/teacher/create-meeting'] : ['/main/teacher/meetings-table'] ">
+        [routerLink]="mode === 'new-report' ? ['/main/teacher/create-meeting'] : ['/main/teacher/meetings-table']">
         <i class="fas fa-arrow-left"></i> </a>
 </app-header>
 <div class="singleMeetingContainer">
-    <!-- <div class="meetingNumber">
-        <h4>סיכום מפגש 6</h4>
-    </div> -->
-    <div class="meetingTeacher">
-        <p> {{report?.studentName}}</p>
-    </div>
-    <div class="meetingDateAndTime">
-        <div class="totalHours">
-            {{report?.reportRangeTimne}}
-            <small>סה"כ שעות</small>
+    <app-meeting-info [report]="report"></app-meeting-info>
+    <div class="buttons">
+        <div *ngIf="mode === 'new-report'" class="editButton">
+            <a [routerLink]="['/main/teacher/create-meeting']">עריכה <i class="fas fa-pencil-alt"></i></a>
         </div>
-        <div class="separator"></div>
-        <div class="dateAndTime">
-            <div class="time">
-                {{report?.reportEndTime}}-{{report?.reportStartTime}}
-            </div>
-            <div class="date">
-                {{report?.reportDate}}
-            </div>
-        </div>
+        <button *ngIf="mode === 'new-report'" class="mainButton" (click)="onSendReport()">אישור</button>
+        <button *ngIf="mode === 'resend-sign'" class="mainButton" (click)="onResendSign()">שלח לאישור</button>
     </div>
-    <div class="topicsAndActivities">
-        <p class="header">
-            נושאים ופעלויות שעלו במפגש
-        </p>
-        <div class="topicsContent">
-            {{report?.reportActivitis}}
-        </div>
-    </div>
-    <div class="importantComments">
-        <p class="header">
-            הערות
-        </p>
-        <div class="importantCommentsContent">
-            {{report?.reportComments}}
-        </div>
-    </div>
-
-    <div *ngIf="mode === 'new-report'" class="editButton">
-        <a [routerLink]="['/main/teacher/create-meeting']">עריכה <i class="fas fa-pencil-alt"></i></a>
-    </div>
-    <button *ngIf="mode === 'new-report'" class="mainButton" (click)="onSendReport()">אישור</button>
-    <button *ngIf="mode === 'resend-sign'" class="mainButton" (click)="onResendSign()">שלח לאישור</button>
 </div>
 <app-loader></app-loader>

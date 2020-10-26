@@ -28,15 +28,11 @@ export class ReportsService {
 
 
     getMountlyStats(): Observable<ReportStats> {
-        // if (this.reportsStats) {
-        //     return of(this.reportsStats)
-        // }
         return this.http.get<ReportStats>('api/teacher/reports/stats')
     }
 
 
     getReportsNotConfirm(): Observable<Report[]> {
-        // console.log(this.reports);
         if (this.reports) {
             return of(this.reports);
         }
@@ -54,8 +50,13 @@ export class ReportsService {
         this.report = { ...report };
     }
 
-    getReportCreated(): Report {
+    getReport(): Report {
         if (this.report) return this.report;
         return undefined;
+    }
+
+
+    conculateProgressStatus(base: number, done: number) {
+
     }
 }

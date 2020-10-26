@@ -10,6 +10,7 @@ import { Student } from '../interfaces/Student';
 export class StudentsService {
 
     private students: Student[]
+    private student: Student
 
     constructor(private http: HttpClient) { }
 
@@ -28,11 +29,13 @@ export class StudentsService {
     }
 
 
-    findStudent(findBy: any, propery: string): Student {
-        if (this.students) {
-            return this.students.find((s) => {
-                return s[propery] === findBy
-            })
-        }
+    setStudent(student: Student): void {
+        this.student = { ...student }
+    }
+
+
+    getStudent(): Student {
+        if (this.student) return this.student
+        return undefined
     }
 }

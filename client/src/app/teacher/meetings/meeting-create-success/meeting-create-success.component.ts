@@ -1,13 +1,11 @@
 import {
-    AfterViewInit,
     Component,
-    ElementRef,
     OnDestroy,
     OnInit,
-    ViewChild,
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
+import { map } from 'rxjs/operators';
 import { ReportStats } from "src/app/interfaces/Report";
 import { conculatePresent } from "../../../services/helpers/present";
 
@@ -16,27 +14,29 @@ import { conculatePresent } from "../../../services/helpers/present";
     templateUrl: "./meeting-create-success.component.html",
     styleUrls: ["./meeting-create-success.component.scss"],
 })
-export class MeetingCreateSuccessComponent implements OnInit, OnDestroy, AfterViewInit {
+export class MeetingCreateSuccessComponent implements OnInit, OnDestroy {
     reporstStats: ReportStats;
     subReportsStats: Subscription;
     currentMount: number;
+    progress: string
 
     constructor(private route: ActivatedRoute) {
         this.currentMount = new Date().getMonth() + 1;
     }
 
-    @ViewChild("progressTime") timeStatus: ElementRef;
-
     ngOnInit(): void {
-        this.subReportsStats = this.route.data.subscribe((result) => {
-            this.reporstStats = result.reportsStats;
-            // console.log(result);
-        });
-    }
-
-    ngAfterViewInit(): void {
-        const progressTime = this.timeStatus.nativeElement;
-        progressTime.style.width = `${String(this.canculateStatus())}%`;
+        this.subReportsStats = this.route.data
+            .pipe(
+                map((result) => {
+                    this.reporstStats = result.reportsStats;
+                    let limitHoures = this.reporstStats.limitHours;
+                    let hoursDone = this.reporstStats.totalHours.split(":")[0];
+                    return conculatePresent(Number(limitHoures), Number(hoursDone))
+                })
+            ).subscribe((result) => {
+                console.log(result);
+                this.progress = `${String(result)}%`
+            });
     }
 
 
@@ -44,9 +44,4 @@ export class MeetingCreateSuccessComponent implements OnInit, OnDestroy, AfterVi
         this.subReportsStats.unsubscribe();
     }
 
-    canculateStatus() {
-        let limitHoures = this.reporstStats.limitHours;
-        let hoursDone = this.reporstStats.totalHours.split(":")[0];
-        return conculatePresent(Number(limitHoures), Number(hoursDone));
-    }
 }

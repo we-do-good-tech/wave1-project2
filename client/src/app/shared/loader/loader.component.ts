@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import { LoaderService } from "src/app/services/loader.service";
 
@@ -11,13 +11,13 @@ export class LoaderComponent implements OnInit, OnDestroy {
     isLoad: boolean;
     subLoadStatusChange: Subscription;
 
-    constructor(private loaderService: LoaderService) { }
+    constructor(private loaderService: LoaderService, private cdr: ChangeDetectorRef) { }
 
     ngOnInit(): void {
-        this.subLoadStatusChange = this.loaderService
-            .getLoadStatusChange()
+        this.subLoadStatusChange = this.loaderService.getLoadStatusChange()
             .subscribe((result) => {
-                console.log(result, "LOADER");
+                this.cdr.detectChanges()
+                // console.log(result, "LOADER");
                 this.isLoad = result;
             });
     }

@@ -10,7 +10,7 @@ export class SingleMeetingToOperationGuard implements CanActivate {
     canActivate(
         next: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): boolean {
-        if (this.reportsService.getReportCreated()) {
+        if (this.reportsService.getReport()) {
             return true;
         }
         this.router.navigate(['/main/teacher'])

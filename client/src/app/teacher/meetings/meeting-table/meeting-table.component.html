@@ -6,12 +6,14 @@
     <div class="heading">
         <div class="title">מפגשים שטרם אושרו</div>
         <div class="list">
-            <select [(ngModel)]="studentSelected" name="studentSelected">
-                <option value> כולם</option>
-                <option *ngFor="let student of students" [value]="student?.ticketNo">
+            <!-- <form #form="ngForm"> -->
+            <select (change)="onSelectStudent($event)">
+                <option value> בחר</option>
+                <option *ngFor="let student of students; let i = index;" [value]="student?.ticketNo">
                     {{student?.studentName}}
                 </option>
             </select>
+            <!-- </form> -->
         </div>
     </div>
     <div class="table">

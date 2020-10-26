@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { ActivatedRoute, ParamMap, Router, UrlSegment } from "@angular/router";
+import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { Report } from "src/app/interfaces/Report";
 import { LoaderService } from "src/app/services/loader.service";
 import { ReportsService } from "src/app/services/reports.service";
-import { TeacherService } from "src/app/services/teacher.service";
+
 
 @Component({
     selector: "app-single-meeting",
@@ -24,8 +24,7 @@ export class SingleMeetingComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit(): void {
-        this.report = this.reportsService.getReportCreated();
-        // console.log(this.report);
+        this.report = this.reportsService.getReport();
         this.sunParams = this.route.paramMap.subscribe((params: ParamMap) => {
             if (params.has("ticketNo")) {
                 this.mode = "resend-sign";
@@ -45,6 +44,7 @@ export class SingleMeetingComponent implements OnInit, OnDestroy {
 
     onResendSign(): void {
         if (this.report) {
+            console.log(this.report)
             alert("עוד לא עובד");
             return;
         }

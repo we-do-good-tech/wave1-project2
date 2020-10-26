@@ -45,7 +45,6 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
 
     ngOnInit(): void {
         this.subStudents = this.route.data.subscribe((result) => {
-            // console.log(result);
             this.students = result.students;
         });
 
@@ -86,10 +85,7 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
             times: { meetingStartTime, meetingEndTime },
         } = this.meetingForm.value;
 
-        const student = this.studentsService.findStudent(
-            studentName,
-            "studentName"
-        );
+        const student = this.students.find((s) => s.studentName === studentName)
         // console.log(student);
 
         const report: Report = {
@@ -121,8 +117,7 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
     }
 
     setMeetingFormValues() {
-        const report = this.reportsService.getReportCreated();
-        // console.log(report);
+        const report = this.reportsService.getReport();
         if (report) {
             this.meetingForm.patchValue({
                 studentName: report.studentName,
