@@ -1,4 +1,7 @@
-<app-header styleElement [changeClass]="'header-red'" [selector]="'#the-header'">
+<app-header
+    styleElement
+    [changeClass]="'header-red'"
+    [selector]="'#the-header'">
     <a class="backArrow" [routerLink]="['/main/teacher']">
         <i class="fas fa-arrow-left"></i> </a>
 </app-header>
@@ -9,7 +12,9 @@
             <!-- <form #form="ngForm"> -->
             <select (change)="onSelectStudent($event)">
                 <option value> בחר</option>
-                <option *ngFor="let student of students; let i = index;" [value]="student?.ticketNo">
+                <option
+                    *ngFor="let student of students; let i = index;"
+                    [value]="student?.ticketNo">
                     {{student?.studentName}}
                 </option>
             </select>
@@ -23,9 +28,15 @@
             <li>סטטוס</li>
         </ul>
         <div class="meetings">
-            <div *ngIf="(reports | filter: studentSelected:'ticketNo').length === 0">No Repots</div>
-            <app-meeting-table-item *ngFor="let report of reports | filter: studentSelected:'ticketNo';
-                let i = index;" [index]="i +1" [report]="report" (sendSignAgain)="getReportSignAgain($event)">
+            <div *ngIf="(reports | filter: studentSelected:'ticketNo').length === 0">
+                No Repots
+            </div>
+            <app-meeting-table-item
+                *ngFor="let report of reports | filter: studentSelected:'ticketNo';let i = index;"
+                [displayItem]="reportsService.anableResendParentSign(report?.lastResendDateToParent, 1)"
+                [index]="i +1"
+                [report]="report"
+                (sendSignAgain)="getReportSignAgain($event)">
             </app-meeting-table-item>
         </div>
     </div>

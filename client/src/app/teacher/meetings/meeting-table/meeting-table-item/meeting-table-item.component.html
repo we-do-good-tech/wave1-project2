@@ -1,5 +1,5 @@
 <div class="tableItem">
-    <ul (click)="onSendConfirmSignAgain(report)">
+    <ul (click)="onSendConfirmSignAgain(report)" [class.disabled]="displayItem">
         <li>{{index}}</li>
         <li>{{report?.reportDate}}</li>
         <li> <span>!</span> <br> ממתין לאישור</li>

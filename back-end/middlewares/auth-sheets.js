@@ -8,7 +8,7 @@ async function authSeets(request, response, next) {
         // console.log(client)
         if (error) {
             console.log("CLIENT ERROR");
-            return response.status(401).send({
+            return response.status(403).send({
                 message: "Unauthorize",
             });
         } else {

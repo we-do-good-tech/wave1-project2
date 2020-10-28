@@ -38,3 +38,9 @@ li span {
   text-decoration: none;
   margin-left: 33px;
 }
+
+
+.disabled {
+  pointer-events:none; 
+  opacity:0.4;       
+}

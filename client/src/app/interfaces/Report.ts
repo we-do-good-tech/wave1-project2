@@ -10,6 +10,8 @@ export interface Report {
     parentSignImageUrl?: string
     parentEmail?: string
     ticketNo: number
+    lastDateResendSignToParent: string | Date
+    index?: number | string
 }
 
 

@@ -1,7 +1,8 @@
 const googleSheetsService = require("../services/google-sheets");
 const keys = require("../config/keys");
 const { convertSheetsDataToObjectsArray } = require('../helpers/tojson');
-
+const { sendEmailSignConfirmMeeting } = require('../services/emails')
+const { sendMail } = require("../send-email/transporter");
 
 
 
@@ -16,6 +17,10 @@ module.exports.getStudents = async function (request, response) {
             request.sheetsClientData.authorizationToken,
         )
 
+        if (!sdudents) {
+            return response.status(200).send([]);
+        }
+
         const toJson = convertSheetsDataToObjectsArray(sdudents, 'CHILDRENS')
         response.status(200).send(toJson)
     } catch (error) {
@@ -28,7 +33,13 @@ module.exports.getStudents = async function (request, response) {
 
 
 module.exports.createReport = async function (request, response) {
-    const { ticketNo, reportDate, reportActivitis, reportComments, reportStartTime, reportEndTime, reportRangeTimne, isParentSign, parentSignImageUrl } = request.body
+    if (request.findReport) {
+        console.log(request.findReport)
+        return response.status(400).send({
+            message: 'דיווח לא חוקי יתכן שבוצע דיווח כפול ליום זה'
+        })
+    }
+    const { ticketNo, reportDate, reportActivitis, reportComments, reportStartTime, reportEndTime, reportRangeTimne, parentEmail } = request.body
 
     let body = `{"values":[
         [
@@ -38,11 +49,12 @@ module.exports.createReport = async function (request, response) {
             "${reportRangeTimne}",
             "${reportActivitis}",
             "${reportComments}",
-            ${isParentSign},
-            ${parentSignImageUrl},
+            ${false},
+            ${null},
             "${ticketNo}",
             "${request.userData.teacherId}",
-            "${new Date(reportDate).getMonth() + 1}"
+            "${new Date(reportDate).getMonth() + 1}",
+            "${new Date().toDateString()}"
         ]
     ]}`
 
@@ -55,6 +67,8 @@ module.exports.createReport = async function (request, response) {
         )
 
         if (reportCreated.updates.updatedRows > 0) {
+            const options = sendEmailSignConfirmMeeting(parentEmail)
+            sendMail(options)
             return response.status(200).send({
                 message: 'REPORT CREATED'
             })
@@ -75,7 +89,7 @@ module.exports.createReport = async function (request, response) {
 
 module.exports.getReportsUnConfirm = async function (request, response) {
     const sheetId = keys.GOOGLE_SHEETS.sheetsIds.reports
-    const query = `select A,B,C,D,E,F,I where J=${Number(request.userData.teacherId)}and G=${false}`;
+    const query = `select A,B,C,D,E,F,I,L,M where J=${Number(request.userData.teacherId)}and G=${false}`;
 
     try {
         const reports = await googleSheetsService.find(
@@ -89,6 +103,7 @@ module.exports.getReportsUnConfirm = async function (request, response) {
         }
 
         const toJson = convertSheetsDataToObjectsArray(reports, 'REPORTS')
+        // console.log(toJson)
 
         return response.status(200).send(toJson)
     } catch (error) {
@@ -112,8 +127,7 @@ module.exports.getReportsStats = async function (request, response) {
         )
 
         const toJson = convertSheetsDataToObjectsArray(repostsStats, 'REPORTS_STATS')[0]
-        console.log(toJson)
-        // REPORTS_STATS
+        // console.log(toJson)
         response.status(200).send(toJson);
     } catch (error) {
         console.log(error)
@@ -121,4 +135,52 @@ module.exports.getReportsStats = async function (request, response) {
             message: "ERROR UNKNOW",
         });
     }
+}
+
+
+module.exports.resendParentSign = async function (request, response) {
+    if (request.findReport) {
+        console.log(request.findReport)
+        // check date resend 
+
+    }
+
+    const { parentEmail, index } = request.body
+    const sheetName = keys.GOOGLE_SHEETS.sheetsNames.reports
+    const range = `!L${index + 1}`
+
+    let body = `{"values":[
+            [
+                "${new Date().toDateString()}"
+            ]
+        ]}`
+
+    try {
+        const updateDateParent = await googleSheetsService.update(
+            range,
+            sheetName,
+            body,
+            request.sheetsClientData.authorizationToken
+        )
+
+        // console.log(updateDateParent)
+        if (updateDateParent.updatedColumns > 0) {
+            const options = sendEmailSignConfirmMeeting(parentEmail)
+            sendMail(options)
+            return response.status(200).send({
+                message: 'UPDATE RESEND DATE PARENT SIGN'
+            })
+        }
+
+        response.status(401).send({
+            message: "UPDATE RESEND SIGN PARENT FAIL",
+        });
+
+    } catch (error) {
+        console.log(error)
+        response.status(500).send({
+            message: "ERROR UNKNOW",
+        });
+    }
+
 }

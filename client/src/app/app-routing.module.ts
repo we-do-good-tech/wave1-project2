@@ -7,6 +7,10 @@ import { ExmpleComponent } from "./shared/exmple/exmple.component";
 
 const routes: Routes = [
     {
+        path: "parent-signature",
+        loadChildren: () => import('./signature/signature.module').then((m) => m.SignatureModule),
+    },
+    {
         path: "",
         redirectTo: "auth/email",
         pathMatch: "full",
@@ -22,17 +26,12 @@ const routes: Routes = [
     {
         path: "auth",
         loadChildren: () => import("./auth/auth.module").then((m) => m.AuthModule),
-        canActivate: [NotAuthGuard],
+        // canActivate: [NotAuthGuard],
     },
     {
         path: "main",
-        loadChildren: () =>
-            import("./teacher/teacher.module").then((m) => m.TeacerModule),
+        loadChildren: () => import("./teacher/teacher.module").then((m) => m.TeacerModule),
         canActivate: [AuthGuard],
-    },
-    {
-        path: "parent-signature",
-        loadChildren: () => import('./signature/signature.module').then((m) => m.SignatureModule),
     },
     {
         path: "**",

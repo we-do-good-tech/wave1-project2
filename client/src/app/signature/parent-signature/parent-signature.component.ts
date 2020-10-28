@@ -27,7 +27,8 @@ export class ParentSignatureComponent implements AfterViewChecked {
             reportRangeTimne: '02:00',
             reportActivitis: 'YUFUUYUFU YU YUF YUFUF  YFYUF FYUF  YUF YUF UYUFU YU YUF YUFUF  YFYUF  YUF YUF UYUFU YU YUF YUFUF  YFYUF  YUF YUF UYUFU YU YUF YUFUF  YFYUF  YUF YUF UYUFU YU YUF YUFUF  YFYUF  YUF YUF UYUFU YU YUF YUFUF  YFYUF  YUF YUF U',
             reportComments: 'dfsdfsd YUFU YU YUF YUFUF  ',
-            ticketNo: 13
+            ticketNo: 13,
+            lastDateResendSignToParent: new Date().toDateString()
         }
     }
 

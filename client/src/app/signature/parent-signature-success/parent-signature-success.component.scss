@@ -1,0 +1,38 @@
+.signatureSuccessContainer {
+    height: calc(100vh - 68px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    overflow-y: auto;
+  }
+.top {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+.top p {
+color: #89b242;
+font-weight: bold;
+font-size: 20px;
+margin-top: 10px;
+}
+
+.bottom {
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+}
+.bottom p {
+direction: rtl;
+color: #080808;
+font-size: 20px;
+font-weight: bold;
+}
+.bottom p:first-of-type {
+font-size: 22px;
+}
+button {
+width: 80%;
+}

@@ -12,6 +12,18 @@ function sendEmailConfirmCodeOptions(toEmail, confirmCode) {
 }
 
 
+function sendEmailSignConfirmMeeting(toEmail, token) {
+    return {
+        from: keys.EMAIL_SENDER.auth.user,
+        to: toEmail,
+        subject: 'TEST',
+        text: 'TEST',
+        html: `<a href="http://localhost:3000/parent-signature">כאן</a> לאשר את המפש נא ללחוץ`
+    }
+}
+
+
 module.exports = {
-    sendEmailConfirmCodeOptions
+    sendEmailConfirmCodeOptions,
+    sendEmailSignConfirmMeeting
 }

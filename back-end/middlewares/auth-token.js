@@ -20,7 +20,7 @@ async function verifyToken(request, response, next) {
 
     } catch (error) {
         console.log('Unauthorized user')
-        response.status(401).send({
+        response.status(403).send({
             message: 'Unauthorized',
         })
     }

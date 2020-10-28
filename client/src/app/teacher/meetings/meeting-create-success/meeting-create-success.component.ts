@@ -20,14 +20,13 @@ export class MeetingCreateSuccessComponent implements OnInit, OnDestroy {
     currentMount: number;
     progress: string
 
-    constructor(private route: ActivatedRoute) {
-        this.currentMount = new Date().getMonth() + 1;
-    }
+    constructor(private route: ActivatedRoute) { }
 
     ngOnInit(): void {
         this.subReportsStats = this.route.data
             .pipe(
                 map((result) => {
+                    this.currentMount = new Date().getMonth() + 1;
                     this.reporstStats = result.reportsStats;
                     let limitHoures = this.reporstStats.limitHours;
                     let hoursDone = this.reporstStats.totalHours.split(":")[0];

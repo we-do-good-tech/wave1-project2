@@ -27,7 +27,6 @@ import { LoaderInterceptor } from "./services/interceptors/loader.interceptor";
         SharedModule,
         SignaturePadModule,
         BrowserAnimationsModule,
-        // BsDatepickerModule.forRoot()
     ],
     exports: [SharedModule],
     providers: [

@@ -41,6 +41,9 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
     ) {
         this.students = [];
         this.timeList = timeList(8, 24, 10);
+
+        // let x = new Date().toDateString()
+        // console.log(new Date(x).getTime())
     }
 
     ngOnInit(): void {
@@ -100,11 +103,9 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
             ),
             reportComments: meetingComments,
             parentEmail: student.parentEmail,
-            isParentSign: false,
-            parentSignImageUrl: null,
+            lastDateResendSignToParent: new Date().toDateString()
         };
 
-        // console.log(report);
         this.reportsService.setReport(report);
         this.router.navigate(["/main/teacher/meeting-new"]);
     }
