@@ -1699,6 +1699,11 @@ const routes = [
     },
     {
         path: "**",
+        redirectTo: '404',
+        pathMatch: 'full'
+    },
+    {
+        path: "404",
         component: _shared_not_found_not_found_component__WEBPACK_IMPORTED_MODULE_3__["NotFoundComponent"],
     },
 ];
