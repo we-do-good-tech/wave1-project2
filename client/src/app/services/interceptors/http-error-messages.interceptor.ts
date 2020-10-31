@@ -11,13 +11,14 @@ import { Observable, throwError } from "rxjs";
 import { HttpErrorMessagesService } from "../http-error-messages.service";
 import { LoaderService } from "../loader.service";
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class HttpErrorMessagesInterceptor implements HttpInterceptor {
     constructor(
         private httpErrorMessagesService: HttpErrorMessagesService,
-        private loaderService: LoaderService,
-        private authServcie: AuthService
+        private authServcie: AuthService,
+        private router: Router
     ) { }
 
     intercept(
@@ -39,6 +40,7 @@ export class HttpErrorMessagesInterceptor implements HttpInterceptor {
 
                 if (errorMassge === 'Unauthorize') {
                     this.authServcie.clearLoginInfo()
+                    this.router.navigate(['/auth/email'])
                 }
 
                 // alert(errorMassge)

@@ -6,6 +6,7 @@ const { createToken } = require("../services/tokens");
 const keys = require("../config/keys");
 const { convertSheetsDataToObjectsArray } = require('../helpers/tojson')
 
+
 exports.authTeacherEmail = async function (request, response) {
     const { teacherEmail } = request.body;
     const query = `select * where C='${teacherEmail}'`;
@@ -43,7 +44,7 @@ exports.authTeacherEmail = async function (request, response) {
             teacherId: toJson.id,
             teacherEmail: toJson.email,
             teacherFirstName: toJson.firstName,
-        });
+        }, keys.TOKENS.ACCESS_TOKEN.secretTokenKey, keys.TOKENS.ACCESS_TOKEN.expiresIn);
 
         return response.status(200).send({
             message: "USER FOUND",
@@ -55,7 +56,6 @@ exports.authTeacherEmail = async function (request, response) {
             },
         });
     } catch (error) {
-        // console.log('ERROR')
         console.log(error);
         response.status(500).send({
             message: "ERROR UNKNOW",
@@ -65,8 +65,9 @@ exports.authTeacherEmail = async function (request, response) {
 
 exports.authConfirmCode = async function (request, response) {
     const { code } = request.body;
+    // console.log(code, confirmCode.getConfirmCode())
 
-    if (code == confirmCode.getConfirmCode()) {
+    if (code === confirmCode.getConfirmCode()) {
         console.log("CODE IS CONFIRM");
         confirmCode.deleteConfirmCode();
         return response.status(200).send({
@@ -79,6 +80,7 @@ exports.authConfirmCode = async function (request, response) {
         message: "קוד שגוי, נסה שנית",
     });
 };
+
 
 exports.newConfirmCode = async function (request, response) {
     const { teacherEmail } = request.userData;

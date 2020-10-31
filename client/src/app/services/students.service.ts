@@ -14,6 +14,10 @@ export class StudentsService {
 
     constructor(private http: HttpClient) { }
 
+    getStudentsLocal(): Student[] {
+        if (this.students) return this.students
+        return
+    }
 
     getStudents(): Observable<Student[]> {
         if (this.students) {

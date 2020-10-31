@@ -13,6 +13,7 @@ export class NotAuthGuard implements CanActivate {
         state: RouterStateSnapshot): Observable<boolean> | boolean {
         const isLog = this.authService.getIsLog()
         if (!isLog) {
+            this.router.navigate(['/auth/email'])
             return true;
         }
         this.router.navigate(['/main/teacher'])

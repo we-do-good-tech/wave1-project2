@@ -6,6 +6,7 @@ import { Report } from "src/app/interfaces/Report";
 import { Student } from "src/app/interfaces/Student";
 import { ReportsService } from "src/app/services/reports.service";
 import { StudentsService } from 'src/app/services/students.service';
+import { daysRange } from "../../../services/helpers/time.range";
 
 
 @Component({
@@ -24,8 +25,7 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        public reportsService: ReportsService,
-        private studentsService: StudentsService) {
+        private reportsService: ReportsService) {
         this.students = [];
         this.reports = [];
     }
@@ -46,7 +46,7 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
     }
 
 
-    getReportSignAgain(report: Report) {
+    getReportSignAgain(report: Report): void {
         const student = this.students.find((s) => s.ticketNo === report.ticketNo);
         report.studentName = student.studentName;
         report.parentEmail = student.parentEmail;
@@ -58,6 +58,17 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
                 time: report.reportStartTime
             }
         });
+    }
+
+    anableResendParentSign(date, rangeLimit: number): boolean {
+        console.log(date)
+        const now = new Date().getTime()
+        const last = new Date(date).getTime()
+        console.log(now, last)
+        if (daysRange(now, last) < rangeLimit) {
+            return true
+        }
+        return false
     }
 
     ngOnDestroy(): void {

@@ -16,6 +16,12 @@ export class ReportsService {
     constructor(private http: HttpClient) { }
 
 
+    getReporstLocal(): Report[] {
+        if (this.reports) return this.reports
+        return
+    }
+
+
     createReport(report: Report): Observable<{ message: string }> {
         return this.http.post<{ message: string }>('api/teacher/create-report', report)
             .pipe(
@@ -73,15 +79,4 @@ export class ReportsService {
         return undefined;
     }
 
-
-    anableResendParentSign(date: string | Date, rangeLimit: number): boolean {
-        console.log(date)
-        const now = new Date().getTime()
-        const last = new Date(date).getTime()
-        console.log(now, last)
-        if (daysRange(now, last) < rangeLimit) {
-            return true
-        }
-        return false
-    }
 }

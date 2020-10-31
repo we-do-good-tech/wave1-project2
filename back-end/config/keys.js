@@ -25,8 +25,12 @@ module.exports = {
     TOKENS: {
         ACCESS_TOKEN: {
             secretTokenKey: process.env.SECRET_ACCESS_TOKEN_KEY,
-            expiresIn: 60 * 120
+            expiresIn: 60 * 60 * 2
 
+        },
+        PARENT_SIGN_ACCESS_TOKEN: {
+            secretTokenKey: process.env.SECRET_ACCESS_PARENT_TOKEN_KEY,
+            expiresIn: 60 * 60 * 24
         }
     }
 };

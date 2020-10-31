@@ -468,8 +468,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "qCKp");
 /* harmony import */ var _http_error_messages_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../http-error-messages.service */ "UvWv");
-/* harmony import */ var _loader_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../loader.service */ "5dVO");
-/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../auth.service */ "lGQG");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../auth.service */ "lGQG");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "tyNb");
 
 
 
@@ -478,10 +478,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class HttpErrorMessagesInterceptor {
-    constructor(httpErrorMessagesService, loaderService, authServcie) {
+    constructor(httpErrorMessagesService, authServcie, router) {
         this.httpErrorMessagesService = httpErrorMessagesService;
-        this.loaderService = loaderService;
         this.authServcie = authServcie;
+        this.router = router;
     }
     intercept(request, next) {
         return next.handle(request).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["tap"])((result) => {
@@ -495,6 +495,7 @@ class HttpErrorMessagesInterceptor {
             }
             if (errorMassge === 'Unauthorize') {
                 this.authServcie.clearLoginInfo();
+                this.router.navigate(['/auth/email']);
             }
             // alert(errorMassge)
             this.httpErrorMessagesService.setMessage(error.error.message);
@@ -502,11 +503,11 @@ class HttpErrorMessagesInterceptor {
         }));
     }
 }
-HttpErrorMessagesInterceptor.ɵfac = function HttpErrorMessagesInterceptor_Factory(t) { return new (t || HttpErrorMessagesInterceptor)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_http_error_messages_service__WEBPACK_IMPORTED_MODULE_3__["HttpErrorMessagesService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_loader_service__WEBPACK_IMPORTED_MODULE_4__["LoaderService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"])); };
+HttpErrorMessagesInterceptor.ɵfac = function HttpErrorMessagesInterceptor_Factory(t) { return new (t || HttpErrorMessagesInterceptor)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_http_error_messages_service__WEBPACK_IMPORTED_MODULE_3__["HttpErrorMessagesService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"])); };
 HttpErrorMessagesInterceptor.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: HttpErrorMessagesInterceptor, factory: HttpErrorMessagesInterceptor.ɵfac });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpErrorMessagesInterceptor, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
-    }], function () { return [{ type: _http_error_messages_service__WEBPACK_IMPORTED_MODULE_3__["HttpErrorMessagesService"] }, { type: _loader_service__WEBPACK_IMPORTED_MODULE_4__["LoaderService"] }, { type: _auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"] }]; }, null); })();
+    }], function () { return [{ type: _http_error_messages_service__WEBPACK_IMPORTED_MODULE_3__["HttpErrorMessagesService"] }, { type: _auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] }]; }, null); })();
 
 
 /***/ }),
@@ -1374,7 +1375,7 @@ class AuthService {
         this.isLog = false;
         this.userName = null;
         this.isLogChange.next(this.isLog);
-        this.router.navigate(["/"]);
+        // this.router.navigate(["/auth/email"]);
         clearTimeout(this.tokenTimer);
         this.removeSessionStorage();
     }
@@ -1671,13 +1672,13 @@ __webpack_require__.r(__webpack_exports__);
 
 const routes = [
     {
-        path: "parent-signature",
-        loadChildren: () => __webpack_require__.e(/*! import() | signature-signature-module */ "signature-signature-module").then(__webpack_require__.bind(null, /*! ./signature/signature.module */ "2M8t")).then((m) => m.SignatureModule),
-    },
-    {
         path: "",
         redirectTo: "auth/email",
         pathMatch: "full",
+    },
+    {
+        path: "parent-signature",
+        loadChildren: () => Promise.all(/*! import() | signature-signature-module */[__webpack_require__.e("common"), __webpack_require__.e("signature-signature-module")]).then(__webpack_require__.bind(null, /*! ./signature/signature.module */ "2M8t")).then((m) => m.SignatureModule),
     },
     // {
     //     path: "",
@@ -1693,7 +1694,7 @@ const routes = [
     },
     {
         path: "main",
-        loadChildren: () => __webpack_require__.e(/*! import() | teacher-teacher-module */ "teacher-teacher-module").then(__webpack_require__.bind(null, /*! ./teacher/teacher.module */ "4+hN")).then((m) => m.TeacerModule),
+        loadChildren: () => Promise.all(/*! import() | teacher-teacher-module */[__webpack_require__.e("common"), __webpack_require__.e("teacher-teacher-module")]).then(__webpack_require__.bind(null, /*! ./teacher/teacher.module */ "4+hN")).then((m) => m.TeacerModule),
         canActivate: [_services_guards_auth_guard__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]],
     },
     {

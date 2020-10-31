@@ -1,12 +1,14 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { SignGuard } from '../services/guards/sign.guard';
 import { ParentSignatureSuccessComponent } from './parent-signature-success/parent-signature-success.component';
 import { ParentSignatureComponent } from './parent-signature/parent-signature.component';
 
 const routes: Routes = [
     {
-        path: '',
-        component: ParentSignatureComponent
+        path: ':token',
+        component: ParentSignatureComponent,
+        canActivate: [SignGuard]
     },
     {
         path: 'signature-success',

@@ -3,6 +3,8 @@ const keys = require("../config/keys");
 const { convertSheetsDataToObjectsArray } = require('../helpers/tojson');
 const { sendEmailSignConfirmMeeting } = require('../services/emails')
 const { sendMail } = require("../send-email/transporter");
+const { formatDate } = require('../helpers/dates.ranges')
+const { createToken } = require('../services/tokens')
 
 
 
@@ -39,7 +41,7 @@ module.exports.createReport = async function (request, response) {
             message: 'דיווח לא חוקי יתכן שבוצע דיווח כפול ליום זה'
         })
     }
-    const { ticketNo, reportDate, reportActivitis, reportComments, reportStartTime, reportEndTime, reportRangeTimne, parentEmail } = request.body
+    const { studentName, ticketNo, reportDate, reportActivitis, reportComments, reportStartTime, reportEndTime, reportRangeTimne, parentEmail } = request.body
 
     let body = `{"values":[
         [
@@ -66,8 +68,25 @@ module.exports.createReport = async function (request, response) {
             request.sheetsClientData.authorizationToken
         )
 
+
         if (reportCreated.updates.updatedRows > 0) {
-            const options = sendEmailSignConfirmMeeting(parentEmail)
+
+            const token = createToken({
+                studentName: studentName,
+                ticketNo: ticketNo,
+                reportDate: reportDate,
+                reportActivitis: reportActivitis,
+                reportComments: reportComments,
+                reportStartTime: reportStartTime,
+                reportEndTime: reportEndTime,
+                reportRangeTimne: reportRangeTimne,
+                index: reportCreated.updates.updatedRange.replace(/\D/g, "").slice(0, 1)
+            },
+                keys.TOKENS.PARENT_SIGN_ACCESS_TOKEN.secretTokenKey,
+                keys.TOKENS.PARENT_SIGN_ACCESS_TOKEN.expiresIn
+            )
+
+            const options = sendEmailSignConfirmMeeting(parentEmail, token)
             sendMail(options)
             return response.status(200).send({
                 message: 'REPORT CREATED'
@@ -139,13 +158,19 @@ module.exports.getReportsStats = async function (request, response) {
 
 
 module.exports.resendParentSign = async function (request, response) {
-    if (request.findReport) {
-        console.log(request.findReport)
-        // check date resend 
+    console.log(request.findReport)
+    if (!request.findReport) {
+        return response.status(404).send({
+            message: "INVALID REPORT",
+        });
 
     }
+    // check date resend 
 
+    const { studentName, ticketNo, reportDate, reportActivitis, reportComments, reportStartTime, reportEndTime, reportRangeTimne } = request.findReport
     const { parentEmail, index } = request.body
+
+
     const sheetName = keys.GOOGLE_SHEETS.sheetsNames.reports
     const range = `!L${index + 1}`
 
@@ -165,7 +190,21 @@ module.exports.resendParentSign = async function (request, response) {
 
         // console.log(updateDateParent)
         if (updateDateParent.updatedColumns > 0) {
-            const options = sendEmailSignConfirmMeeting(parentEmail)
+            const token = createToken({
+                studentName: studentName,
+                ticketNo: ticketNo,
+                reportDate: reportDate,
+                reportActivitis: reportActivitis,
+                reportComments: reportComments,
+                reportStartTime: reportStartTime,
+                reportEndTime: reportEndTime,
+                reportRangeTimne: reportRangeTimne
+            },
+                keys.TOKENS.PARENT_SIGN_ACCESS_TOKEN.secretTokenKey,
+                keys.TOKENS.PARENT_SIGN_ACCESS_TOKEN.expiresIn
+            )
+
+            const options = sendEmailSignConfirmMeeting(parentEmail, token)
             sendMail(options)
             return response.status(200).send({
                 message: 'UPDATE RESEND DATE PARENT SIGN'

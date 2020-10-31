@@ -9,8 +9,8 @@ export interface Report {
     isParentSign?: boolean
     parentSignImageUrl?: string
     parentEmail?: string
-    ticketNo: number
-    lastDateResendSignToParent: string | Date
+    ticketNo?: number
+    lastDateResendSignToParent?: string | Date
     index?: number | string
 }
 

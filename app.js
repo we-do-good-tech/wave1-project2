@@ -4,13 +4,14 @@ const express = require("express");
 const path = require("path");
 const morgan = require('morgan')
 const server = express();
+const moment = require('moment')
 
 const authRoutes = require("./back-end/routes/auth");
 const teacherRoutes = require('./back-end/routes/teacher')
+const signRouter = require('./back-end/routes/signature')
 const { limiter } = require("./back-end/services/rate-limiter");
 
 
-// https://stackoverflow.com/questions/43331731/how-to-update-cell-values-of-a-google-sheet-with-javascript
 
 
 // server.use(morgan({morganFormat:'tiny'}))
@@ -22,6 +23,7 @@ server.use(express.static(path.join(__dirname, "client/dist/reports")));
 
 server.use("/api/auth", authRoutes);
 server.use('/api/teacher', teacherRoutes)
+server.use('/api/sign', signRouter)
 
 
 

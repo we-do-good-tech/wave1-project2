@@ -164,7 +164,7 @@ export class AuthService {
         this.isLog = false;
         this.userName = null;
         this.isLogChange.next(this.isLog);
-        this.router.navigate(["/"]);
+        // this.router.navigate(["/auth/email"]);
         clearTimeout(this.tokenTimer);
         this.removeSessionStorage();
     }

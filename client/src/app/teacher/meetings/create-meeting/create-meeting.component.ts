@@ -17,6 +17,7 @@ import { Report } from "src/app/interfaces/Report";
 import { ReportsService } from "src/app/services/reports.service";
 import { timeList } from "../../../services/helpers/times.list";
 import { StudentsService } from "src/app/services/students.service";
+import { formatDate } from "../../../services/helpers/time.range";
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -41,9 +42,6 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
     ) {
         this.students = [];
         this.timeList = timeList(8, 24, 10);
-
-        // let x = new Date().toDateString()
-        // console.log(new Date(x).getTime())
     }
 
     ngOnInit(): void {
@@ -103,9 +101,10 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
             ),
             reportComments: meetingComments,
             parentEmail: student.parentEmail,
-            lastDateResendSignToParent: new Date().toDateString()
+            lastDateResendSignToParent: formatDate(new Date())
         };
 
+        console.log(report)
         this.reportsService.setReport(report);
         this.router.navigate(["/main/teacher/meeting-new"]);
     }

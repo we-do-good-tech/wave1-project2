@@ -7,13 +7,13 @@ import { ExmpleComponent } from "./shared/exmple/exmple.component";
 
 const routes: Routes = [
     {
-        path: "parent-signature",
-        loadChildren: () => import('./signature/signature.module').then((m) => m.SignatureModule),
-    },
-    {
         path: "",
         redirectTo: "auth/email",
         pathMatch: "full",
+    },
+    {
+        path: "parent-signature",
+        loadChildren: () => import('./signature/signature.module').then((m) => m.SignatureModule),
     },
     // {
     //     path: "",
@@ -35,6 +35,11 @@ const routes: Routes = [
     },
     {
         path: "**",
+        redirectTo: '404',
+        pathMatch: 'full'
+    },
+    {
+        path: "404",
         component: NotFoundComponent,
     },
 ];
