@@ -4,6 +4,7 @@ const keys = require('../config/keys')
 
 module.exports.verifyToken = async function (request, response) {
     const { token } = request.body
+    console.log(token)
 
     try {
         const decodedToken = await JsonWebToken.verify(token, keys.TOKENS.PARENT_SIGN_ACCESS_TOKEN.secretTokenKey)

@@ -22,6 +22,7 @@ export class ParentSignatureComponent implements OnInit {
     ngOnInit(): void {
         this.report = this.reportsService.getReport()
         console.log(this.report)
+
     }
 
     saveImage(blob: Blob) {

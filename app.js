@@ -3,13 +3,13 @@ const cors = require("cors");
 const express = require("express");
 const path = require("path");
 const morgan = require('morgan')
+const { limiter } = require("./back-end/services/rate-limiter");
+
 const server = express();
-const moment = require('moment')
 
 const authRoutes = require("./back-end/routes/auth");
 const teacherRoutes = require('./back-end/routes/teacher')
 const signRouter = require('./back-end/routes/signature')
-const { limiter } = require("./back-end/services/rate-limiter");
 
 
 
@@ -24,6 +24,11 @@ server.use(express.static(path.join(__dirname, "client/dist/reports")));
 server.use("/api/auth", authRoutes);
 server.use('/api/teacher', teacherRoutes)
 server.use('/api/sign', signRouter)
+
+
+
+
+
 
 
 

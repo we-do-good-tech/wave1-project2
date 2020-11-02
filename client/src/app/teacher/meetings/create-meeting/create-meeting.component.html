@@ -1,6 +1,10 @@
-<app-header styleElement [changeClass]="'header-green'" [selector]="'#the-header'">
+<app-header
+    styleElement
+    [changeClass]="'header-green'"
+    [selector]="'#the-header'">
     <a class="backArrow" [routerLink]="['/main/teacher']">
-        <i class="fas fa-arrow-left"></i> </a>
+        <i class="fas fa-arrow-left"></i>
+    </a>
 </app-header>
 <div class="meetingsContainer">
     <form class="form" [formGroup]="meetingForm" (ngSubmit)="onCreateMeeting()">

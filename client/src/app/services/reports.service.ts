@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { Report, ReportStats } from "../interfaces/Report";
-import { daysRange } from "../services/helpers/time.range"
+import { daysRange, formatDate } from "../services/helpers/time.range"
 
 @Injectable({
     providedIn: "root",
@@ -26,9 +26,9 @@ export class ReportsService {
         return this.http.post<{ message: string }>('api/teacher/create-report', report)
             .pipe(
                 tap(() => {
-                    if (this.reports) {
-                        this.reports.push(report)
-                    }
+                    // if (this.reports) {
+                    //     this.reports.push(report)
+                    // }
                 })
             )
     }
@@ -40,9 +40,10 @@ export class ReportsService {
 
 
     getReportsNotConfirm(): Observable<Report[]> {
-        if (this.reports) {
-            return of(this.reports);
-        }
+        // if (this.reports) {
+        //     return of(this.reports);
+        // }
+        console.log('HTTP CALL REPORTS')
         return this.http.get<Report[]>("api/teacher/reports-unconfirm")
             .pipe(
                 tap((result) => {
@@ -63,6 +64,14 @@ export class ReportsService {
         return this.http.post<{ message: string }>('api/teacher/resend/parent-sign', reportInfo)
             .pipe(
                 map((result) => {
+                    //UPDATE REPORTS LOCALY 
+                    // report.lastDateResendSignToParent = formatDate(new Date())
+                    // // console.log(report)
+                    // // console.log(this.reports)
+
+                    // const findIndex = this.reports.findIndex((r) => r.index == report.index)
+                    // this.reports[findIndex] = report
+
                     return result.message
                 })
             )

@@ -6,9 +6,9 @@ import { ParentSignatureComponent } from './parent-signature/parent-signature.co
 
 const routes: Routes = [
     {
-        path: ':token',
+        path: 'parent-signature/:token',
         component: ParentSignatureComponent,
-        canActivate: [SignGuard]
+        // canActivate: [SignGuard]
     },
     {
         path: 'signature-success',

@@ -61,10 +61,10 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
     }
 
     anableResendParentSign(date, rangeLimit: number): boolean {
-        console.log(date)
+        // console.log(date)
         const now = new Date().getTime()
         const last = new Date(date).getTime()
-        console.log(now, last)
+        // console.log(now, last)
         if (daysRange(now, last) < rangeLimit) {
             return true
         }

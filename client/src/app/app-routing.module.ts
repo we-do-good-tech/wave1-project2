@@ -4,6 +4,7 @@ import { AuthGuard } from "./services/guards/auth.guard";
 import { NotAuthGuard } from "./services/guards/not-auth.guard";
 import { NotFoundComponent } from "./shared/not-found/not-found.component";
 import { ExmpleComponent } from "./shared/exmple/exmple.component";
+import { SignGuard } from './services/guards/sign.guard';
 
 const routes: Routes = [
     {
@@ -12,8 +13,9 @@ const routes: Routes = [
         pathMatch: "full",
     },
     {
-        path: "parent-signature",
+        path: "confirm-report",
         loadChildren: () => import('./signature/signature.module').then((m) => m.SignatureModule),
+        canActivate: [SignGuard]
     },
     // {
     //     path: "",
@@ -35,13 +37,12 @@ const routes: Routes = [
     },
     {
         path: "**",
-        redirectTo: '404',
-        pathMatch: 'full'
-    },
-    {
-        path: "404",
         component: NotFoundComponent,
+
     },
+    // {
+    //     path: "404",
+    // },
 ];
 
 @NgModule({

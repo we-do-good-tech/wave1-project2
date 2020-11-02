@@ -18,7 +18,7 @@ function sendEmailSignConfirmMeeting(toEmail, token) {
         to: toEmail,
         subject: 'TEST',
         text: 'TEST',
-        html: `<a href="http://localhost:3000/parent-signature/${token}">כאן</a> לאשר את המפש נא ללחוץ`
+        html: `<a href="http://localhost:3000/confirm-report/parent-signature/${token}">כאן</a> לאשר את המפש נא ללחוץ`
     }
 }
 

@@ -11,5 +11,8 @@ export class AppComponent {
     constructor(private authService: AuthService) {
         this.authService.getAuthData()
         // console.log(environment)
+
+
     }
+
 }

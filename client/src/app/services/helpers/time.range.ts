@@ -26,6 +26,6 @@ export function daysRange(timeOne: number, timeTwo: number): number {
 
 export function formatDate(date: Date | string) {
     let x = new Date(date).toISOString()
-    console.log(x)
+    // console.log(x)
     return x.slice(0, x.indexOf('T'))
 }

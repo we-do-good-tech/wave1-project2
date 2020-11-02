@@ -198,7 +198,8 @@ module.exports.resendParentSign = async function (request, response) {
                 reportComments: reportComments,
                 reportStartTime: reportStartTime,
                 reportEndTime: reportEndTime,
-                reportRangeTimne: reportRangeTimne
+                reportRangeTimne: reportRangeTimne,
+                index: index + 1
             },
                 keys.TOKENS.PARENT_SIGN_ACCESS_TOKEN.secretTokenKey,
                 keys.TOKENS.PARENT_SIGN_ACCESS_TOKEN.expiresIn

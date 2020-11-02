@@ -44,37 +44,4 @@ module.exports = {
 
 
 
-// let mySingleThon = function () {
-//     if (mySingleThon.instance) {
-//         return mySingleThon.instance
-//     }
 
-//     mySingleThon.instance = this
-// }
-
-// mySingleThon.getInstance = function () {
-//     return mySingleThon.instance || new mySingleThon()
-// }
-
-// mySingleThon.prototype.setName = function (name) {
-//     this.name = name
-// }
-
-// mySingleThon.prototype.getName = function () {
-//     return this.name
-// }
-
-// mySingleThon.prototype.deleteName = function () {
-//     this.name = null
-// }
-
-
-// const x = mySingleThon.getInstance()
-// const y = mySingleThon.getInstance()
-// x.setName('avi')
-// y.setName('pini')
-// console.log(x.getName())
-// console.log(y.getName())
-// x.deleteName()
-// console.log(x.getName())
-// console.log(y.getName())

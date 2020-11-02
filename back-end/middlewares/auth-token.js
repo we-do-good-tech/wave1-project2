@@ -16,6 +16,8 @@ async function verifyToken(request, response, next) {
             teacherFirstName: decodedToken.teacherFirstName,
         }
 
+        Object.freeze(request.userData)
+
         next()
 
     } catch (error) {

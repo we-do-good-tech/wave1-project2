@@ -21,7 +21,7 @@ exports.authTeacherEmail = async function (request, response) {
 
         console.log(teacher);
         if (!teacher) {
-            return response.status(403).send({
+            return response.status(404).send({
                 message: "משתמש לא נמצא",
             });
         }
@@ -101,3 +101,7 @@ exports.newConfirmCode = async function (request, response) {
         confirmCodeExpire: 60 * 2,
     });
 };
+
+
+
+
