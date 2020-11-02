@@ -30,7 +30,7 @@ module.exports = {
         },
         PARENT_SIGN_ACCESS_TOKEN: {
             secretTokenKey: process.env.SECRET_ACCESS_PARENT_TOKEN_KEY,
-            expiresIn: 60 * 60 * 24
+            expiresIn: 60
         }
     }
 };
