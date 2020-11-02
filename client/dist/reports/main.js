@@ -425,15 +425,19 @@ ExmpleComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCo
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReportsService", function() { return ReportsService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "qCKp");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
 
 
 
 
+
+// import { daysRange, formatDate } from "../services/helpers/time.range"
 class ReportsService {
     constructor(http) {
         this.http = http;
+        this.reports = [];
     }
     getReporstLocal() {
         if (this.reports)
@@ -442,35 +446,35 @@ class ReportsService {
     }
     createReport(report) {
         return this.http.post('api/teacher/create-report', report)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["tap"])(() => {
-            // if (this.reports) {
-            //     this.reports.push(report)
-            // }
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(() => {
+            this.reports = [];
         }));
     }
     getMountlyStats() {
         return this.http.get('api/teacher/reports/stats');
     }
     getReportsNotConfirm() {
-        // if (this.reports) {
-        //     return of(this.reports);
-        // }
+        if (this.reports.length > 0) {
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(this.reports);
+        }
         console.log('HTTP CALL REPORTS');
         return this.http.get("api/teacher/reports-unconfirm")
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["tap"])((result) => {
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])((result) => {
             // console.log(result);
             this.reports = result;
         }));
     }
     resendParentSign(report) {
         const reportInfo = {
+            studentName: report.studentName,
             parentEmail: report.parentEmail,
             ticketNo: report.ticketNo,
             reportDate: report.reportDate,
             index: Number(report.index)
         };
         return this.http.post('api/teacher/resend/parent-sign', reportInfo)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])((result) => {
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((result) => {
+            this.reports = [];
             //UPDATE REPORTS LOCALY 
             // report.lastDateResendSignToParent = formatDate(new Date())
             // // console.log(report)
@@ -489,14 +493,14 @@ class ReportsService {
         return undefined;
     }
 }
-ReportsService.ɵfac = function ReportsService_Factory(t) { return new (t || ReportsService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"])); };
+ReportsService.ɵfac = function ReportsService_Factory(t) { return new (t || ReportsService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"])); };
 ReportsService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: ReportsService, factory: ReportsService.ɵfac, providedIn: "root" });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](ReportsService, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
         args: [{
                 providedIn: "root",
             }]
-    }], function () { return [{ type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }]; }, null); })();
+    }], function () { return [{ type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"] }]; }, null); })();
 
 
 /***/ }),
@@ -577,6 +581,9 @@ class HttpErrorMessagesInterceptor {
             console.log(error.error.message);
             // console.log(error);
             let errorMassge = error.error.message;
+            if (error.error.message === 'ERROR UNKNOW') {
+                this.router.navigate(['/not-found']);
+            }
             if (error.statusText === "Too Many Requests") {
                 errorMassge = error.error;
             }
@@ -1237,17 +1244,18 @@ class SignGuard {
     canActivate(next, state) {
         const token = state.url.split('/')[3];
         // if (!token) {
-        //     this.router.navigateByUrl('/404')
+        //     this.router.navigateByUrl('**')
         //     return false
         // }
-        console.log(token);
+        // console.log(token)
         return this.signServie.verifyToken(token)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])((result) => {
             if (result) {
                 console.log(result);
                 return true;
             }
-            // this.router.navigateByUrl('/404')
+            console.log('INVALID TOKEN');
+            // this.router.navigate(['not-found'])
             return false;
         }));
     }
@@ -1841,8 +1849,13 @@ const routes = [
         canActivate: [_services_guards_auth_guard__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]],
     },
     {
-        path: "**",
+        path: 'not-found',
         component: _shared_not_found_not_found_component__WEBPACK_IMPORTED_MODULE_3__["NotFoundComponent"],
+    },
+    {
+        path: "**",
+        redirectTo: 'not-found',
+        pathMatch: 'full'
     },
 ];
 class AppRoutingModule {
@@ -1890,8 +1903,16 @@ class SignService {
         return this.http.post('api/sign/verify/parent-token', { token: token })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["tap"])((result) => {
             if (result) {
+                this.token = token;
                 this.reportsService.setReport(result);
             }
+        }));
+    }
+    sendSign(singImageBase64) {
+        return this.http.post('api/sign/parent', { singImageBase64: singImageBase64, token: this.token })
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])((result) => {
+            console.log(result);
+            return result.message;
         }));
     }
 }

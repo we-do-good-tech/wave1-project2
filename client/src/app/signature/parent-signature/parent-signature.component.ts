@@ -29,6 +29,10 @@ export class ParentSignatureComponent implements OnInit {
         if (this.isCanvasWrite && this.confirmReport) {
             this.signatureImage = blob;
             console.log(this.signatureImage)
+
+            this.signService.sendSign(this.signatureImage).subscribe((result) => {
+                alert('SIGN IS SEND')
+            })
         }
     }
 

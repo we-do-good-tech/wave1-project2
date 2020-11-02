@@ -60,7 +60,7 @@ module.exports.update = async function (range, sheetName, body, authorizationTok
         })
 
         const responseJson = await update.json()
-        // console.log(responseJson)
+        console.log(responseJson)
 
         return responseJson
     } catch (error) {

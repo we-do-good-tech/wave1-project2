@@ -33,6 +33,9 @@ export class HttpErrorMessagesInterceptor implements HttpInterceptor {
                 console.log(error.error.message);
                 // console.log(error);
                 let errorMassge: string = error.error.message;
+                if (error.error.message === 'ERROR UNKNOW') {
+                    this.router.navigate(['/not-found'])
+                }
 
                 if (error.statusText === "Too Many Requests") {
                     errorMassge = error.error;

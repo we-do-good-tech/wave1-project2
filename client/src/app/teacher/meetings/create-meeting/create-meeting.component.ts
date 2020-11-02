@@ -29,6 +29,7 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
     students: Student[];
     meetingForm: FormGroup;
     timeList: string[];
+
     subStudents: Subscription
     subValuesChanges: Subscription
 
@@ -37,7 +38,6 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
         public formsService: FormsService,
         private route: ActivatedRoute,
         private router: Router,
-        private studentsService: StudentsService,
         private reportsService: ReportsService
     ) {
         this.students = [];

@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { Report, ReportStats } from "../interfaces/Report";
-import { daysRange, formatDate } from "../services/helpers/time.range"
+// import { daysRange, formatDate } from "../services/helpers/time.range"
 
 @Injectable({
     providedIn: "root",
@@ -13,7 +13,9 @@ export class ReportsService {
     private reports: Report[]
     private reportsStats: ReportStats
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {
+        this.reports = []
+    }
 
 
     getReporstLocal(): Report[] {
@@ -26,9 +28,7 @@ export class ReportsService {
         return this.http.post<{ message: string }>('api/teacher/create-report', report)
             .pipe(
                 tap(() => {
-                    // if (this.reports) {
-                    //     this.reports.push(report)
-                    // }
+                    this.reports = []
                 })
             )
     }
@@ -40,9 +40,10 @@ export class ReportsService {
 
 
     getReportsNotConfirm(): Observable<Report[]> {
-        // if (this.reports) {
-        //     return of(this.reports);
-        // }
+        if (this.reports.length > 0) {
+            return of(this.reports);
+        }
+
         console.log('HTTP CALL REPORTS')
         return this.http.get<Report[]>("api/teacher/reports-unconfirm")
             .pipe(
@@ -51,11 +52,13 @@ export class ReportsService {
                     this.reports = result;
                 })
             );
+
     }
 
 
     resendParentSign(report: Report): Observable<string> {
         const reportInfo = {
+            studentName: report.studentName,
             parentEmail: report.parentEmail,
             ticketNo: report.ticketNo,
             reportDate: report.reportDate,
@@ -64,11 +67,11 @@ export class ReportsService {
         return this.http.post<{ message: string }>('api/teacher/resend/parent-sign', reportInfo)
             .pipe(
                 map((result) => {
+                    this.reports = []
                     //UPDATE REPORTS LOCALY 
                     // report.lastDateResendSignToParent = formatDate(new Date())
                     // // console.log(report)
                     // // console.log(this.reports)
-
                     // const findIndex = this.reports.findIndex((r) => r.index == report.index)
                     // this.reports[findIndex] = report
 

@@ -14,10 +14,10 @@ export class SignGuard implements CanActivate {
         state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
         const token = state.url.split('/')[3]
         // if (!token) {
-        //     this.router.navigateByUrl('/404')
+        //     this.router.navigateByUrl('**')
         //     return false
         // }
-        console.log(token)
+        // console.log(token)
         return this.signServie.verifyToken(token)
             .pipe(
                 map((result) => {
@@ -25,7 +25,8 @@ export class SignGuard implements CanActivate {
                         console.log(result)
                         return true
                     }
-                    // this.router.navigateByUrl('/404')
+                    console.log('INVALID TOKEN')
+                    // this.router.navigate(['not-found'])
                     return false
                 })
             )

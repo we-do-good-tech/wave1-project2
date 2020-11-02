@@ -36,7 +36,7 @@ module.exports.getStudents = async function (request, response) {
 
 module.exports.createReport = async function (request, response) {
     if (request.findReport) {
-        console.log(request.findReport)
+        // console.log(request.findReport)
         return response.status(400).send({
             message: 'דיווח לא חוקי יתכן שבוצע דיווח כפול ליום זה'
         })
@@ -167,8 +167,8 @@ module.exports.resendParentSign = async function (request, response) {
     }
     // check date resend 
 
-    const { studentName, ticketNo, reportDate, reportActivitis, reportComments, reportStartTime, reportEndTime, reportRangeTimne } = request.findReport
-    const { parentEmail, index } = request.body
+    const { ticketNo, reportDate, reportActivitis, reportComments, reportStartTime, reportEndTime, reportRangeTimne } = request.findReport
+    const { studentName, parentEmail, index } = request.body
 
 
     const sheetName = keys.GOOGLE_SHEETS.sheetsNames.reports

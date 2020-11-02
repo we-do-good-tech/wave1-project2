@@ -36,15 +36,14 @@ export class SingleMeetingComponent implements OnInit, OnDestroy {
         if (this.report) {
             this.loaderService.setStatus(true);
             this.reportsService.createReport(this.report).subscribe((result) => {
-                // console.log(result);
                 this.router.navigate(["/main/teacher/meeting-success"]);
             }, (error) => alert(error.error.message));
         }
     }
 
     onResendSign(): void {
+        // console.log(this.report)
         if (this.report) {
-            // console.log(this.report)
             this.loaderService.setStatus(true);
             this.reportsService.resendParentSign(this.report)
                 .subscribe((result) => {
