@@ -43,6 +43,8 @@ module.exports.createReport = async function (request, response) {
     }
     const { studentName, ticketNo, reportDate, reportActivitis, reportComments, reportStartTime, reportEndTime, reportRangeTimne, parentEmail } = request.body
 
+    const nowDate = new Date().toDateString()
+
     let body = `{"values":[
         [
             "${reportDate}",
@@ -56,7 +58,7 @@ module.exports.createReport = async function (request, response) {
             "${ticketNo}",
             "${request.userData.teacherId}",
             "${new Date(reportDate).getMonth() + 1}",
-            "${new Date().toDateString()}"
+            "${nowDate}"
         ]
     ]}`
 

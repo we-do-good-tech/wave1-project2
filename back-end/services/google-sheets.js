@@ -13,6 +13,7 @@ module.exports.find = async function (query, sheetId, authorizationToken) {
         })
 
         const textResponse = await foundStudents.text()
+        // console.log(textResponse)
 
         const convertData = await convertCSV(textResponse)
         if (!convertData) {
@@ -60,7 +61,7 @@ module.exports.update = async function (range, sheetName, body, authorizationTok
         })
 
         const responseJson = await update.json()
-        console.log(responseJson)
+        // console.log(responseJson)
 
         return responseJson
     } catch (error) {

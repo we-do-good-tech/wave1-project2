@@ -43,7 +43,7 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
                         s.hasReports = true
                     }
                 })
-                console.log(this.students)
+                console.log(this.reports)
             })
         ).subscribe()
     }
