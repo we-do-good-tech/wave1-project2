@@ -72,7 +72,7 @@ module.exports.createReport = async function (request, response) {
 
 
         if (reportCreated.updates.updatedRows > 0) {
-
+            console.log(reportCreated.updates.updatedRange.replace(/\D/g, "").slice(0, 1), 'CREATE REPORTTTT')
             const token = createToken({
                 studentName: studentName,
                 ticketNo: ticketNo,
@@ -171,6 +171,8 @@ module.exports.resendParentSign = async function (request, response) {
 
     const { ticketNo, reportDate, reportActivitis, reportComments, reportStartTime, reportEndTime, reportRangeTimne } = request.findReport
     const { studentName, parentEmail, index } = request.body
+
+    console.log(index, 'index resend')
 
 
     const sheetName = keys.GOOGLE_SHEETS.sheetsNames.reports

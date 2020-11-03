@@ -13,13 +13,13 @@ module.exports.find = async function (query, sheetId, authorizationToken) {
         })
 
         const textResponse = await foundStudents.text()
-        // console.log(textResponse)
+        console.log(textResponse, 'FIND RESPONSE')
 
         const convertData = await convertCSV(textResponse)
         if (!convertData) {
             return
         }
-
+        console.log(convertData)
         return convertData
     } catch (error) {
         console.log(error)

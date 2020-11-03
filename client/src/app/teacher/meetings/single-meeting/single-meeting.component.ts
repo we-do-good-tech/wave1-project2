@@ -42,7 +42,7 @@ export class SingleMeetingComponent implements OnInit, OnDestroy {
     }
 
     onResendSign(): void {
-        // console.log(this.report)
+        console.log(this.report)
         if (this.report) {
             this.loaderService.setStatus(true);
             this.reportsService.resendParentSign(this.report)
