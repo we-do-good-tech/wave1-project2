@@ -101,7 +101,7 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
             ),
             reportComments: meetingComments,
             parentEmail: student.parentEmail,
-            lastDateResendSignToParent: formatDate(new Date())
+            // lastDateResendSignToParent: formatDate(new Date())
         };
 
         console.log(report)
