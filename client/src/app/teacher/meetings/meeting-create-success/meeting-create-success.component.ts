@@ -16,9 +16,9 @@ import { conculatePresent } from "../../../services/helpers/present";
 })
 export class MeetingCreateSuccessComponent implements OnInit, OnDestroy {
     reporstStats: ReportStats;
-    subReportsStats: Subscription;
     currentMount: number;
-    progress: string
+    progress: string;
+    subReportsStats: Subscription;
 
     constructor(private route: ActivatedRoute) { }
 

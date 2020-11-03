@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs";
+import { map } from 'rxjs/operators';
 import { Report } from "src/app/interfaces/Report";
 import { Student } from "src/app/interfaces/Student";
 import { ReportsService } from "src/app/services/reports.service";
@@ -18,7 +19,6 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
     students: Student[];
     reports: Report[];
     studentSelected: string;
-
     subStudents: Subscription;
     sunReports: Subscription;
 
@@ -34,10 +34,18 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
         this.subStudents = this.route.data.subscribe((result) => {
             this.students = result.students;
         });
-        this.sunReports = this.route.data.subscribe((result) => {
-            this.reports = result.reports;
-            console.log(this.reports)
-        });
+        this.sunReports = this.route.data.pipe(
+            map((result) => {
+                this.reports = result.reports;
+                this.students.forEach((s) => {
+                    let findReports = this.reports.find((r) => r.ticketNo == s.ticketNo)
+                    if (findReports) {
+                        s.hasReports = true
+                    }
+                })
+                console.log(this.students)
+            })
+        ).subscribe()
     }
 
 
@@ -60,11 +68,9 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
         });
     }
 
-    anableResendParentSign(date, rangeLimit: number): boolean {
-        // console.log(date)
+    anableResendParentSign(date: string, rangeLimit: number): boolean {
         const now = new Date().getTime()
         const last = new Date(date).getTime()
-        // console.log(now, last)
         if (daysRange(now, last) < rangeLimit) {
             return true
         }

@@ -3,4 +3,5 @@ export interface Student {
     studentName: string
     parentEmail: string
     ticketNo: number
+    hasReports?: boolean
 }

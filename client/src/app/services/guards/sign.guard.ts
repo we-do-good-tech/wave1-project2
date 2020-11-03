@@ -17,7 +17,7 @@ export class SignGuard implements CanActivate {
         //     this.router.navigateByUrl('**')
         //     return false
         // }
-        // console.log(token)
+        console.log(token)
         return this.signServie.verifyToken(token)
             .pipe(
                 map((result) => {

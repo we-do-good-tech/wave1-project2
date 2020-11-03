@@ -15,6 +15,5 @@ export class MeetingTableItemComponent {
 
     onSendConfirmSignAgain(report: Report): void {
         this.sendSignAgain.emit(report)
-
     }
 }

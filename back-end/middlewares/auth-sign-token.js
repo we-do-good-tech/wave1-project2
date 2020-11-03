@@ -3,13 +3,15 @@ const JsonWebToken = require('jsonwebtoken')
 
 
 
+
 async function verifyTokenSign(request, response, next) {
 
     const { token } = request.body
-    console.log(token)
 
     try {
         const decodedToken = await JsonWebToken.verify(token, keys.TOKENS.PARENT_SIGN_ACCESS_TOKEN.secretTokenKey)
+
+        console.log(decodedToken, 'DECODE')
 
         request.respotInfo = {
             studentName: decodedToken.studentName,
@@ -24,7 +26,6 @@ async function verifyTokenSign(request, response, next) {
         }
 
         Object.freeze(request.respotInfo)
-        console.log(decodedToken)
         next()
 
     } catch (error) {

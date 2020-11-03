@@ -14,6 +14,7 @@
                 <option value> בחר</option>
                 <option
                     *ngFor="let student of students; let i = index;"
+                    [disabled]="!student?.hasReports"
                     [value]="student?.ticketNo">
                     {{student?.studentName}}
                 </option>

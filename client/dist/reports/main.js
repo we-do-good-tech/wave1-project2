@@ -1247,7 +1247,7 @@ class SignGuard {
         //     this.router.navigateByUrl('**')
         //     return false
         // }
-        // console.log(token)
+        console.log(token);
         return this.signServie.verifyToken(token)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])((result) => {
             if (result) {

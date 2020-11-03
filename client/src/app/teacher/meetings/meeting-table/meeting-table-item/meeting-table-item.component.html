@@ -2,6 +2,6 @@
     <ul (click)="onSendConfirmSignAgain(report)" [class.disabled]="displayItem">
         <li>{{index}}</li>
         <li>{{report?.reportDate}}</li>
-        <li> <span>!</span> <br> ממתין לאישור</li>
+        <li> <span>!</span> <br> {{displayItem ? 'ממתין לאישור' : 'שלח לאישור'}} </li>
     </ul>
 </div>
