@@ -27,11 +27,6 @@ server.use('/api/sign', signRouter)
 
 
 
-
-
-
-
-
 server.get("*", (request, response) => {
     response.sendFile(path.resolve("client/dist/reports/index.html"));
 });

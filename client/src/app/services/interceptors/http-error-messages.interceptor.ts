@@ -34,23 +34,28 @@ export class HttpErrorMessagesInterceptor implements HttpInterceptor {
                 // console.log(error);
                 let errorMassge: string = error.error.message;
                 if (error.error.message === 'ERROR UNKNOW') {
+                    this.router.navigate(['not-found'])
+                    return throwError(error);
+                }
+
+                else if (error.statusText === 429) {
                     this.router.navigate(['/not-found'])
+                    return throwError(error);
                 }
 
-                if (error.statusText === "Too Many Requests") {
-                    errorMassge = error.error;
-                }
-
-                if (errorMassge === 'Unauthorize') {
+                else if (errorMassge === 'Unauthorized') {
                     this.authServcie.clearLoginInfo()
                     this.router.navigate(['/auth/email'])
+                    return throwError(error);
+                } else {
+
+                    this.httpErrorMessagesService.setMessage(error.error.message);
+
+                    return throwError(error);
                 }
 
                 // alert(errorMassge)
 
-                this.httpErrorMessagesService.setMessage(error.error.message);
-
-                return throwError(error);
             })
         );
     }

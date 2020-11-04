@@ -582,18 +582,23 @@ class HttpErrorMessagesInterceptor {
             // console.log(error);
             let errorMassge = error.error.message;
             if (error.error.message === 'ERROR UNKNOW') {
+                this.router.navigate(['not-found']);
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(error);
+            }
+            else if (error.statusText === 429) {
                 this.router.navigate(['/not-found']);
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(error);
             }
-            if (error.statusText === "Too Many Requests") {
-                errorMassge = error.error;
-            }
-            if (errorMassge === 'Unauthorize') {
+            else if (errorMassge === 'Unauthorized') {
                 this.authServcie.clearLoginInfo();
                 this.router.navigate(['/auth/email']);
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(error);
+            }
+            else {
+                this.httpErrorMessagesService.setMessage(error.error.message);
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(error);
             }
             // alert(errorMassge)
-            this.httpErrorMessagesService.setMessage(error.error.message);
-            return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(error);
         }));
     }
 }

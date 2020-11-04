@@ -1,7 +1,7 @@
 const googleSheetsService = require("../services/google-sheets");
 const keys = require("../config/keys");
 const { convertSheetsDataToObjectsArray } = require('../helpers/tojson');
-const { sendEmailSignConfirmMeeting } = require('../services/emails')
+const { sendEmailSignConfirmMeeting } = require('../services/emails/emails.options')
 const { sendMail } = require("../send-email/transporter");
 const { formatDate } = require('../helpers/dates.ranges')
 const { createToken } = require('../services/tokens')

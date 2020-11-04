@@ -19,7 +19,7 @@ module.exports.find = async function (query, sheetId, authorizationToken) {
         if (!convertData) {
             return
         }
-        console.log(convertData)
+        // console.log(convertData)
         return convertData
     } catch (error) {
         console.log(error)

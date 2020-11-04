@@ -1,16 +1,16 @@
 const googleSheetsService = require("../services/google-sheets");
 const { sendMail } = require("../send-email/transporter");
 const { confirmCode } = require("../services/confirm-code");
-const { sendEmailConfirmCodeOptions } = require("../services/emails");
+const { sendEmailConfirmCodeOptions } = require("../services/emails/emails.options");
 const { createToken } = require("../services/tokens");
 const keys = require("../config/keys");
 const { convertSheetsDataToObjectsArray } = require('../helpers/tojson')
 
 
-exports.authTeacherEmail = async function (request, response) {
+module.exports.authTeacherEmail = async function (request, response) {
     const { teacherEmail } = request.body;
-    const query = `select * where C='${teacherEmail}'`;
-    const sheetId = keys.GOOGLE_SHEETS.sheetsIds.teachers
+    const query = `select A,B,C where C='${teacherEmail}'`;
+    const sheetId = keys.GOOGLE_SHEETS.sheetsIds.teachers;
 
     try {
         const teacher = await googleSheetsService.find(
@@ -27,6 +27,7 @@ exports.authTeacherEmail = async function (request, response) {
         }
 
         const toJson = convertSheetsDataToObjectsArray(teacher, 'TEACHERS')[0]
+        console.log(toJson)
 
         confirmCode.createConfirmCode();
 
@@ -63,7 +64,8 @@ exports.authTeacherEmail = async function (request, response) {
     }
 };
 
-exports.authConfirmCode = async function (request, response) {
+
+module.exports.authConfirmCode = async function (request, response) {
     const { code } = request.body;
     // console.log(code, confirmCode.getConfirmCode())
 
@@ -82,7 +84,7 @@ exports.authConfirmCode = async function (request, response) {
 };
 
 
-exports.newConfirmCode = async function (request, response) {
+module.exports.newConfirmCode = async function (request, response) {
     const { teacherEmail } = request.userData;
 
     confirmCode.createConfirmCode();

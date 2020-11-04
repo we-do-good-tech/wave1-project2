@@ -8,7 +8,7 @@ const { validate } = require('../middlewares/validate')
 router.post(
     '/teacherEmail',
     authSeets,
-    [validators.email],
+    [validators.email('teacherEmail')],
     validate,
     authControllers.authTeacherEmail
 )

@@ -2,8 +2,6 @@ const keys = require('../config/keys')
 const JsonWebToken = require('jsonwebtoken')
 
 
-
-
 async function verifyTokenSign(request, response, next) {
 
     const { token } = request.body
@@ -29,10 +27,10 @@ async function verifyTokenSign(request, response, next) {
         next()
 
     } catch (error) {
-        console.log(error)
-        response.status(500).send({
-            message: "ERROR UNKNOW",
-        });
+        console.log('Unauthorized user')
+        response.status(403).send({
+            message: 'Unauthorized',
+        })
     }
 }
 
