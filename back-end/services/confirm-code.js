@@ -27,7 +27,7 @@ class ConfirmCode {
         setTimeout(() => {
             this.deleteConfirmCode()
             console.log(this.code, 'EXPIRED TIME CONFIRM CODE')
-        }, 1000 * 120);
+        }, 1000 * 60);
     }
 }
 

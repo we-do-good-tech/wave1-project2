@@ -1,10 +1,11 @@
 const googleSheetsService = require("../services/google-sheets");
 const keys = require("../config/keys");
 const { convertSheetsDataToObjectsArray } = require('../helpers/tojson');
-const { sendEmailSignConfirmMeeting } = require('../services/emails/emails.options')
 const { sendMail } = require("../send-email/transporter");
 const { createToken } = require('../services/tokens')
 const { findFirstNumberOnString } = require('../helpers/numbers-on-string')
+const { emailOptions } = require("../services/emails/emails.options");
+const emailTamplate = require('../services/emails/email.tamplates')
 
 
 
@@ -88,7 +89,7 @@ module.exports.createReport = async function (request, response) {
                 keys.TOKENS.PARENT_SIGN_ACCESS_TOKEN.expiresIn
             )
 
-            const options = sendEmailSignConfirmMeeting(parentEmail, token)
+            const options = emailOptions(parentEmail, emailTamplate.parentSign(token))
             sendMail(options)
             return response.status(200).send({
                 message: 'REPORT CREATED'
@@ -207,7 +208,7 @@ module.exports.resendParentSign = async function (request, response) {
                 keys.TOKENS.PARENT_SIGN_ACCESS_TOKEN.expiresIn
             )
 
-            const options = sendEmailSignConfirmMeeting(parentEmail, token)
+            const options = emailOptions(parentEmail, emailTamplate.parentSign(token))
             sendMail(options)
             return response.status(200).send({
                 message: 'UPDATE RESEND DATE PARENT SIGN'

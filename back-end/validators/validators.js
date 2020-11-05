@@ -59,7 +59,6 @@ module.exports = {
 
 
                     if (meetingDate === dateToday) {
-                        console.log(' ERROR')
                         let now = new Date()
                         let currentDateArr = now.toLocaleDateString().split('/').length === 1 ? now.toLocaleDateString().split('.') : now.toLocaleDateString().split('/')
                         let time = req.body.reportStartTime.split(':') || req.body.reportStartTime.split(':')

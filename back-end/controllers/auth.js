@@ -1,7 +1,8 @@
 const googleSheetsService = require("../services/google-sheets");
 const { sendMail } = require("../send-email/transporter");
 const { confirmCode } = require("../services/confirm-code");
-const { sendEmailConfirmCodeOptions } = require("../services/emails/emails.options");
+const { emailOptions } = require("../services/emails/emails.options");
+const emailTamplate = require('../services/emails/email.tamplates')
 const { createToken } = require("../services/tokens");
 const keys = require("../config/keys");
 const { convertSheetsDataToObjectsArray } = require('../helpers/tojson')
@@ -20,7 +21,7 @@ module.exports.authTeacherEmail = async function (request, response) {
             request.sheetsClientData.authorizationToken
         );
 
-        console.log(teacher);
+
         if (!teacher) {
             return response.status(404).send({
                 message: "משתמש לא נמצא",
@@ -28,13 +29,13 @@ module.exports.authTeacherEmail = async function (request, response) {
         }
 
         const toJson = convertSheetsDataToObjectsArray(teacher, 'TEACHERS')[0]
-        console.log(toJson)
+        // console.log(toJson)
 
         confirmCode.createConfirmCode();
 
-        const options = sendEmailConfirmCodeOptions(
+        const options = emailOptions(
             toJson.email,
-            confirmCode.getConfirmCode()
+            emailTamplate.confirmCode(confirmCode.getConfirmCode())
         );
 
         // make error respone possiblle
@@ -90,9 +91,9 @@ module.exports.newConfirmCode = async function (request, response) {
 
     confirmCode.createConfirmCode();
 
-    const options = sendEmailConfirmCodeOptions(
+    const options = emailOptions(
         teacherEmail,
-        confirmCode.getConfirmCode()
+        emailTamplate.confirmCode(confirmCode.getConfirmCode())
     );
 
     sendMail(options)
