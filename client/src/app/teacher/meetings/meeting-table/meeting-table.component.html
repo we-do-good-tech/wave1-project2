@@ -34,7 +34,7 @@
             </div>
             <app-meeting-table-item
                 *ngFor="let report of reports | filter: studentSelected:'ticketNo';let i = index;"
-                [displayItem]="anableResendParentSign(report?.lastResendDateToParent, 1)"
+                [displayItem]="anableResendParentSign(report?.lastDateResendSignToParent, 1)"
                 [index]="i +1"
                 [report]="report"
                 (sendSignAgain)="getReportSignAgain($event)">

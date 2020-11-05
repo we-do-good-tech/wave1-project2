@@ -18,7 +18,7 @@ function convertSheetsDataToObjectsArray(data, sheetName) {
                 };
             });
         case 'REPORTS':
-            return data.map(([reportDate, reportStartTime, reportEndTime, reportRangeTimne, reportActivitis, reportComments, ticketNo, lastResendDateToParent, index]) => {
+            return data.map(([reportDate, reportStartTime, reportEndTime, reportRangeTimne, reportActivitis, reportComments, ticketNo, lastDateResendSignToParent, index]) => {
                 return {
                     reportDate: reportDate,
                     reportStartTime: reportStartTime,
@@ -27,7 +27,7 @@ function convertSheetsDataToObjectsArray(data, sheetName) {
                     reportActivitis: reportActivitis,
                     reportComments: reportComments,
                     ticketNo: ticketNo,
-                    lastResendDateToParent: lastResendDateToParent,
+                    lastDateResendSignToParent: lastDateResendSignToParent,
                     index: index
                 }
             })

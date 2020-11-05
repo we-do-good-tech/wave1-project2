@@ -433,11 +433,28 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// import { daysRange, formatDate } from "../services/helpers/time.range"
 class ReportsService {
     constructor(http) {
         this.http = http;
         this.reports = [];
+        this.report = null;
+        // this.reportChange = new BehaviorSubject<Report>(this.report)
+        // this.getReportsNotConfirm()
+        //     .pipe(
+        //         map((result) => {
+        //             this.reports = result
+        //             this.reportsChange.next([...this.reports])
+        //         })
+        //     )
+        //     .subscribe((result) => {
+        //         console.log(result)
+        //     })
+    }
+    getReportsChange() {
+        return this.reportsChange.asObservable();
+    }
+    getReportChange() {
+        return this.reportChange.asObservable();
     }
     getReporstLocal() {
         if (this.reports)
@@ -445,9 +462,34 @@ class ReportsService {
         return;
     }
     createReport(report) {
+        console.log(this.reports);
+        // parentEmail: "nirkuba199999@gmail.com"
+        // reportActivitis: "s"
+        // reportComments: "s"
+        // reportDate: "2020-11-04"
+        // reportEndTime: "08:40"
+        // reportRangeTimne: "00:10"
+        // reportStartTime: "08:30"
+        // studentName: "יחזקאל (חזקי) דיסקין - לימודית"
+        // ticketNo: "12"
+        // console.log(report)
+        // index: "9"
+        // lastResendDateToParent: "2020-11-05"
+        // reportActivitis: "SDA"
+        // reportComments: "DAS"
+        // reportDate: "2020-11-02"
+        // reportEndTime: "08:50"
+        // reportRangeTimne: "0:20:00"
+        // reportStartTime: "08:30"
+        // ticketNo: "13"
         return this.http.post('api/teacher/create-report', report)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(() => {
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((result) => {
+            // report.index = result.index
+            // report.lastDateResendSignToParent = formatDate(new Date())
+            // console.log(result)
+            // this.reports.push(report)
             this.reports = [];
+            return result.message;
         }));
     }
     getMountlyStats() {
@@ -457,10 +499,10 @@ class ReportsService {
         if (this.reports.length > 0) {
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(this.reports);
         }
-        console.log('HTTP CALL REPORTS');
+        // console.log('HTTP CALL REPORTS START')
         return this.http.get("api/teacher/reports-unconfirm")
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])((result) => {
-            // console.log(result);
+            // console.log('HTTP CALL RESPONSE');
             this.reports = result;
         }));
     }
@@ -486,6 +528,7 @@ class ReportsService {
     }
     setReport(report) {
         this.report = Object.assign({}, report);
+        // this.reportChange.next(this.report)
     }
     getReport() {
         if (this.report)
@@ -590,8 +633,8 @@ class HttpErrorMessagesInterceptor {
                 return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(error);
             }
             else if (errorMassge === 'Unauthorized') {
-                this.authServcie.clearLoginInfo();
-                this.router.navigate(['/auth/email']);
+                // this.authServcie.clearLoginInfo()
+                // this.router.navigate(['/auth/email'])
                 return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(error);
             }
             else {
@@ -887,17 +930,17 @@ class LimitInputDirective {
     constructor(inputElement) {
         this.inputElement = inputElement;
     }
-    limit(value) {
-        console.log(value);
+    limit(event) {
+        let { value } = event.target;
         if (String(value).length > 1) {
-            // value = value.slice(1, 2);
-            // value = '9'
+            value = value.slice(1, 2);
+            event.target.value = value;
         }
     }
 }
 LimitInputDirective.ɵfac = function LimitInputDirective_Factory(t) { return new (t || LimitInputDirective)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])); };
 LimitInputDirective.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({ type: LimitInputDirective, selectors: [["", "appLimitInput", ""]], hostBindings: function LimitInputDirective_HostBindings(rf, ctx) { if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("input", function LimitInputDirective_input_HostBindingHandler($event) { return ctx.limit($event.target.value); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("input", function LimitInputDirective_input_HostBindingHandler($event) { return ctx.limit($event); });
     } } });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](LimitInputDirective, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Directive"],
@@ -906,7 +949,7 @@ LimitInputDirective.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefi
             }]
     }], function () { return [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] }]; }, { limit: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"],
-            args: ['input', ['$event.target.value']]
+            args: ['input', ['$event']]
         }] }); })();
 
 
@@ -1327,16 +1370,14 @@ FooterComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCo
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MeetingInfoComponent", function() { return MeetingInfoComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "ofXK");
+
 
 
 class MeetingInfoComponent {
-    constructor() {
-    }
-    ngOnInit() {
-    }
 }
 MeetingInfoComponent.ɵfac = function MeetingInfoComponent_Factory(t) { return new (t || MeetingInfoComponent)(); };
-MeetingInfoComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: MeetingInfoComponent, selectors: [["app-meeting-info"]], inputs: { report: "report" }, decls: 24, vars: 7, consts: [[1, "meetingInfoContainer"], [1, "meetingDateAndTime"], [1, "totalHours"], [1, "separator"], [1, "dateAndTime"], [1, "time"], [1, "date"], [1, "topicsAndActivities"], [1, "header"], [1, "topicsContent"], [1, "importantComments"], [1, "importantCommentsContent"]], template: function MeetingInfoComponent_Template(rf, ctx) { if (rf & 1) {
+MeetingInfoComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: MeetingInfoComponent, selectors: [["app-meeting-info"]], inputs: { report: "report" }, decls: 25, vars: 10, consts: [[1, "meetingInfoContainer"], [1, "meetingDateAndTime"], [1, "totalHours"], [1, "separator"], [1, "dateAndTime"], [1, "time"], [1, "date"], [1, "topicsAndActivities"], [1, "header"], [1, "topicsContent"], [1, "importantComments"], [1, "importantCommentsContent"]], template: function MeetingInfoComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "h6");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
@@ -1355,23 +1396,24 @@ MeetingInfoComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdef
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "div", 6);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](13);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](14, "date");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](14, "div", 7);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](15, "p", 8);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](16, " \u05E0\u05D5\u05E9\u05D0\u05D9\u05DD \u05D5\u05E4\u05E2\u05DC\u05D5\u05D9\u05D5\u05EA \u05E9\u05E2\u05DC\u05D5 \u05D1\u05DE\u05E4\u05D2\u05E9 ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](15, "div", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "p", 8);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](17, " \u05E0\u05D5\u05E9\u05D0\u05D9\u05DD \u05D5\u05E4\u05E2\u05DC\u05D5\u05D9\u05D5\u05EA \u05E9\u05E2\u05DC\u05D5 \u05D1\u05DE\u05E4\u05D2\u05E9 ");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](17, "div", 9);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](18);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](18, "div", 9);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](19);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](19, "div", 10);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](20, "p", 8);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](21, " \u05D4\u05E2\u05E8\u05D5\u05EA ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](20, "div", 10);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "p", 8);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](22, " \u05D4\u05E2\u05E8\u05D5\u05EA ");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](22, "div", 11);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](23);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](23, "div", 11);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](24);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -1381,14 +1423,14 @@ MeetingInfoComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdef
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", ctx.report == null ? null : ctx.report.reportRangeTimne, " ");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](6);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate2"](" ", ctx.report == null ? null : ctx.report.reportEndTime, "-", ctx.report == null ? null : ctx.report.reportStartTime, " ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate2"](" ", ctx.report == null ? null : ctx.report.reportStartTime, "-", ctx.report == null ? null : ctx.report.reportEndTime, " ");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", ctx.report == null ? null : ctx.report.reportDate, " ");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](14, 7, ctx.report == null ? null : ctx.report.reportDate, "dd-MM-yyyy"), " ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](6);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", ctx.report == null ? null : ctx.report.reportActivitis, " ");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", ctx.report == null ? null : ctx.report.reportComments, " ");
-    } }, styles: [".meetingInfoContainer[_ngcontent-%COMP%] {\n  width: 100%;\n  display: grid;\n  text-align: center;\n  height: 100%;\n  overflow-y: auto;\n  margin-top: 15px;\n}\n\nh6[_ngcontent-%COMP%] {\n  color: #6dac18;\n  font-weight: bold;\n}\n\n.meetingTeacher[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  font-weight: bold;\n  font-size: 16px;\n  color: #6dac18;\n  margin-top: 100px;\n}\n\n.meetingDateAndTime[_ngcontent-%COMP%] {\n  width: 80%;\n  display: flex;\n  justify-content: space-around;\n  margin: 0 auto;\n}\n\n.separator[_ngcontent-%COMP%] {\n  height: 30px;\n  width: 2px;\n  background-color: #6dac18;\n}\n\n.totalHours[_ngcontent-%COMP%] {\n  font-size: 18px;\n  font-weight: bold;\n  color: #6dac18;\n  display: flex;\n  flex-direction: column;\n}\n\n.totalHours[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  font-size: 10px;\n}\n\n.dateAndTime[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: space-around;\n}\n\n.dateAndTime[_ngcontent-%COMP%]   .time[_ngcontent-%COMP%] {\n  font-size: 18px;\n  color: #6dac18;\n  margin-right: 10px;\n}\n\n.dateAndTime[_ngcontent-%COMP%]   .date[_ngcontent-%COMP%] {\n  font-size: 18px;\n  font-weight: bold;\n  color: #6dac18;\n}\n\n.header[_ngcontent-%COMP%] {\n  font-size: 16px;\n  font-weight: bold;\n  color: #4a4545;\n}\n\n.topicsContent[_ngcontent-%COMP%], .importantCommentsContent[_ngcontent-%COMP%] {\n  max-height: 150px;\n  width: 80%;\n  border-radius: 5px;\n  overflow-y: auto;\n  margin: 10px auto;\n  direction: rtl;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2hhcmVkL21lZXRpbmctaW5mby9tZWV0aW5nLWluZm8uY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxXQUFBO0VBQ0EsYUFBQTtFQUNBLGtCQUFBO0VBRUEsWUFBQTtFQUNBLGdCQUFBO0VBQ0EsZ0JBQUE7QUFBSjs7QUFFQTtFQUNFLGNBQUE7RUFDQSxpQkFBQTtBQUNGOztBQUNBO0VBQ0ksaUJBQUE7RUFDQSxlQUFBO0VBQ0EsY0FBQTtFQUNBLGlCQUFBO0FBRUo7O0FBQUU7RUFDRSxVQUFBO0VBQ0EsYUFBQTtFQUNBLDZCQUFBO0VBQ0EsY0FBQTtBQUdKOztBQURFO0VBQ0UsWUFBQTtFQUNBLFVBQUE7RUFDQSx5QkFBQTtBQUlKOztBQUZFO0VBQ0UsZUFBQTtFQUNBLGlCQUFBO0VBQ0EsY0FBQTtFQUNBLGFBQUE7RUFDQSxzQkFBQTtBQUtKOztBQUhFO0VBQ0UsZUFBQTtBQU1KOztBQUpFO0VBQ0UsYUFBQTtFQUNBLDZCQUFBO0FBT0o7O0FBTEU7RUFDRSxlQUFBO0VBQ0EsY0FBQTtFQUNBLGtCQUFBO0FBUUo7O0FBTkU7RUFDRSxlQUFBO0VBQ0EsaUJBQUE7RUFDQSxjQUFBO0FBU0o7O0FBUEU7RUFDRSxlQUFBO0VBQ0EsaUJBQUE7RUFDQSxjQUFBO0FBVUo7O0FBUkU7O0VBRUUsaUJBQUE7RUFDQSxVQUFBO0VBRUEsa0JBQUE7RUFDQSxnQkFBQTtFQUNBLGlCQUFBO0VBQ0EsY0FBQTtBQVVKIiwiZmlsZSI6InNyYy9hcHAvc2hhcmVkL21lZXRpbmctaW5mby9tZWV0aW5nLWluZm8uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubWVldGluZ0luZm9Db250YWluZXIge1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICBkaXNwbGF5OiBncmlkO1xyXG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gICAgLy8gaGVpZ2h0OiBjYWxjKDUwdmggLSA2OHB4KTtcclxuICAgIGhlaWdodDogMTAwJTtcclxuICAgIG92ZXJmbG93LXk6IGF1dG87XHJcbiAgICBtYXJnaW4tdG9wOiAxNXB4O1xyXG59XHJcbmg2e1xyXG4gIGNvbG9yOiAjNmRhYzE4O1xyXG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG59XHJcbi5tZWV0aW5nVGVhY2hlciBwIHtcclxuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG4gICAgZm9udC1zaXplOiAxNnB4O1xyXG4gICAgY29sb3I6ICM2ZGFjMTg7XHJcbiAgICBtYXJnaW4tdG9wOiAxMDBweDtcclxuICB9XHJcbiAgLm1lZXRpbmdEYXRlQW5kVGltZSB7XHJcbiAgICB3aWR0aDogODAlO1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYXJvdW5kO1xyXG4gICAgbWFyZ2luOiAwIGF1dG87XHJcbiAgfVxyXG4gIC5zZXBhcmF0b3Ige1xyXG4gICAgaGVpZ2h0OiAzMHB4O1xyXG4gICAgd2lkdGg6IDJweDtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICM2ZGFjMTg7XHJcbiAgfVxyXG4gIC50b3RhbEhvdXJzIHtcclxuICAgIGZvbnQtc2l6ZTogMThweDtcclxuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG4gICAgY29sb3I6ICM2ZGFjMTg7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICB9XHJcbiAgLnRvdGFsSG91cnMgc21hbGwge1xyXG4gICAgZm9udC1zaXplOiAxMHB4O1xyXG4gIH1cclxuICAuZGF0ZUFuZFRpbWUge1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYXJvdW5kO1xyXG4gIH1cclxuICAuZGF0ZUFuZFRpbWUgLnRpbWUge1xyXG4gICAgZm9udC1zaXplOiAxOHB4O1xyXG4gICAgY29sb3I6ICM2ZGFjMTg7XHJcbiAgICBtYXJnaW4tcmlnaHQ6IDEwcHg7XHJcbiAgfVxyXG4gIC5kYXRlQW5kVGltZSAuZGF0ZSB7XHJcbiAgICBmb250LXNpemU6IDE4cHg7XHJcbiAgICBmb250LXdlaWdodDogYm9sZDtcclxuICAgIGNvbG9yOiAjNmRhYzE4O1xyXG4gIH1cclxuICAuaGVhZGVyIHtcclxuICAgIGZvbnQtc2l6ZTogMTZweDtcclxuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG4gICAgY29sb3I6ICM0YTQ1NDU7XHJcbiAgfVxyXG4gIC50b3BpY3NDb250ZW50LFxyXG4gIC5pbXBvcnRhbnRDb21tZW50c0NvbnRlbnQge1xyXG4gICAgbWF4LWhlaWdodDogMTUwcHg7XHJcbiAgICB3aWR0aDogODAlO1xyXG4gICAgLy8gICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcclxuICAgIGJvcmRlci1yYWRpdXM6IDVweDtcclxuICAgIG92ZXJmbG93LXk6IGF1dG87XHJcbiAgICBtYXJnaW46IDEwcHggYXV0bztcclxuICAgIGRpcmVjdGlvbjogcnRsO1xyXG4gIH1cclxuICAiXX0= */"] });
+    } }, pipes: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["DatePipe"]], styles: [".meetingInfoContainer[_ngcontent-%COMP%] {\n  width: 100%;\n  display: grid;\n  text-align: center;\n  height: 100%;\n  overflow-y: auto;\n  margin-top: 15px;\n}\n\nh6[_ngcontent-%COMP%] {\n  color: #6dac18;\n  font-weight: bold;\n}\n\n.meetingTeacher[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  font-weight: bold;\n  font-size: 16px;\n  color: #6dac18;\n  margin-top: 100px;\n}\n\n.meetingDateAndTime[_ngcontent-%COMP%] {\n  width: 80%;\n  display: flex;\n  justify-content: space-around;\n  margin: 0 auto;\n}\n\n.separator[_ngcontent-%COMP%] {\n  height: 30px;\n  width: 2px;\n  background-color: #6dac18;\n}\n\n.totalHours[_ngcontent-%COMP%] {\n  font-size: 18px;\n  font-weight: bold;\n  color: #6dac18;\n  display: flex;\n  flex-direction: column;\n}\n\n.totalHours[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  font-size: 10px;\n}\n\n.dateAndTime[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: space-around;\n}\n\n.dateAndTime[_ngcontent-%COMP%]   .time[_ngcontent-%COMP%] {\n  font-size: 18px;\n  color: #6dac18;\n  margin-right: 10px;\n}\n\n.dateAndTime[_ngcontent-%COMP%]   .date[_ngcontent-%COMP%] {\n  font-size: 18px;\n  font-weight: bold;\n  color: #6dac18;\n}\n\n.header[_ngcontent-%COMP%] {\n  font-size: 16px;\n  font-weight: bold;\n  color: #4a4545;\n}\n\n.topicsContent[_ngcontent-%COMP%], .importantCommentsContent[_ngcontent-%COMP%] {\n  max-height: 150px;\n  width: 80%;\n  border-radius: 5px;\n  overflow-y: auto;\n  margin: 10px auto;\n  direction: rtl;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2hhcmVkL21lZXRpbmctaW5mby9tZWV0aW5nLWluZm8uY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxXQUFBO0VBQ0EsYUFBQTtFQUNBLGtCQUFBO0VBRUEsWUFBQTtFQUNBLGdCQUFBO0VBQ0EsZ0JBQUE7QUFBSjs7QUFFQTtFQUNFLGNBQUE7RUFDQSxpQkFBQTtBQUNGOztBQUNBO0VBQ0ksaUJBQUE7RUFDQSxlQUFBO0VBQ0EsY0FBQTtFQUNBLGlCQUFBO0FBRUo7O0FBQUU7RUFDRSxVQUFBO0VBQ0EsYUFBQTtFQUNBLDZCQUFBO0VBQ0EsY0FBQTtBQUdKOztBQURFO0VBQ0UsWUFBQTtFQUNBLFVBQUE7RUFDQSx5QkFBQTtBQUlKOztBQUZFO0VBQ0UsZUFBQTtFQUNBLGlCQUFBO0VBQ0EsY0FBQTtFQUNBLGFBQUE7RUFDQSxzQkFBQTtBQUtKOztBQUhFO0VBQ0UsZUFBQTtBQU1KOztBQUpFO0VBQ0UsYUFBQTtFQUNBLDZCQUFBO0FBT0o7O0FBTEU7RUFDRSxlQUFBO0VBQ0EsY0FBQTtFQUNBLGtCQUFBO0FBUUo7O0FBTkU7RUFDRSxlQUFBO0VBQ0EsaUJBQUE7RUFDQSxjQUFBO0FBU0o7O0FBUEU7RUFDRSxlQUFBO0VBQ0EsaUJBQUE7RUFDQSxjQUFBO0FBVUo7O0FBUkU7O0VBRUUsaUJBQUE7RUFDQSxVQUFBO0VBRUEsa0JBQUE7RUFDQSxnQkFBQTtFQUNBLGlCQUFBO0VBQ0EsY0FBQTtBQVVKIiwiZmlsZSI6InNyYy9hcHAvc2hhcmVkL21lZXRpbmctaW5mby9tZWV0aW5nLWluZm8uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubWVldGluZ0luZm9Db250YWluZXIge1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICBkaXNwbGF5OiBncmlkO1xyXG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gICAgLy8gaGVpZ2h0OiBjYWxjKDUwdmggLSA2OHB4KTtcclxuICAgIGhlaWdodDogMTAwJTtcclxuICAgIG92ZXJmbG93LXk6IGF1dG87XHJcbiAgICBtYXJnaW4tdG9wOiAxNXB4O1xyXG59XHJcbmg2e1xyXG4gIGNvbG9yOiAjNmRhYzE4O1xyXG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG59XHJcbi5tZWV0aW5nVGVhY2hlciBwIHtcclxuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG4gICAgZm9udC1zaXplOiAxNnB4O1xyXG4gICAgY29sb3I6ICM2ZGFjMTg7XHJcbiAgICBtYXJnaW4tdG9wOiAxMDBweDtcclxuICB9XHJcbiAgLm1lZXRpbmdEYXRlQW5kVGltZSB7XHJcbiAgICB3aWR0aDogODAlO1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYXJvdW5kO1xyXG4gICAgbWFyZ2luOiAwIGF1dG87XHJcbiAgfVxyXG4gIC5zZXBhcmF0b3Ige1xyXG4gICAgaGVpZ2h0OiAzMHB4O1xyXG4gICAgd2lkdGg6IDJweDtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICM2ZGFjMTg7XHJcbiAgfVxyXG4gIC50b3RhbEhvdXJzIHtcclxuICAgIGZvbnQtc2l6ZTogMThweDtcclxuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG4gICAgY29sb3I6ICM2ZGFjMTg7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICB9XHJcbiAgLnRvdGFsSG91cnMgc21hbGwge1xyXG4gICAgZm9udC1zaXplOiAxMHB4O1xyXG4gIH1cclxuICAuZGF0ZUFuZFRpbWUge1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYXJvdW5kO1xyXG4gIH1cclxuICAuZGF0ZUFuZFRpbWUgLnRpbWUge1xyXG4gICAgZm9udC1zaXplOiAxOHB4O1xyXG4gICAgY29sb3I6ICM2ZGFjMTg7XHJcbiAgICBtYXJnaW4tcmlnaHQ6IDEwcHg7XHJcbiAgfVxyXG4gIC5kYXRlQW5kVGltZSAuZGF0ZSB7XHJcbiAgICBmb250LXNpemU6IDE4cHg7XHJcbiAgICBmb250LXdlaWdodDogYm9sZDtcclxuICAgIGNvbG9yOiAjNmRhYzE4O1xyXG4gIH1cclxuICAuaGVhZGVyIHtcclxuICAgIGZvbnQtc2l6ZTogMTZweDtcclxuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG4gICAgY29sb3I6ICM0YTQ1NDU7XHJcbiAgfVxyXG4gIC50b3BpY3NDb250ZW50LFxyXG4gIC5pbXBvcnRhbnRDb21tZW50c0NvbnRlbnQge1xyXG4gICAgbWF4LWhlaWdodDogMTUwcHg7XHJcbiAgICB3aWR0aDogODAlO1xyXG4gICAgLy8gICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcclxuICAgIGJvcmRlci1yYWRpdXM6IDVweDtcclxuICAgIG92ZXJmbG93LXk6IGF1dG87XHJcbiAgICBtYXJnaW46IDEwcHggYXV0bztcclxuICAgIGRpcmVjdGlvbjogcnRsO1xyXG4gIH1cclxuICAiXX0= */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](MeetingInfoComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
@@ -1396,7 +1438,7 @@ MeetingInfoComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdef
                 templateUrl: './meeting-info.component.html',
                 styleUrls: ['./meeting-info.component.scss']
             }]
-    }], function () { return []; }, { report: [{
+    }], null, { report: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
         }] }); })();
 
@@ -1837,14 +1879,6 @@ const routes = [
         loadChildren: () => __webpack_require__.e(/*! import() | signature-signature-module */ "signature-signature-module").then(__webpack_require__.bind(null, /*! ./signature/signature.module */ "2M8t")).then((m) => m.SignatureModule),
         canActivate: [_services_guards_sign_guard__WEBPACK_IMPORTED_MODULE_4__["SignGuard"]]
     },
-    // {
-    //     path: "",
-    //     redirectTo: "x",
-    //     pathMatch: "full",
-    // },
-    // {
-    //     path: 'x', component: ExmpleComponent
-    // },
     {
         path: "auth",
         loadChildren: () => __webpack_require__.e(/*! import() | auth-auth-module */ "auth-auth-module").then(__webpack_require__.bind(null, /*! ./auth/auth.module */ "Yj9t")).then((m) => m.AuthModule),

@@ -18,10 +18,14 @@ export class ReportsResolverService implements Resolve<Report[]> {
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Observable<Report[]> {
+        console.log('REPORTS RESOLVER START')
         this.loaderService.setStatus(true)
         return this.reportsService.getReportsNotConfirm()
             .pipe(
-                tap(() => this.loaderService.setStatus(false))
+                tap(() => {
+                    console.log('REPORTS RESOLVER RESPONSE')
+                    this.loaderService.setStatus(false)
+                })
             )
     }
 

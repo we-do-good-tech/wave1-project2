@@ -15,6 +15,7 @@ export class SingleMeetingComponent implements OnInit, OnDestroy {
     mode: string = "new-report";
     report: Report;
     sunParams: Subscription;
+    subReport: Subscription;
 
     constructor(
         private route: ActivatedRoute,
@@ -24,7 +25,7 @@ export class SingleMeetingComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit(): void {
-        this.report = this.reportsService.getReport();
+        this.report = this.reportsService.getReport()
         this.sunParams = this.route.paramMap.subscribe((params: ParamMap) => {
             if (params.has("ticketNo")) {
                 this.mode = "resend-sign";
@@ -56,5 +57,6 @@ export class SingleMeetingComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.sunParams.unsubscribe();
+        // this.subReport.unsubscribe()
     }
 }

@@ -38,10 +38,11 @@ module.exports.authTeacherEmail = async function (request, response) {
             emailTamplate.confirmCode(confirmCode.getConfirmCode())
         );
 
-        // make error respone possiblle
         sendMail(options);
 
         confirmCode.setTimeExpireConfirmCode();
+        // make error respone possiblle
+
 
         const token = createToken({
             teacherId: toJson.id,
@@ -74,6 +75,7 @@ module.exports.authConfirmCode = async function (request, response) {
     if (code === confirmCode.getConfirmCode()) {
         console.log("CODE IS CONFIRM");
         confirmCode.deleteConfirmCode();
+        confirmCode.clearTimer()
         return response.status(200).send({
             message: "User log",
             isLog: true,
@@ -89,6 +91,7 @@ module.exports.authConfirmCode = async function (request, response) {
 module.exports.newConfirmCode = async function (request, response) {
     const { teacherEmail } = request.userData;
 
+    confirmCode.clearTimer()
     confirmCode.createConfirmCode();
 
     const options = emailOptions(

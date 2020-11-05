@@ -16,22 +16,22 @@ import { FormsService } from "../../services/forms/forms.service";
 export class ConfirmComponent implements AfterViewInit, OnDestroy {
 
     subFormChange: Subscription
+    @ViewChild('form') form: NgForm
+    @ViewChild('first') firstInput: ElementRef
 
     constructor(
         public formsService: FormsService,
         private authService: AuthService,
         private router: Router,
         private loaderService: LoaderService,
-        private keyBoardService: KeyboardService
+        private keyBoardService: KeyboardService) { }
 
-    ) { }
-
-    @ViewChild('form') form: NgForm
-    @ViewChild('first') firstInput: ElementRef
 
 
     ngAfterViewInit(): void {
+        this.keyBoardService.setElement(this.firstInput.nativeElement)
         this.subFormChange = this.form.valueChanges.subscribe((result) => {
+            console.log(result)
             if (this.form.valid) {
                 let code: string = "";
 

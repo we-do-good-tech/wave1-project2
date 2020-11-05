@@ -5,15 +5,16 @@
     <form #form="ngForm" (ngSubmit)="onSendEmail(form)">
         <div class="input-group">
             <label for="teacherEmail">דואר אלקטרוני</label>
-            <input required type="email" ngModel pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+            <input (blur)="filedLeaved = $event.isTrusted" required type="email" ngModel
+                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
                 name="teacherEmail" #teacherEmail="ngModel" class="form-control" placeholder="דואר אלקטרוני">
 
         </div>
         <app-http-error-messages></app-http-error-messages>
         <div class="errorsContainer"
-            *ngIf="this.formsService.formControlStatus(teacherEmail.control) && form.submitted">
+            *ngIf="this.formsService.formControlStatus(teacherEmail.control) && filedLeaved ">
             <div class="error-validate-form-message animate__animated animate__headShake"
-                *ngIf="teacherEmail.errors.required">
+                *ngIf="teacherEmail.errors.required ">
                 שדה חובה!
             </div>
             <div class="error-validate-form-message animate__animated animate__headShake"
@@ -25,7 +26,7 @@
             <div class="buttonImage">
                 <img src="../../../assets/Group 1789.svg" alt>
             </div>
-            <button class="mainButton">
+            <button class="mainButton" [disabled]="form.invalid" [class.disabledButton]="form.invalid">
                 התחברו
             </button>
         </div>

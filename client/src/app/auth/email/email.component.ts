@@ -13,6 +13,8 @@ import { LoaderService } from 'src/app/services/loader.service';
 })
 export class EmailComponent {
 
+    filedLeaved: boolean = false
+
     constructor(
         public formsService: FormsService,
         private authService: AuthService,
@@ -23,10 +25,9 @@ export class EmailComponent {
     onSendEmail(form: NgForm): void {
         if (form.invalid) return;
         this.loaderService.setStatus(true)
-        this.authService.authTeacherEmail(form.value.teacherEmail).subscribe((result) => {
-            this.router.navigate(['/auth/confirm'])
-        }, () => form.resetForm())
+        this.authService.authTeacherEmail(form.value.teacherEmail)
+            .subscribe((result) => {
+                this.router.navigate(['/auth/confirm'])
+            }, () => form.resetForm())
     }
-
-
 }

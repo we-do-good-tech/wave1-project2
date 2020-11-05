@@ -92,8 +92,11 @@ module.exports.createReport = async function (request, response) {
 
             const options = emailOptions(parentEmail, emailTamplate.parentSign(token))
             sendMail(options)
+
             return response.status(200).send({
-                message: 'REPORT CREATED'
+                message: 'REPORT CREATED',
+                index: findFirstNumberOnString(reportCreated.updates.updatedRange),
+
             })
         }
 

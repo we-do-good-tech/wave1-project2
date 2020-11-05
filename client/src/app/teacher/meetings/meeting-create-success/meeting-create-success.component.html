@@ -10,8 +10,9 @@
             <div [ngStyle]="{width: progress}" class="progressTime"></div>
         </div>
     </div>
-    <small> {{reporstStats?.totalHours}} שעות מתוך {{reporstStats?.limitHours}} </small>
-    <p>שעות חונכות נדרשות לחודש {{ currentMount | hebrewMountName}}</p>
+    <p>עשית {{reporstStats?.totalHours}} שעות מתוך {{reporstStats?.limitHours}}</p>
+    <p> {{reporstStats?.limitHours}} שעות חונכות נדרשות לחודש
+        {{ currentMount | hebrewMountName}}</p>
     <div class="thanksContent">
         כל הכבוד!
         <br>

@@ -18,7 +18,7 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
     reports: Report[];
     studentSelected: string;
     subStudents: Subscription;
-    sunReports: Subscription;
+    subReports: Subscription;
 
     constructor(
         private route: ActivatedRoute,
@@ -32,8 +32,20 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
         this.subStudents = this.route.data.subscribe((result) => {
             this.students = result.students;
         });
-        this.sunReports = this.route.data.pipe(
-            map((result) => {
+
+        // this.subReports = this.reportsService.getReportsChange()
+        //     .subscribe((result) => {
+        //         this.reports = result;
+        //         this.students.forEach((s) => {
+        //             let findReports = this.reports.find((r) => r.ticketNo == s.ticketNo)
+        //             if (findReports) {
+        //                 s.hasReports = true
+        //             }
+        //         })
+        //         console.log(this.reports)
+        //     })
+        this.subReports = this.route.data
+            .subscribe((result) => {
                 this.reports = result.reports;
                 this.students.forEach((s) => {
                     let findReports = this.reports.find((r) => r.ticketNo == s.ticketNo)
@@ -43,7 +55,6 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
                 })
                 console.log(this.reports)
             })
-        ).subscribe()
     }
 
 
@@ -77,6 +88,6 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.subStudents.unsubscribe();
-        this.sunReports.unsubscribe();
+        this.subReports.unsubscribe();
     }
 }

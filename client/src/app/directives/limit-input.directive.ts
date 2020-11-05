@@ -8,12 +8,12 @@ export class LimitInputDirective {
     constructor(private inputElement: ElementRef) { }
 
 
-    @HostListener('input', ['$event.target.value'])
-    limit(value: string) {
-        console.log(value)
+    @HostListener('input', ['$event'])
+    limit(event: any) {
+        let { value } = event.target
         if (String(value).length > 1) {
-            // value = value.slice(1, 2);
-            // value = '9'
+            value = value.slice(1, 2);
+            event.target.value = value
         }
     }
 

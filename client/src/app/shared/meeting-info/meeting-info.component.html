@@ -8,10 +8,10 @@
         <div class="separator"></div>
         <div class="dateAndTime">
             <div class="time">
-                {{report?.reportEndTime}}-{{report?.reportStartTime}}
+                {{report?.reportStartTime}}-{{report?.reportEndTime}}
             </div>
             <div class="date">
-                {{report?.reportDate}}
+                {{report?.reportDate | date: 'dd-MM-yyyy'}}
             </div>
         </div>
     </div>
