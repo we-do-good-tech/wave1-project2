@@ -9,7 +9,7 @@ async function verifyTokenSign(request, response, next) {
     try {
         const decodedToken = await JsonWebToken.verify(token, keys.TOKENS.PARENT_SIGN_ACCESS_TOKEN.secretTokenKey)
 
-        console.log(decodedToken, 'DECODE')
+        // console.log(decodedToken, 'DECODE')
 
         request.respotInfo = {
             studentName: decodedToken.studentName,
@@ -27,7 +27,6 @@ async function verifyTokenSign(request, response, next) {
         next()
 
     } catch (error) {
-        console.log('Unauthorized user')
         response.status(403).send({
             message: 'Unauthorized',
         })

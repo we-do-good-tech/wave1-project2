@@ -28,7 +28,6 @@ module.exports = {
             .isString()
     },
     datePropery: function (property, key) {
-        // console.log(property, 'DATE PROPERY')
         return check(property, errorMessage)
             .exists()
             .isDate()
@@ -48,7 +47,7 @@ module.exports = {
     timePropery: function (property, key) {
         return check(property, errorMessage)
             .exists()
-            .matches("^(0?[1-9]|1[012]):[0-5][0-9]$")
+            .matches(/^\s*([01]?\d|2[0-3]):?([0-5]\d)\s*$/)
             .custom((result, { req }) => {
                 if (key === 'TIMES_RANGE') {
                     if (timesRange(req.body.reportStartTime, req.body.reportEndTime) <= 0) {
@@ -60,6 +59,7 @@ module.exports = {
 
 
                     if (meetingDate === dateToday) {
+                        console.log(' ERROR')
                         let now = new Date()
                         let currentDateArr = now.toLocaleDateString().split('/').length === 1 ? now.toLocaleDateString().split('.') : now.toLocaleDateString().split('/')
                         let time = req.body.reportStartTime.split(':') || req.body.reportStartTime.split(':')
@@ -69,14 +69,11 @@ module.exports = {
                             throw new Error()
                         }
                     }
-
-                    return true
                 }
-                if (key === 'RANGE') {
+                else if (key === 'RANGE') {
                     const time = conculateRangeToTime(
                         timesRange(req.body.reportStartTime, req.body.reportEndTime)
                     )
-
                     if (time !== result) {
                         throw new Error()
                     }

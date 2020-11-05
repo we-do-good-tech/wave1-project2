@@ -3,8 +3,8 @@ const keys = require("../config/keys");
 const { convertSheetsDataToObjectsArray } = require('../helpers/tojson');
 const { sendEmailSignConfirmMeeting } = require('../services/emails/emails.options')
 const { sendMail } = require("../send-email/transporter");
-const { formatDate } = require('../helpers/dates.ranges')
 const { createToken } = require('../services/tokens')
+const { findFirstNumberOnString } = require('../helpers/numbers-on-string')
 
 
 
@@ -72,7 +72,7 @@ module.exports.createReport = async function (request, response) {
 
 
         if (reportCreated.updates.updatedRows > 0) {
-            console.log(reportCreated.updates.updatedRange.replace(/\D/g, "").slice(0, 1), 'CREATE REPORTTTT')
+            console.log(reportCreated.updates)
             const token = createToken({
                 studentName: studentName,
                 ticketNo: ticketNo,
@@ -82,7 +82,7 @@ module.exports.createReport = async function (request, response) {
                 reportStartTime: reportStartTime,
                 reportEndTime: reportEndTime,
                 reportRangeTimne: reportRangeTimne,
-                index: reportCreated.updates.updatedRange.replace(/\D/g, "").slice(0, 1)
+                index: findFirstNumberOnString(reportCreated.updates.updatedRange)
             },
                 keys.TOKENS.PARENT_SIGN_ACCESS_TOKEN.secretTokenKey,
                 keys.TOKENS.PARENT_SIGN_ACCESS_TOKEN.expiresIn
@@ -171,8 +171,6 @@ module.exports.resendParentSign = async function (request, response) {
 
     const { ticketNo, reportDate, reportActivitis, reportComments, reportStartTime, reportEndTime, reportRangeTimne } = request.findReport
     const { studentName, parentEmail, index } = request.body
-
-    console.log(index, 'index resend')
 
 
     const sheetName = keys.GOOGLE_SHEETS.sheetsNames.reports

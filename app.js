@@ -27,6 +27,14 @@ server.use('/api/sign', signRouter)
 
 
 
+// const r = 'Reports!A11:L11'
+// function findFirstNumberOnString(str) {
+//     return str.split(':')[0].replace(/\D/g, "")
+// }
+
+// console.log(Number(findFirstNumberOnString(r)))
+
+
 server.get("*", (request, response) => {
     response.sendFile(path.resolve("client/dist/reports/index.html"));
 });

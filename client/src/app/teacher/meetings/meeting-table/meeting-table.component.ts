@@ -1,12 +1,10 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { map } from 'rxjs/operators';
 import { Report } from "src/app/interfaces/Report";
 import { Student } from "src/app/interfaces/Student";
 import { ReportsService } from "src/app/services/reports.service";
-import { StudentsService } from 'src/app/services/students.service';
 import { daysRange } from "../../../services/helpers/time.range";
 
 
