@@ -25,7 +25,8 @@ export class KeyboardService {
 
     emitKey(key: string): void {
         this.inputElement.focus();
-        this.inputElement.removeAttribute('readonly')
+        // this.inputElement.blur()
+        // this.inputElement.removeAttribute('readonly')
         // this.inputElement.style.color = 'red'
         this.keyboardEvent.emit(key);
     }

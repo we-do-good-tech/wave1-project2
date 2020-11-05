@@ -19,8 +19,6 @@ export class VirtualKeyDirective implements OnInit {
             if (document.activeElement === this.formInputElement.nativeElement) {
                 this.ngModel.valueAccessor.writeValue(key);
 
-                this.formInputElement.nativeElement.blur()
-                console.log(this.formInputElement.nativeElement)
                 const event = new Event('input', {
                     bubbles: true,
                     cancelable: true,
@@ -34,5 +32,6 @@ export class VirtualKeyDirective implements OnInit {
     @HostListener("focus")
     onFocus(): void {
         this.keyboardService.setElement(this.formInputElement.nativeElement);
+        // this.formInputElement.nativeElement.blur()
     }
 }
