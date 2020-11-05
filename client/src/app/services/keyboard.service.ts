@@ -14,6 +14,11 @@ export class KeyboardService {
     }
 
 
+    focusOnElement(element: HTMLInputElement): void {
+        element.focus()
+    }
+
+
     onKeyPress(): Observable<string> {
         return this.keyboardEvent.asObservable();
     }

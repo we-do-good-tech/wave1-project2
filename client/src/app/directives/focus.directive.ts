@@ -8,10 +8,11 @@ export class InputFocusDirective {
     constructor(private formElement: ElementRef) { }
 
 
-    // @HostListener('focus')
-    // setFirst() {
-    //     this.formElement.nativeElement[0].setAttribute('readonly', 'readonly')
-    // }
+    @HostListener('focus')
+    setFirst() {
+        const input = this.formElement.nativeElement.querySelector('.ng-invalid')
+        input.blur()
+    }
 
     @HostListener('input')
     check() {
@@ -19,7 +20,6 @@ export class InputFocusDirective {
             const input = this.formElement.nativeElement.querySelector('.ng-invalid')
             if (input) {
                 input.focus();
-                input.blur()
             }
         }, 0);
     }
