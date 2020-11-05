@@ -470,7 +470,7 @@ class ReportsService {
             parentEmail: report.parentEmail,
             ticketNo: report.ticketNo,
             reportDate: report.reportDate,
-            index: Number(report.index)
+            index: Number(report.index),
         };
         return this.http.post('api/teacher/resend/parent-sign', reportInfo)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((result) => {

@@ -6,6 +6,7 @@ const { createToken } = require('../services/tokens')
 const { findFirstNumberOnString } = require('../helpers/numbers-on-string')
 const { emailOptions } = require("../services/emails/emails.options");
 const emailTamplate = require('../services/emails/email.tamplates')
+const { daysRange } = require('../helpers/dates.ranges')
 
 
 
@@ -170,12 +171,21 @@ module.exports.resendParentSign = async function (request, response) {
     }
     // check date resend 
 
-    const { ticketNo, reportDate, reportActivitis, reportComments, reportStartTime, reportEndTime, reportRangeTimne } = request.findReport
+    const { ticketNo, reportDate, reportActivitis, reportComments, reportStartTime, reportEndTime, reportRangeTimne, lastResendDateToParent } = request.findReport
     const { studentName, parentEmail, index } = request.body
 
 
+    const today = new Date().getTime()
+    const lastDateResendSign = new Date(lastResendDateToParent).getTime()
+
+    if (daysRange(today, lastDateResendSign) < 1) {
+        return response.status(400).send({
+            message: "INVALID REQUEST",
+        });
+    }
+
     const sheetName = keys.GOOGLE_SHEETS.sheetsNames.reports
-    const range = `!L${index + 1}`
+    const range = `!L${Number(index) + 1}`
 
     let body = `{"values":[
             [

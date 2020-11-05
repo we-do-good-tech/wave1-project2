@@ -15,8 +15,8 @@ async function authSeets(request, response, next) {
             client.getRequestHeaders().then(async (authorizationToken) => {
                 request.sheetsClientData = {
                     authorizationToken: authorizationToken,
-                    // client: client
                 }
+                Object.freeze(request.sheetsClientData)
                 next();
             });
         }

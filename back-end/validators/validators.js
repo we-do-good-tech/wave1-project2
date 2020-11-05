@@ -3,7 +3,7 @@ const { daysRange, timesRange, conculateRangeToTime } = require('../helpers/date
 const keys = require('../config/keys')
 
 const errorMessage = 'INVALID VALUES'
-const limitReportsDays = 90
+
 
 module.exports = {
     email: function (property) {
@@ -27,7 +27,7 @@ module.exports = {
             .exists()
             .isString()
     },
-    datePropery: function (property, key) {
+    datePropery: function (property, key, limit) {
         return check(property, errorMessage)
             .exists()
             .isDate()
@@ -35,7 +35,7 @@ module.exports = {
                 if (key === 'DATE_LIMITS') {
                     const now = new Date().getTime()
                     const value = new Date(result).getTime()
-                    if (now < value - (1000 * 60 * 60) || daysRange(now, value) > limitReportsDays) {
+                    if (now < value - (1000 * 60 * 60) || daysRange(now, value) > limit) {
                         throw new Error()
                     }
                     return true

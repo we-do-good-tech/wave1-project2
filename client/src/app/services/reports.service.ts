@@ -62,7 +62,7 @@ export class ReportsService {
             parentEmail: report.parentEmail,
             ticketNo: report.ticketNo,
             reportDate: report.reportDate,
-            index: Number(report.index)
+            index: Number(report.index),
         }
         return this.http.post<{ message: string }>('api/teacher/resend/parent-sign', reportInfo)
             .pipe(
