@@ -29,7 +29,7 @@ export class ConfirmComponent implements AfterViewInit, OnDestroy {
 
 
     ngAfterViewInit(): void {
-        this.keyBoardService.setElement(this.firstInput.nativeElement)
+        // this.keyBoardService.setElement(this.firstInput.nativeElement)
         this.subFormChange = this.form.valueChanges.subscribe((result) => {
             console.log(result)
             if (this.form.valid) {
@@ -63,7 +63,7 @@ export class ConfirmComponent implements AfterViewInit, OnDestroy {
         this.authService.resendConfirmCode().subscribe((result) => {
             // console.log(result);
             alert('נשלח קוד חדש למייל')
-        });
+        }, () => this.keyBoardService.setElement(this.firstInput.nativeElement));
     }
 
 

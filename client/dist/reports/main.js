@@ -143,37 +143,30 @@ class InputFocusDirective {
     constructor(formElement) {
         this.formElement = formElement;
     }
-    setFirst() {
-        this.formElement.nativeElement[0].setAttribute('readonly', 'readonly');
-    }
+    // @HostListener('focus')
+    // setFirst() {
+    //     this.formElement.nativeElement[0].setAttribute('readonly', 'readonly')
+    // }
     check() {
         setTimeout(() => {
-            let counter = 0;
             const input = this.formElement.nativeElement.querySelector('.ng-invalid');
             if (input) {
-                counter++;
-                console.log(counter, this.formElement.nativeElement[counter]);
                 input.focus();
-                if (counter === 3)
-                    counter = 0;
-                this.formElement.nativeElement[counter].setAttribute('readonly', 'readonly');
+                input.blur();
             }
         }, 0);
     }
 }
 InputFocusDirective.ɵfac = function InputFocusDirective_Factory(t) { return new (t || InputFocusDirective)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])); };
 InputFocusDirective.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({ type: InputFocusDirective, selectors: [["", "appInputFocus", ""]], hostBindings: function InputFocusDirective_HostBindings(rf, ctx) { if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("focus", function InputFocusDirective_focus_HostBindingHandler() { return ctx.setFirst(); })("input", function InputFocusDirective_input_HostBindingHandler() { return ctx.check(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("input", function InputFocusDirective_input_HostBindingHandler() { return ctx.check(); });
     } } });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](InputFocusDirective, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Directive"],
         args: [{
                 selector: '[appInputFocus]'
             }]
-    }], function () { return [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] }]; }, { setFirst: [{
-            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"],
-            args: ['focus']
-        }], check: [{
+    }], function () { return [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] }]; }, { check: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"],
             args: ['input']
         }] }); })();
@@ -1820,13 +1813,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function KeyboardComponent_app_keyboard_button_1_Template(rf, ctx) { if (rf & 1) {
-    const _r2067 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+    const _r3509 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "app-keyboard-button", 2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function KeyboardComponent_app_keyboard_button_1_Template_app_keyboard_button_click_0_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r2067); const number_r2065 = ctx.$implicit; const ctx_r2066 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r2066.onNumberClick($event, number_r2065); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function KeyboardComponent_app_keyboard_button_1_Template_app_keyboard_button_click_0_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r3509); const number_r3507 = ctx.$implicit; const ctx_r3508 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r3508.onNumberClick($event, number_r3507); });
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const number_r2065 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("number", number_r2065);
+    const number_r3507 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("number", number_r3507);
 } }
 class KeyboardComponent {
     constructor(keyboardService) {
