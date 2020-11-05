@@ -1,21 +1,22 @@
+<!-- // איזה יופי זה מסודר -->
 <div class="confirmWrapper">
     <p class="m-3">נשלח מייל, נא הזינו הקוד</p>
     <form #form="ngForm" appInputFocus>
         <div class="smsCode">
             <input
-                readonly="readonly"
+
                 appLimitInput
                 #first
-                id="num-a"
+                id="1"
                 required type="number"
                 pattern="^\d{1}$"
                 name="first"
                 ngModel="virtualkey"
                 #one="ngModel">
             <input
-                readonly="readonly"
+
                 appLimitInput
-                id="num-b"
+                id="2"
                 required
                 type="number"
                 pattern="^\d{1}$"
@@ -23,9 +24,9 @@
                 ngModel="virtualkey"
                 #two="ngModel">
             <input
-                readonly="readonly"
+
                 appLimitInput
-                id="num-c"
+                id="3"
                 required
                 type="number"
                 pattern="^\d{1}$"
@@ -33,9 +34,9 @@
                 ngModel="virtualkey"
                 #three="ngModel">
             <input
-                readonly="readonly"
+
                 appLimitInput
-                id="num-d"
+                id="4"
                 required
                 type="number"
                 pattern="^\d{1}$"
