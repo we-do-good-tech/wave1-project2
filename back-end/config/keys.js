@@ -32,6 +32,15 @@ module.exports = {
             secretTokenKey: process.env.SECRET_ACCESS_PARENT_TOKEN_KEY,
             expiresIn: 60 * 60 * 24
         }
+    },
+    CONFIRM_CODE: {
+        expiresIn: 60,
+        length: 4
+    },
+    CUSTOM_VALIDATORS_KEYS: {
+        dateLimit: 'DATE_LIMITS',
+        timesRange: 'TIMES_RANGE',
+        range: 'RANGE'
     }
 };
 

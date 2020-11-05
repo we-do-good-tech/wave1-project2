@@ -9,6 +9,7 @@ const { convertSheetsDataToObjectsArray } = require('../helpers/tojson')
 
 module.exports.authTeacherEmail = async function (request, response) {
     const { teacherEmail } = request.body;
+    // console.log(teacherEmail)
     const query = `select A,B,C where C='${teacherEmail}'`;
     const sheetId = keys.GOOGLE_SHEETS.sheetsIds.teachers;
 
@@ -51,7 +52,7 @@ module.exports.authTeacherEmail = async function (request, response) {
             message: "USER FOUND",
             token: token,
             tokenExpiresIn: keys.TOKENS.ACCESS_TOKEN.expiresIn,
-            confirmCodeExpire: 60 * 2,
+            confirmCodeExpire: keys.CONFIRM_CODE.expiresIn,
             userName: {
                 firstName: toJson.firstName,
             },
@@ -100,7 +101,7 @@ module.exports.newConfirmCode = async function (request, response) {
 
     return response.status(200).send({
         message: "נשלח קוד חדש",
-        confirmCodeExpire: 60 * 2,
+        confirmCodeExpire: keys.CONFIRM_CODE.expiresIn,
     });
 };
 

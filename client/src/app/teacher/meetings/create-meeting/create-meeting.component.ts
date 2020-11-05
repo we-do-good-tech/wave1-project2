@@ -105,8 +105,8 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
         };
 
         console.log(report)
-        this.reportsService.setReport(report);
-        this.router.navigate(["/main/teacher/meeting-new"]);
+        // this.reportsService.setReport(report);
+        // this.router.navigate(["/main/teacher/meeting-new"]);
     }
 
     getFormControl(controlName: string): FormControl {

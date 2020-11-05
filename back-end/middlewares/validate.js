@@ -2,6 +2,7 @@ const { validationResult } = require('express-validator')
 
 async function validate(request, response, next) {
 
+    // console.log(request.body, 'VALIDATE func')
     const errors = validationResult(request)
 
     console.log(errors)

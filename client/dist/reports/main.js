@@ -1535,6 +1535,7 @@ class AuthService {
     setTokenTimer(time) {
         this.tokenTimer = setTimeout(() => {
             this.clearLoginInfo();
+            this.router.navigate(["/auth/email"]);
         }, time * 1000);
     }
 }

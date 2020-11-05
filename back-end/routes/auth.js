@@ -7,9 +7,9 @@ const { validate } = require('../middlewares/validate')
 
 router.post(
     '/teacherEmail',
-    authSeets,
     [validators.email('teacherEmail')],
     validate,
+    authSeets,
     authControllers.authTeacherEmail
 )
 
@@ -21,7 +21,7 @@ router.get(
 
 router.post(
     '/teacher/confirm-code',
-    [validators.confirm_code],
+    [validators.confirmCode('code')],
     validate,
     verifyToken,
     authControllers.authConfirmCode

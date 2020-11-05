@@ -172,6 +172,7 @@ export class AuthService {
     private setTokenTimer(time: number): void {
         this.tokenTimer = setTimeout(() => {
             this.clearLoginInfo();
+            this.router.navigate(["/auth/email"]);
         }, time * 1000);
     }
 }

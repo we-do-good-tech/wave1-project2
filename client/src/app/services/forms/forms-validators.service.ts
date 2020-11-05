@@ -33,7 +33,7 @@ export class FormsValidatorsService {
         let now = new Date().getTime();
         let getValueTime = new Date(value).getTime();
 
-        if (now < getValueTime) {
+        if (now < getValueTime - (1000 * 60 * 60)) {
             return {
                 blockOverDate: true,
             };
@@ -44,11 +44,11 @@ export class FormsValidatorsService {
     static blockOverTime(control: AbstractControl): ValidationErrors {
         let value = control.value
         let now = new Date()
-        let currentDate = now.toLocaleDateString().split('/').length === 1 ? now.toLocaleDateString().split('.') : now.toLocaleDateString().split('/')
+        let currentDateArr = now.toLocaleDateString().split('/').length === 1 ? now.toLocaleDateString().split('.') : now.toLocaleDateString().split('/')
 
         if (value) {
             let time = value.split(':')
-            let timeValue = new Date(Number(currentDate[2]), Number(currentDate[0]) - 1, Number(currentDate[1]), Number(time[0]), Number(time[1]), 0).getTime()
+            let timeValue = new Date(Number(currentDateArr[2]), Number(currentDateArr[0]) - 1, Number(currentDateArr[1]), Number(time[0]), Number(time[1]), 0).getTime()
             if (now.getTime() < timeValue) {
                 return {
                     blockOverTime: true
