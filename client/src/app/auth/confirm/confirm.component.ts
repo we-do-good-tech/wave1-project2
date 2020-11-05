@@ -16,6 +16,7 @@ import { FormsService } from "../../services/forms/forms.service";
 export class ConfirmComponent implements AfterViewInit, OnDestroy {
 
     subFormChange: Subscription
+
     @ViewChild('form') form: NgForm
     @ViewChild('first') firstInput: ElementRef
 
@@ -60,13 +61,9 @@ export class ConfirmComponent implements AfterViewInit, OnDestroy {
         this.form.resetForm()
         this.firstInput.nativeElement.focus()
         this.authService.resendConfirmCode().subscribe((result) => {
-            // console.log(result);
             alert('נשלח קוד חדש למייל')
-        }, () => this.firstInput.nativeElement.focus());
+        }, () => { });
     }
-
-
-
 
 
     ngOnDestroy(): void {
