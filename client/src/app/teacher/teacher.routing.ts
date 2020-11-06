@@ -48,7 +48,7 @@ const routes: Routes = [
             {
                 path: "meeting-success",
                 component: MeetingCreateSuccessComponent,
-                // canActivate: [SingleMeetingToOperationGuard],
+                canActivate: [SingleMeetingToOperationGuard],
                 resolve: {
                     reportsStats: ReportsStatsResolverService
                 }

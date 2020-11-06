@@ -44,8 +44,8 @@ export class HttpErrorMessagesInterceptor implements HttpInterceptor {
                 }
 
                 else if (errorMassge === 'Unauthorized') {
-                    // this.authServcie.clearLoginInfo()
-                    // this.router.navigate(['/auth/email'])
+                    this.authServcie.clearLoginInfo()
+                    this.router.navigate(['/auth/email'])
                     return throwError(error);
                 } else {
 
@@ -53,9 +53,6 @@ export class HttpErrorMessagesInterceptor implements HttpInterceptor {
 
                     return throwError(error);
                 }
-
-                // alert(errorMassge)
-
             })
         );
     }

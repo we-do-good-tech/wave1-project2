@@ -2,7 +2,8 @@
     <div class="logo animate_animated animate_flipInX">
         <img src="../../../assets/Group 1764.svg" alt>
     </div>
-    <form #form="ngForm" (ngSubmit)="onSendEmail(form)">
+    <form
+        #form="ngForm" (ngSubmit)="onSendEmail(form)">
         <div class="input-group">
             <label for="teacherEmail">דואר אלקטרוני</label>
             <input (blur)="filedLeaved = $event.isTrusted" required type="email" ngModel

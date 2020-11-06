@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-parent-signature-success',
@@ -7,17 +8,15 @@ import { Component } from '@angular/core';
 })
 export class ParentSignatureSuccessComponent {
 
-    window: Window
-
-    constructor() { }
+    constructor(private router: Router) { }
 
     // ngOnInit(): void { }
 
 
     onCloseTab() {
-
-        window.open('confirm-report/signature-success', '_self', '');
-        window.close();
+        this.router.navigate(['not-found'])
+        // window.open('confirm-report/signature-success', '_self', '');
+        // window.close();
     }
 
 }

@@ -642,15 +642,14 @@ class HttpErrorMessagesInterceptor {
                 return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(error);
             }
             else if (errorMassge === 'Unauthorized') {
-                // this.authServcie.clearLoginInfo()
-                // this.router.navigate(['/auth/email'])
+                this.authServcie.clearLoginInfo();
+                this.router.navigate(['/auth/email']);
                 return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(error);
             }
             else {
                 this.httpErrorMessagesService.setMessage(error.error.message);
                 return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(error);
             }
-            // alert(errorMassge)
         }));
     }
 }

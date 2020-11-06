@@ -4,7 +4,6 @@ import { Router } from "@angular/router";
 import { Subscription } from 'rxjs';
 import { ConfirmCode } from "src/app/interfaces/ConfirmCode";
 import { AuthService } from "src/app/services/auth.service";
-import { KeyboardService } from 'src/app/services/keyboard.service';
 import { LoaderService } from "src/app/services/loader.service";
 import { FormsService } from "../../services/forms/forms.service";
 
@@ -24,8 +23,7 @@ export class ConfirmComponent implements AfterViewInit, OnDestroy {
         public formsService: FormsService,
         private authService: AuthService,
         private router: Router,
-        private loaderService: LoaderService,
-        private keyBoardService: KeyboardService) { }
+        private loaderService: LoaderService) { }
 
 
 
