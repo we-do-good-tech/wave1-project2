@@ -147,7 +147,7 @@ const routes = [
             {
                 path: "meeting-success",
                 component: _meetings_meeting_create_success_meeting_create_success_component__WEBPACK_IMPORTED_MODULE_4__["MeetingCreateSuccessComponent"],
-                // canActivate: [SingleMeetingToOperationGuard],
+                canActivate: [_services_guards_single_meeting_to_operation_guard__WEBPACK_IMPORTED_MODULE_8__["SingleMeetingToOperationGuard"]],
                 resolve: {
                     reportsStats: _services_resolvers_reports_stats_resolver_service__WEBPACK_IMPORTED_MODULE_11__["ReportsStatsResolverService"]
                 }
