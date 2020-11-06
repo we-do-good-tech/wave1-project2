@@ -12,9 +12,9 @@ const routes: Routes = [
     {
         path: 'confirm',
         component: ConfirmComponent,
-        canActivate: [
-            NotAuthGuard
-        ]
+        // canActivate: [
+        //     NotAuthGuard
+        // ]
     }
 ]
 

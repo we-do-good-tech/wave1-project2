@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from "@angular/core";
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Subscription } from 'rxjs';
@@ -12,7 +12,7 @@ import { FormsService } from "../../services/forms/forms.service";
     templateUrl: "./confirm.component.html",
     styleUrls: ["./confirm.component.scss"],
 })
-export class ConfirmComponent implements AfterViewInit, OnDestroy {
+export class ConfirmComponent implements AfterViewInit, OnDestroy, OnInit {
 
     subFormChange: Subscription
 
@@ -26,9 +26,35 @@ export class ConfirmComponent implements AfterViewInit, OnDestroy {
         private loaderService: LoaderService) { }
 
 
+    ngOnInit(): void {
+        // this.subFormChange = this.form.valueChanges.subscribe((result) => {
+        //     console.log(result)
+        //     if (this.form.valid) {
+        //         let code: string = "";
+
+        //         for (const num in this.form.value) {
+        //             code += this.form.value[num]
+        //         }
+
+        //         const codeToSend: ConfirmCode = {
+        //             code: code
+        //         };
+
+        //         this.loaderService.setStatus(true)
+        //         this.authService.confirmCode(codeToSend).subscribe((result) => {
+        //             this.form.resetForm()
+        //             this.router.navigate(["main/teacher"]);
+        //         }, () => {
+        //             this.form.resetForm()
+        //             this.firstInput.nativeElement.focus()
+        //         });
+        //     }
+        // })
+    }
 
     ngAfterViewInit(): void {
         this.subFormChange = this.form.valueChanges.subscribe((result) => {
+            if (this.form.invalid) return
             console.log(result)
             if (this.form.valid) {
                 let code: string = "";
