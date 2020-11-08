@@ -46,6 +46,6 @@
         <app-http-error-messages></app-http-error-messages>
     </div>
     <app-keyboard></app-keyboard>
-    <small (click)="onResendConfirmCode()">לא הגיע קוד, שלח מחדש</small>
+    <small [class.disabled-link]="isValidTime" (click)="onResendConfirmCode()">לא הגיע קוד, שלח מחדש</small>
 </div>
 <app-loader></app-loader>

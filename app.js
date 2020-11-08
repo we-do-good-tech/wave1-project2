@@ -12,7 +12,7 @@ const teacherRoutes = require('./back-end/routes/teacher')
 const signRouter = require('./back-end/routes/signature')
 
 
-// server.use(morgan({morganFormat:'tiny'}))
+server.use(morgan('dev'))
 server.use(cors());
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
@@ -24,10 +24,21 @@ server.use('/api/teacher', teacherRoutes)
 server.use('/api/sign', signRouter)
 
 
-
 server.get("*", (request, response) => {
     response.sendFile(path.resolve("client/dist/reports/index.html"));
 });
+
+
+server.use((request, response, next) => {
+    const error = new Error('NOT-FOUND')
+    next(error)
+})
+
+server.use((error, request, response, next) => {
+    response.status(404).send({
+        message: error
+    })
+})
 
 
 server.listen(process.env.PORT || 3000, () => console.log("Listening"));

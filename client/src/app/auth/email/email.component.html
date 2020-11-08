@@ -3,12 +3,20 @@
         <img src="../../../assets/Group 1764.svg" alt>
     </div>
     <form
-        #form="ngForm" (ngSubmit)="onSendEmail(form)">
+        #form="ngForm"
+        (ngSubmit)="onSendEmail(form)">
         <div class="input-group">
             <label for="teacherEmail">דואר אלקטרוני</label>
-            <input (blur)="filedLeaved = $event.isTrusted" required type="email" ngModel
+            <input
+                (blur)="filedLeaved = $event.isTrusted"
+                required
+                type="email"
+                ngModel
                 pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-                name="teacherEmail" #teacherEmail="ngModel" class="form-control" placeholder="דואר אלקטרוני">
+                name="teacherEmail"
+                #teacherEmail="ngModel"
+                class="form-control"
+                placeholder="דואר אלקטרוני">
 
         </div>
         <app-http-error-messages></app-http-error-messages>
@@ -27,7 +35,10 @@
             <div class="buttonImage">
                 <img src="../../../assets/Group 1789.svg" alt>
             </div>
-            <button class="mainButton" [disabled]="form.invalid" [class.disabledButton]="form.invalid">
+            <button
+                class="mainButton"
+                [disabled]="form.invalid"
+                [class.disabledButton]="form.invalid">
                 התחברו
             </button>
         </div>

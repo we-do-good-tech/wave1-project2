@@ -1,7 +1,8 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, interval, Observable, Subject, Subscription } from 'rxjs';
+import { takeUntil, takeWhile, tap } from 'rxjs/operators';
 import { ConfirmCode } from "src/app/interfaces/ConfirmCode";
 import { AuthService } from "src/app/services/auth.service";
 import { LoaderService } from "src/app/services/loader.service";
@@ -14,7 +15,11 @@ import { FormsService } from "../../services/forms/forms.service";
 })
 export class ConfirmComponent implements AfterViewInit, OnDestroy, OnInit {
 
+    isValidTime: boolean = true
+    confirmCodeExpireTime: number
     subFormChange: Subscription
+    subTimer: Subscription
+
 
     @ViewChild('form') form: NgForm
     @ViewChild('first') firstInput: ElementRef
@@ -27,30 +32,12 @@ export class ConfirmComponent implements AfterViewInit, OnDestroy, OnInit {
 
 
     ngOnInit(): void {
-        // this.subFormChange = this.form.valueChanges.subscribe((result) => {
-        //     console.log(result)
-        //     if (this.form.valid) {
-        //         let code: string = "";
+        this.confirmCodeExpireTime = this.authService.getConfimCodeExpire()
+        this.setTimer(this.confirmCodeExpireTime)
 
-        //         for (const num in this.form.value) {
-        //             code += this.form.value[num]
-        //         }
 
-        //         const codeToSend: ConfirmCode = {
-        //             code: code
-        //         };
-
-        //         this.loaderService.setStatus(true)
-        //         this.authService.confirmCode(codeToSend).subscribe((result) => {
-        //             this.form.resetForm()
-        //             this.router.navigate(["main/teacher"]);
-        //         }, () => {
-        //             this.form.resetForm()
-        //             this.firstInput.nativeElement.focus()
-        //         });
-        //     }
-        // })
     }
+
 
     ngAfterViewInit(): void {
         this.subFormChange = this.form.valueChanges.subscribe((result) => {
@@ -68,13 +55,14 @@ export class ConfirmComponent implements AfterViewInit, OnDestroy, OnInit {
                 };
 
                 this.loaderService.setStatus(true)
-                this.authService.confirmCode(codeToSend.code).subscribe((result) => {
-                    this.form.resetForm()
-                    this.router.navigate(["main/teacher"]);
-                }, () => {
-                    this.form.resetForm()
-                    this.firstInput.nativeElement.focus()
-                });
+                this.authService.confirmCode(codeToSend.code)
+                    .subscribe((result) => {
+                        this.form.resetForm()
+                        this.router.navigate(["main/teacher"]);
+                    }, () => {
+                        this.form.resetForm()
+                        this.firstInput.nativeElement.focus()
+                    });
             }
         })
     }
@@ -84,13 +72,26 @@ export class ConfirmComponent implements AfterViewInit, OnDestroy, OnInit {
         this.loaderService.setStatus(true)
         this.form.resetForm()
         this.firstInput.nativeElement.focus()
+        this.setTimer(this.confirmCodeExpireTime)
         this.authService.resendConfirmCode().subscribe((result) => {
             alert('נשלח קוד חדש למייל')
         }, () => { });
     }
 
 
+    setTimer(limit: number): void {
+        this.subTimer = interval(1000)
+            .pipe(
+                takeWhile((result) => result <= limit)
+            )
+            .subscribe((result) => {
+                this.isValidTime = result === this.confirmCodeExpireTime ? false : true
+            })
+    }
+
+
     ngOnDestroy(): void {
         this.subFormChange.unsubscribe()
+        this.subTimer.unsubscribe()
     }
 }

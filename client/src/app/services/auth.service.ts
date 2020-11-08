@@ -18,6 +18,7 @@ export class AuthService {
     private userName: string
     private authProccess: boolean
     private authProccessChnage: BehaviorSubject<boolean>
+    private confirmCodeExpireTime: number
 
     constructor(private http: HttpClient, private router: Router) {
         this.isLog = false;
@@ -36,6 +37,10 @@ export class AuthService {
 
     getUserName(): string {
         return this.userName;
+    }
+
+    getConfimCodeExpire(): number {
+        return this.confirmCodeExpireTime
     }
 
     getIsLogChange(): Observable<boolean> {
@@ -81,6 +86,7 @@ export class AuthService {
             .pipe(
                 map((result) => {
                     if (result) {
+                        this.confirmCodeExpireTime = result.confirmCodeExpire
                         this.authProccess = true
                         this.authProccessChnage.next(this.authProccess)
                         this.userLog = result.userLog
@@ -130,6 +136,7 @@ export class AuthService {
             .pipe(
                 map((result) => {
                     // console.log(result)
+                    this.confirmCodeExpireTime = result.confirmCodeExpire
                     return result.message;
                 })
             );

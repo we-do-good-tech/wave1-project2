@@ -75,6 +75,13 @@ span {
   font-size: 24px;
 }
 
+.disabled-link {
+  pointer-events: none;
+  color: #ccc;
+  text-decoration: underline;
+  margin: 0 auto;
+}
+
 // input:focus {
 //   color: red;
 // }
