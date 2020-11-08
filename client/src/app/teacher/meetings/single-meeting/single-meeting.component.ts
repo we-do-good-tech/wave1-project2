@@ -25,7 +25,9 @@ export class SingleMeetingComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit(): void {
-        this.report = this.reportsService.getReport()
+        this.subReport = this.reportsService.getReportChange()
+            .subscribe((report) => this.report = report)
+
         this.sunParams = this.route.paramMap.subscribe((params: ParamMap) => {
             if (params.has("ticketNo")) {
                 this.mode = "resend-sign";
@@ -39,17 +41,15 @@ export class SingleMeetingComponent implements OnInit, OnDestroy {
             this.reportsService.createReport(this.report)
                 .subscribe((result) => {
                     this.router.navigate(["/main/teacher/meeting-success"]);
-                });
+                }, (error) => alert(error.error.message));
         }
     }
 
     onResendSign(): void {
-        // console.log(this.report)
         if (this.report) {
             this.loaderService.setStatus(true);
             this.reportsService.resendParentSign(this.report)
                 .subscribe((result) => {
-                    // console.log(result)
                     this.router.navigate(['/main/teacher/meetings-table'])
                 })
         }
@@ -57,6 +57,6 @@ export class SingleMeetingComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.sunParams.unsubscribe();
-        // this.subReport.unsubscribe()
+        this.subReport.unsubscribe()
     }
 }

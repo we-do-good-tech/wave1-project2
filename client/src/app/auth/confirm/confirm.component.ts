@@ -68,7 +68,7 @@ export class ConfirmComponent implements AfterViewInit, OnDestroy, OnInit {
                 };
 
                 this.loaderService.setStatus(true)
-                this.authService.confirmCode(codeToSend).subscribe((result) => {
+                this.authService.confirmCode(codeToSend.code).subscribe((result) => {
                     this.form.resetForm()
                     this.router.navigate(["main/teacher"]);
                 }, () => {

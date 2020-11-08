@@ -9,7 +9,6 @@ import {
 } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import { HttpErrorMessagesService } from "../http-error-messages.service";
-import { LoaderService } from "../loader.service";
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 
@@ -33,7 +32,7 @@ export class HttpErrorMessagesInterceptor implements HttpInterceptor {
                 console.log(error.error.message);
                 // console.log(error);
                 let errorMassge: string = error.error.message;
-                if (error.error.message === 'ERROR UNKNOW') {
+                if (error.error.message === 'ERROR UNKNOW' || error.statusText >= 500) {
                     this.router.navigate(['not-found'])
                     return throwError(error);
                 }
@@ -44,8 +43,8 @@ export class HttpErrorMessagesInterceptor implements HttpInterceptor {
                 }
 
                 else if (errorMassge === 'Unauthorized') {
-                    // this.authServcie.clearLoginInfo()
-                    // this.router.navigate(['/auth/email'])
+                    this.authServcie.clearLoginInfo()
+                    this.router.navigate(['/auth/user'])
                     return throwError(error);
                 } else {
 

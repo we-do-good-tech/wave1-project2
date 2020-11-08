@@ -17,7 +17,6 @@ export class EmailComponent {
     constructor(
         public formsService: FormsService,
         private authService: AuthService,
-        private router: Router,
         private loaderService: LoaderService,
     ) { }
 
@@ -25,7 +24,6 @@ export class EmailComponent {
         if (form.invalid) return;
         this.loaderService.setStatus(true)
         this.authService.authTeacherEmail(form.value.teacherEmail).subscribe((result) => {
-            this.router.navigate(['/auth/confirm'])
         }, () => form.resetForm())
     }
 }

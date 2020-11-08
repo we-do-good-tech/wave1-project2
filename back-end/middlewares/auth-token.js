@@ -9,7 +9,7 @@ async function verifyToken(request, response, next) {
         const token = request.headers.authorization.split(' ')[1]
 
         const decodedToken = await JsonWebToken.verify(token, keys.TOKENS.ACCESS_TOKEN.secretTokenKey)
-
+        console.log(decodedToken, 'DECODE TOKEN')
         request.userData = {
             teacherId: decodedToken.teacherId,
             teacherEmail: decodedToken.teacherEmail,

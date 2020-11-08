@@ -28,6 +28,10 @@ module.exports = {
             expiresIn: 60 * 60 * 2
 
         },
+        AUTH_TOKEN: {
+            secretTokenKey: process.env.SECRET_AUTH_TOKEN_KEY,
+            expiresIn: 60 * 2
+        },
         PARENT_SIGN_ACCESS_TOKEN: {
             secretTokenKey: process.env.SECRET_ACCESS_PARENT_TOKEN_KEY,
             expiresIn: 60 * 60 * 24

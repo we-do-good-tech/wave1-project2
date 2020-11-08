@@ -1,4 +1,4 @@
-import { Directive, DoCheck, ElementRef, HostListener, Input, OnInit, Renderer2 } from '@angular/core';
+import { Directive, DoCheck, ElementRef, Input } from '@angular/core';
 
 @Directive({
     selector: '[styleElement]'

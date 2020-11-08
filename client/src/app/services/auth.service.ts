@@ -3,9 +3,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { BehaviorSubject, Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { AuthTokenData } from "../interfaces/AuthLogInData";
-import { ConfirmCode } from "../interfaces/ConfirmCode";
-import { UserName } from "../interfaces/TeacherId";
+import { UserLog } from "../interfaces/User";
 
 @Injectable({
     providedIn: "root",
@@ -13,15 +11,19 @@ import { UserName } from "../interfaces/TeacherId";
 export class AuthService {
 
     private isLog: boolean;
-    private isAuth: boolean;
     private isLogChange: BehaviorSubject<boolean>;
     private token: string;
     private tokenTimer: NodeJS.Timer;
-    private userName: UserName;
+    private userLog: UserLog;
+    private userName: string
+    private authProccess: boolean
+    private authProccessChnage: BehaviorSubject<boolean>
 
     constructor(private http: HttpClient, private router: Router) {
         this.isLog = false;
         this.isLogChange = new BehaviorSubject<boolean>(this.isLog);
+        this.authProccess = false
+        this.authProccessChnage = new BehaviorSubject<boolean>(this.authProccess)
     }
 
     getToken(): string {
@@ -32,7 +34,7 @@ export class AuthService {
         return this.isLog;
     }
 
-    getUserName(): UserName {
+    getUserName(): string {
         return this.userName;
     }
 
@@ -40,8 +42,13 @@ export class AuthService {
         return this.isLogChange.asObservable();
     }
 
+    getAuthProccessChange(): Observable<boolean> {
+        return this.authProccessChnage.asObservable()
+    }
+
     getAuthData(): void {
         const authData = this.getSessionStorage();
+        // console.log(authData)
 
         if (!authData) {
             return this.clearLoginInfo();
@@ -50,9 +57,10 @@ export class AuthService {
         const now = new Date();
         const isValidTime = authData.expiresInDate.getTime() - now.getTime();
 
-        //   console.log(isValidTime, "IS TOKEN VALID TIME");
+        // console.log(isValidTime, "IS TOKEN VALID TIME");
 
         if (isValidTime > 0) {
+            // console.log('IS LOG')
             this.token = authData.token;
             this.userName = authData.userName;
             this.isLog = true;
@@ -67,45 +75,47 @@ export class AuthService {
         return this.http
             .post<{
                 message: string;
-                token: string;
                 confirmCodeExpire: number;
-                tokenExpiresIn: number;
-                userName: UserName;
+                userLog: UserLog
             }>("api/auth/teacherEmail", { teacherEmail: teacherEmail })
             .pipe(
                 map((result) => {
-                    if (result.token) {
-                        const expiresIn = result.tokenExpiresIn;
-
-                        this.token = result.token;
-                        this.userName = result.userName;
-
-                        this.setTokenTimer(expiresIn);
-
-                        const now = new Date();
-                        const expiresInDate = new Date(now.getTime() + expiresIn * 1000);
-
-                        this.saveSessionStorage(this.token, expiresInDate, this.userName);
+                    if (result) {
+                        this.authProccess = true
+                        this.authProccessChnage.next(this.authProccess)
+                        this.userLog = result.userLog
+                        this.userName = result.userLog.firstName
                     }
                     return result.message;
                 })
             );
     }
 
-    confirmCode(code: ConfirmCode): Observable<string> {
+    confirmCode(code: string): Observable<string> {
         return this.http
             .post<{
                 message: string;
                 isLog: boolean;
-            }>("api/auth/teacher/confirm-code", code)
+                token: string;
+                tokenExpiresIn: number;
+            }>("api/auth/teacher/confirm-code", { code: code, userId: Number(this.userLog?.userId) })
             .pipe(
                 map((result) => {
-                    // console.log(result)
-                    this.isAuth = true;
+
                     this.isLog = result.isLog;
                     this.isLogChange.next(this.isLog);
 
-                    sessionStorage.setItem("is-auth", JSON.stringify(this.isAuth));
+                    const expiresIn = result.tokenExpiresIn;
+
+                    this.token = result.token;
+
+                    this.setTokenTimer(expiresIn);
+
+                    const now = new Date();
+                    const expiresInDate = new Date(now.getTime() + expiresIn * 1000);
+
+                    this.saveSessionStorage(this.token, expiresInDate, this.userLog.firstName);
+
                     return result.message;
                 })
             );
@@ -113,10 +123,10 @@ export class AuthService {
 
     resendConfirmCode(): Observable<string> {
         return this.http
-            .get<{
+            .post<{
                 message: string;
                 confirmCodeExpire: number;
-            }>("api/auth/new-confirm-code")
+            }>("api/auth/new-confirm-code", { teacherEmail: this.userLog?.email })
             .pipe(
                 map((result) => {
                     // console.log(result)
@@ -125,10 +135,18 @@ export class AuthService {
             );
     }
 
+
+
+
+    private setAuthData(authResult): void {
+
+    }
+
+
     private saveSessionStorage(
         token: string,
         expiresIn: Date,
-        userName: UserName
+        userName: string
     ): void {
         sessionStorage.setItem("token", token);
         sessionStorage.setItem("expiresIn", expiresIn.toISOString());
@@ -139,16 +157,15 @@ export class AuthService {
         sessionStorage.removeItem("token");
         sessionStorage.removeItem("expiresIn");
         sessionStorage.removeItem("user-name");
-        sessionStorage.removeItem("is-auth");
     }
 
-    private getSessionStorage(): AuthTokenData {
+    private getSessionStorage() {
         const token = sessionStorage.getItem("token");
         const expiresInDate = sessionStorage.getItem("expiresIn");
         const userName = JSON.parse(sessionStorage.getItem("user-name"));
-        const isAuth = JSON.parse(sessionStorage.getItem("is-auth"));
 
-        if (!token || !expiresInDate || !isAuth) {
+
+        if (!token || !expiresInDate) {
             return;
         }
 
@@ -162,9 +179,8 @@ export class AuthService {
     clearLoginInfo(): void {
         this.token = null;
         this.isLog = false;
-        this.userName = null;
+        this.userLog = null;
         this.isLogChange.next(this.isLog);
-        // this.router.navigate(["/auth/email"]);
         clearTimeout(this.tokenTimer);
         this.removeSessionStorage();
     }
@@ -172,7 +188,7 @@ export class AuthService {
     private setTokenTimer(time: number): void {
         this.tokenTimer = setTimeout(() => {
             this.clearLoginInfo();
-            this.router.navigate(["/auth/email"]);
+            this.router.navigate(["/auth/user"]);
         }, time * 1000);
     }
 }

@@ -1,7 +1,7 @@
 <app-header styleElement [changeClass]="'header-green'" [selector]="'#the-header'"></app-header>
 <div class="dashboardConatiner">
     <div class="topBox">
-        <h3>{{userName?.firstName}} שלום</h3>
+        <h3>{{userName}} שלום</h3>
         <div class="content">
             מסר ייחודי לצרכי עמותה - חונך
             <br>
@@ -10,13 +10,14 @@
     </div>
     <div class="bottomBox">
         <div class="addNewMeeting">
-            <a class="addNewMeetingButton" routerLink="../../../main/teacher/create-meeting">
+            <a class="addNewMeetingButton" [routerLink]="['/main/teacher/create-meeting']">
                 <i class="fas fa-plus"></i>
             </a>
         </div>
     </div>
     <div class="oldMeetings">
-        <a class="oldMeetingLink" [routerLink]="['/main/teacher/meetings-table']">
+        <a [ngClass]="reportsLength === 0 ? 'disabled-link':'oldMeetingLink' "
+            [routerLink]="['/main/teacher/meetings-table']">
             ישנם מפגשים שטרם אושרו <span>!</span>
         </a>
     </div>

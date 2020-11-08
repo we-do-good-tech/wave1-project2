@@ -6,12 +6,14 @@ import { SharedModule } from '../shared/shared.module';
 
 import { EmailComponent } from './email/email.component';
 import { ConfirmComponent } from './confirm/confirm.component';
+import { AuthComponent } from "./auth/auth.component";
 
 
 @NgModule({
     declarations: [
         EmailComponent,
         ConfirmComponent,
+        AuthComponent
     ],
     imports: [
         CommonModule,

@@ -3,24 +3,24 @@ import { Routes, RouterModule } from "@angular/router";
 import { AuthGuard } from "./services/guards/auth.guard";
 import { NotAuthGuard } from "./services/guards/not-auth.guard";
 import { NotFoundComponent } from "./shared/not-found/not-found.component";
-import { ExmpleComponent } from "./shared/exmple/exmple.component";
+// import { ExmpleComponent } from "./shared/exmple/exmple.component";
 import { SignGuard } from './services/guards/sign.guard';
 
 const routes: Routes = [
     {
         path: "",
-        redirectTo: "auth/email",
+        redirectTo: "auth/user",
         pathMatch: "full",
-    },
-    {
-        path: "confirm-report",
-        loadChildren: () => import('./signature/signature.module').then((m) => m.SignatureModule),
-        canActivate: [SignGuard]
     },
     {
         path: "auth",
         loadChildren: () => import("./auth/auth.module").then((m) => m.AuthModule),
         // canActivate: [NotAuthGuard],
+    },
+    {
+        path: "confirm-report",
+        loadChildren: () => import('./signature/signature.module').then((m) => m.SignatureModule),
+        canActivate: [SignGuard]
     },
     {
         path: "main",

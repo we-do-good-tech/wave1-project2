@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class TeacherMainComponent implements OnInit {
 
     constructor(private authService: AuthService) {
-        this.authService.getAuthData()
+        // this.authService.getAuthData()
     }
 
     ngOnInit(): void {

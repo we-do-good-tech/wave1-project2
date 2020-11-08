@@ -1,7 +1,6 @@
 const router = require('express').Router()
 const authControllers = require('../controllers/auth')
 const { authSeets } = require('../middlewares/auth-sheets')
-const { verifyToken } = require('../middlewares/auth-token')
 const validators = require('../validators/validators')
 const { validate } = require('../middlewares/validate')
 
@@ -13,17 +12,20 @@ router.post(
     authControllers.authTeacherEmail
 )
 
-router.get(
+router.post(
     '/new-confirm-code',
-    verifyToken,
+    [validators.email('teacherEmail')],
+    validate,
     authControllers.newConfirmCode
 )
 
 router.post(
     '/teacher/confirm-code',
-    [validators.confirmCode('code')],
+    [
+        validators.confirmCode('code'),
+        validators.numberPropery('userId')
+    ],
     validate,
-    verifyToken,
     authControllers.authConfirmCode
 )
 

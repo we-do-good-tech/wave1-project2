@@ -13,9 +13,9 @@ function authorizeClient(callClient) {
     );
     client.authorize((error, tokens) => {
         if (error) {
-            // console.log(error);
             callClient(error, null);
         } else {
+            // console.log(tokens);
             console.log("connected");
             callClient(null, client);
         }

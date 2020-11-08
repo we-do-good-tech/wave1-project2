@@ -24,12 +24,12 @@ export function daysRange(timeOne: number, timeTwo: number): number {
     return days
 }
 
-export function formatDate(date: Date | string) {
-    const x = new Date(date).toISOString()
-    return x.slice(0, x.indexOf('T'))
-}
+export function formatDate(date: Date) {
+    let day = String(new Date(date).getDate())
+    let mount = String(new Date(date).getMonth() + 1)
+    let year = String(new Date(date).getFullYear())
 
-export function reverseDate(date: Date | string): string {
-    const dateToISO = formatDate(date)
-    return dateToISO.toString().split('-').reverse().join('-')
+    day = day.length === 1 ? '0' + day : day
+    mount = mount.length === 1 ? '0' + mount : mount
+    return [year, mount, day].join('-')
 }

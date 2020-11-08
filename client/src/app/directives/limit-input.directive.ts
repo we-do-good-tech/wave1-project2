@@ -7,7 +7,6 @@ export class LimitInputDirective {
 
     constructor(private inputElement: ElementRef) { }
 
-
     @HostListener('input', ['$event'])
     limit(event: any) {
         let { value } = event.target

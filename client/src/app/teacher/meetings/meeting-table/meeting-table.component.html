@@ -9,7 +9,6 @@
     <div class="heading">
         <div class="title">מפגשים שטרם אושרו</div>
         <div class="list">
-            <!-- <form #form="ngForm"> -->
             <select (change)="onSelectStudent($event)">
                 <option value> בחר</option>
                 <option
@@ -19,7 +18,6 @@
                     {{student?.studentName}}
                 </option>
             </select>
-            <!-- </form> -->
         </div>
     </div>
     <div class="table">

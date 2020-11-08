@@ -1,5 +1,6 @@
 import { Component, OnInit, } from "@angular/core";
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Report } from 'src/app/interfaces/Report';
 import { LoaderService } from 'src/app/services/loader.service';
 import { ReportsService } from 'src/app/services/reports.service';
@@ -13,10 +14,10 @@ import { SignService } from 'src/app/services/sign.service';
 })
 export class ParentSignatureComponent implements OnInit {
 
+    report: Observable<Report>
     signatureImage: Blob
     isCanvasWrite: boolean
     confirmReport: boolean
-    report: Report
 
     constructor(
         private signService: SignService,
@@ -27,18 +28,14 @@ export class ParentSignatureComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this.report = this.reportsService.getReport()
-        console.log(this.report)
-
+        this.report = this.reportsService.getReportChange()
     }
 
     saveImage(blob: Blob) {
         if (this.isCanvasWrite && this.confirmReport) {
             this.signatureImage = blob;
-            // console.log(this.signatureImage)
             this.loaderService.setStatus(true)
             this.signService.sendSign(this.signatureImage).subscribe((result) => {
-                // alert('SIGN IS SEND')
                 this.router.navigate(['confirm-report/signature-success'])
             })
         }

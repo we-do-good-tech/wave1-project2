@@ -11,13 +11,12 @@ export class NotAuthGuard implements CanActivate {
     canActivate(
         next: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): Observable<boolean> | boolean {
-        const isLog = this.authService.getToken()
-        console.log(isLog)
-        if (isLog) {
-            // this.router.navigate(['/auth/confirm'])
+        const token = this.authService.getToken()
+        // console.log(isLog)
+        if (token) {
             return true;
         }
-        // this.router.navigate(['/auth/email'])
+        this.router.navigate(['/auth/email'])
         return false
     }
 

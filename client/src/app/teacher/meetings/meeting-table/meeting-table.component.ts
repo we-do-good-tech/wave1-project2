@@ -33,20 +33,10 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
             this.students = result.students;
         });
 
-        // this.subReports = this.reportsService.getReportsChange()
-        //     .subscribe((result) => {
-        //         this.reports = result;
-        //         this.students.forEach((s) => {
-        //             let findReports = this.reports.find((r) => r.ticketNo == s.ticketNo)
-        //             if (findReports) {
-        //                 s.hasReports = true
-        //             }
-        //         })
-        //         console.log(this.reports)
-        //     })
-        this.subReports = this.route.data
+        this.subReports = this.reportsService.getReportsChange()
             .subscribe((result) => {
-                this.reports = result.reports;
+                // console.log('REPORTS CHANGE')
+                this.reports = result;
                 this.students.forEach((s) => {
                     let findReports = this.reports.find((r) => r.ticketNo == s.ticketNo)
                     if (findReports) {

@@ -316,59 +316,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
 
 
-// (focus)="a.size=10" (blur)="a.size=1" (change)="a.size=1" style="z-index: 1000;"
-// if (this.elementSelectedIndex > 0) {
-//     this.containerElement.nativeElement[this.elementSelectedIndex].style.backgroundColor = 'white'
-// }
-// const selectedIndex = this.containerElement.nativeElement.selectedIndex
-// if (selectedIndex === 0) return
-// this.containerElement.nativeElement[selectedIndex].style.backgroundColor = '#f0ab0e'
-// this.elementSelectedIndex = selectedIndex
 class StyleElemetSelectedDirective {
     constructor(containerElement) {
         this.containerElement = containerElement;
-        this.selectedChange = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-    }
-    ngOnInit() {
-        console.log(this.daynamicValue);
-        if (this.selecteds) {
-            this.selectedChange.emit(this.selecteds);
-        }
-    }
-    get value() {
-        return this.daynamicValue;
-    }
-    selected(event) {
-        console.log(event.target.value);
-        this.daynamicValue = event.target.value;
-        this.selecteds = this.daynamicValue;
-        this.selectedChange.emit(this.daynamicValue);
     }
 }
 StyleElemetSelectedDirective.ɵfac = function StyleElemetSelectedDirective_Factory(t) { return new (t || StyleElemetSelectedDirective)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])); };
-StyleElemetSelectedDirective.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({ type: StyleElemetSelectedDirective, selectors: [["", "appStyleElemetSelected", ""]], hostVars: 1, hostBindings: function StyleElemetSelectedDirective_HostBindings(rf, ctx) { if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function StyleElemetSelectedDirective_click_HostBindingHandler($event) { return ctx.selected($event); });
-    } if (rf & 2) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵhostProperty"]("value", ctx.value);
-    } }, inputs: { daynamicValue: ["appStyleElemetSelected", "daynamicValue"] }, outputs: { selectedChange: "appStyleElemetSelectedChange" } });
+StyleElemetSelectedDirective.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({ type: StyleElemetSelectedDirective, selectors: [["", "appStyleElemetSelected", ""]] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](StyleElemetSelectedDirective, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Directive"],
         args: [{
                 selector: '[appStyleElemetSelected]'
             }]
-    }], function () { return [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] }]; }, { daynamicValue: [{
-            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"],
-            args: ['appStyleElemetSelected']
-        }], selectedChange: [{
-            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"],
-            args: ['appStyleElemetSelectedChange']
-        }], value: [{
-            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["HostBinding"],
-            args: ['value']
-        }], selected: [{
-            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"],
-            args: ['click', ['$event']]
-        }] }); })();
+    }], function () { return [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] }]; }, null); })();
 
 
 /***/ }),
@@ -436,28 +396,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "qCKp");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
+/* harmony import */ var _services_helpers_time_range__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/helpers/time.range */ "tocN");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
+
 
 
 
 
 
 class ReportsService {
+    // private reportsStats: ReportStats
     constructor(http) {
         this.http = http;
         this.reports = [];
         this.report = null;
-        // this.reportChange = new BehaviorSubject<Report>(this.report)
-        // this.getReportsNotConfirm()
-        //     .pipe(
-        //         map((result) => {
-        //             this.reports = result
-        //             this.reportsChange.next([...this.reports])
-        //         })
-        //     )
-        //     .subscribe((result) => {
-        //         console.log(result)
-        //     })
+        this.reportChange = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](this.report);
+        this.reportsChange = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](this.reports);
     }
     getReportsChange() {
         return this.reportsChange.asObservable();
@@ -465,39 +419,15 @@ class ReportsService {
     getReportChange() {
         return this.reportChange.asObservable();
     }
-    getReporstLocal() {
-        if (this.reports)
-            return this.reports;
-        return;
-    }
     createReport(report) {
-        console.log(this.reports);
-        // parentEmail: "nirkuba199999@gmail.com"
-        // reportActivitis: "s"
-        // reportComments: "s"
-        // reportDate: "2020-11-04"
-        // reportEndTime: "08:40"
-        // reportRangeTimne: "00:10"
-        // reportStartTime: "08:30"
-        // studentName: "יחזקאל (חזקי) דיסקין - לימודית"
-        // ticketNo: "12"
-        // console.log(report)
-        // index: "9"
-        // lastResendDateToParent: "2020-11-05"
-        // reportActivitis: "SDA"
-        // reportComments: "DAS"
-        // reportDate: "2020-11-02"
-        // reportEndTime: "08:50"
-        // reportRangeTimne: "0:20:00"
-        // reportStartTime: "08:30"
-        // ticketNo: "13"
+        // console.log(this.reports)
         return this.http.post('api/teacher/create-report', report)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((result) => {
-            // report.index = result.index
-            // report.lastDateResendSignToParent = formatDate(new Date())
-            // console.log(result)
-            // this.reports.push(report)
-            this.reports = [];
+            console.log(result);
+            report.index = result.index;
+            report.lastDateResendSignToParent = Object(_services_helpers_time_range__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(new Date());
+            this.reports.push(report);
+            this.reportsChange.next([...this.reports]);
             return result.message;
         }));
     }
@@ -506,13 +436,15 @@ class ReportsService {
     }
     getReportsNotConfirm() {
         if (this.reports.length > 0) {
+            console.log('NO HTTP CALL REPORST');
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(this.reports);
         }
         // console.log('HTTP CALL REPORTS START')
         return this.http.get("api/teacher/reports-unconfirm")
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])((result) => {
-            // console.log('HTTP CALL RESPONSE');
+            // console.log(result, 'HTTP CALL RESPONSE');
             this.reports = result;
+            this.reportsChange.next([...this.reports]);
         }));
     }
     resendParentSign(report) {
@@ -525,34 +457,29 @@ class ReportsService {
         };
         return this.http.post('api/teacher/resend/parent-sign', reportInfo)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((result) => {
-            this.reports = [];
-            //UPDATE REPORTS LOCALY 
-            // report.lastDateResendSignToParent = formatDate(new Date())
-            // // console.log(report)
-            // // console.log(this.reports)
-            // const findIndex = this.reports.findIndex((r) => r.index == report.index)
-            // this.reports[findIndex] = report
+            const findIndex = this.reports.findIndex((r) => r.index == report.index);
+            report.lastDateResendSignToParent = Object(_services_helpers_time_range__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(new Date());
+            this.reports[findIndex] = report;
+            this.reportsChange.next([...this.reports]);
             return result.message;
         }));
     }
     setReport(report) {
         this.report = Object.assign({}, report);
-        // this.reportChange.next(this.report)
+        this.reportChange.next(this.report);
     }
     getReport() {
-        if (this.report)
-            return this.report;
-        return undefined;
+        return this.report || undefined;
     }
 }
-ReportsService.ɵfac = function ReportsService_Factory(t) { return new (t || ReportsService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"])); };
+ReportsService.ɵfac = function ReportsService_Factory(t) { return new (t || ReportsService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"])); };
 ReportsService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: ReportsService, factory: ReportsService.ɵfac, providedIn: "root" });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](ReportsService, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
         args: [{
                 providedIn: "root",
             }]
-    }], function () { return [{ type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"] }]; }, null); })();
+    }], function () { return [{ type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"] }]; }, null); })();
 
 
 /***/ }),
@@ -633,7 +560,7 @@ class HttpErrorMessagesInterceptor {
             console.log(error.error.message);
             // console.log(error);
             let errorMassge = error.error.message;
-            if (error.error.message === 'ERROR UNKNOW') {
+            if (error.error.message === 'ERROR UNKNOW' || error.statusText >= 500) {
                 this.router.navigate(['not-found']);
                 return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(error);
             }
@@ -642,8 +569,8 @@ class HttpErrorMessagesInterceptor {
                 return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(error);
             }
             else if (errorMassge === 'Unauthorized') {
-                // this.authServcie.clearLoginInfo()
-                // this.router.navigate(['/auth/email'])
+                this.authServcie.clearLoginInfo();
+                this.router.navigate(['/auth/user']);
                 return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(error);
             }
             else {
@@ -1033,11 +960,14 @@ class AuthGuard {
         this.router = router;
     }
     canActivate(next, state) {
+        // console.log('NEXT: ', next)
+        // console.log('STATE: ', state)
         const isLog = this.authService.getIsLog();
+        console.log(isLog);
         if (isLog) {
             return true;
         }
-        this.router.navigate(["/auth/email"]);
+        this.router.navigate(["/auth/user"]);
         return false;
     }
 }
@@ -1299,19 +1229,13 @@ class SignGuard {
     }
     canActivate(next, state) {
         const token = state.url.split('/')[3];
-        // if (!token) {
-        //     this.router.navigateByUrl('**')
-        //     return false
-        // }
-        console.log(token);
         return this.signServie.verifyToken(token)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])((result) => {
             if (result) {
-                console.log(result);
+                // console.log(result)
                 return true;
             }
-            console.log('INVALID TOKEN');
-            // this.router.navigate(['not-found'])
+            this.router.navigate(['/not-found']);
             return false;
         }));
     }
@@ -1480,6 +1404,8 @@ class AuthService {
         this.router = router;
         this.isLog = false;
         this.isLogChange = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](this.isLog);
+        this.authProccess = false;
+        this.authProccessChnage = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](this.authProccess);
     }
     getToken() {
         return this.token;
@@ -1493,15 +1419,20 @@ class AuthService {
     getIsLogChange() {
         return this.isLogChange.asObservable();
     }
+    getAuthProccessChange() {
+        return this.authProccessChnage.asObservable();
+    }
     getAuthData() {
         const authData = this.getSessionStorage();
+        // console.log(authData)
         if (!authData) {
             return this.clearLoginInfo();
         }
         const now = new Date();
         const isValidTime = authData.expiresInDate.getTime() - now.getTime();
-        //   console.log(isValidTime, "IS TOKEN VALID TIME");
+        // console.log(isValidTime, "IS TOKEN VALID TIME");
         if (isValidTime > 0) {
+            // console.log('IS LOG')
             this.token = authData.token;
             this.userName = authData.userName;
             this.isLog = true;
@@ -1516,37 +1447,41 @@ class AuthService {
         return this.http
             .post("api/auth/teacherEmail", { teacherEmail: teacherEmail })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((result) => {
-            if (result.token) {
-                const expiresIn = result.tokenExpiresIn;
-                this.token = result.token;
-                this.userName = result.userName;
-                this.setTokenTimer(expiresIn);
-                const now = new Date();
-                const expiresInDate = new Date(now.getTime() + expiresIn * 1000);
-                this.saveSessionStorage(this.token, expiresInDate, this.userName);
+            if (result) {
+                this.authProccess = true;
+                this.authProccessChnage.next(this.authProccess);
+                this.userLog = result.userLog;
+                this.userName = result.userLog.firstName;
             }
             return result.message;
         }));
     }
     confirmCode(code) {
+        var _a;
         return this.http
-            .post("api/auth/teacher/confirm-code", code)
+            .post("api/auth/teacher/confirm-code", { code: code, userId: Number((_a = this.userLog) === null || _a === void 0 ? void 0 : _a.userId) })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((result) => {
-            // console.log(result)
-            this.isAuth = true;
             this.isLog = result.isLog;
             this.isLogChange.next(this.isLog);
-            sessionStorage.setItem("is-auth", JSON.stringify(this.isAuth));
+            const expiresIn = result.tokenExpiresIn;
+            this.token = result.token;
+            this.setTokenTimer(expiresIn);
+            const now = new Date();
+            const expiresInDate = new Date(now.getTime() + expiresIn * 1000);
+            this.saveSessionStorage(this.token, expiresInDate, this.userLog.firstName);
             return result.message;
         }));
     }
     resendConfirmCode() {
+        var _a;
         return this.http
-            .get("api/auth/new-confirm-code")
+            .post("api/auth/new-confirm-code", { teacherEmail: (_a = this.userLog) === null || _a === void 0 ? void 0 : _a.email })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((result) => {
             // console.log(result)
             return result.message;
         }));
+    }
+    setAuthData(authResult) {
     }
     saveSessionStorage(token, expiresIn, userName) {
         sessionStorage.setItem("token", token);
@@ -1557,14 +1492,12 @@ class AuthService {
         sessionStorage.removeItem("token");
         sessionStorage.removeItem("expiresIn");
         sessionStorage.removeItem("user-name");
-        sessionStorage.removeItem("is-auth");
     }
     getSessionStorage() {
         const token = sessionStorage.getItem("token");
         const expiresInDate = sessionStorage.getItem("expiresIn");
         const userName = JSON.parse(sessionStorage.getItem("user-name"));
-        const isAuth = JSON.parse(sessionStorage.getItem("is-auth"));
-        if (!token || !expiresInDate || !isAuth) {
+        if (!token || !expiresInDate) {
             return;
         }
         return {
@@ -1576,16 +1509,15 @@ class AuthService {
     clearLoginInfo() {
         this.token = null;
         this.isLog = false;
-        this.userName = null;
+        this.userLog = null;
         this.isLogChange.next(this.isLog);
-        // this.router.navigate(["/auth/email"]);
         clearTimeout(this.tokenTimer);
         this.removeSessionStorage();
     }
     setTokenTimer(time) {
         this.tokenTimer = setTimeout(() => {
             this.clearLoginInfo();
-            this.router.navigate(["/auth/email"]);
+            this.router.navigate(["/auth/user"]);
         }, time * 1000);
     }
 }
@@ -1665,9 +1597,9 @@ class KeyboardService {
     emitKey(key) {
         this.inputElement.focus();
         this.keyboardEvent.emit(key);
-        this.inputElement.blur();
     }
     setElement(element) {
+        // this.inputElement.blur()
         this.inputElement = element;
     }
 }
@@ -1765,6 +1697,7 @@ class VirtualKeyDirective {
     }
     ngOnInit() {
         this.keyboardService.onKeyPress().subscribe(key => {
+            console.log('EMIT KEY');
             if (document.activeElement === this.formInputElement.nativeElement) {
                 this.ngModel.valueAccessor.writeValue(key);
                 const event = new Event('input', {
@@ -1776,6 +1709,8 @@ class VirtualKeyDirective {
         });
     }
     onFocus() {
+        console.log('FOCUS EVENT');
+        console.log(this.formInputElement.nativeElement);
         this.keyboardService.setElement(this.formInputElement.nativeElement);
         // this.formInputElement.nativeElement.blur()
     }
@@ -1856,6 +1791,52 @@ KeyboardComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefine
 
 /***/ }),
 
+/***/ "tocN":
+/*!************************************************!*\
+  !*** ./src/app/services/helpers/time.range.ts ***!
+  \************************************************/
+/*! exports provided: timesRange, conculateRangeToTime, daysRange, formatDate */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "timesRange", function() { return timesRange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "conculateRangeToTime", function() { return conculateRangeToTime; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "daysRange", function() { return daysRange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formatDate", function() { return formatDate; });
+function timesRange(timeOne, timeTwo) {
+    let start = timeOne.split(':');
+    let end = timeTwo.split(':');
+    let range = new Date(0, 0, 0, Number(end[0]), Number(end[1]), 0).getTime() - new Date(0, 0, 0, Number(start[0]), Number(start[1]), 0).getTime();
+    return range;
+}
+function conculateRangeToTime(range) {
+    let minutes = range / 1000 / 60;
+    let hours = Math.floor(minutes / 60);
+    let restMinutes = (minutes % 60);
+    let finalHours = hours <= 9 ? `0${hours}` : hours;
+    let finalMinutes = restMinutes <= 9 ? `0${restMinutes}` : restMinutes;
+    return `${finalHours}:${finalMinutes}`;
+}
+function daysRange(timeOne, timeTwo) {
+    let seconds = (timeOne - timeTwo) / 1000;
+    let minutes = seconds / 60;
+    let hours = minutes / 60;
+    let days = hours / 24;
+    return days;
+}
+function formatDate(date) {
+    let day = String(new Date(date).getDate());
+    let mount = String(new Date(date).getMonth() + 1);
+    let year = String(new Date(date).getFullYear());
+    day = day.length === 1 ? '0' + day : day;
+    mount = mount.length === 1 ? '0' + mount : mount;
+    return [year, mount, day].join('-');
+}
+
+
+/***/ }),
+
 /***/ "vY5A":
 /*!***************************************!*\
   !*** ./src/app/app-routing.module.ts ***!
@@ -1875,23 +1856,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// import { ExmpleComponent } from "./shared/exmple/exmple.component";
 
 
 
 const routes = [
     {
         path: "",
-        redirectTo: "auth/email",
+        redirectTo: "auth/user",
         pathMatch: "full",
+    },
+    {
+        path: "auth",
+        loadChildren: () => __webpack_require__.e(/*! import() | auth-auth-module */ "auth-auth-module").then(__webpack_require__.bind(null, /*! ./auth/auth.module */ "Yj9t")).then((m) => m.AuthModule),
     },
     {
         path: "confirm-report",
         loadChildren: () => __webpack_require__.e(/*! import() | signature-signature-module */ "signature-signature-module").then(__webpack_require__.bind(null, /*! ./signature/signature.module */ "2M8t")).then((m) => m.SignatureModule),
         canActivate: [_services_guards_sign_guard__WEBPACK_IMPORTED_MODULE_4__["SignGuard"]]
-    },
-    {
-        path: "auth",
-        loadChildren: () => __webpack_require__.e(/*! import() | auth-auth-module */ "auth-auth-module").then(__webpack_require__.bind(null, /*! ./auth/auth.module */ "Yj9t")).then((m) => m.AuthModule),
     },
     {
         path: "main",

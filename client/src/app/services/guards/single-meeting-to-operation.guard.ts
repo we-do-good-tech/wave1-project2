@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 import { ReportsService } from '../reports.service';
 
 @Injectable({
@@ -7,9 +7,7 @@ import { ReportsService } from '../reports.service';
 })
 export class SingleMeetingToOperationGuard implements CanActivate {
     constructor(private reportsService: ReportsService, private router: Router) { }
-    canActivate(
-        next: ActivatedRouteSnapshot,
-        state: RouterStateSnapshot): boolean {
+    canActivate(): boolean {
         if (this.reportsService.getReport()) {
             return true;
         }

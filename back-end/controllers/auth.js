@@ -10,7 +10,6 @@ const { convertSheetsDataToObjectsArray } = require('../helpers/tojson')
 
 module.exports.authTeacherEmail = async function (request, response) {
     const { teacherEmail } = request.body;
-    // console.log(teacherEmail)
     const query = `select A,B,C where C='${teacherEmail}'`;
     const sheetId = keys.GOOGLE_SHEETS.sheetsIds.teachers;
 
@@ -41,21 +40,13 @@ module.exports.authTeacherEmail = async function (request, response) {
         sendMail(options);
 
         confirmCode.setTimeExpireConfirmCode();
-        // make error respone possiblle
-
-
-        const token = createToken({
-            teacherId: toJson.id,
-            teacherEmail: toJson.email,
-            teacherFirstName: toJson.firstName,
-        }, keys.TOKENS.ACCESS_TOKEN.secretTokenKey, keys.TOKENS.ACCESS_TOKEN.expiresIn);
 
         return response.status(200).send({
             message: "USER FOUND",
-            token: token,
-            tokenExpiresIn: keys.TOKENS.ACCESS_TOKEN.expiresIn,
             confirmCodeExpire: keys.CONFIRM_CODE.expiresIn,
-            userName: {
+            userLog: {
+                userId: toJson.id,
+                email: toJson.email,
                 firstName: toJson.firstName,
             },
         });
@@ -69,16 +60,24 @@ module.exports.authTeacherEmail = async function (request, response) {
 
 
 module.exports.authConfirmCode = async function (request, response) {
-    const { code } = request.body;
-    // console.log(code, confirmCode.getConfirmCode())
+    const { code, userId } = request.body;
+    console.log(request.body.userLog)
+
 
     if (code === confirmCode.getConfirmCode()) {
         console.log("CODE IS CONFIRM");
         confirmCode.deleteConfirmCode();
         confirmCode.clearTimer()
+
+        const token = createToken({
+            teacherId: userId,
+        }, keys.TOKENS.ACCESS_TOKEN.secretTokenKey, keys.TOKENS.ACCESS_TOKEN.expiresIn);
+
         return response.status(200).send({
             message: "User log",
             isLog: true,
+            token: token,
+            tokenExpiresIn: keys.TOKENS.ACCESS_TOKEN.expiresIn,
         });
     }
 
@@ -89,7 +88,7 @@ module.exports.authConfirmCode = async function (request, response) {
 
 
 module.exports.newConfirmCode = async function (request, response) {
-    const { teacherEmail } = request.userData;
+    const { teacherEmail } = request.body;
 
     confirmCode.clearTimer()
     confirmCode.createConfirmCode();

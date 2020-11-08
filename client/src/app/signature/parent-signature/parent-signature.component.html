@@ -1,6 +1,6 @@
 <app-header styleElement [changeClass]="'header-green'" [selector]="'#the-header'"></app-header>
 <div class="parentSigantureContainer">
-    <app-meeting-info [report]="report"></app-meeting-info>
+    <app-meeting-info [report]="report | async"></app-meeting-info>
     <div class="confirmCheckbox">
         <div class="grid">
             <label class="checkbox path">

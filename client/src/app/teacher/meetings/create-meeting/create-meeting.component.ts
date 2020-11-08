@@ -24,20 +24,20 @@ import { Subscription } from 'rxjs';
     styleUrls: ["./create-meeting.component.scss"],
 })
 export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestroy {
+
     students: Student[];
     meetingForm: FormGroup;
     timeList: string[];
-
     subStudents: Subscription
     subValuesChanges: Subscription
+    subReport: Subscription
 
     constructor(
         private formBuilder: FormBuilder,
         public formsService: FormsService,
         private route: ActivatedRoute,
         private router: Router,
-        private reportsService: ReportsService
-    ) {
+        private reportsService: ReportsService) {
         this.students = [];
         this.timeList = timeList(8, 24, 10);
     }
@@ -48,22 +48,18 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
         });
 
         this.meetingForm = this.formBuilder.group({
-            studentName: ['', [Validators.required]],
-            meetingDate: [
-                null,
-                [
-                    Validators.required,
-                    FormsValidatorsService.limitDate(90),
-                    FormsValidatorsService.blockOverDate,
-                ],
-            ],
-            times: this.formBuilder.group(
-                {
-                    meetingStartTime: ['', []],
-                    meetingEndTime: ['', []],
-                },
-                { validator: FormsValidatorsService.PositiveTimeRange }
-            ),
+            studentName: ['', [
+                Validators.required
+            ]],
+            meetingDate: [null, [
+                Validators.required,
+                FormsValidatorsService.limitDate(90),
+                FormsValidatorsService.blockOverDate,
+            ]],
+            times: this.formBuilder.group({
+                meetingStartTime: ['', []],
+                meetingEndTime: ['', []],
+            }, { validator: FormsValidatorsService.PositiveTimeRange }),
             meetingActivitis: [null, []],
             meetingComments: [null, []],
         });
@@ -85,7 +81,6 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
         } = this.meetingForm.value;
 
         const student = this.students.find((s) => s.studentName === studentName)
-        // console.log(student);
 
         const report: Report = {
             studentName: studentName,
@@ -114,19 +109,21 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
     }
 
     setMeetingFormValues() {
-        const report = this.reportsService.getReport();
-        if (report) {
-            this.meetingForm.patchValue({
-                studentName: report.studentName,
-                meetingDate: report.reportDate,
-                meetingActivitis: report.reportActivitis,
-                meetingComments: report.reportComments,
-                times: {
-                    meetingStartTime: report.reportStartTime,
-                    meetingEndTime: report.reportEndTime,
-                },
+        this.subReport = this.reportsService.getReportChange()
+            .subscribe((report) => {
+                if (report) {
+                    this.meetingForm.patchValue({
+                        studentName: report.studentName,
+                        meetingDate: report.reportDate,
+                        meetingActivitis: report.reportActivitis,
+                        meetingComments: report.reportComments,
+                        times: {
+                            meetingStartTime: report.reportStartTime,
+                            meetingEndTime: report.reportEndTime,
+                        },
+                    });
+                }
             });
-        }
     }
 
     checkDateAndAddValidateTime() {
@@ -157,6 +154,7 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
     ngOnDestroy(): void {
         this.subStudents.unsubscribe()
         this.subValuesChanges.unsubscribe()
+        this.subReport.unsubscribe()
     }
 
 

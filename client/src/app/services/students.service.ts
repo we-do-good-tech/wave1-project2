@@ -10,36 +10,23 @@ import { Student } from '../interfaces/Student';
 export class StudentsService {
 
     private students: Student[]
-    private student: Student
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {
 
-    getStudentsLocal(): Student[] {
-        if (this.students) return this.students
-        return
     }
+
 
     getStudents(): Observable<Student[]> {
         if (this.students) {
+            console.log('NO HTTP CALL STUDENTS')
             return of(this.students);
         }
         return this.http.get<Student[]>("api/teacher/students")
             .pipe(
                 tap((result) => {
-                    // console.log(result);
                     this.students = result;
                 })
             );
     }
 
-
-    setStudent(student: Student): void {
-        this.student = { ...student }
-    }
-
-
-    getStudent(): Student {
-        if (this.student) return this.student
-        return undefined
-    }
 }

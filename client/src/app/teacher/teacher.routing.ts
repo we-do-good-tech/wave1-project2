@@ -19,6 +19,9 @@ const routes: Routes = [
             {
                 path: "",
                 component: DashboardComponent,
+                resolve: {
+                    reports: ReportsResolverService
+                }
             },
             {
                 path: "create-meeting",

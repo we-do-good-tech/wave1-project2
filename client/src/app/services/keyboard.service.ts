@@ -21,10 +21,10 @@ export class KeyboardService {
     emitKey(key: string): void {
         this.inputElement.focus();
         this.keyboardEvent.emit(key);
-        this.inputElement.blur()
     }
 
     setElement(element: HTMLInputElement): void {
+        // this.inputElement.blur()
         this.inputElement = element;
     }
 }

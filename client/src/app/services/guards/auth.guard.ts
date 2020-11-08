@@ -17,11 +17,14 @@ export class AuthGuard implements CanActivate {
         next: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Observable<boolean> | boolean {
+        // console.log('NEXT: ', next)
+        // console.log('STATE: ', state)
         const isLog = this.authService.getIsLog();
+        console.log(isLog)
         if (isLog) {
             return true;
         }
-        this.router.navigate(["/auth/email"]);
+        this.router.navigate(["/auth/user"]);
         return false;
     }
 }

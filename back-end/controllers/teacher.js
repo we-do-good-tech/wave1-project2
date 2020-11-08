@@ -38,7 +38,6 @@ module.exports.getStudents = async function (request, response) {
 
 module.exports.createReport = async function (request, response) {
     if (request.findReport) {
-        // console.log(request.findReport)
         return response.status(400).send({
             message: 'דיווח לא חוקי יתכן שבוצע דיווח כפול ליום זה'
         })

@@ -1,7 +1,7 @@
 function convertSheetsDataToObjectsArray(data, sheetName) {
     switch (sheetName) {
         case 'TEACHERS':
-            return data.map(([id, fullName, email], index) => {
+            return data.map(([id, fullName, email]) => {
                 return {
                     id: id,
                     firstName: fullName.split(' ').slice(0, 1)[0],
@@ -9,7 +9,7 @@ function convertSheetsDataToObjectsArray(data, sheetName) {
                 };
             });
         case 'CHILDRENS':
-            return data.map(([id, studentName, parentEmail, ticketNo], index) => {
+            return data.map(([id, studentName, parentEmail, ticketNo]) => {
                 return {
                     id: id,
                     studentName: studentName,
@@ -28,7 +28,7 @@ function convertSheetsDataToObjectsArray(data, sheetName) {
                     reportComments: reportComments,
                     ticketNo: ticketNo,
                     lastDateResendSignToParent: lastDateResendSignToParent,
-                    index: index
+                    index: Number(index)
                 }
             })
         case 'REPORTS_STATS':
