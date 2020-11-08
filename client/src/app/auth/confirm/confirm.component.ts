@@ -40,8 +40,7 @@ export class ConfirmComponent implements AfterViewInit, OnDestroy, OnInit {
     ngAfterViewInit(): void {
         this.subFormChange = this.form.valueChanges.subscribe((result) => {
             if (this.form.invalid) return
-            console.log(result)
-            if (this.form.valid) {
+            else if (this.form.valid) {
                 let code: string = "";
 
                 for (const num in this.form.value) {

@@ -145,7 +145,7 @@ class InputFocusDirective {
     }
     ngAfterViewInit() {
         this.formElement.nativeElement[0].focus();
-        this.formElement.nativeElement[0].blur();
+        this.formElement.nativeElement[0].removeAttribute('placeholder');
     }
     check() {
         setTimeout(() => {
@@ -156,20 +156,10 @@ class InputFocusDirective {
             }
         }, 0);
     }
-    onClick(event) {
-        const inputs = this.formElement.nativeElement.querySelectorAll('input');
-        // console.log(event.target.id)
-        this.formElement.nativeElement[event.target.id - 1].blur();
-        inputs.forEach((element) => {
-            if (element.id !== event.target.id) {
-                element.removeAttribute('placeholder');
-            }
-        });
-    }
 }
 InputFocusDirective.ɵfac = function InputFocusDirective_Factory(t) { return new (t || InputFocusDirective)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])); };
 InputFocusDirective.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({ type: InputFocusDirective, selectors: [["", "appInputFocus", ""]], hostBindings: function InputFocusDirective_HostBindings(rf, ctx) { if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("input", function InputFocusDirective_input_HostBindingHandler() { return ctx.check(); })("click", function InputFocusDirective_click_HostBindingHandler($event) { return ctx.onClick($event); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("input", function InputFocusDirective_input_HostBindingHandler() { return ctx.check(); });
     } } });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](InputFocusDirective, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Directive"],
@@ -179,9 +169,6 @@ InputFocusDirective.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefi
     }], function () { return [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] }]; }, { check: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"],
             args: ['input']
-        }], onClick: [{
-            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"],
-            args: ['click', ['$event']]
         }] }); })();
 
 
@@ -598,6 +585,57 @@ HttpErrorMessagesInterceptor.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__
 
 /***/ }),
 
+/***/ "NmU7":
+/*!*****************************************************!*\
+  !*** ./src/app/directives/remove-attr.directive.ts ***!
+  \*****************************************************/
+/*! exports provided: RemoveAttrDirective */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RemoveAttrDirective", function() { return RemoveAttrDirective; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+
+
+class RemoveAttrDirective {
+    constructor(parentElemet) {
+        this.parentElemet = parentElemet;
+    }
+    ngOnInit() {
+    }
+    onClick(event) {
+        const elements = this.parentElemet.nativeElement.querySelectorAll(this.elementName);
+        elements.forEach((element) => {
+            if (element.id !== event.target.id) {
+                element.removeAttribute(this.attrName);
+            }
+        });
+    }
+}
+RemoveAttrDirective.ɵfac = function RemoveAttrDirective_Factory(t) { return new (t || RemoveAttrDirective)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])); };
+RemoveAttrDirective.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({ type: RemoveAttrDirective, selectors: [["", "appRemoveAttr", ""]], hostBindings: function RemoveAttrDirective_HostBindings(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function RemoveAttrDirective_click_HostBindingHandler($event) { return ctx.onClick($event); });
+    } }, inputs: { attrName: "attrName", elementName: "elementName" } });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RemoveAttrDirective, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Directive"],
+        args: [{
+                selector: '[appRemoveAttr]'
+            }]
+    }], function () { return [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] }]; }, { attrName: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"],
+            args: ['attrName']
+        }], elementName: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"],
+            args: ['elementName']
+        }], onClick: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"],
+            args: ['click', ['$event']]
+        }] }); })();
+
+
+/***/ }),
+
 /***/ "Nvpg":
 /*!***********************************************!*\
   !*** ./src/app/services/pipes/filter.pipe.ts ***!
@@ -693,14 +731,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _keyboard_keyboard_button_keyboard_button_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./keyboard/keyboard-button/keyboard-button.component */ "Lu4x");
 /* harmony import */ var _exmple_exmple_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./exmple/exmple.component */ "I4s0");
 /* harmony import */ var _keyboard_keyboard_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./keyboard/keyboard.component */ "tJXs");
-/* harmony import */ var _directives_limit_input_directive__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../directives/limit-input.directive */ "U4uh");
-/* harmony import */ var _directives_focus_directive__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../directives/focus.directive */ "7BlV");
-/* harmony import */ var _directives_virtual_key__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../directives/virtual-key */ "qSFG");
-/* harmony import */ var _directives_style_element_directive__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../directives/style.element.directive */ "1c1+");
-/* harmony import */ var _directives_style_elemet_selected_directive__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../directives/style-elemet-selected.directive */ "EF41");
-/* harmony import */ var _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../services/pipes/filter.pipe */ "Nvpg");
-/* harmony import */ var _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../services/pipes/hebrew-mount-name.pipe */ "DuIv");
-/* harmony import */ var _meeting_info_meeting_info_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./meeting-info/meeting-info.component */ "lEVn");
+/* harmony import */ var _meeting_info_meeting_info_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./meeting-info/meeting-info.component */ "lEVn");
+/* harmony import */ var _directives_limit_input_directive__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../directives/limit-input.directive */ "U4uh");
+/* harmony import */ var _directives_focus_directive__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../directives/focus.directive */ "7BlV");
+/* harmony import */ var _directives_virtual_key__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../directives/virtual-key */ "qSFG");
+/* harmony import */ var _directives_style_element_directive__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../directives/style.element.directive */ "1c1+");
+/* harmony import */ var _directives_style_elemet_selected_directive__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../directives/style-elemet-selected.directive */ "EF41");
+/* harmony import */ var _directives_remove_attr_directive__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../directives/remove-attr.directive */ "NmU7");
+/* harmony import */ var _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../services/pipes/filter.pipe */ "Nvpg");
+/* harmony import */ var _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../services/pipes/hebrew-mount-name.pipe */ "DuIv");
+
 
 
 
@@ -740,14 +780,15 @@ SharedModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjec
         _keyboard_keyboard_component__WEBPACK_IMPORTED_MODULE_12__["KeyboardComponent"],
         _keyboard_keyboard_button_keyboard_button_component__WEBPACK_IMPORTED_MODULE_10__["KeyboardButtonComponent"],
         _exmple_exmple_component__WEBPACK_IMPORTED_MODULE_11__["ExmpleComponent"],
-        _directives_virtual_key__WEBPACK_IMPORTED_MODULE_15__["VirtualKeyDirective"],
-        _directives_focus_directive__WEBPACK_IMPORTED_MODULE_14__["InputFocusDirective"],
-        _directives_limit_input_directive__WEBPACK_IMPORTED_MODULE_13__["LimitInputDirective"],
-        _directives_style_element_directive__WEBPACK_IMPORTED_MODULE_16__["StyleElementDirective"],
-        _directives_style_elemet_selected_directive__WEBPACK_IMPORTED_MODULE_17__["StyleElemetSelectedDirective"],
-        _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_18__["FilterPipe"],
-        _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_19__["HebrewMountNamePipe"],
-        _meeting_info_meeting_info_component__WEBPACK_IMPORTED_MODULE_20__["MeetingInfoComponent"]], imports: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"],
+        _directives_virtual_key__WEBPACK_IMPORTED_MODULE_16__["VirtualKeyDirective"],
+        _directives_focus_directive__WEBPACK_IMPORTED_MODULE_15__["InputFocusDirective"],
+        _directives_limit_input_directive__WEBPACK_IMPORTED_MODULE_14__["LimitInputDirective"],
+        _directives_style_element_directive__WEBPACK_IMPORTED_MODULE_17__["StyleElementDirective"],
+        _directives_remove_attr_directive__WEBPACK_IMPORTED_MODULE_19__["RemoveAttrDirective"],
+        _directives_style_elemet_selected_directive__WEBPACK_IMPORTED_MODULE_18__["StyleElemetSelectedDirective"],
+        _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_20__["FilterPipe"],
+        _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_21__["HebrewMountNamePipe"],
+        _meeting_info_meeting_info_component__WEBPACK_IMPORTED_MODULE_13__["MeetingInfoComponent"]], imports: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"],
         _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"],
         _ng_plus_signature_pad__WEBPACK_IMPORTED_MODULE_4__["SignaturePadModule"],
         _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"]], exports: [_header_header_component__WEBPACK_IMPORTED_MODULE_5__["HeaderComponent"],
@@ -758,14 +799,15 @@ SharedModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjec
         _keyboard_keyboard_component__WEBPACK_IMPORTED_MODULE_12__["KeyboardComponent"],
         _keyboard_keyboard_button_keyboard_button_component__WEBPACK_IMPORTED_MODULE_10__["KeyboardButtonComponent"],
         _exmple_exmple_component__WEBPACK_IMPORTED_MODULE_11__["ExmpleComponent"],
-        _directives_virtual_key__WEBPACK_IMPORTED_MODULE_15__["VirtualKeyDirective"],
-        _directives_focus_directive__WEBPACK_IMPORTED_MODULE_14__["InputFocusDirective"],
-        _directives_limit_input_directive__WEBPACK_IMPORTED_MODULE_13__["LimitInputDirective"],
-        _directives_style_element_directive__WEBPACK_IMPORTED_MODULE_16__["StyleElementDirective"],
-        _directives_style_elemet_selected_directive__WEBPACK_IMPORTED_MODULE_17__["StyleElemetSelectedDirective"],
-        _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_18__["FilterPipe"],
-        _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_19__["HebrewMountNamePipe"],
-        _meeting_info_meeting_info_component__WEBPACK_IMPORTED_MODULE_20__["MeetingInfoComponent"]] }); })();
+        _directives_virtual_key__WEBPACK_IMPORTED_MODULE_16__["VirtualKeyDirective"],
+        _directives_focus_directive__WEBPACK_IMPORTED_MODULE_15__["InputFocusDirective"],
+        _directives_limit_input_directive__WEBPACK_IMPORTED_MODULE_14__["LimitInputDirective"],
+        _directives_style_element_directive__WEBPACK_IMPORTED_MODULE_17__["StyleElementDirective"],
+        _directives_style_elemet_selected_directive__WEBPACK_IMPORTED_MODULE_18__["StyleElemetSelectedDirective"],
+        _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_20__["FilterPipe"],
+        _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_21__["HebrewMountNamePipe"],
+        _meeting_info_meeting_info_component__WEBPACK_IMPORTED_MODULE_13__["MeetingInfoComponent"],
+        _directives_remove_attr_directive__WEBPACK_IMPORTED_MODULE_19__["RemoveAttrDirective"]] }); })();
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](SharedModule, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
         args: [{
@@ -778,14 +820,15 @@ SharedModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjec
                     _keyboard_keyboard_component__WEBPACK_IMPORTED_MODULE_12__["KeyboardComponent"],
                     _keyboard_keyboard_button_keyboard_button_component__WEBPACK_IMPORTED_MODULE_10__["KeyboardButtonComponent"],
                     _exmple_exmple_component__WEBPACK_IMPORTED_MODULE_11__["ExmpleComponent"],
-                    _directives_virtual_key__WEBPACK_IMPORTED_MODULE_15__["VirtualKeyDirective"],
-                    _directives_focus_directive__WEBPACK_IMPORTED_MODULE_14__["InputFocusDirective"],
-                    _directives_limit_input_directive__WEBPACK_IMPORTED_MODULE_13__["LimitInputDirective"],
-                    _directives_style_element_directive__WEBPACK_IMPORTED_MODULE_16__["StyleElementDirective"],
-                    _directives_style_elemet_selected_directive__WEBPACK_IMPORTED_MODULE_17__["StyleElemetSelectedDirective"],
-                    _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_18__["FilterPipe"],
-                    _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_19__["HebrewMountNamePipe"],
-                    _meeting_info_meeting_info_component__WEBPACK_IMPORTED_MODULE_20__["MeetingInfoComponent"]
+                    _directives_virtual_key__WEBPACK_IMPORTED_MODULE_16__["VirtualKeyDirective"],
+                    _directives_focus_directive__WEBPACK_IMPORTED_MODULE_15__["InputFocusDirective"],
+                    _directives_limit_input_directive__WEBPACK_IMPORTED_MODULE_14__["LimitInputDirective"],
+                    _directives_style_element_directive__WEBPACK_IMPORTED_MODULE_17__["StyleElementDirective"],
+                    _directives_remove_attr_directive__WEBPACK_IMPORTED_MODULE_19__["RemoveAttrDirective"],
+                    _directives_style_elemet_selected_directive__WEBPACK_IMPORTED_MODULE_18__["StyleElemetSelectedDirective"],
+                    _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_20__["FilterPipe"],
+                    _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_21__["HebrewMountNamePipe"],
+                    _meeting_info_meeting_info_component__WEBPACK_IMPORTED_MODULE_13__["MeetingInfoComponent"]
                 ],
                 imports: [
                     _angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"],
@@ -802,14 +845,15 @@ SharedModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjec
                     _keyboard_keyboard_component__WEBPACK_IMPORTED_MODULE_12__["KeyboardComponent"],
                     _keyboard_keyboard_button_keyboard_button_component__WEBPACK_IMPORTED_MODULE_10__["KeyboardButtonComponent"],
                     _exmple_exmple_component__WEBPACK_IMPORTED_MODULE_11__["ExmpleComponent"],
-                    _directives_virtual_key__WEBPACK_IMPORTED_MODULE_15__["VirtualKeyDirective"],
-                    _directives_focus_directive__WEBPACK_IMPORTED_MODULE_14__["InputFocusDirective"],
-                    _directives_limit_input_directive__WEBPACK_IMPORTED_MODULE_13__["LimitInputDirective"],
-                    _directives_style_element_directive__WEBPACK_IMPORTED_MODULE_16__["StyleElementDirective"],
-                    _directives_style_elemet_selected_directive__WEBPACK_IMPORTED_MODULE_17__["StyleElemetSelectedDirective"],
-                    _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_18__["FilterPipe"],
-                    _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_19__["HebrewMountNamePipe"],
-                    _meeting_info_meeting_info_component__WEBPACK_IMPORTED_MODULE_20__["MeetingInfoComponent"]
+                    _directives_virtual_key__WEBPACK_IMPORTED_MODULE_16__["VirtualKeyDirective"],
+                    _directives_focus_directive__WEBPACK_IMPORTED_MODULE_15__["InputFocusDirective"],
+                    _directives_limit_input_directive__WEBPACK_IMPORTED_MODULE_14__["LimitInputDirective"],
+                    _directives_style_element_directive__WEBPACK_IMPORTED_MODULE_17__["StyleElementDirective"],
+                    _directives_style_elemet_selected_directive__WEBPACK_IMPORTED_MODULE_18__["StyleElemetSelectedDirective"],
+                    _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_20__["FilterPipe"],
+                    _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_21__["HebrewMountNamePipe"],
+                    _meeting_info_meeting_info_component__WEBPACK_IMPORTED_MODULE_13__["MeetingInfoComponent"],
+                    _directives_remove_attr_directive__WEBPACK_IMPORTED_MODULE_19__["RemoveAttrDirective"]
                 ],
             }]
     }], null, null); })();
@@ -1770,13 +1814,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function KeyboardComponent_app_keyboard_button_1_Template(rf, ctx) { if (rf & 1) {
-    const _r169 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+    const _r7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "app-keyboard-button", 2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function KeyboardComponent_app_keyboard_button_1_Template_app_keyboard_button_click_0_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r169); const number_r167 = ctx.$implicit; const ctx_r168 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r168.onNumberClick($event, number_r167); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function KeyboardComponent_app_keyboard_button_1_Template_app_keyboard_button_click_0_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r7); const number_r5 = ctx.$implicit; const ctx_r6 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r6.onNumberClick($event, number_r5); });
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const number_r167 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("number", number_r167);
+    const number_r5 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("number", number_r5);
 } }
 class KeyboardComponent {
     constructor(keyboardService) {

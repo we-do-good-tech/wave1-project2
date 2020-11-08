@@ -1,7 +1,7 @@
 <!-- // איזה יופי זה מסודר -->
 <div class="confirmWrapper">
     <p class="m-3">נשלח מייל, נא הזינו הקוד</p>
-    <form #form="ngForm" appInputFocus>
+    <form #form="ngForm" appInputFocus appRemoveAttr [attrName]="'placeholder'" [elementName]="'input'">
         <div class="smsCode">
             <input
                 appLimitInput

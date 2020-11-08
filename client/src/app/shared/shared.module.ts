@@ -12,16 +12,17 @@ import { LoaderComponent } from "./loader/loader.component";
 import { KeyboardButtonComponent } from './keyboard/keyboard-button/keyboard-button.component';
 import { ExmpleComponent } from './exmple/exmple.component';
 import { KeyboardComponent } from './keyboard/keyboard.component';
+import { MeetingInfoComponent } from './meeting-info/meeting-info.component';
 
 import { LimitInputDirective } from "../directives/limit-input.directive";
 import { InputFocusDirective } from "../directives/focus.directive";
 import { VirtualKeyDirective } from "../directives/virtual-key";
 import { StyleElementDirective } from "../directives/style.element.directive";
 import { StyleElemetSelectedDirective } from "../directives/style-elemet-selected.directive";
+import { RemoveAttrDirective } from "../directives/remove-attr.directive";
 
 import { FilterPipe } from "../services/pipes/filter.pipe";
 import { HebrewMountNamePipe } from "../services/pipes/hebrew-mount-name.pipe";
-import { MeetingInfoComponent } from './meeting-info/meeting-info.component'
 
 
 
@@ -39,6 +40,7 @@ import { MeetingInfoComponent } from './meeting-info/meeting-info.component'
         InputFocusDirective,
         LimitInputDirective,
         StyleElementDirective,
+        RemoveAttrDirective,
         StyleElemetSelectedDirective,
         FilterPipe,
         HebrewMountNamePipe,
@@ -66,7 +68,8 @@ import { MeetingInfoComponent } from './meeting-info/meeting-info.component'
         StyleElemetSelectedDirective,
         FilterPipe,
         HebrewMountNamePipe,
-        MeetingInfoComponent
+        MeetingInfoComponent,
+        RemoveAttrDirective
     ],
 })
 export class SharedModule { }

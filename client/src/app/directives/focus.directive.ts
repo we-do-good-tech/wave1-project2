@@ -10,9 +10,8 @@ export class InputFocusDirective implements AfterViewInit {
 
     ngAfterViewInit(): void {
         this.formElement.nativeElement[0].focus()
-        this.formElement.nativeElement[0].blur()
+        this.formElement.nativeElement[0].removeAttribute('placeholder')
     }
-
 
 
     @HostListener('input')
@@ -27,15 +26,14 @@ export class InputFocusDirective implements AfterViewInit {
     }
 
 
-    @HostListener('click', ['$event'])
-    onClick(event: any): void {
-        const inputs = this.formElement.nativeElement.querySelectorAll('input')
-        // console.log(event.target.id)
-        this.formElement.nativeElement[event.target.id - 1].blur()
-        inputs.forEach((element: HTMLInputElement) => {
-            if (element.id !== event.target.id) {
-                element.removeAttribute('placeholder')
-            }
-        })
-    }
+    // @HostListener('click', ['$event'])
+    // onClick(event: any): void {
+    //     const inputs = this.formElement.nativeElement.querySelectorAll('input')
+    //     // this.formElement.nativeElement[event.target.id - 1].blur()
+    //     inputs.forEach((element: HTMLInputElement) => {
+    //         if (element.id !== event.target.id) {
+    //             element.removeAttribute('placeholder')
+    //         }
+    //     })
+    // }
 }
