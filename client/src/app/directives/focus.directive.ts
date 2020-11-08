@@ -23,7 +23,7 @@ export class InputFocusDirective {
             console.log(input)
             if (input) {
                 input.focus();
-                // input.blur()
+                input.blur()
                 // input.setAttribute('readonly', 'readonly')
             }
         }, 0);
