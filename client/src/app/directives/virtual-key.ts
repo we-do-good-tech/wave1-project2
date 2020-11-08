@@ -7,6 +7,8 @@ import { KeyboardService } from '../services/keyboard.service';
 })
 export class VirtualKeyDirective implements OnInit {
 
+    timerTogglePlaceholder: NodeJS.Timer
+
     constructor(
         private formInputElement: ElementRef,
         private ngModel: NgModel,
@@ -26,6 +28,7 @@ export class VirtualKeyDirective implements OnInit {
                 });
 
                 this.formInputElement.nativeElement.dispatchEvent(event);
+                this.formInputElement.nativeElement.removeAttribute('placeholder')
             }
         });
     }
@@ -33,8 +36,11 @@ export class VirtualKeyDirective implements OnInit {
     @HostListener("focus")
     onFocus(): void {
         console.log('FOCUS EVENT')
-        console.log(this.formInputElement.nativeElement)
+        clearInterval(this.timerTogglePlaceholder)
         this.keyboardService.setElement(this.formInputElement.nativeElement);
-        // this.formInputElement.nativeElement.blur()
+        this.formInputElement.nativeElement.setAttribute('placeholder', '|')
+        this.timerTogglePlaceholder = setInterval(() => {
+            this.formInputElement.nativeElement.classList.toggle('not-empty')
+        }, 500)
     }
 }

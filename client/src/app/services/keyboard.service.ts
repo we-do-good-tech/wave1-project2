@@ -25,7 +25,6 @@ export class KeyboardService {
     }
 
     setElement(element: HTMLInputElement): void {
-        // this.inputElement.blur()
         this.inputElement = element;
     }
 }

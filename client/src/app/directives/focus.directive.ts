@@ -1,31 +1,41 @@
-import { Directive, ElementRef, HostListener } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, HostListener } from '@angular/core';
 
 @Directive({
     selector: '[appInputFocus]'
 })
-export class InputFocusDirective {
+export class InputFocusDirective implements AfterViewInit {
 
     constructor(private formElement: ElementRef) { }
 
 
-    // @HostListener('blur')
-    // setFirst() {
+    ngAfterViewInit(): void {
+        this.formElement.nativeElement[0].focus()
+        this.formElement.nativeElement[0].blur()
+    }
 
-    //     const input = this.formElement.nativeElement.querySelector('.ng-invalid')
-    //     input.removeAttribute('readonly')
-    //     console.log(input)
-    // }
+
 
     @HostListener('input')
     check() {
         setTimeout(() => {
             const input = this.formElement.nativeElement.querySelector('.ng-invalid')
-            console.log(input)
             if (input) {
                 input.focus();
                 input.blur()
-                // input.setAttribute('readonly', 'readonly')
             }
         }, 0);
+    }
+
+
+    @HostListener('click', ['$event'])
+    onClick(event: any): void {
+        const inputs = this.formElement.nativeElement.querySelectorAll('input')
+        // console.log(event.target.id)
+        this.formElement.nativeElement[event.target.id - 1].blur()
+        inputs.forEach((element: HTMLInputElement) => {
+            if (element.id !== event.target.id) {
+                element.removeAttribute('placeholder')
+            }
+        })
     }
 }

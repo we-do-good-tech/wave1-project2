@@ -143,27 +143,33 @@ class InputFocusDirective {
     constructor(formElement) {
         this.formElement = formElement;
     }
-    // @HostListener('blur')
-    // setFirst() {
-    //     const input = this.formElement.nativeElement.querySelector('.ng-invalid')
-    //     input.removeAttribute('readonly')
-    //     console.log(input)
-    // }
+    ngAfterViewInit() {
+        this.formElement.nativeElement[0].focus();
+        this.formElement.nativeElement[0].blur();
+    }
     check() {
         setTimeout(() => {
             const input = this.formElement.nativeElement.querySelector('.ng-invalid');
-            console.log(input);
             if (input) {
                 input.focus();
                 input.blur();
-                // input.setAttribute('readonly', 'readonly')
             }
         }, 0);
+    }
+    onClick(event) {
+        const inputs = this.formElement.nativeElement.querySelectorAll('input');
+        // console.log(event.target.id)
+        this.formElement.nativeElement[event.target.id - 1].blur();
+        inputs.forEach((element) => {
+            if (element.id !== event.target.id) {
+                element.removeAttribute('placeholder');
+            }
+        });
     }
 }
 InputFocusDirective.ɵfac = function InputFocusDirective_Factory(t) { return new (t || InputFocusDirective)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])); };
 InputFocusDirective.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({ type: InputFocusDirective, selectors: [["", "appInputFocus", ""]], hostBindings: function InputFocusDirective_HostBindings(rf, ctx) { if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("input", function InputFocusDirective_input_HostBindingHandler() { return ctx.check(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("input", function InputFocusDirective_input_HostBindingHandler() { return ctx.check(); })("click", function InputFocusDirective_click_HostBindingHandler($event) { return ctx.onClick($event); });
     } } });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](InputFocusDirective, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Directive"],
@@ -173,6 +179,9 @@ InputFocusDirective.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefi
     }], function () { return [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] }]; }, { check: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"],
             args: ['input']
+        }], onClick: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"],
+            args: ['click', ['$event']]
         }] }); })();
 
 
@@ -1605,7 +1614,6 @@ class KeyboardService {
         this.inputElement.blur();
     }
     setElement(element) {
-        // this.inputElement.blur()
         this.inputElement = element;
     }
 }
@@ -1711,14 +1719,18 @@ class VirtualKeyDirective {
                     cancelable: true,
                 });
                 this.formInputElement.nativeElement.dispatchEvent(event);
+                this.formInputElement.nativeElement.removeAttribute('placeholder');
             }
         });
     }
     onFocus() {
         console.log('FOCUS EVENT');
-        console.log(this.formInputElement.nativeElement);
+        clearInterval(this.timerTogglePlaceholder);
         this.keyboardService.setElement(this.formInputElement.nativeElement);
-        // this.formInputElement.nativeElement.blur()
+        this.formInputElement.nativeElement.setAttribute('placeholder', '|');
+        this.timerTogglePlaceholder = setInterval(() => {
+            this.formInputElement.nativeElement.classList.toggle('not-empty');
+        }, 500);
     }
 }
 VirtualKeyDirective.ɵfac = function VirtualKeyDirective_Factory(t) { return new (t || VirtualKeyDirective)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgModel"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_keyboard_service__WEBPACK_IMPORTED_MODULE_2__["KeyboardService"])); };
@@ -1758,13 +1770,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function KeyboardComponent_app_keyboard_button_1_Template(rf, ctx) { if (rf & 1) {
-    const _r7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+    const _r169 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "app-keyboard-button", 2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function KeyboardComponent_app_keyboard_button_1_Template_app_keyboard_button_click_0_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r7); const number_r5 = ctx.$implicit; const ctx_r6 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r6.onNumberClick($event, number_r5); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function KeyboardComponent_app_keyboard_button_1_Template_app_keyboard_button_click_0_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r169); const number_r167 = ctx.$implicit; const ctx_r168 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r168.onNumberClick($event, number_r167); });
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const number_r5 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("number", number_r5);
+    const number_r167 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("number", number_r167);
 } }
 class KeyboardComponent {
     constructor(keyboardService) {

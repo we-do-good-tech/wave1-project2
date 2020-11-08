@@ -34,8 +34,6 @@ export class ConfirmComponent implements AfterViewInit, OnDestroy, OnInit {
     ngOnInit(): void {
         this.confirmCodeExpireTime = this.authService.getConfimCodeExpire()
         this.setTimer(this.confirmCodeExpireTime)
-
-
     }
 
 
@@ -62,6 +60,7 @@ export class ConfirmComponent implements AfterViewInit, OnDestroy, OnInit {
                     }, () => {
                         this.form.resetForm()
                         this.firstInput.nativeElement.focus()
+                        this.firstInput.nativeElement.blur()
                     });
             }
         })
@@ -74,6 +73,7 @@ export class ConfirmComponent implements AfterViewInit, OnDestroy, OnInit {
         this.firstInput.nativeElement.focus()
         this.setTimer(this.confirmCodeExpireTime)
         this.authService.resendConfirmCode().subscribe((result) => {
+            this.firstInput.nativeElement.blur()
             alert('נשלח קוד חדש למייל')
         }, () => { });
     }
