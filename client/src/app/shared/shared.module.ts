@@ -20,6 +20,7 @@ import { VirtualKeyDirective } from "../directives/virtual-key";
 import { StyleElementDirective } from "../directives/style.element.directive";
 import { StyleElemetSelectedDirective } from "../directives/style-elemet-selected.directive";
 import { RemoveAttrDirective } from "../directives/remove-attr.directive";
+import { IntervalToggleDirective } from "../directives/interval-toggle.directive";
 
 import { FilterPipe } from "../services/pipes/filter.pipe";
 import { HebrewMountNamePipe } from "../services/pipes/hebrew-mount-name.pipe";
@@ -44,7 +45,8 @@ import { HebrewMountNamePipe } from "../services/pipes/hebrew-mount-name.pipe";
         StyleElemetSelectedDirective,
         FilterPipe,
         HebrewMountNamePipe,
-        MeetingInfoComponent
+        MeetingInfoComponent,
+        IntervalToggleDirective
     ],
     imports: [
         CommonModule,
@@ -69,7 +71,8 @@ import { HebrewMountNamePipe } from "../services/pipes/hebrew-mount-name.pipe";
         FilterPipe,
         HebrewMountNamePipe,
         MeetingInfoComponent,
-        RemoveAttrDirective
+        RemoveAttrDirective,
+        IntervalToggleDirective
     ],
 })
 export class SharedModule { }

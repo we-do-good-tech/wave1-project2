@@ -174,6 +174,53 @@ InputFocusDirective.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefi
 
 /***/ }),
 
+/***/ "9+1k":
+/*!*********************************************************!*\
+  !*** ./src/app/directives/interval-toggle.directive.ts ***!
+  \*********************************************************/
+/*! exports provided: IntervalToggleDirective */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IntervalToggleDirective", function() { return IntervalToggleDirective; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+
+
+class IntervalToggleDirective {
+    constructor(element) {
+        this.element = element;
+    }
+    intervalToggle() {
+        this.clearInterval();
+        this.timerTogglePlaceholder = setInterval(() => {
+            this.element.nativeElement.classList.toggle(this.className);
+        }, 500);
+    }
+    clearInterval() {
+        clearInterval(this.timerTogglePlaceholder);
+    }
+}
+IntervalToggleDirective.ɵfac = function IntervalToggleDirective_Factory(t) { return new (t || IntervalToggleDirective)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])); };
+IntervalToggleDirective.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({ type: IntervalToggleDirective, selectors: [["", "appIntervalToggle", ""]], hostBindings: function IntervalToggleDirective_HostBindings(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("focus", function IntervalToggleDirective_focus_HostBindingHandler() { return ctx.intervalToggle(); });
+    } }, inputs: { className: ["appIntervalToggle", "className"] } });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](IntervalToggleDirective, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Directive"],
+        args: [{
+                selector: '[appIntervalToggle]'
+            }]
+    }], function () { return [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] }]; }, { className: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"],
+            args: ['appIntervalToggle']
+        }], intervalToggle: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"],
+            args: ['focus']
+        }] }); })();
+
+
+/***/ }),
+
 /***/ "AytR":
 /*!*****************************************!*\
   !*** ./src/environments/environment.ts ***!
@@ -603,12 +650,13 @@ class RemoveAttrDirective {
         this.parentElemet = parentElemet;
     }
     ngOnInit() {
+        // this.parentElemet.nativeElement[0].removeAttribute('placeholder')
     }
     onClick(event) {
         const elements = this.parentElemet.nativeElement.querySelectorAll(this.elementName);
         elements.forEach((element) => {
             if (element.id !== event.target.id) {
-                element.removeAttribute(this.attrName);
+                element.removeAttribute(this.appRemoveAttr);
             }
         });
     }
@@ -616,15 +664,14 @@ class RemoveAttrDirective {
 RemoveAttrDirective.ɵfac = function RemoveAttrDirective_Factory(t) { return new (t || RemoveAttrDirective)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])); };
 RemoveAttrDirective.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({ type: RemoveAttrDirective, selectors: [["", "appRemoveAttr", ""]], hostBindings: function RemoveAttrDirective_HostBindings(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function RemoveAttrDirective_click_HostBindingHandler($event) { return ctx.onClick($event); });
-    } }, inputs: { attrName: "attrName", elementName: "elementName" } });
+    } }, inputs: { appRemoveAttr: "appRemoveAttr", elementName: "elementName" } });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RemoveAttrDirective, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Directive"],
         args: [{
                 selector: '[appRemoveAttr]'
             }]
-    }], function () { return [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] }]; }, { attrName: [{
-            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"],
-            args: ['attrName']
+    }], function () { return [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] }]; }, { appRemoveAttr: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
         }], elementName: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"],
             args: ['elementName']
@@ -738,8 +785,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _directives_style_element_directive__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../directives/style.element.directive */ "1c1+");
 /* harmony import */ var _directives_style_elemet_selected_directive__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../directives/style-elemet-selected.directive */ "EF41");
 /* harmony import */ var _directives_remove_attr_directive__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../directives/remove-attr.directive */ "NmU7");
-/* harmony import */ var _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../services/pipes/filter.pipe */ "Nvpg");
-/* harmony import */ var _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../services/pipes/hebrew-mount-name.pipe */ "DuIv");
+/* harmony import */ var _directives_interval_toggle_directive__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../directives/interval-toggle.directive */ "9+1k");
+/* harmony import */ var _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../services/pipes/filter.pipe */ "Nvpg");
+/* harmony import */ var _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../services/pipes/hebrew-mount-name.pipe */ "DuIv");
+
 
 
 
@@ -786,9 +835,10 @@ SharedModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjec
         _directives_style_element_directive__WEBPACK_IMPORTED_MODULE_17__["StyleElementDirective"],
         _directives_remove_attr_directive__WEBPACK_IMPORTED_MODULE_19__["RemoveAttrDirective"],
         _directives_style_elemet_selected_directive__WEBPACK_IMPORTED_MODULE_18__["StyleElemetSelectedDirective"],
-        _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_20__["FilterPipe"],
-        _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_21__["HebrewMountNamePipe"],
-        _meeting_info_meeting_info_component__WEBPACK_IMPORTED_MODULE_13__["MeetingInfoComponent"]], imports: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"],
+        _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_21__["FilterPipe"],
+        _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_22__["HebrewMountNamePipe"],
+        _meeting_info_meeting_info_component__WEBPACK_IMPORTED_MODULE_13__["MeetingInfoComponent"],
+        _directives_interval_toggle_directive__WEBPACK_IMPORTED_MODULE_20__["IntervalToggleDirective"]], imports: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"],
         _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"],
         _ng_plus_signature_pad__WEBPACK_IMPORTED_MODULE_4__["SignaturePadModule"],
         _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"]], exports: [_header_header_component__WEBPACK_IMPORTED_MODULE_5__["HeaderComponent"],
@@ -804,10 +854,11 @@ SharedModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjec
         _directives_limit_input_directive__WEBPACK_IMPORTED_MODULE_14__["LimitInputDirective"],
         _directives_style_element_directive__WEBPACK_IMPORTED_MODULE_17__["StyleElementDirective"],
         _directives_style_elemet_selected_directive__WEBPACK_IMPORTED_MODULE_18__["StyleElemetSelectedDirective"],
-        _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_20__["FilterPipe"],
-        _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_21__["HebrewMountNamePipe"],
+        _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_21__["FilterPipe"],
+        _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_22__["HebrewMountNamePipe"],
         _meeting_info_meeting_info_component__WEBPACK_IMPORTED_MODULE_13__["MeetingInfoComponent"],
-        _directives_remove_attr_directive__WEBPACK_IMPORTED_MODULE_19__["RemoveAttrDirective"]] }); })();
+        _directives_remove_attr_directive__WEBPACK_IMPORTED_MODULE_19__["RemoveAttrDirective"],
+        _directives_interval_toggle_directive__WEBPACK_IMPORTED_MODULE_20__["IntervalToggleDirective"]] }); })();
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](SharedModule, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
         args: [{
@@ -826,9 +877,10 @@ SharedModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjec
                     _directives_style_element_directive__WEBPACK_IMPORTED_MODULE_17__["StyleElementDirective"],
                     _directives_remove_attr_directive__WEBPACK_IMPORTED_MODULE_19__["RemoveAttrDirective"],
                     _directives_style_elemet_selected_directive__WEBPACK_IMPORTED_MODULE_18__["StyleElemetSelectedDirective"],
-                    _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_20__["FilterPipe"],
-                    _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_21__["HebrewMountNamePipe"],
-                    _meeting_info_meeting_info_component__WEBPACK_IMPORTED_MODULE_13__["MeetingInfoComponent"]
+                    _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_21__["FilterPipe"],
+                    _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_22__["HebrewMountNamePipe"],
+                    _meeting_info_meeting_info_component__WEBPACK_IMPORTED_MODULE_13__["MeetingInfoComponent"],
+                    _directives_interval_toggle_directive__WEBPACK_IMPORTED_MODULE_20__["IntervalToggleDirective"]
                 ],
                 imports: [
                     _angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"],
@@ -850,10 +902,11 @@ SharedModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjec
                     _directives_limit_input_directive__WEBPACK_IMPORTED_MODULE_14__["LimitInputDirective"],
                     _directives_style_element_directive__WEBPACK_IMPORTED_MODULE_17__["StyleElementDirective"],
                     _directives_style_elemet_selected_directive__WEBPACK_IMPORTED_MODULE_18__["StyleElemetSelectedDirective"],
-                    _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_20__["FilterPipe"],
-                    _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_21__["HebrewMountNamePipe"],
+                    _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_21__["FilterPipe"],
+                    _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_22__["HebrewMountNamePipe"],
                     _meeting_info_meeting_info_component__WEBPACK_IMPORTED_MODULE_13__["MeetingInfoComponent"],
-                    _directives_remove_attr_directive__WEBPACK_IMPORTED_MODULE_19__["RemoveAttrDirective"]
+                    _directives_remove_attr_directive__WEBPACK_IMPORTED_MODULE_19__["RemoveAttrDirective"],
+                    _directives_interval_toggle_directive__WEBPACK_IMPORTED_MODULE_20__["IntervalToggleDirective"]
                 ],
             }]
     }], null, null); })();
@@ -1660,6 +1713,12 @@ class KeyboardService {
     setElement(element) {
         this.inputElement = element;
     }
+    setAttribute(attributeName, value) {
+        this.inputElement.setAttribute(attributeName, value);
+    }
+    removeAttribute(attributeName) {
+        this.inputElement.removeAttribute(attributeName);
+    }
 }
 KeyboardService.ɵfac = function KeyboardService_Factory(t) { return new (t || KeyboardService)(); };
 KeyboardService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: KeyboardService, factory: KeyboardService.ɵfac, providedIn: "root" });
@@ -1748,6 +1807,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class VirtualKeyDirective {
+    // timerTogglePlaceholder: NodeJS.Timer
     constructor(formInputElement, ngModel, keyboardService) {
         this.formInputElement = formInputElement;
         this.ngModel = ngModel;
@@ -1763,18 +1823,19 @@ class VirtualKeyDirective {
                     cancelable: true,
                 });
                 this.formInputElement.nativeElement.dispatchEvent(event);
-                this.formInputElement.nativeElement.removeAttribute('placeholder');
+                this.keyboardService.removeAttribute('placeholder');
             }
         });
     }
     onFocus() {
         console.log('FOCUS EVENT');
-        clearInterval(this.timerTogglePlaceholder);
+        // clearInterval(this.timerTogglePlaceholder)
         this.keyboardService.setElement(this.formInputElement.nativeElement);
-        this.formInputElement.nativeElement.setAttribute('placeholder', '|');
-        this.timerTogglePlaceholder = setInterval(() => {
-            this.formInputElement.nativeElement.classList.toggle('not-empty');
-        }, 500);
+        // this.formInputElement.nativeElement.setAttribute('placeholder', '|')
+        this.keyboardService.setAttribute('placeholder', '|');
+        // this.timerTogglePlaceholder = setInterval(() => {
+        //     this.formInputElement.nativeElement.classList.toggle('not-empty')
+        // }, 500)
     }
 }
 VirtualKeyDirective.ɵfac = function VirtualKeyDirective_Factory(t) { return new (t || VirtualKeyDirective)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgModel"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_keyboard_service__WEBPACK_IMPORTED_MODULE_2__["KeyboardService"])); };
@@ -1814,13 +1875,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function KeyboardComponent_app_keyboard_button_1_Template(rf, ctx) { if (rf & 1) {
-    const _r7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+    const _r795 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "app-keyboard-button", 2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function KeyboardComponent_app_keyboard_button_1_Template_app_keyboard_button_click_0_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r7); const number_r5 = ctx.$implicit; const ctx_r6 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r6.onNumberClick($event, number_r5); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function KeyboardComponent_app_keyboard_button_1_Template_app_keyboard_button_click_0_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r795); const number_r793 = ctx.$implicit; const ctx_r794 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r794.onNumberClick($event, number_r793); });
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const number_r5 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("number", number_r5);
+    const number_r793 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("number", number_r793);
 } }
 class KeyboardComponent {
     constructor(keyboardService) {

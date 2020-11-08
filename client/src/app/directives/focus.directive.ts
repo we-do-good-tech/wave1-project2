@@ -25,15 +25,4 @@ export class InputFocusDirective implements AfterViewInit {
         }, 0);
     }
 
-
-    // @HostListener('click', ['$event'])
-    // onClick(event: any): void {
-    //     const inputs = this.formElement.nativeElement.querySelectorAll('input')
-    //     // this.formElement.nativeElement[event.target.id - 1].blur()
-    //     inputs.forEach((element: HTMLInputElement) => {
-    //         if (element.id !== event.target.id) {
-    //             element.removeAttribute('placeholder')
-    //         }
-    //     })
-    // }
 }

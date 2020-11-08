@@ -1,43 +1,47 @@
 <!-- // איזה יופי זה מסודר -->
 <div class="confirmWrapper">
     <p class="m-3">נשלח מייל, נא הזינו הקוד</p>
-    <form #form="ngForm" appInputFocus appRemoveAttr [attrName]="'placeholder'" [elementName]="'input'">
+    <form #form="ngForm" appInputFocus [appRemoveAttr]="'placeholder'" [elementName]="'input'">
         <div class="smsCode">
             <input
                 appLimitInput
                 #first
                 id="1"
+                ngModel="virtualkey"
+                [appIntervalToggle]="'not-empty'"
                 required type="number"
                 pattern="^\d{1}$"
                 name="first"
-                ngModel="virtualkey"
                 #one="ngModel">
             <input
                 appLimitInput
                 id="2"
+                ngModel="virtualkey"
+                [appIntervalToggle]="'not-empty'"
                 required
                 type="number"
                 pattern="^\d{1}$"
                 name="second"
-                ngModel="virtualkey"
                 #two="ngModel">
             <input
                 appLimitInput
+                ngModel="virtualkey"
+                [appIntervalToggle]="'not-empty'"
                 id="3"
                 required
                 type="number"
                 pattern="^\d{1}$"
                 name="third"
-                ngModel="virtualkey"
                 #three="ngModel">
             <input
                 appLimitInput
+                ngModel="virtualkey"
+                [appIntervalToggle]="'not-empty'"
                 id="4"
                 required
                 type="number"
                 pattern="^\d{1}$"
                 name="fourth"
-                ngModel="virtualkey"
                 #four="ngModel">
         </div>
     </form>

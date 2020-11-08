@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
-import { BehaviorSubject, interval, Observable, Subject, Subscription } from 'rxjs';
-import { takeUntil, takeWhile, tap } from 'rxjs/operators';
+import { interval, Subscription } from 'rxjs';
+import { takeWhile } from 'rxjs/operators';
 import { ConfirmCode } from "src/app/interfaces/ConfirmCode";
 import { AuthService } from "src/app/services/auth.service";
 import { LoaderService } from "src/app/services/loader.service";
@@ -59,7 +59,7 @@ export class ConfirmComponent implements AfterViewInit, OnDestroy, OnInit {
                     }, () => {
                         this.form.resetForm()
                         this.firstInput.nativeElement.focus()
-                        this.firstInput.nativeElement.blur()
+                        // this.firstInput.nativeElement.blur()
                     });
             }
         })
@@ -68,12 +68,9 @@ export class ConfirmComponent implements AfterViewInit, OnDestroy, OnInit {
 
     onResendConfirmCode(): void {
         this.loaderService.setStatus(true)
-        this.form.resetForm()
-        this.firstInput.nativeElement.focus()
         this.setTimer(this.confirmCodeExpireTime)
         this.authService.resendConfirmCode().subscribe((result) => {
-            this.firstInput.nativeElement.blur()
-            alert('נשלח קוד חדש למייל')
+            this.form.resetForm()
         }, () => { });
     }
 

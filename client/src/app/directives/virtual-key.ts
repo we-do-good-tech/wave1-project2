@@ -1,18 +1,20 @@
 import { Directive, ElementRef, HostListener, OnInit } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { KeyboardService } from '../services/keyboard.service';
+import { IntervalToggleDirective } from "./interval-toggle.directive";
 
 @Directive({
     selector: '[ngModel],[virtualkey]'
 })
 export class VirtualKeyDirective implements OnInit {
 
-    timerTogglePlaceholder: NodeJS.Timer
+    // timerTogglePlaceholder: NodeJS.Timer
 
     constructor(
         private formInputElement: ElementRef,
         private ngModel: NgModel,
-        private keyboardService: KeyboardService
+        private keyboardService: KeyboardService,
+        // private intervalToggle: IntervalToggleDirective
     ) { }
 
     ngOnInit(): void {
@@ -28,7 +30,7 @@ export class VirtualKeyDirective implements OnInit {
                 });
 
                 this.formInputElement.nativeElement.dispatchEvent(event);
-                this.formInputElement.nativeElement.removeAttribute('placeholder')
+                this.keyboardService.removeAttribute('placeholder')
             }
         });
     }
@@ -36,11 +38,12 @@ export class VirtualKeyDirective implements OnInit {
     @HostListener("focus")
     onFocus(): void {
         console.log('FOCUS EVENT')
-        clearInterval(this.timerTogglePlaceholder)
+        // clearInterval(this.timerTogglePlaceholder)
         this.keyboardService.setElement(this.formInputElement.nativeElement);
-        this.formInputElement.nativeElement.setAttribute('placeholder', '|')
-        this.timerTogglePlaceholder = setInterval(() => {
-            this.formInputElement.nativeElement.classList.toggle('not-empty')
-        }, 500)
+        // this.formInputElement.nativeElement.setAttribute('placeholder', '|')
+        this.keyboardService.setAttribute('placeholder', '|')
+        // this.timerTogglePlaceholder = setInterval(() => {
+        //     this.formInputElement.nativeElement.classList.toggle('not-empty')
+        // }, 500)
     }
 }

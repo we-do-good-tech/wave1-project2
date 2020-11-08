@@ -27,4 +27,17 @@ export class KeyboardService {
     setElement(element: HTMLInputElement): void {
         this.inputElement = element;
     }
+
+
+    setAttribute(attributeName: string, value: any): void {
+        this.inputElement.setAttribute(attributeName, value)
+    }
+
+
+    removeAttribute(attributeName: string): void {
+        this.inputElement.removeAttribute(attributeName)
+    }
+
+
+
 }
