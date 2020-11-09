@@ -21,9 +21,10 @@ export class RemoveAttrDirective implements OnInit {
         const elements = this.parentElemet.nativeElement.querySelectorAll(this.elementName)
 
         elements.forEach((element: HTMLElement) => {
-            if (element.id !== event.target.id) {
-                element.removeAttribute(this.appRemoveAttr)
-            }
+            // if (element.id !== event.target.id) {
+            //     element.removeAttribute(this.appRemoveAttr)
+            // }
+            element.removeAttribute(this.appRemoveAttr)
         })
 
 

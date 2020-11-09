@@ -8,7 +8,7 @@ import { IntervalToggleDirective } from "./interval-toggle.directive";
 })
 export class VirtualKeyDirective implements OnInit {
 
-    // timerTogglePlaceholder: NodeJS.Timer
+    timerTogglePlaceholder: NodeJS.Timer
 
     constructor(
         private formInputElement: ElementRef,
@@ -44,6 +44,7 @@ export class VirtualKeyDirective implements OnInit {
         this.keyboardService.setAttribute('placeholder', '|')
         // this.timerTogglePlaceholder = setInterval(() => {
         //     this.formInputElement.nativeElement.classList.toggle('not-empty')
+        //     console.log('INTERVAL')
         // }, 500)
     }
 }

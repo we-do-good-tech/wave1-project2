@@ -5,10 +5,10 @@
         <div class="smsCode">
             <input
                 appLimitInput
+                [appIntervalToggle]="'not-empty'"
                 #first
                 id="1"
                 ngModel="virtualkey"
-                [appIntervalToggle]="'not-empty'"
                 required type="number"
                 pattern="^\d{1}$"
                 name="first"
