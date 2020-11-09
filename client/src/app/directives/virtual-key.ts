@@ -58,6 +58,7 @@ export class VirtualKeyDirective implements OnInit {
             });
 
             this.formInputElement.nativeElement.dispatchEvent(newEvent);
+            this.keyboardService.removeAttribute('placeholder')
         }
         this.formInputElement.nativeElement.blur()
     }

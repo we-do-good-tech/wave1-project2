@@ -143,9 +143,9 @@ class InputFocusDirective {
     constructor(formElement) {
         this.formElement = formElement;
     }
-    ngAfterViewInit() {
+    ngOnInit() {
         this.formElement.nativeElement[0].focus();
-        this.formElement.nativeElement[0].removeAttribute('placeholder');
+        this.formElement.nativeElement[0].blur();
     }
     check() {
         setTimeout(() => {
@@ -1842,6 +1842,7 @@ class VirtualKeyDirective {
                 cancelable: true,
             });
             this.formInputElement.nativeElement.dispatchEvent(newEvent);
+            this.keyboardService.removeAttribute('placeholder');
         }
         this.formInputElement.nativeElement.blur();
     }
