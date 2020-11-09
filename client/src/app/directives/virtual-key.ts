@@ -40,11 +40,25 @@ export class VirtualKeyDirective implements OnInit {
         console.log('FOCUS EVENT')
         // clearInterval(this.timerTogglePlaceholder)
         this.keyboardService.setElement(this.formInputElement.nativeElement);
-        // this.formInputElement.nativeElement.setAttribute('placeholder', '|')
         this.keyboardService.setAttribute('placeholder', '|')
         // this.timerTogglePlaceholder = setInterval(() => {
         //     this.formInputElement.nativeElement.classList.toggle('not-empty')
         //     console.log('INTERVAL')
         // }, 500)
+    }
+
+
+    @HostListener('click', ['$event'])
+    onClick(event: any) {
+        if (event.target.value) {
+            this.ngModel.valueAccessor.writeValue(null)
+            const newEvent = new Event('input', {
+                bubbles: true,
+                cancelable: true,
+            });
+
+            this.formInputElement.nativeElement.dispatchEvent(newEvent);
+        }
+        this.formInputElement.nativeElement.blur()
     }
 }

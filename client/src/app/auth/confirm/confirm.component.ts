@@ -39,6 +39,7 @@ export class ConfirmComponent implements AfterViewInit, OnDestroy, OnInit {
 
     ngAfterViewInit(): void {
         this.subFormChange = this.form.valueChanges.subscribe((result) => {
+            console.log(result)
             if (this.form.invalid) return
             else if (this.form.valid) {
                 let code: string = "";
@@ -59,7 +60,7 @@ export class ConfirmComponent implements AfterViewInit, OnDestroy, OnInit {
                     }, () => {
                         this.form.resetForm()
                         this.firstInput.nativeElement.focus()
-                        // this.firstInput.nativeElement.blur()
+                        this.firstInput.nativeElement.blur()
                     });
             }
         })

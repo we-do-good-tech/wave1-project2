@@ -649,16 +649,13 @@ class RemoveAttrDirective {
     constructor(parentElemet) {
         this.parentElemet = parentElemet;
     }
-    ngOnInit() {
-        // this.parentElemet.nativeElement[0].removeAttribute('placeholder')
-    }
     onClick(event) {
         const elements = this.parentElemet.nativeElement.querySelectorAll(this.elementName);
         elements.forEach((element) => {
-            // if (element.id !== event.target.id) {
-            //     element.removeAttribute(this.appRemoveAttr)
-            // }
-            element.removeAttribute(this.appRemoveAttr);
+            if (element.id !== event.target.id) {
+                element.removeAttribute(this.appRemoveAttr);
+            }
+            // element.removeAttribute(this.appRemoveAttr)
         });
     }
 }
@@ -1831,17 +1828,27 @@ class VirtualKeyDirective {
         console.log('FOCUS EVENT');
         // clearInterval(this.timerTogglePlaceholder)
         this.keyboardService.setElement(this.formInputElement.nativeElement);
-        // this.formInputElement.nativeElement.setAttribute('placeholder', '|')
         this.keyboardService.setAttribute('placeholder', '|');
         // this.timerTogglePlaceholder = setInterval(() => {
         //     this.formInputElement.nativeElement.classList.toggle('not-empty')
         //     console.log('INTERVAL')
         // }, 500)
     }
+    onClick(event) {
+        if (event.target.value) {
+            this.ngModel.valueAccessor.writeValue(null);
+            const newEvent = new Event('input', {
+                bubbles: true,
+                cancelable: true,
+            });
+            this.formInputElement.nativeElement.dispatchEvent(newEvent);
+        }
+        this.formInputElement.nativeElement.blur();
+    }
 }
 VirtualKeyDirective.ɵfac = function VirtualKeyDirective_Factory(t) { return new (t || VirtualKeyDirective)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgModel"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_keyboard_service__WEBPACK_IMPORTED_MODULE_2__["KeyboardService"])); };
 VirtualKeyDirective.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({ type: VirtualKeyDirective, selectors: [["", "ngModel", ""], ["", "virtualkey", ""]], hostBindings: function VirtualKeyDirective_HostBindings(rf, ctx) { if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("focus", function VirtualKeyDirective_focus_HostBindingHandler() { return ctx.onFocus(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("focus", function VirtualKeyDirective_focus_HostBindingHandler() { return ctx.onFocus(); })("click", function VirtualKeyDirective_click_HostBindingHandler($event) { return ctx.onClick($event); });
     } } });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](VirtualKeyDirective, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Directive"],
@@ -1851,6 +1858,9 @@ VirtualKeyDirective.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefi
     }], function () { return [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] }, { type: _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgModel"] }, { type: _services_keyboard_service__WEBPACK_IMPORTED_MODULE_2__["KeyboardService"] }]; }, { onFocus: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"],
             args: ["focus"]
+        }], onClick: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"],
+            args: ['click', ['$event']]
         }] }); })();
 
 

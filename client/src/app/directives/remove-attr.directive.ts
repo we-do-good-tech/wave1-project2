@@ -1,30 +1,26 @@
-import { Directive, ElementRef, HostListener, Input, OnInit } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+import { NgModel } from '@angular/forms';
 
 @Directive({
     selector: '[appRemoveAttr]'
 })
-export class RemoveAttrDirective implements OnInit {
+export class RemoveAttrDirective {
 
     @Input() appRemoveAttr: string
     @Input('elementName') elementName: string
 
 
-    constructor(private parentElemet: ElementRef) {
-    }
+    constructor(private parentElemet: ElementRef) { }
 
-    ngOnInit() {
-        // this.parentElemet.nativeElement[0].removeAttribute('placeholder')
-    }
 
     @HostListener('click', ['$event'])
     onClick(event: any): void {
         const elements = this.parentElemet.nativeElement.querySelectorAll(this.elementName)
-
         elements.forEach((element: HTMLElement) => {
-            // if (element.id !== event.target.id) {
-            //     element.removeAttribute(this.appRemoveAttr)
-            // }
-            element.removeAttribute(this.appRemoveAttr)
+            if (element.id !== event.target.id) {
+                element.removeAttribute(this.appRemoveAttr)
+            }
+            // element.removeAttribute(this.appRemoveAttr)
         })
 
 

@@ -10,7 +10,7 @@ export class InputFocusDirective implements AfterViewInit {
 
     ngAfterViewInit(): void {
         this.formElement.nativeElement[0].focus()
-        this.formElement.nativeElement[0].removeAttribute('placeholder')
+        this.formElement.nativeElement[0].blur()
     }
 
 
