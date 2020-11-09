@@ -14,15 +14,6 @@ module.exports.getStudents = async function (request, response) {
     const query = `select * where F=${Number(request.userData.teacherId)}`;
     const sheetId = keys.GOOGLE_SHEETS.sheetsIds.childrens
 
-    console.log(request.session.user)
-
-    if (request.session.user.studentsList) {
-        console.log('CACHE STUDENTS')
-        return setTimeout(() => {
-            return response.status(200).send(request.session.user.studentsList)
-        }, 1000 * 7);
-    }
-
     try {
         const sdudents = await googleSheetsService.find(
             query,

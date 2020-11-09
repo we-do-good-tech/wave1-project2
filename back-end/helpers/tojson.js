@@ -3,7 +3,7 @@ function convertSheetsDataToObjectsArray(data, sheetName) {
         case 'TEACHERS':
             return data.map(([id, fullName, email]) => {
                 return {
-                    id: id,
+                    id: Number(id),
                     firstName: fullName.split(' ').slice(0, 1)[0],
                     email: email,
                 };

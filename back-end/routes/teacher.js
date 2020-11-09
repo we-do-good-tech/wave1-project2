@@ -5,6 +5,7 @@ const { verifyToken } = require('../middlewares/auth-token')
 const { findReport } = require('../middlewares/find-report')
 const { validate } = require('../middlewares/validate')
 const { authSession } = require('../middlewares/auth-session')
+const cache = require('../services/cache/cache')
 const validators = require('../validators/validators')
 const keys = require('../config/keys')
 
@@ -14,6 +15,7 @@ const limitResendSignDays = 1
 router.get(
     '/students',
     verifyToken,
+    cache.studentsList,
     authSeets,
     teacherController.getStudents
 )
