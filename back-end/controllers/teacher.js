@@ -18,7 +18,9 @@ module.exports.getStudents = async function (request, response) {
 
     if (request.session.user.studentsList) {
         console.log('CACHE STUDENTS')
-        return response.status(200).send(request.session.user.studentsList)
+        return setTimeout(() => {
+            return response.status(200).send(request.session.user.studentsList)
+        }, 1000 * 7);
     }
 
     try {
