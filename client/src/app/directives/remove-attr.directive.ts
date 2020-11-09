@@ -20,10 +20,7 @@ export class RemoveAttrDirective {
             if (element.id !== event.target.id) {
                 element.removeAttribute(this.appRemoveAttr)
             }
-            // element.removeAttribute(this.appRemoveAttr)
         })
-
-
     }
 
 }

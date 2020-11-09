@@ -1,11 +1,12 @@
 const googleSheetsService = require("../services/google-sheets");
 const { sendMail } = require("../send-email/transporter");
-const { confirmCode } = require("../services/confirm-code");
+const { ConfirmCode } = require("../services/confirm-code");
 const { emailOptions } = require("../services/emails/emails.options");
 const emailTamplate = require('../services/emails/email.tamplates')
 const { createToken } = require("../services/tokens");
 const keys = require("../config/keys");
 const { convertSheetsDataToObjectsArray } = require('../helpers/tojson')
+
 
 
 module.exports.authTeacherEmail = async function (request, response) {
@@ -28,27 +29,27 @@ module.exports.authTeacherEmail = async function (request, response) {
         }
 
         const toJson = convertSheetsDataToObjectsArray(teacher, 'TEACHERS')[0]
-        // console.log(toJson)
 
-        confirmCode.createConfirmCode();
+        const newCode = new ConfirmCode()
 
         const options = emailOptions(
             toJson.email,
-            emailTamplate.confirmCode(confirmCode.getConfirmCode())
+            emailTamplate.confirmCode(newCode.getConfirmCode())
         );
 
         sendMail(options);
 
-        confirmCode.setTimeExpireConfirmCode();
+        request.session.user = {
+            userId: toJson.id,
+            email: toJson.email,
+            firstName: toJson.firstName,
+            confirmCode: newCode.getConfirmCode(),
+            confirmCodeExpiresIn: new Date().getTime() + (keys.CONFIRM_CODE.expiresIn * 1000)
+        }
 
         return response.status(200).send({
             message: "USER FOUND",
             confirmCodeExpire: keys.CONFIRM_CODE.expiresIn,
-            userLog: {
-                userId: toJson.id,
-                email: toJson.email,
-                firstName: toJson.firstName,
-            },
         });
     } catch (error) {
         console.log(error);
@@ -60,15 +61,11 @@ module.exports.authTeacherEmail = async function (request, response) {
 
 
 module.exports.authConfirmCode = async function (request, response) {
-    const { code, userId } = request.body;
-    console.log(request.body.userLog)
+    const { code } = request.body;
+    const { userId, email, firstName, confirmCode, confirmCodeExpiresIn } = request.session.user
 
-
-    if (code === confirmCode.getConfirmCode()) {
+    if (code === confirmCode && new Date().getTime() < confirmCodeExpiresIn) {
         console.log("CODE IS CONFIRM");
-        confirmCode.deleteConfirmCode();
-        confirmCode.clearTimer()
-
         const token = createToken({
             teacherId: userId,
         }, keys.TOKENS.ACCESS_TOKEN.secretTokenKey, keys.TOKENS.ACCESS_TOKEN.expiresIn);
@@ -78,6 +75,7 @@ module.exports.authConfirmCode = async function (request, response) {
             isLog: true,
             token: token,
             tokenExpiresIn: keys.TOKENS.ACCESS_TOKEN.expiresIn,
+            userName: firstName
         });
     }
 
@@ -88,19 +86,20 @@ module.exports.authConfirmCode = async function (request, response) {
 
 
 module.exports.newConfirmCode = async function (request, response) {
-    const { teacherEmail } = request.body;
 
-    confirmCode.clearTimer()
-    confirmCode.createConfirmCode();
+    const { email } = request.session.user
+
+    const newCode = new ConfirmCode()
 
     const options = emailOptions(
-        teacherEmail,
-        emailTamplate.confirmCode(confirmCode.getConfirmCode())
+        email,
+        emailTamplate.confirmCode(newCode.getConfirmCode())
     );
 
-    sendMail(options)
+    request.session.user.confirmCode = newCode.getConfirmCode()
+    request.session.user.confirmCodeExpiresIn = new Date().getTime() + (keys.CONFIRM_CODE.expiresIn * 1000)
 
-    confirmCode.setTimeExpireConfirmCode();
+    sendMail(options)
 
     return response.status(200).send({
         message: "נשלח קוד חדש",

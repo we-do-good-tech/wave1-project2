@@ -21,7 +21,7 @@ export class StudentsService {
             console.log('NO HTTP CALL STUDENTS')
             return of(this.students);
         }
-        return this.http.get<Student[]>("api/teacher/students")
+        return this.http.get<Student[]>("api/teacher/students", { withCredentials: true })
             .pipe(
                 tap((result) => {
                     this.students = result;

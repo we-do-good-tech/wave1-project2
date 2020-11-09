@@ -14,7 +14,7 @@ export class AuthService {
     private isLogChange: BehaviorSubject<boolean>;
     private token: string;
     private tokenTimer: NodeJS.Timer;
-    private userLog: UserLog;
+    // private userLog: UserLog;
     private userName: string
     private authProccess: boolean
     private authProccessChnage: BehaviorSubject<boolean>
@@ -53,7 +53,6 @@ export class AuthService {
 
     getAuthData(): void {
         const authData = this.getSessionStorage();
-        // console.log(authData)
 
         if (!authData) {
             return this.clearLoginInfo();
@@ -81,7 +80,6 @@ export class AuthService {
             .post<{
                 message: string;
                 confirmCodeExpire: number;
-                userLog: UserLog
             }>("api/auth/teacherEmail", { teacherEmail: teacherEmail })
             .pipe(
                 map((result) => {
@@ -89,8 +87,6 @@ export class AuthService {
                         this.confirmCodeExpireTime = result.confirmCodeExpire
                         this.authProccess = true
                         this.authProccessChnage.next(this.authProccess)
-                        this.userLog = result.userLog
-                        this.userName = result.userLog.firstName
                     }
                     return result.message;
                 })
@@ -104,10 +100,12 @@ export class AuthService {
                 isLog: boolean;
                 token: string;
                 tokenExpiresIn: number;
-            }>("api/auth/teacher/confirm-code", { code: code, userId: Number(this.userLog?.userId) })
+                userName: string
+            }>(
+                "api/auth/teacher/confirm-code", { code: code }, { withCredentials: true })
             .pipe(
                 map((result) => {
-
+                    this.userName = result.userName
                     this.isLog = result.isLog;
                     this.isLogChange.next(this.isLog);
 
@@ -120,7 +118,7 @@ export class AuthService {
                     const now = new Date();
                     const expiresInDate = new Date(now.getTime() + expiresIn * 1000);
 
-                    this.saveSessionStorage(this.token, expiresInDate, this.userLog.firstName);
+                    this.saveSessionStorage(this.token, expiresInDate, this.userName);
 
                     return result.message;
                 })
@@ -129,17 +127,21 @@ export class AuthService {
 
     resendConfirmCode(): Observable<string> {
         return this.http
-            .post<{
+            .get<{
                 message: string;
                 confirmCodeExpire: number;
-            }>("api/auth/new-confirm-code", { teacherEmail: this.userLog?.email })
+            }>("api/auth/new-confirm-code", { withCredentials: true })
             .pipe(
                 map((result) => {
-                    // console.log(result)
                     this.confirmCodeExpireTime = result.confirmCodeExpire
                     return result.message;
                 })
             );
+    }
+
+
+    checkSession() {
+        return this.http.get("api/auth/teacher/auth-session", { withCredentials: true })
     }
 
 
@@ -186,7 +188,7 @@ export class AuthService {
     clearLoginInfo(): void {
         this.token = null;
         this.isLog = false;
-        this.userLog = null;
+        this.userName = null;
         this.isLogChange.next(this.isLog);
         clearTimeout(this.tokenTimer);
         this.removeSessionStorage();

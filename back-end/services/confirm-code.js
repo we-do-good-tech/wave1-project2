@@ -1,12 +1,9 @@
 class ConfirmCode {
-    timer
-
-    constructor() {
-        if (!this.instance) {
-            ConfirmCode.instance = this;
+    constructor(expireIn) {
+        if (expireIn) {
+            this.expireIn = expireIn
         }
-
-        return ConfirmCode.instance;
+        this.createConfirmCode()
     }
 
     createConfirmCode() {
@@ -24,24 +21,11 @@ class ConfirmCode {
     deleteConfirmCode() {
         this.code = null
     }
-
-    clearTimer() {
-        clearTimeout(this.timer)
-    }
-
-    setTimeExpireConfirmCode() {
-        this.timer = setTimeout(() => {
-            this.deleteConfirmCode()
-            console.log(this.code, 'EXPIRED TIME CONFIRM CODE')
-        }, 1000 * 60);
-    }
 }
 
-const confirmCode = new ConfirmCode();
-// Object.freeze(confirmCode);
 
 module.exports = {
-    confirmCode,
+    ConfirmCode,
 };
 
 

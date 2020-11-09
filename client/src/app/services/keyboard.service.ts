@@ -10,7 +10,7 @@ export class KeyboardService {
     private keyboardEvent: EventEmitter<string>;
 
     constructor() {
-        this.keyboardEvent = new EventEmitter();
+        this.keyboardEvent = new EventEmitter<string>();
     }
 
 
@@ -36,6 +36,16 @@ export class KeyboardService {
 
     removeAttribute(attributeName: string): void {
         this.inputElement.removeAttribute(attributeName)
+    }
+
+
+    createEvent(eventName: string): Event {
+        const event = new Event(eventName, {
+            bubbles: true,
+            cancelable: true,
+        })
+
+        return event
     }
 
 

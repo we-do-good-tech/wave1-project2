@@ -5,6 +5,7 @@ import { AfterViewInit, Directive, ElementRef, HostListener, OnInit } from '@ang
 })
 export class InputFocusDirective implements OnInit {
 
+
     constructor(private formElement: ElementRef) { }
 
 

@@ -3,6 +3,7 @@ const authControllers = require('../controllers/auth')
 const { authSeets } = require('../middlewares/auth-sheets')
 const validators = require('../validators/validators')
 const { validate } = require('../middlewares/validate')
+const { authSession } = require('../middlewares/auth-session')
 
 router.post(
     '/teacherEmail',
@@ -12,20 +13,17 @@ router.post(
     authControllers.authTeacherEmail
 )
 
-router.post(
+router.get(
     '/new-confirm-code',
-    [validators.email('teacherEmail')],
-    validate,
+    authSession,
     authControllers.newConfirmCode
 )
 
 router.post(
     '/teacher/confirm-code',
-    [
-        validators.confirmCode('code'),
-        validators.numberPropery('userId')
-    ],
+    [validators.confirmCode('code')],
     validate,
+    authSession,
     authControllers.authConfirmCode
 )
 

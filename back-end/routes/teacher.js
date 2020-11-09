@@ -4,6 +4,7 @@ const { authSeets } = require('../middlewares/auth-sheets')
 const { verifyToken } = require('../middlewares/auth-token')
 const { findReport } = require('../middlewares/find-report')
 const { validate } = require('../middlewares/validate')
+const { authSession } = require('../middlewares/auth-session')
 const validators = require('../validators/validators')
 const keys = require('../config/keys')
 

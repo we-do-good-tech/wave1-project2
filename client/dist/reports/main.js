@@ -655,7 +655,6 @@ class RemoveAttrDirective {
             if (element.id !== event.target.id) {
                 element.removeAttribute(this.appRemoveAttr);
             }
-            // element.removeAttribute(this.appRemoveAttr)
         });
     }
 }
@@ -1531,7 +1530,6 @@ class AuthService {
     }
     getAuthData() {
         const authData = this.getSessionStorage();
-        // console.log(authData)
         if (!authData) {
             return this.clearLoginInfo();
         }
@@ -1558,17 +1556,15 @@ class AuthService {
                 this.confirmCodeExpireTime = result.confirmCodeExpire;
                 this.authProccess = true;
                 this.authProccessChnage.next(this.authProccess);
-                this.userLog = result.userLog;
-                this.userName = result.userLog.firstName;
             }
             return result.message;
         }));
     }
     confirmCode(code) {
-        var _a;
         return this.http
-            .post("api/auth/teacher/confirm-code", { code: code, userId: Number((_a = this.userLog) === null || _a === void 0 ? void 0 : _a.userId) })
+            .post("api/auth/teacher/confirm-code", { code: code }, { withCredentials: true })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((result) => {
+            this.userName = result.userName;
             this.isLog = result.isLog;
             this.isLogChange.next(this.isLog);
             const expiresIn = result.tokenExpiresIn;
@@ -1576,19 +1572,20 @@ class AuthService {
             this.setTokenTimer(expiresIn);
             const now = new Date();
             const expiresInDate = new Date(now.getTime() + expiresIn * 1000);
-            this.saveSessionStorage(this.token, expiresInDate, this.userLog.firstName);
+            this.saveSessionStorage(this.token, expiresInDate, this.userName);
             return result.message;
         }));
     }
     resendConfirmCode() {
-        var _a;
         return this.http
-            .post("api/auth/new-confirm-code", { teacherEmail: (_a = this.userLog) === null || _a === void 0 ? void 0 : _a.email })
+            .get("api/auth/new-confirm-code", { withCredentials: true })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((result) => {
-            // console.log(result)
             this.confirmCodeExpireTime = result.confirmCodeExpire;
             return result.message;
         }));
+    }
+    checkSession() {
+        return this.http.get("api/auth/teacher/auth-session", { withCredentials: true });
     }
     setAuthData(authResult) {
     }
@@ -1618,7 +1615,7 @@ class AuthService {
     clearLoginInfo() {
         this.token = null;
         this.isLog = false;
-        this.userLog = null;
+        this.userName = null;
         this.isLogChange.next(this.isLog);
         clearTimeout(this.tokenTimer);
         this.removeSessionStorage();
@@ -1717,6 +1714,13 @@ class KeyboardService {
     removeAttribute(attributeName) {
         this.inputElement.removeAttribute(attributeName);
     }
+    createEvent(eventName) {
+        const event = new Event(eventName, {
+            bubbles: true,
+            cancelable: true,
+        });
+        return event;
+    }
 }
 KeyboardService.ɵfac = function KeyboardService_Factory(t) { return new (t || KeyboardService)(); };
 KeyboardService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: KeyboardService, factory: KeyboardService.ɵfac, providedIn: "root" });
@@ -1800,54 +1804,52 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "3Pt+");
 /* harmony import */ var _services_keyboard_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/keyboard.service */ "o4+B");
+/* harmony import */ var _focus_directive__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./focus.directive */ "7BlV");
+
 
 
 
 
 class VirtualKeyDirective {
-    constructor(formInputElement, ngModel, keyboardService) {
+    constructor(formInputElement, ngModel, keyboardService, appInputFocus) {
         this.formInputElement = formInputElement;
         this.ngModel = ngModel;
         this.keyboardService = keyboardService;
+        this.appInputFocus = appInputFocus;
     }
     ngOnInit() {
-        this.keyboardService.onKeyPress().subscribe(key => {
-            console.log('EMIT KEY');
+        this.keyboardService.onKeyPress().subscribe((key) => {
             if (document.activeElement === this.formInputElement.nativeElement) {
                 this.ngModel.valueAccessor.writeValue(key);
-                const event = new Event('input', {
-                    bubbles: true,
-                    cancelable: true,
-                });
-                this.formInputElement.nativeElement.dispatchEvent(event);
+                const newEvent = this.keyboardService.createEvent('input');
+                this.formInputElement.nativeElement.dispatchEvent(newEvent);
                 this.keyboardService.removeAttribute('placeholder');
             }
         });
     }
     onFocus() {
         console.log('FOCUS EVENT');
-        // clearInterval(this.timerTogglePlaceholder)
-        this.keyboardService.setElement(this.formInputElement.nativeElement);
-        this.keyboardService.setAttribute('placeholder', '|');
-        // this.timerTogglePlaceholder = setInterval(() => {
-        //     this.formInputElement.nativeElement.classList.toggle('not-empty')
-        //     console.log('INTERVAL')
-        // }, 500)
+        if (this.appInputFocus) {
+            this.keyboardService.setElement(this.formInputElement.nativeElement);
+            this.keyboardService.setAttribute('placeholder', '|');
+        }
+        else {
+            return;
+        }
     }
     onClick(event) {
-        if (event.target.value) {
-            this.ngModel.valueAccessor.writeValue(null);
-            const newEvent = new Event('input', {
-                bubbles: true,
-                cancelable: true,
-            });
-            this.formInputElement.nativeElement.dispatchEvent(newEvent);
-            this.keyboardService.removeAttribute('placeholder');
+        if (this.appInputFocus) {
+            if (event.target.value) {
+                this.ngModel.valueAccessor.writeValue(null);
+                const newEvent = this.keyboardService.createEvent('input');
+                this.formInputElement.nativeElement.dispatchEvent(newEvent);
+                this.keyboardService.removeAttribute('placeholder');
+            }
+            this.formInputElement.nativeElement.blur();
         }
-        this.formInputElement.nativeElement.blur();
     }
 }
-VirtualKeyDirective.ɵfac = function VirtualKeyDirective_Factory(t) { return new (t || VirtualKeyDirective)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgModel"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_keyboard_service__WEBPACK_IMPORTED_MODULE_2__["KeyboardService"])); };
+VirtualKeyDirective.ɵfac = function VirtualKeyDirective_Factory(t) { return new (t || VirtualKeyDirective)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgModel"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_keyboard_service__WEBPACK_IMPORTED_MODULE_2__["KeyboardService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_focus_directive__WEBPACK_IMPORTED_MODULE_3__["InputFocusDirective"], 8)); };
 VirtualKeyDirective.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({ type: VirtualKeyDirective, selectors: [["", "ngModel", ""], ["", "virtualkey", ""]], hostBindings: function VirtualKeyDirective_HostBindings(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("focus", function VirtualKeyDirective_focus_HostBindingHandler() { return ctx.onFocus(); })("click", function VirtualKeyDirective_click_HostBindingHandler($event) { return ctx.onClick($event); });
     } } });
@@ -1856,7 +1858,9 @@ VirtualKeyDirective.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefi
         args: [{
                 selector: '[ngModel],[virtualkey]'
             }]
-    }], function () { return [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] }, { type: _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgModel"] }, { type: _services_keyboard_service__WEBPACK_IMPORTED_MODULE_2__["KeyboardService"] }]; }, { onFocus: [{
+    }], function () { return [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] }, { type: _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgModel"] }, { type: _services_keyboard_service__WEBPACK_IMPORTED_MODULE_2__["KeyboardService"] }, { type: _focus_directive__WEBPACK_IMPORTED_MODULE_3__["InputFocusDirective"], decorators: [{
+                type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Optional"]
+            }] }]; }, { onFocus: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"],
             args: ["focus"]
         }], onClick: [{
@@ -1887,13 +1891,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function KeyboardComponent_app_keyboard_button_1_Template(rf, ctx) { if (rf & 1) {
-    const _r2567 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+    const _r5765 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "app-keyboard-button", 2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function KeyboardComponent_app_keyboard_button_1_Template_app_keyboard_button_click_0_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r2567); const number_r2565 = ctx.$implicit; const ctx_r2566 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r2566.onNumberClick($event, number_r2565); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function KeyboardComponent_app_keyboard_button_1_Template_app_keyboard_button_click_0_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r5765); const number_r5763 = ctx.$implicit; const ctx_r5764 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r5764.onNumberClick($event, number_r5763); });
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const number_r2565 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("number", number_r2565);
+    const number_r5763 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("number", number_r5763);
 } }
 class KeyboardComponent {
     constructor(keyboardService) {

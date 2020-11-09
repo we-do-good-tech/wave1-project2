@@ -945,7 +945,7 @@ class StudentsService {
             console.log('NO HTTP CALL STUDENTS');
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(this.students);
         }
-        return this.http.get("api/teacher/students")
+        return this.http.get("api/teacher/students", { withCredentials: true })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])((result) => {
             this.students = result;
         }));

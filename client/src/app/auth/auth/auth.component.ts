@@ -10,14 +10,14 @@ import { formatDate } from "../../services/helpers/time.range";
 })
 export class AuthComponent implements OnInit, OnDestroy {
 
-    authProccess: boolean = true
+    authProccess: boolean = false
     subAuthProccess: Subscription
 
     constructor(private authService: AuthService) { }
 
     ngOnInit(): void {
-        // this.subAuthProccess = this.authService.getAuthProccessChange()
-        //     .subscribe((result) => this.authProccess = result)
+        this.subAuthProccess = this.authService.getAuthProccessChange()
+            .subscribe((result) => this.authProccess = result)
     }
 
     ngOnDestroy(): void {
