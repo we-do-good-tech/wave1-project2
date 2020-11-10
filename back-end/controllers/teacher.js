@@ -95,6 +95,8 @@ module.exports.createReport = async function (request, response) {
             const options = emailOptions(parentEmail, emailTamplate.parentSign(token))
             sendMail(options)
 
+            request.session.user.reportsList = []
+
             return response.status(200).send({
                 message: 'REPORT CREATED',
                 index: findFirstNumberOnString(reportCreated.updates.updatedRange),
@@ -118,7 +120,7 @@ module.exports.createReport = async function (request, response) {
 module.exports.getReportsUnConfirm = async function (request, response) {
     const sheetId = keys.GOOGLE_SHEETS.sheetsIds.reports
     const query = `select A,B,C,D,E,F,I,L,M where J=${Number(request.userData.teacherId)}and G=${false}`;
-
+    console.log(request.session.user)
     try {
         const reports = await googleSheetsService.find(
             query,
@@ -132,6 +134,7 @@ module.exports.getReportsUnConfirm = async function (request, response) {
 
         const toJson = convertSheetsDataToObjectsArray(reports, 'REPORTS')
         // console.log(toJson)
+        request.session.user.reportsList = toJson
 
         return response.status(200).send(toJson)
     } catch (error) {
@@ -225,6 +228,9 @@ module.exports.resendParentSign = async function (request, response) {
 
             const options = emailOptions(parentEmail, emailTamplate.parentSign(token))
             sendMail(options)
+
+            request.session.user.reportsList = []
+
             return response.status(200).send({
                 message: 'UPDATE RESEND DATE PARENT SIGN'
             })

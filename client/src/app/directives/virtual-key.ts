@@ -30,12 +30,10 @@ export class VirtualKeyDirective implements OnInit {
 
     @HostListener("focus")
     onFocus(): void {
-        console.log('FOCUS EVENT')
+        // console.log('FOCUS EVENT')
         if (this.appInputFocus) {
             this.keyboardService.setElement(this.formInputElement.nativeElement);
             this.keyboardService.setAttribute('placeholder', '|')
-        } else {
-            return
         }
     }
 

@@ -35,10 +35,13 @@ export class ReportsService {
 
     createReport(report: Report): Observable<string> {
         // console.log(this.reports)
-        return this.http.post<{ message: string, index: number }>('api/teacher/create-report', report)
+        return this.http.post<{
+            message: string,
+            index: number
+        }>('api/teacher/create-report', report, { withCredentials: true })
             .pipe(
                 map((result) => {
-                    console.log(result)
+                    // console.log(result)
                     report.index = result.index
                     report.lastDateResendSignToParent = formatDate(new Date())
                     this.reports.push(report)
@@ -50,7 +53,7 @@ export class ReportsService {
 
 
     getMountlyStats(): Observable<ReportStats> {
-        return this.http.get<ReportStats>('api/teacher/reports/stats')
+        return this.http.get<ReportStats>('api/teacher/reports/stats', { withCredentials: true })
     }
 
 
@@ -59,8 +62,8 @@ export class ReportsService {
             console.log('NO HTTP CALL REPORST')
             return of(this.reports);
         }
-        // console.log('HTTP CALL REPORTS START')
-        return this.http.get<Report[]>("api/teacher/reports-unconfirm")
+        console.log('HTTP CALL REPORTS START')
+        return this.http.get<Report[]>("api/teacher/reports-unconfirm", { withCredentials: true })
             .pipe(
                 tap((result) => {
                     // console.log(result, 'HTTP CALL RESPONSE');
@@ -80,7 +83,9 @@ export class ReportsService {
             reportDate: report.reportDate,
             index: Number(report.index),
         }
-        return this.http.post<{ message: string }>('api/teacher/resend/parent-sign', reportInfo)
+        return this.http.post<{
+            message: string
+        }>('api/teacher/resend/parent-sign', reportInfo, { withCredentials: true })
             .pipe(
                 map((result) => {
                     const findIndex = this.reports.findIndex((r) => r.index == report.index)

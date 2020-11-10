@@ -1,5 +1,5 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
-import { NgModel } from '@angular/forms';
+
 
 @Directive({
     selector: '[appRemoveAttr]'

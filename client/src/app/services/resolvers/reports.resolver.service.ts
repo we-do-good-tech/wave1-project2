@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { Report } from 'src/app/interfaces/Report';
-import { LoaderService } from '../loader.service';
 import { ReportsService } from '../reports.service';
 
 
@@ -12,21 +10,11 @@ import { ReportsService } from '../reports.service';
 })
 export class ReportsResolverService implements Resolve<Report[]> {
 
-    constructor(private reportsService: ReportsService, private loaderService: LoaderService) { }
+    constructor(private reportsService: ReportsService) { }
 
-    resolve(
-        route: ActivatedRouteSnapshot,
-        state: RouterStateSnapshot
-    ): Observable<Report[]> {
+    resolve(): Observable<Report[]> {
         console.log('REPORTS RESOLVER START')
-        // this.loaderService.setStatus(true)
         return this.reportsService.getReportsNotConfirm()
-        // .pipe(
-        //     tap(() => {
-        //         // console.log('REPORTS RESOLVER RESPONSE')
-        //         this.loaderService.setStatus(false)
-        //     })
-        // )
     }
 
 

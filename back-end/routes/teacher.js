@@ -5,7 +5,7 @@ const { verifyToken } = require('../middlewares/auth-token')
 const { findReport } = require('../middlewares/find-report')
 const { validate } = require('../middlewares/validate')
 const { authSession } = require('../middlewares/auth-session')
-const cache = require('../services/cache/cache')
+const cache = require('../middlewares/cache/cache')
 const validators = require('../validators/validators')
 const keys = require('../config/keys')
 
@@ -15,6 +15,7 @@ const limitResendSignDays = 1
 router.get(
     '/students',
     verifyToken,
+    authSession,
     cache.studentsList,
     authSeets,
     teacherController.getStudents
@@ -48,6 +49,7 @@ router.post(
         )
     ],
     validate,
+    authSession,
     authSeets,
     findReport,
     teacherController.createReport
@@ -56,6 +58,8 @@ router.post(
 router.get(
     '/reports-unconfirm',
     verifyToken,
+    authSession,
+    cache.reporrsList,
     authSeets,
     teacherController.getReportsUnConfirm
 )
@@ -63,6 +67,7 @@ router.get(
 router.get(
     '/reports/stats',
     verifyToken,
+    authSession,
     authSeets,
     teacherController.getReportsStats
 )
@@ -79,6 +84,7 @@ router.post(
         validators.datePropery('reportDate')
     ],
     validate,
+    authSession,
     authSeets,
     findReport,
     teacherController.resendParentSign

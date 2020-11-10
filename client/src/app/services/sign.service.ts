@@ -30,7 +30,9 @@ export class SignService {
 
 
     sendSign(singImageBase64: Blob): Observable<string> {
-        return this.http.post<{ message: string }>('api/sign/parent', { singImageBase64: singImageBase64, token: this.token })
+        return this.http.post<{
+            message: string
+        }>('api/sign/parent', { singImageBase64: singImageBase64, token: this.token })
             .pipe(
                 map((result) => {
                     console.log(result)

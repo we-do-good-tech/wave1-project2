@@ -44,7 +44,9 @@ module.exports.authTeacherEmail = async function (request, response) {
             email: toJson.email,
             firstName: toJson.firstName,
             confirmCode: newCode.getConfirmCode(),
-            confirmCodeExpiresIn: new Date().getTime() + (keys.CONFIRM_CODE.expiresIn * 1000)
+            confirmCodeExpiresIn: new Date().getTime() + (keys.CONFIRM_CODE.expiresIn * 1000),
+            studentsList: [],
+            reportsList: []
         }
 
         return response.status(200).send({

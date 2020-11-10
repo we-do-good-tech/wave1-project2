@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Student } from 'src/app/interfaces/Student';
@@ -14,10 +14,7 @@ export class StudentsResolverService implements Resolve<Student[]> {
 
     constructor(private studentsService: StudentsService, private loaderService: LoaderService) { }
 
-    resolve(
-        route: ActivatedRouteSnapshot,
-        state: RouterStateSnapshot
-    ): Observable<Student[]> {
+    resolve(): Observable<Student[]> {
         this.loaderService.setStatus(true)
         return this.studentsService.getStudents()
             .pipe(

@@ -11,7 +11,7 @@ export class InputFocusDirective implements OnInit {
 
     ngOnInit(): void {
         this.formElement.nativeElement[0].focus()
-        this.formElement.nativeElement[0].blur()
+        // this.formElement.nativeElement[0].blur()
     }
 
 

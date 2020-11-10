@@ -24,10 +24,14 @@ server.use(express.static(path.join(__dirname, "client/dist/reports")));
 
 server.use(session({
     store: new memoryStore({
-        checkPeriod: 1000 * 60 * 2
+        checkPeriod: 1000 * 5
     }),
     secret: 'DSFADFASDF324FDSdsafds',
-    resave: false
+    resave: false,
+    cookie: {
+        expires: 1000 * 60 * 120
+    }
+
 }))
 
 

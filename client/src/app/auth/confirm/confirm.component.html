@@ -5,7 +5,8 @@
         <div class="smsCode">
             <input
                 appLimitInput
-                [appIntervalToggle]="'not-empty'"
+                appOnBlur
+                [appIntervalToggle]="{className: 'not-empty', time: 500}"
                 #first
                 id="0"
                 ngModel="virtualkey"
@@ -15,9 +16,10 @@
                 #one="ngModel">
             <input
                 appLimitInput
+                appOnBlur
                 id="1"
                 ngModel="virtualkey"
-                [appIntervalToggle]="'not-empty'"
+                [appIntervalToggle]="{className: 'not-empty', time: 500}"
                 required
                 type="number"
                 pattern="^\d{1}$"
@@ -25,9 +27,10 @@
                 #two="ngModel">
             <input
                 appLimitInput
-                ngModel="virtualkey"
-                [appIntervalToggle]="'not-empty'"
+                appOnBlur
                 id="2"
+                ngModel="virtualkey"
+                [appIntervalToggle]="{className: 'not-empty', time: 500}"
                 required
                 type="number"
                 pattern="^\d{1}$"
@@ -35,9 +38,10 @@
                 #three="ngModel">
             <input
                 appLimitInput
-                ngModel="virtualkey"
-                [appIntervalToggle]="'not-empty'"
+                appOnBlur
                 id="3"
+                ngModel="virtualkey"
+                [appIntervalToggle]="{className: 'not-empty', time: 500}"
                 required
                 type="number"
                 pattern="^\d{1}$"

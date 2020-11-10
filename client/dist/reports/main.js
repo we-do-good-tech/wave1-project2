@@ -145,7 +145,7 @@ class InputFocusDirective {
     }
     ngOnInit() {
         this.formElement.nativeElement[0].focus();
-        this.formElement.nativeElement[0].blur();
+        // this.formElement.nativeElement[0].blur()
     }
     check() {
         setTimeout(() => {
@@ -191,31 +191,26 @@ class IntervalToggleDirective {
     constructor(element) {
         this.element = element;
     }
-    intervalToggle() {
+    ngOnInit() {
         this.clearInterval();
-        this.timerTogglePlaceholder = setInterval(() => {
-            this.element.nativeElement.classList.toggle(this.className);
-        }, 500);
+        this.timerToggle = setInterval(() => {
+            this.element.nativeElement.classList.toggle(this.toggleData.className);
+        }, this.toggleData.time);
     }
     clearInterval() {
-        clearInterval(this.timerTogglePlaceholder);
+        clearInterval(this.timerToggle);
     }
 }
 IntervalToggleDirective.ɵfac = function IntervalToggleDirective_Factory(t) { return new (t || IntervalToggleDirective)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])); };
-IntervalToggleDirective.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({ type: IntervalToggleDirective, selectors: [["", "appIntervalToggle", ""]], hostBindings: function IntervalToggleDirective_HostBindings(rf, ctx) { if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("focus", function IntervalToggleDirective_focus_HostBindingHandler() { return ctx.intervalToggle(); });
-    } }, inputs: { className: ["appIntervalToggle", "className"] } });
+IntervalToggleDirective.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({ type: IntervalToggleDirective, selectors: [["", "appIntervalToggle", ""]], inputs: { toggleData: ["appIntervalToggle", "toggleData"] } });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](IntervalToggleDirective, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Directive"],
         args: [{
                 selector: '[appIntervalToggle]'
             }]
-    }], function () { return [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] }]; }, { className: [{
+    }], function () { return [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] }]; }, { toggleData: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"],
             args: ['appIntervalToggle']
-        }], intervalToggle: [{
-            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"],
-            args: ['focus']
         }] }); })();
 
 
@@ -464,9 +459,9 @@ class ReportsService {
     }
     createReport(report) {
         // console.log(this.reports)
-        return this.http.post('api/teacher/create-report', report)
+        return this.http.post('api/teacher/create-report', report, { withCredentials: true })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((result) => {
-            console.log(result);
+            // console.log(result)
             report.index = result.index;
             report.lastDateResendSignToParent = Object(_services_helpers_time_range__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(new Date());
             this.reports.push(report);
@@ -475,15 +470,15 @@ class ReportsService {
         }));
     }
     getMountlyStats() {
-        return this.http.get('api/teacher/reports/stats');
+        return this.http.get('api/teacher/reports/stats', { withCredentials: true });
     }
     getReportsNotConfirm() {
         if (this.reports.length > 0) {
             console.log('NO HTTP CALL REPORST');
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(this.reports);
         }
-        // console.log('HTTP CALL REPORTS START')
-        return this.http.get("api/teacher/reports-unconfirm")
+        console.log('HTTP CALL REPORTS START');
+        return this.http.get("api/teacher/reports-unconfirm", { withCredentials: true })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])((result) => {
             // console.log(result, 'HTTP CALL RESPONSE');
             this.reports = result;
@@ -498,7 +493,7 @@ class ReportsService {
             reportDate: report.reportDate,
             index: Number(report.index),
         };
-        return this.http.post('api/teacher/resend/parent-sign', reportInfo)
+        return this.http.post('api/teacher/resend/parent-sign', reportInfo, { withCredentials: true })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((result) => {
             const findIndex = this.reports.findIndex((r) => r.index == report.index);
             report.lastDateResendSignToParent = Object(_services_helpers_time_range__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(new Date());
@@ -783,8 +778,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _directives_style_elemet_selected_directive__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../directives/style-elemet-selected.directive */ "EF41");
 /* harmony import */ var _directives_remove_attr_directive__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../directives/remove-attr.directive */ "NmU7");
 /* harmony import */ var _directives_interval_toggle_directive__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../directives/interval-toggle.directive */ "9+1k");
-/* harmony import */ var _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../services/pipes/filter.pipe */ "Nvpg");
-/* harmony import */ var _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../services/pipes/hebrew-mount-name.pipe */ "DuIv");
+/* harmony import */ var _directives_on_blur_directive__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../directives/on-blur.directive */ "tBqr");
+/* harmony import */ var _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../services/pipes/filter.pipe */ "Nvpg");
+/* harmony import */ var _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../services/pipes/hebrew-mount-name.pipe */ "DuIv");
+
 
 
 
@@ -832,10 +829,11 @@ SharedModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjec
         _directives_style_element_directive__WEBPACK_IMPORTED_MODULE_17__["StyleElementDirective"],
         _directives_remove_attr_directive__WEBPACK_IMPORTED_MODULE_19__["RemoveAttrDirective"],
         _directives_style_elemet_selected_directive__WEBPACK_IMPORTED_MODULE_18__["StyleElemetSelectedDirective"],
-        _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_21__["FilterPipe"],
-        _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_22__["HebrewMountNamePipe"],
+        _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_22__["FilterPipe"],
+        _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_23__["HebrewMountNamePipe"],
         _meeting_info_meeting_info_component__WEBPACK_IMPORTED_MODULE_13__["MeetingInfoComponent"],
-        _directives_interval_toggle_directive__WEBPACK_IMPORTED_MODULE_20__["IntervalToggleDirective"]], imports: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"],
+        _directives_interval_toggle_directive__WEBPACK_IMPORTED_MODULE_20__["IntervalToggleDirective"],
+        _directives_on_blur_directive__WEBPACK_IMPORTED_MODULE_21__["OnBlurDirective"]], imports: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"],
         _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"],
         _ng_plus_signature_pad__WEBPACK_IMPORTED_MODULE_4__["SignaturePadModule"],
         _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"]], exports: [_header_header_component__WEBPACK_IMPORTED_MODULE_5__["HeaderComponent"],
@@ -851,11 +849,12 @@ SharedModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjec
         _directives_limit_input_directive__WEBPACK_IMPORTED_MODULE_14__["LimitInputDirective"],
         _directives_style_element_directive__WEBPACK_IMPORTED_MODULE_17__["StyleElementDirective"],
         _directives_style_elemet_selected_directive__WEBPACK_IMPORTED_MODULE_18__["StyleElemetSelectedDirective"],
-        _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_21__["FilterPipe"],
-        _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_22__["HebrewMountNamePipe"],
+        _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_22__["FilterPipe"],
+        _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_23__["HebrewMountNamePipe"],
         _meeting_info_meeting_info_component__WEBPACK_IMPORTED_MODULE_13__["MeetingInfoComponent"],
         _directives_remove_attr_directive__WEBPACK_IMPORTED_MODULE_19__["RemoveAttrDirective"],
-        _directives_interval_toggle_directive__WEBPACK_IMPORTED_MODULE_20__["IntervalToggleDirective"]] }); })();
+        _directives_interval_toggle_directive__WEBPACK_IMPORTED_MODULE_20__["IntervalToggleDirective"],
+        _directives_on_blur_directive__WEBPACK_IMPORTED_MODULE_21__["OnBlurDirective"]] }); })();
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](SharedModule, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
         args: [{
@@ -874,10 +873,11 @@ SharedModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjec
                     _directives_style_element_directive__WEBPACK_IMPORTED_MODULE_17__["StyleElementDirective"],
                     _directives_remove_attr_directive__WEBPACK_IMPORTED_MODULE_19__["RemoveAttrDirective"],
                     _directives_style_elemet_selected_directive__WEBPACK_IMPORTED_MODULE_18__["StyleElemetSelectedDirective"],
-                    _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_21__["FilterPipe"],
-                    _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_22__["HebrewMountNamePipe"],
+                    _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_22__["FilterPipe"],
+                    _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_23__["HebrewMountNamePipe"],
                     _meeting_info_meeting_info_component__WEBPACK_IMPORTED_MODULE_13__["MeetingInfoComponent"],
-                    _directives_interval_toggle_directive__WEBPACK_IMPORTED_MODULE_20__["IntervalToggleDirective"]
+                    _directives_interval_toggle_directive__WEBPACK_IMPORTED_MODULE_20__["IntervalToggleDirective"],
+                    _directives_on_blur_directive__WEBPACK_IMPORTED_MODULE_21__["OnBlurDirective"]
                 ],
                 imports: [
                     _angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"],
@@ -899,11 +899,12 @@ SharedModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjec
                     _directives_limit_input_directive__WEBPACK_IMPORTED_MODULE_14__["LimitInputDirective"],
                     _directives_style_element_directive__WEBPACK_IMPORTED_MODULE_17__["StyleElementDirective"],
                     _directives_style_elemet_selected_directive__WEBPACK_IMPORTED_MODULE_18__["StyleElemetSelectedDirective"],
-                    _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_21__["FilterPipe"],
-                    _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_22__["HebrewMountNamePipe"],
+                    _services_pipes_filter_pipe__WEBPACK_IMPORTED_MODULE_22__["FilterPipe"],
+                    _services_pipes_hebrew_mount_name_pipe__WEBPACK_IMPORTED_MODULE_23__["HebrewMountNamePipe"],
                     _meeting_info_meeting_info_component__WEBPACK_IMPORTED_MODULE_13__["MeetingInfoComponent"],
                     _directives_remove_attr_directive__WEBPACK_IMPORTED_MODULE_19__["RemoveAttrDirective"],
-                    _directives_interval_toggle_directive__WEBPACK_IMPORTED_MODULE_20__["IntervalToggleDirective"]
+                    _directives_interval_toggle_directive__WEBPACK_IMPORTED_MODULE_20__["IntervalToggleDirective"],
+                    _directives_on_blur_directive__WEBPACK_IMPORTED_MODULE_21__["OnBlurDirective"]
                 ],
             }]
     }], null, null); })();
@@ -1703,7 +1704,7 @@ class KeyboardService {
     emitKey(key) {
         this.inputElement.focus();
         this.keyboardEvent.emit(key);
-        this.inputElement.blur();
+        // this.inputElement.blur()
     }
     setElement(element) {
         this.inputElement = element;
@@ -1828,13 +1829,10 @@ class VirtualKeyDirective {
         });
     }
     onFocus() {
-        console.log('FOCUS EVENT');
+        // console.log('FOCUS EVENT')
         if (this.appInputFocus) {
             this.keyboardService.setElement(this.formInputElement.nativeElement);
             this.keyboardService.setAttribute('placeholder', '|');
-        }
-        else {
-            return;
         }
     }
     onClick(event) {
@@ -1871,6 +1869,40 @@ VirtualKeyDirective.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefi
 
 /***/ }),
 
+/***/ "tBqr":
+/*!*************************************************!*\
+  !*** ./src/app/directives/on-blur.directive.ts ***!
+  \*************************************************/
+/*! exports provided: OnBlurDirective */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OnBlurDirective", function() { return OnBlurDirective; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+
+
+class OnBlurDirective {
+    constructor(element) {
+        this.element = element;
+    }
+    ngOnInit() {
+        this.element.nativeElement.blur();
+        console.log('ON-BLUR', this.element.nativeElement);
+    }
+}
+OnBlurDirective.ɵfac = function OnBlurDirective_Factory(t) { return new (t || OnBlurDirective)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])); };
+OnBlurDirective.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({ type: OnBlurDirective, selectors: [["", "appOnBlur", ""]] });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](OnBlurDirective, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Directive"],
+        args: [{
+                selector: '[appOnBlur]'
+            }]
+    }], function () { return [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] }]; }, null); })();
+
+
+/***/ }),
+
 /***/ "tJXs":
 /*!*******************************************************!*\
   !*** ./src/app/shared/keyboard/keyboard.component.ts ***!
@@ -1891,13 +1923,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function KeyboardComponent_app_keyboard_button_1_Template(rf, ctx) { if (rf & 1) {
-    const _r6265 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+    const _r411 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "app-keyboard-button", 2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function KeyboardComponent_app_keyboard_button_1_Template_app_keyboard_button_click_0_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r6265); const number_r6263 = ctx.$implicit; const ctx_r6264 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r6264.onNumberClick($event, number_r6263); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function KeyboardComponent_app_keyboard_button_1_Template_app_keyboard_button_click_0_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r411); const number_r409 = ctx.$implicit; const ctx_r410 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r410.onNumberClick($event, number_r409); });
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const number_r6263 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("number", number_r6263);
+    const number_r409 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("number", number_r409);
 } }
 class KeyboardComponent {
     constructor(keyboardService) {

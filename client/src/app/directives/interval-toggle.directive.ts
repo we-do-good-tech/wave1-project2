@@ -1,27 +1,31 @@
-import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+import { OnInit, Directive, ElementRef, Input } from '@angular/core';
+
+
+export interface ToggleData {
+    className: string
+    time: number
+}
 
 @Directive({
     selector: '[appIntervalToggle]'
 })
-export class IntervalToggleDirective {
+export class IntervalToggleDirective implements OnInit {
 
-    timerTogglePlaceholder: NodeJS.Timer
+    timerToggle: NodeJS.Timer
 
     constructor(private element: ElementRef) { }
 
-    @Input('appIntervalToggle') className: string
+    @Input('appIntervalToggle') toggleData: ToggleData
 
-    @HostListener('focus')
-    intervalToggle(): void {
+    ngOnInit() {
         this.clearInterval()
-        this.timerTogglePlaceholder = setInterval(() => {
-            this.element.nativeElement.classList.toggle(this.className)
-        }, 500)
+        this.timerToggle = setInterval(() => {
+            this.element.nativeElement.classList.toggle(this.toggleData.className)
+        }, this.toggleData.time)
     }
 
-
     clearInterval(): void {
-        clearInterval(this.timerTogglePlaceholder)
+        clearInterval(this.timerToggle)
     }
 
 }

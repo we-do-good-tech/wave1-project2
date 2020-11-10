@@ -21,6 +21,7 @@ import { StyleElementDirective } from "../directives/style.element.directive";
 import { StyleElemetSelectedDirective } from "../directives/style-elemet-selected.directive";
 import { RemoveAttrDirective } from "../directives/remove-attr.directive";
 import { IntervalToggleDirective } from "../directives/interval-toggle.directive";
+import { OnBlurDirective } from "../directives/on-blur.directive";
 
 import { FilterPipe } from "../services/pipes/filter.pipe";
 import { HebrewMountNamePipe } from "../services/pipes/hebrew-mount-name.pipe";
@@ -46,7 +47,8 @@ import { HebrewMountNamePipe } from "../services/pipes/hebrew-mount-name.pipe";
         FilterPipe,
         HebrewMountNamePipe,
         MeetingInfoComponent,
-        IntervalToggleDirective
+        IntervalToggleDirective,
+        OnBlurDirective
     ],
     imports: [
         CommonModule,
@@ -72,7 +74,8 @@ import { HebrewMountNamePipe } from "../services/pipes/hebrew-mount-name.pipe";
         HebrewMountNamePipe,
         MeetingInfoComponent,
         RemoveAttrDirective,
-        IntervalToggleDirective
+        IntervalToggleDirective,
+        OnBlurDirective
     ],
 })
 export class SharedModule { }

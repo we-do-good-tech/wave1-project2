@@ -4,10 +4,7 @@ function authSession(request, response, next) {
             message: 'Unauthorized'
         })
     }
-    console.log(request.session, request.sessionID)
-
     next()
-
 }
 
 module.exports = {
