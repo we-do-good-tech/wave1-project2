@@ -102,7 +102,7 @@ export class AuthService {
                 tokenExpiresIn: number;
                 userName: string
             }>(
-                "api/auth/teacher/confirm-code", { code: code }, { withCredentials: true })
+                "api/auth/confirm-code", { code: code }, { withCredentials: true })
             .pipe(
                 map((result) => {
                     this.userName = result.userName

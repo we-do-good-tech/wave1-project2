@@ -14,8 +14,8 @@ const limitResendSignDays = 1
 
 router.get(
     '/students',
-    verifyToken,
     authSession,
+    verifyToken,
     cache.studentsList,
     authSeets,
     teacherController.getStudents
@@ -23,6 +23,7 @@ router.get(
 
 router.post(
     '/create-report',
+    authSession,
     verifyToken,
     [
         validators.numberPropery('ticketNo'),
@@ -49,7 +50,6 @@ router.post(
         )
     ],
     validate,
-    authSession,
     authSeets,
     findReport,
     teacherController.createReport
@@ -57,8 +57,8 @@ router.post(
 
 router.get(
     '/reports-unconfirm',
-    verifyToken,
     authSession,
+    verifyToken,
     cache.reporrsList,
     authSeets,
     teacherController.getReportsUnConfirm
@@ -66,15 +66,16 @@ router.get(
 
 router.get(
     '/reports/stats',
-    verifyToken,
     authSession,
+    verifyToken,
     authSeets,
     teacherController.getReportsStats
 )
 
-// reportDate
+
 router.post(
     '/resend/parent-sign',
+    authSession,
     verifyToken,
     [
         validators.numberPropery('ticketNo'),
@@ -84,7 +85,6 @@ router.post(
         validators.datePropery('reportDate')
     ],
     validate,
-    authSession,
     authSeets,
     findReport,
     teacherController.resendParentSign

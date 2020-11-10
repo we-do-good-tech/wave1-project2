@@ -20,10 +20,10 @@ router.get(
 )
 
 router.post(
-    '/teacher/confirm-code',
+    '/confirm-code',
+    authSession,
     [validators.confirmCode('code')],
     validate,
-    authSession,
     authControllers.authConfirmCode
 )
 

@@ -10,7 +10,7 @@ const { daysRange } = require('../helpers/dates.ranges')
 
 
 
-module.exports.getStudents = async function (request, response) {
+module.exports.getStudents = async function (request, response, next) {
     const query = `select * where F=${Number(request.userData.teacherId)}`;
     const sheetId = keys.GOOGLE_SHEETS.sheetsIds.childrens
 
@@ -31,21 +31,27 @@ module.exports.getStudents = async function (request, response) {
 
         response.status(200).send(toJson)
     } catch (error) {
-        console.log(error)
-        response.status(500).send({
-            message: "ERROR UNKNOW",
-        });
+        next(error)
     }
 }
 
 
-module.exports.createReport = async function (request, response) {
+module.exports.createReport = async function (request, response, next) {
     if (request.findReport) {
         return response.status(400).send({
             message: 'דיווח לא חוקי יתכן שבוצע דיווח כפול ליום זה'
         })
     }
-    const { studentName, ticketNo, reportDate, reportActivitis, reportComments, reportStartTime, reportEndTime, reportRangeTimne, parentEmail } = request.body
+    const {
+        studentName,
+        ticketNo,
+        reportDate,
+        reportActivitis,
+        reportComments,
+        reportStartTime,
+        reportEndTime,
+        reportRangeTimne,
+        parentEmail } = request.body
 
     const nowDate = new Date().toDateString()
 
@@ -109,15 +115,12 @@ module.exports.createReport = async function (request, response) {
         });
 
     } catch (error) {
-        console.log(error)
-        response.status(500).send({
-            message: "ERROR UNKNOW",
-        });
+        next(error)
     }
 }
 
 
-module.exports.getReportsUnConfirm = async function (request, response) {
+module.exports.getReportsUnConfirm = async function (request, response, next) {
     const sheetId = keys.GOOGLE_SHEETS.sheetsIds.reports
     const query = `select A,B,C,D,E,F,I,L,M where J=${Number(request.userData.teacherId)}and G=${false}`;
     console.log(request.session.user)
@@ -138,15 +141,12 @@ module.exports.getReportsUnConfirm = async function (request, response) {
 
         return response.status(200).send(toJson)
     } catch (error) {
-        console.log(error)
-        response.status(500).send({
-            message: "ERROR UNKNOW",
-        });
+        next(error)
     }
 }
 
 
-module.exports.getReportsStats = async function (request, response) {
+module.exports.getReportsStats = async function (request, response, next) {
     const sheetId = keys.GOOGLE_SHEETS.sheetsIds.stats
     const qurey = `select B,C,D where A=${Number(request.userData.teacherId)}`
 
@@ -158,18 +158,15 @@ module.exports.getReportsStats = async function (request, response) {
         )
 
         const toJson = convertSheetsDataToObjectsArray(repostsStats, 'REPORTS_STATS')[0]
-        // console.log(toJson)
+
         response.status(200).send(toJson);
     } catch (error) {
-        console.log(error)
-        response.status(500).send({
-            message: "ERROR UNKNOW",
-        });
+        next(error)
     }
 }
 
 
-module.exports.resendParentSign = async function (request, response) {
+module.exports.resendParentSign = async function (request, response, next) {
     console.log(request.findReport)
     if (!request.findReport) {
         return response.status(404).send({
@@ -177,10 +174,21 @@ module.exports.resendParentSign = async function (request, response) {
         });
 
     }
-    // check date resend 
 
-    const { ticketNo, reportDate, reportActivitis, reportComments, reportStartTime, reportEndTime, reportRangeTimne, lastResendDateToParent } = request.findReport
-    const { studentName, parentEmail, index } = request.body
+    const {
+        ticketNo,
+        reportDate,
+        reportActivitis,
+        reportComments,
+        reportStartTime,
+        reportEndTime,
+        reportRangeTimne,
+        lastResendDateToParent } = request.findReport
+
+    const {
+        studentName,
+        parentEmail,
+        index } = request.body
 
 
     const today = new Date().getTime()
@@ -220,7 +228,7 @@ module.exports.resendParentSign = async function (request, response) {
                 reportStartTime: reportStartTime,
                 reportEndTime: reportEndTime,
                 reportRangeTimne: reportRangeTimne,
-                index: index + 1
+                index: Number(index) + 1
             },
                 keys.TOKENS.PARENT_SIGN_ACCESS_TOKEN.secretTokenKey,
                 keys.TOKENS.PARENT_SIGN_ACCESS_TOKEN.expiresIn
@@ -241,10 +249,7 @@ module.exports.resendParentSign = async function (request, response) {
         });
 
     } catch (error) {
-        console.log(error)
-        response.status(500).send({
-            message: "ERROR UNKNOW",
-        });
+        next(error)
     }
 
 }

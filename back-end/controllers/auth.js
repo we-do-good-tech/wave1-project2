@@ -9,7 +9,7 @@ const { convertSheetsDataToObjectsArray } = require('../helpers/tojson')
 
 
 
-module.exports.authTeacherEmail = async function (request, response) {
+module.exports.authTeacherEmail = async function (request, response, next) {
     const { teacherEmail } = request.body;
     const query = `select A,B,C where C='${teacherEmail}'`;
     const sheetId = keys.GOOGLE_SHEETS.sheetsIds.teachers;
@@ -54,59 +54,67 @@ module.exports.authTeacherEmail = async function (request, response) {
             confirmCodeExpire: keys.CONFIRM_CODE.expiresIn,
         });
     } catch (error) {
-        console.log(error);
-        response.status(500).send({
-            message: "ERROR UNKNOW",
-        });
+        next(error)
     }
 };
 
 
-module.exports.authConfirmCode = async function (request, response) {
+module.exports.authConfirmCode = async function (request, response, next) {
     const { code } = request.body;
     const { userId, email, firstName, confirmCode, confirmCodeExpiresIn } = request.session.user
 
-    if (code === confirmCode && new Date().getTime() < confirmCodeExpiresIn) {
-        console.log("CODE IS CONFIRM");
-        const token = createToken({
-            teacherId: userId,
-        }, keys.TOKENS.ACCESS_TOKEN.secretTokenKey, keys.TOKENS.ACCESS_TOKEN.expiresIn);
+    try {
+        if (code === confirmCode && new Date().getTime() < confirmCodeExpiresIn) {
+            console.log("CODE IS CONFIRM");
+            const token = createToken({
+                teacherId: userId,
+            }, keys.TOKENS.ACCESS_TOKEN.secretTokenKey, keys.TOKENS.ACCESS_TOKEN.expiresIn);
 
-        return response.status(200).send({
-            message: "User log",
-            isLog: true,
-            token: token,
-            tokenExpiresIn: keys.TOKENS.ACCESS_TOKEN.expiresIn,
-            userName: firstName
+            return response.status(200).send({
+                message: "User log",
+                isLog: true,
+                token: token,
+                tokenExpiresIn: keys.TOKENS.ACCESS_TOKEN.expiresIn,
+                userName: firstName
+            });
+        }
+
+        response.status(401).send({
+            message: "קוד שגוי, נסה שנית",
         });
+    } catch (error) {
+        next(error)
     }
 
-    response.status(401).send({
-        message: "קוד שגוי, נסה שנית",
-    });
 };
 
 
-module.exports.newConfirmCode = async function (request, response) {
+module.exports.newConfirmCode = async function (request, response, next) {
 
     const { email } = request.session.user
 
-    const newCode = new ConfirmCode()
+    try {
+        const newCode = new ConfirmCode()
 
-    const options = emailOptions(
-        email,
-        emailTamplate.confirmCode(newCode.getConfirmCode())
-    );
+        const options = emailOptions(
+            email,
+            emailTamplate.confirmCode(newCode.getConfirmCode())
+        );
 
-    request.session.user.confirmCode = newCode.getConfirmCode()
-    request.session.user.confirmCodeExpiresIn = new Date().getTime() + (keys.CONFIRM_CODE.expiresIn * 1000)
+        request.session.user.confirmCode = newCode.getConfirmCode()
+        request.session.user.confirmCodeExpiresIn = new Date().getTime() + (keys.CONFIRM_CODE.expiresIn * 1000)
 
-    sendMail(options)
+        sendMail(options)
 
-    return response.status(200).send({
-        message: "נשלח קוד חדש",
-        confirmCodeExpire: keys.CONFIRM_CODE.expiresIn,
-    });
+        response.status(200).send({
+            message: "נשלח קוד חדש",
+            confirmCodeExpire: keys.CONFIRM_CODE.expiresIn,
+        });
+
+    } catch (error) {
+        next(error)
+    }
+
 };
 
 

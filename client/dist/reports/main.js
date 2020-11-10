@@ -1563,7 +1563,7 @@ class AuthService {
     }
     confirmCode(code) {
         return this.http
-            .post("api/auth/teacher/confirm-code", { code: code }, { withCredentials: true })
+            .post("api/auth/confirm-code", { code: code }, { withCredentials: true })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((result) => {
             this.userName = result.userName;
             this.isLog = result.isLog;
@@ -1704,7 +1704,7 @@ class KeyboardService {
     emitKey(key) {
         this.inputElement.focus();
         this.keyboardEvent.emit(key);
-        // this.inputElement.blur()
+        this.inputElement.blur();
     }
     setElement(element) {
         this.inputElement = element;

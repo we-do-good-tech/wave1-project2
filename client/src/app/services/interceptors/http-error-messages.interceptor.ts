@@ -41,7 +41,6 @@ export class HttpErrorMessagesInterceptor implements HttpInterceptor {
                     this.router.navigate(['/not-found'])
                     return throwError(error);
                 }
-
                 else if (errorMassge === 'Unauthorized') {
                     this.authServcie.clearLoginInfo()
                     this.router.navigate(['/auth/user'])

@@ -37,6 +37,10 @@ module.exports = {
             expiresIn: 60 * 60 * 24
         }
     },
+    SESSION: {
+        expiresIn: 1000 * 60 * 120,
+        secretSessionKey: process.env.SECRET_SESSION_KEY
+    },
     CONFIRM_CODE: {
         expiresIn: 60,
         length: 4

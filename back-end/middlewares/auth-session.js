@@ -1,5 +1,7 @@
 function authSession(request, response, next) {
-    if (!request.sessionID) {
+    // console.log(request.session.user)
+    if (!request.session.user) {
+        console.log('MIDDELE WERE SESSION')
         return response.status(401).send({
             message: 'Unauthorized'
         })
