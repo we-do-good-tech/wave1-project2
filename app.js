@@ -48,7 +48,7 @@ server.get("*", (request, response) => {
 
 
 server.use((request, response, next) => {
-    console.log('ERRROR NOT FOUND')
+    console.log('ERROR NOT FOUND')
     const error = new Error('NOT-FOUND')
     error.message = 'NOT FOUND'
     error.status = 404

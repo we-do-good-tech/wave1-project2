@@ -595,14 +595,14 @@ class HttpErrorMessagesInterceptor {
         return next.handle(request).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["tap"])((result) => {
             // console.log(result)
         }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])((error) => {
-            console.log(error.error.message);
+            console.log(error);
             // console.log(error);
             let errorMassge = error.error.message;
-            if (error.error.message === 'ERROR UNKNOW' || error.statusText >= 500) {
+            if (error.error.message === 'SERVER ERROR' || error.status >= 500) {
                 this.router.navigate(['not-found']);
                 return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(error);
             }
-            else if (error.statusText === 429) {
+            else if (error.status === 429 && error.statusText === "Too Many Requests") {
                 this.router.navigate(['/not-found']);
                 return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(error);
             }

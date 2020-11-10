@@ -12,7 +12,6 @@ export class ParentSignatureSuccessComponent {
 
     // ngOnInit(): void { }
 
-
     onCloseTab() {
         this.router.navigate(['not-found'])
         // window.open('confirm-report/signature-success', '_self', '');

@@ -4,9 +4,11 @@ const { authSeets } = require('../middlewares/auth-sheets')
 const validators = require('../validators/validators')
 const { validate } = require('../middlewares/validate')
 const { authSession } = require('../middlewares/auth-session')
+const { limiter } = require('../services/rate-limiter')
 
 router.post(
     '/teacherEmail',
+    limiter,
     [validators.email('teacherEmail')],
     validate,
     authSeets,

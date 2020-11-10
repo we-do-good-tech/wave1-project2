@@ -81,6 +81,7 @@ export class ConfirmComponent implements AfterViewInit, OnDestroy, OnInit {
                 takeWhile((result) => result <= limit)
             )
             .subscribe((result) => {
+                console.log(result)
                 this.isValidTime = result === this.confirmCodeExpireTime ? false : true
             })
     }
