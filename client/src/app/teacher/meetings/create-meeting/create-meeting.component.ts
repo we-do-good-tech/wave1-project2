@@ -12,6 +12,7 @@ import { Student } from "src/app/interfaces/Student";
 import {
     timesRange,
     conculateRangeToTime,
+    formatDate
 } from "../../../services/helpers/time.range";
 import { Report } from "src/app/interfaces/Report";
 import { ReportsService } from "src/app/services/reports.service";
@@ -51,7 +52,7 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
             studentName: ['', [
                 Validators.required
             ]],
-            meetingDate: [null, [
+            meetingDate: ["dd/mm/yyyy", [
                 Validators.required,
                 FormsValidatorsService.limitDate(90),
                 FormsValidatorsService.blockOverDate,
@@ -80,12 +81,14 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
             times: { meetingStartTime, meetingEndTime },
         } = this.meetingForm.value;
 
+        console.log(this.meetingForm.value)
+
         const student = this.students.find((s) => s.studentName === studentName)
 
         const report: Report = {
             studentName: studentName,
             ticketNo: student.ticketNo,
-            reportDate: meetingDate,
+            reportDate: formatDate(meetingDate),
             reportActivitis: meetingActivitis,
             reportStartTime: meetingStartTime,
             reportEndTime: meetingEndTime,
@@ -96,7 +99,7 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
             parentEmail: student.parentEmail,
         };
 
-        // console.log(report)
+        console.log(report)
         this.reportsService.setReport(report);
         this.router.navigate(["/main/teacher/meeting-new"]);
     }

@@ -7,6 +7,29 @@
   flex-direction: column;
   overflow-y: auto;
 }
+
+::ng-deep.mat-calendar-body-selected {
+  border-radius: 100% !important;
+  background-color: rgb(241, 142, 50) !important;
+}
+
+
+::ng-deep.mat-calendar-body-today{
+  border-radius: 100% !important;
+  border: solid 1px orange !important;
+  // background-color: rgb(247, 183, 124)!important ;
+  // color: white !important;
+}
+
+// ::ng-deep.mat-form-field-underline  {
+//   display: none;
+// }
+
+// ::ng-deep.mat-form-field  {
+//   background-color: white;
+// }
+
+
 form {
   width: 100%;
   display: flex;
@@ -39,14 +62,17 @@ label {
   font-size: 14px;
   margin: 5px 0;
 }
-input[type="date"]::-webkit-calendar-picker-indicator {
-  width: 55%;
-  outline: none;
-}
+// input[type="date"]::-webkit-calendar-picker-indicator {
+//   width: 55%;
+//   outline: none;
+// }
 .errorMessage {
   width: 100%;
   justify-content: center;
 }
+
+
+
 
 .mettingsTime {
   width: 80%;
@@ -106,6 +132,7 @@ button {
 ::placeholder {
   padding: 5px;
 }
+
 
 textarea:focus {
   border: 2px solid black;

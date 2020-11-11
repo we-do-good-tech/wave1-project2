@@ -14,7 +14,8 @@
         <label>בחר תלמיד מהרשימה</label>
         <select formControlName="studentName">
             <option value>בחר</option>
-            <option *ngFor="let student of students" [value]="student?.studentName">
+            <option
+                *ngFor="let student of students" [value]="student?.studentName">
                 {{student?.studentName}}
             </option>
         </select>
@@ -24,7 +25,17 @@
             </div>
         </div>
         <label>בחר תאריך</label>
-        <input type="date" formControlName="meetingDate">
+        <input
+            matInput
+            readonly="readonly"
+            formControlName="meetingDate"
+            placeholder="dd/mm/yyyy"
+            (click)="picker.open()"
+            [matDatepicker]="picker">
+        <!-- <i class="fa fa-calendar" aria-hidden="true"></i> -->
+
+        <!-- <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle> -->
+        <mat-datepicker #picker touchUi></mat-datepicker>
         <div *ngIf="this.formsService.formControlStatus(getFormControl('meetingDate'))">
             <div class="errorMessage" *ngIf="getFormControl('meetingDate').errors.required">
                 שדה חובה
@@ -83,7 +94,7 @@
                 id="activea"
                 class="txtArea textAreaOne"
                 cols="5"
-                rows="5">
+                rows="4">
         </textarea>
             <label class="commentsLabel"><small>הערות חשובות</small></label>
             <textarea
@@ -91,10 +102,9 @@
                 class="txtArea textAreaTwo"
                 formControlName="meetingComments"
                 cols="5"
-                rows="5">
+                rows="4">
         </textarea>
         </div>
-        <!-- [disabled]="meetingForm.invalid"  -->
         <button
             [class.disabledButton]="meetingForm.invalid"
             [disabled]="meetingForm.invalid"

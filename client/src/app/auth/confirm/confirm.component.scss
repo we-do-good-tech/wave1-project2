@@ -55,6 +55,22 @@ span {
   }
 }
 
+.not-empty::-webkit-input-placeholder {
+  color: #7c7676;
+  font-size: 20px;
+  font-weight:lighter;
+  margin-top: 5px;
+  // font-stretch:expanded ;
+  transform: scaleY(1.8)
+
+};
+
+
+
+::-webkit-input-placeholder {
+     color: white;
+}
+
 .confirmWrapper form .smsCode {
   display: flex;
   justify-content: space-around;

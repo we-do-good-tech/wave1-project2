@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { TeacherRoutingModule } from "./teacher.routing";
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AngularMaterialModule } from '../angular.material.module';
+
 
 import { TeacherMainComponent } from './teacher-main/teacher-main.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -29,7 +31,8 @@ import { MeetingTableItemComponent } from './meetings/meeting-table/meeting-tabl
         SharedModule,
         TeacherRoutingModule,
         ReactiveFormsModule,
-        FormsModule
+        FormsModule,
+        AngularMaterialModule
     ]
 })
 export class TeacerModule { }

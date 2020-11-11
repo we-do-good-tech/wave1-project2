@@ -60,7 +60,7 @@ export class AuthService {
         const now = new Date();
         const isValidTime = authData.expiresInDate.getTime() - now.getTime();
 
-        // console.log(isValidTime, "IS TOKEN VALID TIME");
+        console.log(isValidTime, "IS TOKEN VALID TIME");
 
         if (isValidTime > 0) {
             // console.log('IS LOG')
