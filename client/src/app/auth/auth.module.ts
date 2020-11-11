@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { EmailComponent } from './email/email.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { AuthComponent } from "./auth/auth.component";
+import { AngularMaterialModule } from '../angular.material.module';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { AuthComponent } from "./auth/auth.component";
         FormsModule,
         ReactiveFormsModule,
         AuthRoutingModule,
-        SharedModule
+        SharedModule,
+        AngularMaterialModule
     ]
 })
 export class AuthModule { }

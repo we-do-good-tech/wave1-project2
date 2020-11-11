@@ -6,10 +6,11 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { SharedModule } from "./shared/shared.module";
 import { SignaturePadModule } from "@ng-plus/signature-pad";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
 
+import { AngularMaterialModule } from "./angular.material.module";
 
 import { AppComponent } from "./app.component";
+
 import { HttpErrorMessagesInterceptor } from "./services/interceptors/http-error-messages.interceptor";
 import { AuthInterceptor } from "./services/interceptors/auth.interceptor";
 import { LoaderInterceptor } from "./services/interceptors/loader.interceptor";
@@ -29,7 +30,10 @@ import { LoaderInterceptor } from "./services/interceptors/loader.interceptor";
         SignaturePadModule,
         BrowserAnimationsModule,
     ],
-    exports: [SharedModule],
+    exports: [
+        SharedModule,
+        AngularMaterialModule
+    ],
     providers: [
         {
             provide: HTTP_INTERCEPTORS,
