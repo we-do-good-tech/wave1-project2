@@ -8,7 +8,7 @@ const { limiter } = require('../services/rate-limiter')
 
 router.post(
     '/teacherEmail',
-    // limiter,
+    limiter,
     [validators.email('teacherEmail')],
     validate,
     authSeets,
