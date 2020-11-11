@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
         // console.log('NEXT: ', next)
         // console.log('STATE: ', state)
         const isLog = this.authService.getIsLog();
-        console.log(isLog)
+        // console.log(isLog)
         if (isLog) {
             return true;
         }

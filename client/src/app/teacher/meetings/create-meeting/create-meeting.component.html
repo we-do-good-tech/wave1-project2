@@ -12,9 +12,7 @@
         [formGroup]="meetingForm"
         (ngSubmit)="onCreateMeeting()">
         <label>בחר תלמיד מהרשימה</label>
-        <select
-            class="form-control"
-            [ngClass]="this.formsService.displayClass(getFormControl('studentName'))" formControlName="studentName">
+        <select formControlName="studentName">
             <option value>בחר</option>
             <option *ngFor="let student of students" [value]="student?.studentName">
                 {{student?.studentName}}
@@ -26,8 +24,7 @@
             </div>
         </div>
         <label>בחר תאריך</label>
-        <input [ngClass]="this.formsService.displayClass(getFormControl('meetingDate'))" type="date"
-            formControlName="meetingDate">
+        <input type="date" formControlName="meetingDate">
         <div *ngIf="this.formsService.formControlStatus(getFormControl('meetingDate'))">
             <div class="errorMessage" *ngIf="getFormControl('meetingDate').errors.required">
                 שדה חובה
@@ -43,8 +40,7 @@
         <div class="mettingsTime" formGroupName="times">
             <div class="meetStart">
                 <label>שעת התחלה</label>
-                <select formControlName="meetingStartTime"
-                    [ngClass]="this.formsService.displayClass(getFormControl('meetingStartTime'))">
+                <select formControlName="meetingStartTime">
                     <option value>--:--<i class="fas fa-clock"></i></option>
                     <option *ngFor="let time of timeList" [value]="time">{{time}}</option>
                 </select>
@@ -62,8 +58,7 @@
             <!-- appStyleElemetSelected -->
             <div class="meetEnd">
                 <label>שעת סיום</label>
-                <select formControlName="meetingEndTime"
-                    [ngClass]="this.formsService.displayClass(getFormControl('meetingEndTime'))">
+                <select formControlName="meetingEndTime">
                     <option value>--:--<i class="fas fa-clock"></i></option>
                     <option *ngFor="let time of timeList" [value]="time">{{time}}</option>
                 </select>
@@ -84,15 +79,26 @@
             <label class="activitiesLabel"><small>נושאים ופעילויות שעלו במפגש</small></label>
             <textarea
                 placeholder="נושאים ופעיליות שעלו במפגש: למשל - מה נלמד, באיזה שלב החונך והחניך נמצאים ומה היו תכני המפגש."
-                formControlName="meetingActivitis" id="activea" class="txtArea textAreaOne" cols="5" rows="5">
+                formControlName="meetingActivitis"
+                id="activea"
+                class="txtArea textAreaOne"
+                cols="5"
+                rows="5">
         </textarea>
             <label class="commentsLabel"><small>הערות חשובות</small></label>
-            <textarea placeholder="הערות חשובות: לדוגמא, לתלמיד היה קושי להתרכז." class="txtArea textAreaTwo"
-                formControlName="meetingComments" cols="5" rows="5">
+            <textarea
+                placeholder="הערות חשובות: לדוגמא, לתלמיד היה קושי להתרכז."
+                class="txtArea textAreaTwo"
+                formControlName="meetingComments"
+                cols="5"
+                rows="5">
         </textarea>
         </div>
         <!-- [disabled]="meetingForm.invalid"  -->
-        <button [class.disabledButton]="meetingForm.invalid" [disabled]="meetingForm.invalid" type="submit"
+        <button
+            [class.disabledButton]="meetingForm.invalid"
+            [disabled]="meetingForm.invalid"
+            type="submit"
             class="mainButton">
             צור פגישה
         </button>

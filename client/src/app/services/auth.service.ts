@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { BehaviorSubject, Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { UserLog } from "../interfaces/User";
+
 
 @Injectable({
     providedIn: "root",
@@ -14,7 +14,6 @@ export class AuthService {
     private isLogChange: BehaviorSubject<boolean>;
     private token: string;
     private tokenTimer: NodeJS.Timer;
-    // private userLog: UserLog;
     private userName: string
     private authProccess: boolean
     private authProccessChnage: BehaviorSubject<boolean>
@@ -120,7 +119,12 @@ export class AuthService {
 
                     this.saveSessionStorage(this.token, expiresInDate, this.userName);
 
-                    return result.message;
+                    setTimeout(() => {
+                        this.authProccess = false
+                        this.authProccessChnage.next(this.authProccess)
+                    }, 1500);
+
+                    return result.message
                 })
             );
     }
@@ -140,9 +144,9 @@ export class AuthService {
     }
 
 
-    checkSession() {
-        return this.http.get("api/auth/teacher/auth-session", { withCredentials: true })
-    }
+    // checkSession() {
+    //     return this.http.get("api/auth/teacher/auth-session", { withCredentials: true })
+    // }
 
 
 
@@ -172,7 +176,6 @@ export class AuthService {
         const token = sessionStorage.getItem("token");
         const expiresInDate = sessionStorage.getItem("expiresIn");
         const userName = JSON.parse(sessionStorage.getItem("user-name"));
-
 
         if (!token || !expiresInDate) {
             return;

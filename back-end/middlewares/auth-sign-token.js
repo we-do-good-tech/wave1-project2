@@ -27,7 +27,7 @@ async function verifyTokenSign(request, response, next) {
         next()
 
     } catch (error) {
-        response.status(403).send({
+        response.status(401).send({
             message: 'Unauthorized',
         })
     }

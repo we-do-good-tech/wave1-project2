@@ -13,7 +13,7 @@ export class ReportsService {
     private reports: Report[]
     private reportsChange: BehaviorSubject<Report[]>
     private reportChange: BehaviorSubject<Report>
-    // private reportsStats: ReportStats
+
 
     constructor(private http: HttpClient) {
         this.reports = []
@@ -34,7 +34,6 @@ export class ReportsService {
 
 
     createReport(report: Report): Observable<string> {
-        // console.log(this.reports)
         return this.http.post<{
             message: string,
             index: number
@@ -59,14 +58,11 @@ export class ReportsService {
 
     getReportsNotConfirm(): Observable<Report[]> {
         if (this.reports.length > 0) {
-            console.log('NO HTTP CALL REPORST')
             return of(this.reports);
         }
-        console.log('HTTP CALL REPORTS START')
         return this.http.get<Report[]>("api/teacher/reports-unconfirm", { withCredentials: true })
             .pipe(
                 tap((result) => {
-                    // console.log(result, 'HTTP CALL RESPONSE');
                     this.reports = result;
                     this.reportsChange.next([...this.reports])
                 })

@@ -10,6 +10,8 @@ const memoryStore = require('memorystore')(session)
 
 const server = express();
 
+server.set('trust proxy', 1);
+
 const authRoutes = require("./back-end/routes/auth");
 const teacherRoutes = require('./back-end/routes/teacher')
 const signRouter = require('./back-end/routes/signature');
@@ -19,6 +21,7 @@ server.use(morgan('dev'))
 server.use(cors());
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
+server.use(express.static(path.join(__dirname, "client/dist/reports")));
 
 server.use(session({
     store: new memoryStore({
@@ -26,10 +29,10 @@ server.use(session({
     }),
     secret: keys.SESSION.secretSessionKey,
     resave: false,
+    saveUninitialized: false,
     cookie: {
         expires: keys.SESSION.expiresIn
     }
-
 }))
 
 
@@ -40,11 +43,12 @@ server.use('/api/sign', signRouter)
 
 
 
-server.use(express.static(path.join(__dirname, "client/dist/reports")));
 
 server.get("*", (request, response) => {
     response.sendFile(path.resolve("client/dist/reports/index.html"));
 });
+
+
 
 
 server.use((request, response, next) => {
@@ -62,6 +66,8 @@ server.use((error, request, response, next) => {
         message: error.message || 'SERVER ERROR'
     })
 })
+
+
 
 
 server.listen(process.env.PORT || 3000, () => console.log("Listening"));

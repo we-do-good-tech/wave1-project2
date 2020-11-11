@@ -18,14 +18,20 @@ export class LoaderInterceptor implements HttpInterceptor {
         return next.handle(request)
             .pipe(
                 tap((result) => {
-                    if (result instanceof HttpResponse || result instanceof HttpErrorResponse) {
-                        this.loaderService.setStatus(false)
-                    }
+                    // console.log('STOP LOAD')
+                    this.stopLoader(result)
                 }),
                 catchError((error) => {
-                    this.loaderService.setStatus(false)
+                    this.stopLoader(error)
                     return throwError(error)
                 })
             )
+    }
+
+
+    private stopLoader(request: HttpEvent<unknown>): void {
+        if (request instanceof HttpResponse || request instanceof HttpErrorResponse) {
+            this.loaderService.setStatus(false)
+        }
     }
 }

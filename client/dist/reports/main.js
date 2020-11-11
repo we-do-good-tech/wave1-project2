@@ -264,7 +264,8 @@ class AuthInterceptor {
         this.authService = authService;
     }
     intercept(request, next) {
-        const token = this.authService.getToken();
+        const token = this.authService.getToken() && sessionStorage.getItem('token');
+        // console.log(token)
         return next.handle(this.cloneToken(request, token));
     }
     cloneToken(request, token) {
@@ -443,7 +444,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class ReportsService {
-    // private reportsStats: ReportStats
     constructor(http) {
         this.http = http;
         this.reports = [];
@@ -458,7 +458,6 @@ class ReportsService {
         return this.reportChange.asObservable();
     }
     createReport(report) {
-        // console.log(this.reports)
         return this.http.post('api/teacher/create-report', report, { withCredentials: true })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((result) => {
             // console.log(result)
@@ -474,13 +473,10 @@ class ReportsService {
     }
     getReportsNotConfirm() {
         if (this.reports.length > 0) {
-            console.log('NO HTTP CALL REPORST');
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(this.reports);
         }
-        console.log('HTTP CALL REPORTS START');
         return this.http.get("api/teacher/reports-unconfirm", { withCredentials: true })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])((result) => {
-            // console.log(result, 'HTTP CALL RESPONSE');
             this.reports = result;
             this.reportsChange.next([...this.reports]);
         }));
@@ -576,53 +572,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "qCKp");
 /* harmony import */ var _http_error_messages_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../http-error-messages.service */ "UvWv");
-/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../auth.service */ "lGQG");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "tyNb");
-
-
 
 
 
 
 
 class HttpErrorMessagesInterceptor {
-    constructor(httpErrorMessagesService, authServcie, router) {
+    constructor(httpErrorMessagesService) {
         this.httpErrorMessagesService = httpErrorMessagesService;
-        this.authServcie = authServcie;
-        this.router = router;
     }
     intercept(request, next) {
         return next.handle(request).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["tap"])((result) => {
-            // console.log(result)
+            // console.log(result, 'SUCCESS')
         }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])((error) => {
-            console.log(error);
-            // console.log(error);
-            let errorMassge = error.error.message;
-            if (error.error.message === 'SERVER ERROR' || error.status >= 500) {
-                this.router.navigate(['not-found']);
-                return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(error);
-            }
-            else if (error.status === 429 && error.statusText === "Too Many Requests") {
-                this.router.navigate(['/not-found']);
-                return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(error);
-            }
-            else if (errorMassge === 'Unauthorized') {
-                this.authServcie.clearLoginInfo();
-                this.router.navigate(['/auth/user']);
-                return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(error);
-            }
-            else {
-                this.httpErrorMessagesService.setMessage(error.error.message);
-                return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(error);
-            }
+            this.httpErrorMessagesService.checkErrorMessage(error);
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(error);
         }));
     }
 }
-HttpErrorMessagesInterceptor.ɵfac = function HttpErrorMessagesInterceptor_Factory(t) { return new (t || HttpErrorMessagesInterceptor)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_http_error_messages_service__WEBPACK_IMPORTED_MODULE_3__["HttpErrorMessagesService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"])); };
+HttpErrorMessagesInterceptor.ɵfac = function HttpErrorMessagesInterceptor_Factory(t) { return new (t || HttpErrorMessagesInterceptor)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_http_error_messages_service__WEBPACK_IMPORTED_MODULE_3__["HttpErrorMessagesService"])); };
 HttpErrorMessagesInterceptor.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: HttpErrorMessagesInterceptor, factory: HttpErrorMessagesInterceptor.ɵfac });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpErrorMessagesInterceptor, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
-    }], function () { return [{ type: _http_error_messages_service__WEBPACK_IMPORTED_MODULE_3__["HttpErrorMessagesService"] }, { type: _auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] }]; }, null); })();
+    }], function () { return [{ type: _http_error_messages_service__WEBPACK_IMPORTED_MODULE_3__["HttpErrorMessagesService"] }]; }, null); })();
 
 
 /***/ }),
@@ -1006,11 +978,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpErrorMessagesService", function() { return HttpErrorMessagesService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "qCKp");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "tyNb");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./auth.service */ "lGQG");
+
+
 
 
 
 class HttpErrorMessagesService {
-    constructor() {
+    constructor(router, authService) {
+        this.router = router;
+        this.authService = authService;
+        this.deleteMessageTime = 5;
         this.errorMessage = '';
         this.errorMessageChnage = new rxjs__WEBPACK_IMPORTED_MODULE_1__["Subject"]();
     }
@@ -1026,17 +1005,33 @@ class HttpErrorMessagesService {
         setTimeout(() => {
             this.errorMessage = '';
             this.errorMessageChnage.next(this.errorMessage);
-        }, 5000);
+        }, this.deleteMessageTime * 1000);
+    }
+    checkErrorMessage(error) {
+        let errorMassge = error.error.message;
+        if (errorMassge === 'SERVER ERROR' || error.status >= 500) {
+            this.router.navigate(['not-found']);
+        }
+        else if (error.status === 429 && error.statusText === "Too Many Requests") {
+            this.router.navigate(['/not-found']);
+        }
+        else if (errorMassge === 'Unauthorized') {
+            this.authService.clearLoginInfo();
+            this.router.navigate(['/auth/user']);
+        }
+        else {
+            this.setMessage(errorMassge);
+        }
     }
 }
-HttpErrorMessagesService.ɵfac = function HttpErrorMessagesService_Factory(t) { return new (t || HttpErrorMessagesService)(); };
+HttpErrorMessagesService.ɵfac = function HttpErrorMessagesService_Factory(t) { return new (t || HttpErrorMessagesService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"])); };
 HttpErrorMessagesService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: HttpErrorMessagesService, factory: HttpErrorMessagesService.ɵfac, providedIn: 'root' });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HttpErrorMessagesService, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
         args: [{
                 providedIn: 'root'
             }]
-    }], function () { return []; }, null); })();
+    }], function () { return [{ type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }, { type: _auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"] }]; }, null); })();
 
 
 /***/ }),
@@ -1067,7 +1062,7 @@ class AuthGuard {
         // console.log('NEXT: ', next)
         // console.log('STATE: ', state)
         const isLog = this.authService.getIsLog();
-        console.log(isLog);
+        // console.log(isLog)
         if (isLog) {
             return true;
         }
@@ -1227,13 +1222,17 @@ class LoaderInterceptor {
     intercept(request, next) {
         return next.handle(request)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])((result) => {
-            if (result instanceof _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpResponse"] || result instanceof _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpErrorResponse"]) {
-                this.loaderService.setStatus(false);
-            }
+            // console.log('STOP LOAD')
+            this.stopLoader(result);
         }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((error) => {
-            this.loaderService.setStatus(false);
+            this.stopLoader(error);
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(error);
         }));
+    }
+    stopLoader(request) {
+        if (request instanceof _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpResponse"] || request instanceof _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpErrorResponse"]) {
+            this.loaderService.setStatus(false);
+        }
     }
 }
 LoaderInterceptor.ɵfac = function LoaderInterceptor_Factory(t) { return new (t || LoaderInterceptor)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_loader_service__WEBPACK_IMPORTED_MODULE_4__["LoaderService"])); };
@@ -1574,6 +1573,10 @@ class AuthService {
             const now = new Date();
             const expiresInDate = new Date(now.getTime() + expiresIn * 1000);
             this.saveSessionStorage(this.token, expiresInDate, this.userName);
+            setTimeout(() => {
+                this.authProccess = false;
+                this.authProccessChnage.next(this.authProccess);
+            }, 1500);
             return result.message;
         }));
     }
@@ -1585,9 +1588,9 @@ class AuthService {
             return result.message;
         }));
     }
-    checkSession() {
-        return this.http.get("api/auth/teacher/auth-session", { withCredentials: true });
-    }
+    // checkSession() {
+    //     return this.http.get("api/auth/teacher/auth-session", { withCredentials: true })
+    // }
     setAuthData(authResult) {
     }
     saveSessionStorage(token, expiresIn, userName) {
@@ -1888,7 +1891,6 @@ class OnBlurDirective {
     }
     ngOnInit() {
         this.element.nativeElement.blur();
-        console.log('ON-BLUR', this.element.nativeElement);
     }
 }
 OnBlurDirective.ɵfac = function OnBlurDirective_Factory(t) { return new (t || OnBlurDirective)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])); };
@@ -1923,13 +1925,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function KeyboardComponent_app_keyboard_button_1_Template(rf, ctx) { if (rf & 1) {
-    const _r411 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+    const _r7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "app-keyboard-button", 2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function KeyboardComponent_app_keyboard_button_1_Template_app_keyboard_button_click_0_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r411); const number_r409 = ctx.$implicit; const ctx_r410 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r410.onNumberClick($event, number_r409); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function KeyboardComponent_app_keyboard_button_1_Template_app_keyboard_button_click_0_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r7); const number_r5 = ctx.$implicit; const ctx_r6 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r6.onNumberClick($event, number_r5); });
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const number_r409 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("number", number_r409);
+    const number_r5 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("number", number_r5);
 } }
 class KeyboardComponent {
     constructor(keyboardService) {

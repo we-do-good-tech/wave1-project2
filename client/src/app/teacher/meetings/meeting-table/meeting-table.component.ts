@@ -35,7 +35,7 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
 
         this.subReports = this.reportsService.getReportsChange()
             .subscribe((result) => {
-                console.log('REPORTS CHANGE')
+                // console.log('REPORTS CHANGE')
                 this.reports = result;
                 this.students.forEach((s) => {
                     let findReports = this.reports.find((r) => r.ticketNo == s.ticketNo)
@@ -43,7 +43,7 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
                         s.hasReports = true
                     }
                 })
-                console.log(this.reports)
+                // console.log(this.reports)
             })
     }
 

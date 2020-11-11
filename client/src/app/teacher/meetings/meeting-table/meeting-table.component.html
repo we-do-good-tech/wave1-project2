@@ -9,7 +9,7 @@
     <div class="heading">
         <div class="title">מפגשים שטרם אושרו</div>
         <div class="list">
-            <select class="form-control" (change)="onSelectStudent($event)">
+            <select (change)="onSelectStudent($event)">
                 <option value> בחר</option>
                 <option
                     *ngFor="let student of students; let i = index;"

@@ -9,7 +9,6 @@ export class OnBlurDirective implements OnInit {
 
     ngOnInit(): void {
         this.element.nativeElement.blur()
-        console.log('ON-BLUR', this.element.nativeElement)
     }
 
 }
