@@ -1,9 +1,9 @@
-import { AfterViewInit, Directive, DoCheck, ElementRef, HostListener, OnInit } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, HostListener, OnInit } from '@angular/core';
 
 @Directive({
     selector: '[appInputFocus]'
 })
-export class InputFocusDirective implements OnInit, AfterViewInit {
+export class InputFocusDirective implements OnInit {
 
 
     constructor(private formElement: ElementRef) { }
@@ -14,11 +14,11 @@ export class InputFocusDirective implements OnInit, AfterViewInit {
         this.formElement.nativeElement[0].blur()
     }
 
-    ngAfterViewInit(): void {
-        this.formElement.nativeElement[0].focus()
-        this.formElement.nativeElement[0].blur()
+    // ngAfterViewInit(): void {
+    //     this.formElement.nativeElement[0].focus()
+    //     this.formElement.nativeElement[0].blur()
 
-    }
+    // }
 
 
     @HostListener('input')

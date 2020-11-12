@@ -1,7 +1,7 @@
 .meetingsContainer {
   width: 100%;
   height: calc(100vh - 68px);
-  max-height: 100vh;
+  // max-height: 100vh;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -14,21 +14,40 @@
 }
 
 
+::ng-deep .mat-select-value {
+  text-align: right;
+}
+
+mat-select {
+  width: 80%;
+  margin: 0 auto;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+mat-option {
+  text-align: right;
+
+}
+::ng-deep.m-option.mat-selected {
+  background-color: orange !important;
+}
+
+// mat-option mat-focus-indicator ng-tns-c117-1 ng-star-inserted mat-selected mat-active
+
+// ::ng-deep.mat-option-mat-active{
+//   background-color: red;
+// }
+
 ::ng-deep.mat-calendar-body-today{
   border-radius: 100% !important;
   border: solid 1px orange !important;
-  // background-color: rgb(247, 183, 124)!important ;
-  // color: white !important;
 }
 
-// ::ng-deep.mat-form-field-underline  {
-//   display: none;
-// }
-
-// ::ng-deep.mat-form-field  {
-//   background-color: white;
-// }
-
+mat-label{
+  text-align: center;
+}
 
 form {
   width: 100%;
@@ -43,11 +62,38 @@ button {
   width: 80%;
 }
 
+.icon  {
+   position: absolute;
+   left: 15px;
+  margin-left: 20px;
+}
+
+.inputContainer {
+   width: 80%;
+   margin: 0 auto;
+   position: relative;
+   display: flex;
+   border-radius: 5px;
+   border: 1px solid #000;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#date-input {
+  background: transparent;
+  border: none;
+  width: 100%;
+}
+
+.svg-inline--fa {
+  margin-left: 15px;
+}
+
 input,
-select,
+// select,
 textarea {
   width: 80%;
-  padding: 5px;
+  padding: 10px;
   border-radius: 5px;
   border: 1px solid #000;
   direction: rtl;
@@ -62,57 +108,45 @@ label {
   font-size: 14px;
   margin: 5px 0;
 }
-// input[type="date"]::-webkit-calendar-picker-indicator {
-//   width: 55%;
-//   outline: none;
-// }
+
 .errorMessage {
   width: 100%;
   justify-content: center;
 }
 
-
-
-
 .mettingsTime {
   width: 80%;
   display: flex;
-  // align-items: center;
   justify-content: space-between;
   color: #4a4545;
   margin-top: 10px;
   direction: rtl;
 }
 
-select {
-  text-align: center;
-}
-// select option:hover {
-//   background: none;
-//   box-shadow: none;
-//   background-color: #f0ab0e;
-//   color: #fff;
-// }
-
-
-
 .mettingsTime label {
   font-size: 10px;
   direction: rtl;
 }
+
 .meetEnd {
-  width: 50%;
+  width: 40%;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   direction: rtl;
   float: left;
 }
+
 .meetStart {
-  width: 50%;
+  width: 40%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   direction: rtl;
+}
+
+.meetingEndHours, .meetStartHours {
+  width: 100%;
 }
 
 .activitiesContainer {
@@ -122,17 +156,16 @@ select {
   align-items: center;
   margin-top: 15px;
 }
+
 ::placeholder {
   direction: rtl;
+  padding: 5px;
 }
+
 button {
   margin: 10px 0;
   border: none;
 }
-::placeholder {
-  padding: 5px;
-}
-
 
 textarea:focus {
   border: 2px solid black;

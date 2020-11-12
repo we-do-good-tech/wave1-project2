@@ -12,29 +12,39 @@
         [formGroup]="meetingForm"
         (ngSubmit)="onCreateMeeting()">
         <label>בחר תלמיד מהרשימה</label>
-        <select formControlName="studentName">
+        <mat-select formControlName="studentName">
+            <mat-option value>בחר</mat-option>
+            <mat-option
+                class="m-option"
+                *ngFor="let student of students" [value]="student?.studentName">
+                {{student?.studentName}}
+            </mat-option>
+        </mat-select>
+        <!-- <select formControlName="studentName">
             <option value>בחר</option>
             <option
                 *ngFor="let student of students" [value]="student?.studentName">
                 {{student?.studentName}}
             </option>
-        </select>
+        </select> -->
         <div *ngIf="this.formsService.formControlStatus(getFormControl('studentName'))">
             <div class="errorMessage">
                 שדה חובה
             </div>
         </div>
         <label>בחר תאריך</label>
-        <input
-            matInput
-            readonly="readonly"
-            formControlName="meetingDate"
-            placeholder="dd/mm/yyyy"
-            (click)="picker.open()"
-            [matDatepicker]="picker">
-        <!-- <i class="fa fa-calendar" aria-hidden="true"></i> -->
-
-        <!-- <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle> -->
+        <div class="inputContainer">
+            <input
+                id="date-input"
+                matInput
+                readonly="readonly"
+                formControlName="meetingDate"
+                placeholder="dd/mm/yyyy "
+                (click)="picker.open()"
+                class="Field"
+                [matDatepicker]="picker">
+            <i class="far fa-calendar-alt" (click)="picker.open()"></i>
+        </div>
         <mat-datepicker #picker touchUi></mat-datepicker>
         <div *ngIf="this.formsService.formControlStatus(getFormControl('meetingDate'))">
             <div class="errorMessage" *ngIf="getFormControl('meetingDate').errors.required">
@@ -50,11 +60,19 @@
         </div>
         <div class="mettingsTime" formGroupName="times">
             <div class="meetStart">
-                <label>שעת התחלה</label>
-                <select formControlName="meetingStartTime">
+                <mat-label>שעת התחלה</mat-label>
+                <mat-select class="meetStartHours" formControlName="meetingStartTime">
+                    <mat-option value>--:--
+                    </mat-option>
+                    <mat-option class="m-option" *ngFor="let time of timeList" [value]="time">
+                        {{time}}
+                    </mat-option>
+                </mat-select>
+
+                <!-- <select formControlName="meetingStartTime">
                     <option value>--:--<i class="fas fa-clock"></i></option>
                     <option *ngFor="let time of timeList" [value]="time">{{time}}</option>
-                </select>
+                </select> -->
                 <div class="errorMessage"
                     *ngIf="this.formsService.formControlStatus(getFormControl('meetingStartTime'))">
                     <div class="errorMessage" *ngIf=" getFormControl('meetingStartTime').errors.required">
@@ -66,13 +84,22 @@
 
                 </div>
             </div>
-            <!-- appStyleElemetSelected -->
             <div class="meetEnd">
-                <label>שעת סיום</label>
-                <select formControlName="meetingEndTime">
-                    <option value>--:--<i class="fas fa-clock"></i></option>
+                <mat-label>שעת סיום</mat-label>
+                <mat-select class="meetingEndHours" formControlName="meetingEndTime">
+                    <!-- <mat-select-trigger>
+                        <mat-icon>alarm</mat-icon>
+                    </mat-select-trigger> -->
+                    <mat-option value>--:--
+                    </mat-option>
+                    <mat-option class="m-option" *ngFor="let time of timeList" [value]="time">
+                        {{time}}
+                    </mat-option>
+                </mat-select>
+                <!-- <select formControlName="meetingEndTime">
+                    <option id="time-end" value>--:-- </option>
                     <option *ngFor="let time of timeList" [value]="time">{{time}}</option>
-                </select>
+                </select> -->
                 <div class="errorMessage" *ngIf="this.formsService.formControlStatus(getFormControl('meetingEndTime'))">
                     <div class="errorMessage" *ngIf="getFormControl('meetingEndTime').errors.required">
                         שדה חובה
