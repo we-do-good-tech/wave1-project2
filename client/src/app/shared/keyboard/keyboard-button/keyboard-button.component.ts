@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { KeyBoardKey } from '../keyboard.component';
 
 @Component({
     selector: 'app-keyboard-button',
@@ -6,5 +7,5 @@ import { Component, Input } from '@angular/core';
     styleUrls: ['./keyboard-button.component.scss']
 })
 export class KeyboardButtonComponent {
-    @Input() number: number
+    @Input() key: KeyBoardKey
 }

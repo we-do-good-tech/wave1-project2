@@ -78,6 +78,11 @@ export class ConfirmComponent implements AfterViewInit, OnDestroy, OnInit {
     }
 
 
+    onClear(): void {
+        this.form.resetForm()
+    }
+
+
     setTimer(limit: number): void {
         this.subTimer = interval(1000)
             .pipe(

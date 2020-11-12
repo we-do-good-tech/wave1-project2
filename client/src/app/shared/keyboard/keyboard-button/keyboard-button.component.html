@@ -1,3 +1,17 @@
 <div class="num-keyboard">
-    <div class="key">{{number}}</div>
+    <div
+        class="key"
+        *ngIf="key.type === 'number'">
+        {{key.value}}
+    </div>
+    <div
+        [class.key_del]="key.value === 'del_number'"
+        *ngIf=" key.value === 'del_number'">
+        <i class="fas fa-backspace"></i>
+    </div>
+    <div
+        [class.key_clear]="key.value === 'clear'"
+        *ngIf=" key.value === 'clear'">
+        C
+    </div>
 </div>

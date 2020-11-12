@@ -13,6 +13,7 @@ export class FormsService {
 
 
     formControlStatus(control: FormControl): boolean {
+        // console.log(control)
         if (control.invalid && (control.dirty || control.touched)) {
             return true;
         }

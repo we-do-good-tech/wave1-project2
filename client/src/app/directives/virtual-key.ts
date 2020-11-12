@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, OnInit, Optional } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostListener, OnInit, Optional, Output } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { KeyboardService } from '../services/keyboard.service';
 import { InputFocusDirective } from './focus.directive';
@@ -14,11 +14,15 @@ export class VirtualKeyDirective implements OnInit {
         private ngModel: NgModel,
         private keyboardService: KeyboardService,
         @Optional() private appInputFocus: InputFocusDirective
-
     ) { }
+
+    @Output() clear = new EventEmitter()
 
     ngOnInit(): void {
         this.keyboardService.onKeyPress().subscribe((key) => {
+            if (key === 'clear') {
+                this.clear.emit()
+            }
             if (document.activeElement === this.formInputElement.nativeElement) {
                 this.ngModel.valueAccessor.writeValue(key);
                 const newEvent = this.keyboardService.createEvent('input')
@@ -41,12 +45,12 @@ export class VirtualKeyDirective implements OnInit {
     @HostListener('click', ['$event'])
     onClick(event: any) {
         if (this.appInputFocus) {
-            if (event.target.value) {
-                this.ngModel.valueAccessor.writeValue(null)
-                const newEvent = this.keyboardService.createEvent('input')
-                this.formInputElement.nativeElement.dispatchEvent(newEvent);
-                this.keyboardService.removeAttribute('placeholder')
-            }
+            // if (event.target.value) {
+            //     this.ngModel.valueAccessor.writeValue(null)
+            //     const newEvent = this.keyboardService.createEvent('input')
+            //     this.formInputElement.nativeElement.dispatchEvent(newEvent);
+            // }
+            this.keyboardService.removeAttribute('placeholder')
             this.formInputElement.nativeElement.blur()
         }
     }

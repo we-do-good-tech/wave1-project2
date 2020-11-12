@@ -14,7 +14,7 @@ import { AppComponent } from "./app.component";
 import { HttpErrorMessagesInterceptor } from "./services/interceptors/http-error-messages.interceptor";
 import { AuthInterceptor } from "./services/interceptors/auth.interceptor";
 import { LoaderInterceptor } from "./services/interceptors/loader.interceptor";
-
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -29,10 +29,12 @@ import { LoaderInterceptor } from "./services/interceptors/loader.interceptor";
         SharedModule,
         SignaturePadModule,
         BrowserAnimationsModule,
+        // NgbModule,
     ],
     exports: [
         SharedModule,
-        AngularMaterialModule
+        AngularMaterialModule,
+        // NgbModule
     ],
     providers: [
         {

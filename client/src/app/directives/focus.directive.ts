@@ -16,7 +16,17 @@ export class InputFocusDirective implements OnInit {
 
 
     @HostListener('input')
-    check() {
+    check(): void {
+        this.focusAndBlur()
+    }
+
+
+    @HostListener('click')
+    onClick(): void {
+        this.focusAndBlur()
+    }
+
+    focusAndBlur(): void {
         setTimeout(() => {
             const input = this.formElement.nativeElement.querySelector('.ng-invalid')
             if (input) {

@@ -5,17 +5,21 @@
         <div class="smsCode">
             <input
                 appLimitInput
+                readonly="readonly"
                 appOnBlur
                 [appIntervalToggle]="{className: 'not-empty', time: 500}"
                 #first
                 id="0"
                 ngModel="virtualkey"
+                (clear)="onClear()"
                 required type="number"
                 pattern="^\d{1}$"
                 name="first"
                 #one="ngModel">
             <input
                 appLimitInput
+                readonly="readonly"
+
                 id="1"
                 ngModel="virtualkey"
                 [appIntervalToggle]="{className: 'not-empty', time: 500}"
@@ -26,6 +30,8 @@
                 #two="ngModel">
             <input
                 appLimitInput
+                readonly="readonly"
+
                 id="2"
                 ngModel="virtualkey"
                 [appIntervalToggle]="{className: 'not-empty', time: 500}"
@@ -36,6 +42,8 @@
                 #three="ngModel">
             <input
                 appLimitInput
+                readonly="readonly"
+
                 id="3"
                 ngModel="virtualkey"
                 [appIntervalToggle]="{className: 'not-empty', time: 500}"
