@@ -28,12 +28,14 @@
 .key_clear {
   width: 50px;
   height: 50px;
-  background-color: #e2372b;
+  background-color: #f3f2f2;
   font-size: 18px;
   border-radius: 100%;
   text-align: center;
   line-height: 50px;
-  color: rgb(255, 255, 255);
+  color: rgb(230, 102, 102);
+
+  // border: solid 2px  rgb(230, 102, 102) ;
   flex: 33.333%;
   font-weight: bold;
 }
