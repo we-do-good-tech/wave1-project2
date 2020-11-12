@@ -4,9 +4,9 @@
     <form #form="ngForm" appInputFocus [appRemoveAttr]="'placeholder'" [elementName]="'input'">
         <div class="smsCode">
             <input
+                appOnBlur
                 appLimitInput
                 readonly="readonly"
-                appOnBlur
                 [appIntervalToggle]="{className: 'not-empty', time: 500}"
                 #first
                 id="0"

@@ -145,7 +145,7 @@ class InputFocusDirective {
     }
     ngOnInit() {
         this.formElement.nativeElement[0].focus();
-        // this.formElement.nativeElement[0].blur()
+        this.formElement.nativeElement[0].blur();
     }
     check() {
         this.focusAndBlur();
