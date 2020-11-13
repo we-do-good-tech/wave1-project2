@@ -14,6 +14,7 @@ import { AppComponent } from "./app.component";
 import { HttpErrorMessagesInterceptor } from "./services/interceptors/http-error-messages.interceptor";
 import { AuthInterceptor } from "./services/interceptors/auth.interceptor";
 import { LoaderInterceptor } from "./services/interceptors/loader.interceptor";
+import { RoutingService } from './services/routing.service';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -37,6 +38,7 @@ import { LoaderInterceptor } from "./services/interceptors/loader.interceptor";
         // NgbModule
     ],
     providers: [
+        RoutingService,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,

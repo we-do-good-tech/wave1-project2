@@ -1,9 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
-import { formatDate } from "../../services/helpers/time.range";
-
-
 
 
 @Component({
@@ -18,8 +15,6 @@ export class AuthComponent implements OnInit, OnDestroy {
 
     constructor(private authService: AuthService) { }
 
-
-
     ngOnInit(): void {
         this.subAuthProccess = this.authService.getAuthProccessChange()
             .subscribe((result) => this.authProccess = result)
@@ -28,7 +23,5 @@ export class AuthComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.subAuthProccess.unsubscribe()
     }
-
-
 
 }

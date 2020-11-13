@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { BehaviorSubject, Observable } from "rxjs";
 import { map } from "rxjs/operators";
+import { RoutingService } from './routing.service';
 
 
 @Injectable({
@@ -19,7 +20,8 @@ export class AuthService {
     private authProccessChnage: BehaviorSubject<boolean>
     private confirmCodeExpireTime: number
 
-    constructor(private http: HttpClient, private router: Router) {
+    constructor(private http: HttpClient, private router: Router, private routingService: RoutingService) {
+        console.log(this.routingService)
         this.isLog = false;
         this.isLogChange = new BehaviorSubject<boolean>(this.isLog);
         this.authProccess = false

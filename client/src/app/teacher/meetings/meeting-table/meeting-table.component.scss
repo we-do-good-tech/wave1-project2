@@ -18,7 +18,7 @@
 }
 .heading .title {
   text-align: center;
-  font-size: 26px;
+  font-size: 23px;
   color: #4a4545;
   margin-bottom: 10px;
   font-weight: bold;
@@ -28,7 +28,11 @@
   width: 100%;
 }
 
-.heading select {
+::ng-deep .mat-select-value {
+  text-align: right;
+}
+
+.heading mat-select {
   width: 78%;
   margin: auto;
   border: 1px solid #4a454580;

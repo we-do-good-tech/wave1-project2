@@ -17,7 +17,6 @@ export class LoaderComponent implements OnInit, OnDestroy {
         this.subLoadStatusChange = this.loaderService.getLoadStatusChange()
             .subscribe((result) => {
                 this.cdr.detectChanges()
-                // console.log(result, "LOADER");
                 this.isLoad = result;
             });
     }

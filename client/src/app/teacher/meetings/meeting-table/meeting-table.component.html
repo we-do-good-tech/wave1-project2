@@ -9,15 +9,15 @@
     <div class="heading">
         <div class="title">מפגשים שטרם אושרו</div>
         <div class="list">
-            <select (change)="onSelectStudent($event)">
-                <option value> בחר</option>
-                <option
+            <mat-select placeholder="בחר" (selectionChange)="onSelectStudent($event)">
+                <mat-option value> כולם</mat-option>
+                <mat-option
                     *ngFor="let student of students; let i = index;"
                     [disabled]="!student?.hasReports"
                     [value]="student?.ticketNo">
                     {{student?.studentName}}
-                </option>
-            </select>
+                </mat-option>
+            </mat-select>
         </div>
     </div>
     <div class="table">
@@ -27,7 +27,7 @@
             <li>סטטוס</li>
         </ul>
         <div class="meetings">
-            <div *ngIf="(reports | filter: studentSelected:'ticketNo').length === 0">
+            <div style="text-align: center;" *ngIf="(reports | filter: studentSelected:'ticketNo').length === 0">
                 No Repots
             </div>
             <app-meeting-table-item

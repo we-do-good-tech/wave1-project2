@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs";
-import { map } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { Report } from "src/app/interfaces/Report";
 import { Student } from "src/app/interfaces/Student";
 import { ReportsService } from "src/app/services/reports.service";
@@ -17,8 +17,7 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
     students: Student[];
     reports: Report[];
     studentSelected: string;
-    subStudents: Subscription;
-    subReports: Subscription;
+    subInfo: Subscription;
 
     constructor(
         private route: ActivatedRoute,
@@ -29,13 +28,12 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this.subStudents = this.route.data.subscribe((result) => {
-            this.students = result.students;
-        });
-
-        this.subReports = this.reportsService.getReportsChange()
-            .subscribe((result) => {
-                // console.log('REPORTS CHANGE')
+        this.subInfo = this.route.data.pipe(
+            switchMap((result) => {
+                this.students = result.students
+                return this.reportsService.getReportsChange()
+            }),
+            map((result) => {
                 this.reports = result;
                 this.students.forEach((s) => {
                     let findReports = this.reports.find((r) => r.ticketNo == s.ticketNo)
@@ -43,13 +41,13 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
                         s.hasReports = true
                     }
                 })
-                // console.log(this.reports)
             })
+        ).subscribe()
     }
 
 
     onSelectStudent(event: any): void {
-        this.studentSelected = event.target.value
+        this.studentSelected = event.value
     }
 
 
@@ -59,6 +57,7 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
         report.parentEmail = student.parentEmail;
 
         this.reportsService.setReport(report);
+
         this.router.navigate(["/main/teacher/meeting", report.ticketNo], {
             queryParams: {
                 date: report.reportDate,
@@ -77,7 +76,6 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.subStudents.unsubscribe();
-        this.subReports.unsubscribe();
+        this.subInfo.unsubscribe();
     }
 }

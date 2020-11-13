@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Observable, Subscription } from "rxjs";
+import { Subscription } from "rxjs";
 import { HttpErrorMessagesService } from "src/app/services/http-error-messages.service";
 
 @Component({

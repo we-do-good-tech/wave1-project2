@@ -14,7 +14,6 @@ async function validate(request, response, next) {
 
     Object.freeze(request.body)
     next()
-
 }
 
 

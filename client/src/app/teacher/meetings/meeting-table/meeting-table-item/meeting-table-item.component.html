@@ -1,5 +1,7 @@
 <div class="tableItem">
-    <ul (click)="onSendConfirmSignAgain(report)" [class.disabled]="displayItem">
+    <ul
+        (click)="onSendConfirmSignAgain(report)"
+        [class.disabled]="displayItem">
         <li>{{index}}</li>
         <li>{{report?.reportDate | date: 'dd-MM-yyyy'}}</li>
         <li> <span>!</span> <br> {{displayItem ? 'ממתין לאישור' : 'שלח לאישור'}} </li>

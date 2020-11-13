@@ -52,7 +52,7 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
             studentName: ['', [
                 Validators.required
             ]],
-            meetingDate: ["dd/mm/yyyy", [
+            meetingDate: [null, [
                 Validators.required,
                 FormsValidatorsService.limitDate(90),
                 FormsValidatorsService.blockOverDate,
@@ -73,6 +73,7 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
     }
 
     onCreateMeeting(): void {
+        if (this.meetingForm.invalid) return
         const {
             studentName,
             meetingDate,
@@ -80,8 +81,6 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
             meetingComments,
             times: { meetingStartTime, meetingEndTime },
         } = this.meetingForm.value;
-
-        console.log(this.meetingForm.value)
 
         const student = this.students.find((s) => s.studentName === studentName)
 
@@ -99,7 +98,7 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
             parentEmail: student.parentEmail,
         };
 
-        console.log(report)
+        // console.log(report)
         this.reportsService.setReport(report);
         this.router.navigate(["/main/teacher/meeting-new"]);
     }
@@ -130,27 +129,28 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
     }
 
     checkDateAndAddValidateTime() {
-        this.subValuesChanges = this.getFormControl("meetingDate").valueChanges.subscribe((result) => {
-            const meetingDate = new Date(result).toLocaleDateString();
-            const dateToday = new Date().toLocaleDateString();
-            const startTime = this.getFormControl("meetingStartTime");
-            const endTime = this.getFormControl("meetingEndTime");
-            if (meetingDate === dateToday) {
-                startTime.setValidators([
-                    Validators.required,
-                    FormsValidatorsService.blockOverTime,
-                ]);
-                endTime.setValidators([
-                    Validators.required,
-                    FormsValidatorsService.blockOverTime,
-                ]);
-            } else {
-                startTime.setValidators([Validators.required]);
-                endTime.setValidators([Validators.required]);
-            }
-            startTime.updateValueAndValidity();
-            endTime.updateValueAndValidity();
-        });
+        this.subValuesChanges = this.getFormControl("meetingDate").valueChanges
+            .subscribe((result) => {
+                const meetingDate = new Date(result).toLocaleDateString();
+                const dateToday = new Date().toLocaleDateString();
+                const startTime = this.getFormControl("meetingStartTime");
+                const endTime = this.getFormControl("meetingEndTime");
+                if (meetingDate === dateToday) {
+                    startTime.setValidators([
+                        Validators.required,
+                        FormsValidatorsService.blockOverTime,
+                    ]);
+                    endTime.setValidators([
+                        Validators.required,
+                        FormsValidatorsService.blockOverTime,
+                    ]);
+                } else {
+                    startTime.setValidators([Validators.required]);
+                    endTime.setValidators([Validators.required]);
+                }
+                startTime.updateValueAndValidity();
+                endTime.updateValueAndValidity();
+            });
     }
 
 
