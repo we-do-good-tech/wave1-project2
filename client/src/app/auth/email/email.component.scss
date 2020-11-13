@@ -4,17 +4,17 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-// .wrapper {
-//   display: flex;
-//   width: 100%;
-//   flex-direction: column;
-//   height: 100vh;
-//   margin: 0 auto;
-//   align-items: center;
-//   direction: rtl;
-//   justify-content: space-around;
-//   overflow-y: auto;
-// }
+.wrapper {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0 auto;
+  align-items: center;
+  direction: rtl;
+  justify-content: space-around;
+  overflow-y: auto;
+}
 
 .logo {
   // margin-top: 35px;
