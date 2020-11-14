@@ -33,6 +33,9 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
     subValuesChanges: Subscription
     subReport: Subscription
 
+    maxDate: Date = new Date()
+    minDate: Date = new Date(Date.now() - 1000 * 60 * 60 * 24 * 90)
+
     constructor(
         private formBuilder: FormBuilder,
         public formsService: FormsService,
@@ -54,8 +57,8 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
             ]],
             meetingDate: [null, [
                 Validators.required,
-                FormsValidatorsService.limitDate(90),
-                FormsValidatorsService.blockOverDate,
+                // FormsValidatorsService.limitDate(90),
+                // FormsValidatorsService.blockOverDate,
             ]],
             times: this.formBuilder.group({
                 meetingStartTime: ['', []],

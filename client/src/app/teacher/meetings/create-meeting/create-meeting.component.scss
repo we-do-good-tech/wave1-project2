@@ -1,6 +1,7 @@
 .meetingsContainer {
   width: 100%;
-  height: calc(100vh - 68px);
+  // height: calc(100vh - 68px);
+  height: auto;
   // max-height: 100vh;
   display: flex;
   align-items: center;

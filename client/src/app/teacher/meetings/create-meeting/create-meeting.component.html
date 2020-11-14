@@ -13,7 +13,6 @@
         (ngSubmit)="onCreateMeeting()">
         <label>בחר תלמיד מהרשימה</label>
         <mat-select formControlName="studentName" placeholder="בחר">
-            <!-- <mat-option value>בחר</mat-option> -->
             <mat-option
                 class="m-option"
                 *ngFor="let student of students" [value]="student?.studentName">
@@ -35,7 +34,9 @@
                 placeholder="dd/mm/yyyy "
                 (click)="picker.open()"
                 class="Field"
-                [matDatepicker]="picker">
+                [matDatepicker]="picker"
+                [min]="minDate"
+                [max]="maxDate">
             <i class="far fa-calendar-alt" (click)="picker.open()"></i>
         </div>
         <mat-datepicker #picker touchUi></mat-datepicker>
