@@ -17,9 +17,11 @@
         </div>
     </div>
     <div class="oldMeetings">
-        <a [ngClass]="reportsLength === 0 ? 'disabled-link':'oldMeetingLink' "
+        <a
+            [ngClass]="reportsLength === 0 ? 'disabled-link':'oldMeetingLink' "
             [routerLink]="['/main/teacher/meetings-table']">
-            ישנם מפגשים שטרם אושרו <span>!</span>
+            ישנם מפגשים שטרם אושרו
+            <span>!</span>
         </a>
     </div>
 </div>

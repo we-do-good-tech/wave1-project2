@@ -6,7 +6,7 @@
         #form="ngForm"
         (ngSubmit)="onSendEmail(form)">
         <div class="input-group">
-            <label for="teacherEmail">דואר אלקטרוני</label>
+            <mat-label for="teacherEmail">דואר אלקטרוני</mat-label>
             <input
                 (blur)="filedLeaved = $event.isTrusted"
                 required
@@ -16,17 +16,17 @@
                 name="teacherEmail"
                 #teacherEmail="ngModel"
                 class="form-control"
-                placeholder="דואר אלקטרוני">
+                placeholder="exmple@gmail.com">
 
         </div>
         <app-http-error-messages></app-http-error-messages>
         <div class="errorsContainer"
             *ngIf="this.formsService.formControlStatus(teacherEmail.control) && filedLeaved ">
-            <div class="error-validate-form-message animate__animated animate__headShake"
+            <div class="error-validate-form-message"
                 *ngIf="teacherEmail.errors.required ">
                 שדה חובה!
             </div>
-            <div class="error-validate-form-message animate__animated animate__headShake"
+            <div class="error-validate-form-message"
                 *ngIf="teacherEmail.errors.pattern">
                 דואר שגוי
             </div>
@@ -39,7 +39,7 @@
                 class="mainButton"
                 [disabled]="form.invalid"
                 [class.disabledButton]="form.invalid">
-                התחברו
+                התחבר
             </button>
         </div>
     </form>

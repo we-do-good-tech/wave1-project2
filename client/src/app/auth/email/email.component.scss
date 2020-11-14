@@ -33,22 +33,22 @@ form {
 .input-group {
   // display: flex;
   // flex-direction: column;
-  width: 75%;
+  width: 80%;
   margin: 0 auto;
   // justify-content: space-between;
   // align-items: center;
 }
 .input-group input {
-  width: 75%;
+  width: 80%;
 }
-.input-group label {
-  font-size: 12px;
-  color: #040404;
-  direction: rtl;
-  display: flex;
-  align-items: flex-end;
-  width: 75%;
-}
+// .input-group label {
+//   font-size: 12px;
+//   color: #040404;
+//   direction: rtl;
+//   display: flex;
+//   align-items: flex-end;
+//   width: 80%;
+// }
 input {
   background-color: #c9c2bc4d;
 }
@@ -61,7 +61,7 @@ input {
   margin-top: 52px;
 }
 .loginButton button {
-  width: 75%;
+  width: 80%;
   margin: 0 auto;
 }
 
@@ -74,10 +74,10 @@ input {
   display: flex;
   direction: rtl;
   margin: 0 auto;
-  width: 75%;
+  width: 80%;
 }
 .errorsContainer {
-  width: 75%;
+  width: 80%;
   margin: 0 auto;
 }
 .error {

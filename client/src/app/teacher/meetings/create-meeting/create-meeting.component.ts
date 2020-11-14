@@ -43,7 +43,7 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
         private router: Router,
         private reportsService: ReportsService) {
         this.students = [];
-        this.timeList = timeList(8, 24, 10);
+        this.timeList = timeList(8, 24, 15);
     }
 
     ngOnInit(): void {

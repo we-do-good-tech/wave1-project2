@@ -11,7 +11,7 @@
         class="form"
         [formGroup]="meetingForm"
         (ngSubmit)="onCreateMeeting()">
-        <label>בחר תלמיד מהרשימה</label>
+        <mat-label>בחר תלמיד מהרשימה</mat-label>
         <mat-select formControlName="studentName" placeholder="בחר">
             <mat-option
                 class="m-option"
@@ -19,12 +19,14 @@
                 {{student?.studentName}}
             </mat-option>
         </mat-select>
-        <div *ngIf="this.formsService.formControlStatus(getFormControl('studentName'))">
-            <div class="errorMessage">
+        <div
+            class="error-message-con"
+            *ngIf="this.formsService.formControlStatus(getFormControl('studentName'))">
+            <div class="error-message">
                 שדה חובה
             </div>
         </div>
-        <label>בחר תאריך</label>
+        <mat-label>בחר תאריך</mat-label>
         <div class="inputContainer">
             <input
                 id="date-input"
@@ -40,21 +42,21 @@
             <i class="far fa-calendar-alt" (click)="picker.open()"></i>
         </div>
         <mat-datepicker #picker touchUi></mat-datepicker>
-        <div *ngIf="this.formsService.formControlStatus(getFormControl('meetingDate'))">
-            <div class="errorMessage" *ngIf="getFormControl('meetingDate').errors.required">
+        <div class="error-message-con" *ngIf="this.formsService.formControlStatus(getFormControl('meetingDate'))">
+            <div class="error-message" *ngIf="getFormControl('meetingDate').errors.required">
                 שדה חובה
             </div>
-            <div class="errorMessage"
+            <div class="error-message"
                 *ngIf="getFormControl('meetingDate').errors.limitDate && !getFormControl('meetingDate').errors.required">
                 לא ניתן ליצור מפגש שהתקיים לפני יותר מ-3 חודשים
             </div>
-            <div class="errorMessage" *ngIf="getFormControl('meetingDate').errors.blockOverDate">
+            <div class="error-message" *ngIf="getFormControl('meetingDate').errors.blockOverDate">
                 תאריך לא תקין
             </div>
         </div>
         <div class="mettingsTime" formGroupName="times">
             <div class="meetStart">
-                <mat-label>שעת התחלה</mat-label>
+                <mat-label style="text-align: center;">שעת התחלה</mat-label>
                 <mat-select class="meetStartHours" placeholder="--:--" formControlName="meetingStartTime">
                     <!-- <mat-option value>--:--
                     </mat-option> -->
@@ -62,19 +64,18 @@
                         {{time}}
                     </mat-option>
                 </mat-select>
-                <div class="errorMessage"
+                <div class="error-message-con"
                     *ngIf="this.formsService.formControlStatus(getFormControl('meetingStartTime'))">
-                    <div class="errorMessage" *ngIf=" getFormControl('meetingStartTime').errors.required">
+                    <div class="error-message" *ngIf=" getFormControl('meetingStartTime').errors.required">
                         שדה חובה
                     </div>
-                    <div class="errorMessage" *ngIf="getFormControl('meetingStartTime').errors.blockOverTime">
+                    <div class="error-message" *ngIf="getFormControl('meetingStartTime').errors.blockOverTime">
                         שעה לא חוקית
                     </div>
-
                 </div>
             </div>
             <div class="meetEnd">
-                <mat-label>שעת סיום</mat-label>
+                <mat-label style="text-align: center;">שעת סיום</mat-label>
                 <mat-select class="meetingEndHours" placeholder="--:--" formControlName="meetingEndTime">
                     <!-- <mat-select-trigger>
                         <mat-icon>alarm</mat-icon>
@@ -84,21 +85,22 @@
                         {{time}}
                     </mat-option>
                 </mat-select>
-                <div class="errorMessage" *ngIf="this.formsService.formControlStatus(getFormControl('meetingEndTime'))">
-                    <div class="errorMessage" *ngIf="getFormControl('meetingEndTime').errors.required">
+                <div class="error-message-con"
+                    *ngIf="this.formsService.formControlStatus(getFormControl('meetingEndTime'))">
+                    <div class="error-message" *ngIf="getFormControl('meetingEndTime').errors.required">
                         שדה חובה
                     </div>
-                    <div class="errorMessage" *ngIf="getFormControl('meetingEndTime').errors.blockOverTime">
+                    <div class="error-message" *ngIf="getFormControl('meetingEndTime').errors.blockOverTime">
                         שעה לא חוקית
                     </div>
                 </div>
-                <div class="errorMessage" *ngIf="getFormControl('times').errors?.PositiveTimeRange">
+                <div class="error-message" *ngIf="getFormControl('times').errors?.PositiveTimeRange">
                     שעה לא תקינה
                 </div>
             </div>
         </div>
         <div class="activitiesContainer">
-            <label class="activitiesLabel"><small>נושאים ופעילויות שעלו במפגש</small></label>
+            <mat-label>נושאים ופעילויות שעלו במפגש</mat-label>
             <textarea
                 placeholder="נושאים ופעיליות שעלו במפגש: למשל - מה נלמד, באיזה שלב החונך והחניך נמצאים ומה היו תכני המפגש."
                 formControlName="meetingActivitis"
@@ -107,7 +109,7 @@
                 cols="5"
                 rows="4">
         </textarea>
-            <label class="commentsLabel"><small>הערות חשובות</small></label>
+            <mat-label>הערות חשובות</mat-label>
             <textarea
                 placeholder="הערות חשובות: לדוגמא, לתלמיד היה קושי להתרכז."
                 class="txtArea textAreaTwo"
