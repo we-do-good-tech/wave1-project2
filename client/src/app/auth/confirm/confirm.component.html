@@ -1,6 +1,6 @@
 <!-- // איזה יופי זה מסודר -->
 <div class="confirmWrapper">
-    <p class="m-3">נשלח מייל, נא הזינו הקוד</p>
+    <h2 class="m-3">נשלח מייל, נא הזינו הקוד</h2>
     <form #form="ngForm" appInputFocus [appRemoveAttr]="'placeholder'" [elementName]="'input'">
         <div class="smsCode">
             <input
@@ -43,7 +43,6 @@
             <input
                 appLimitInput
                 readonly="readonly"
-
                 id="3"
                 ngModel="virtualkey"
                 [appIntervalToggle]="{className: 'not-empty', time: 500}"

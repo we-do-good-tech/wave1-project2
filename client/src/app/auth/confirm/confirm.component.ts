@@ -54,11 +54,9 @@ export class ConfirmComponent implements AfterViewInit, OnDestroy, OnInit {
                 this.loaderService.setStatus(true)
                 this.authService.confirmCode(codeToSend.code)
                     .subscribe((result) => {
-                        // setTimeout(() => {
                         this.router.navigate(["main/teacher"]).finally(() => {
                             this.form.resetForm()
                         })
-                        // }, 1000);
                     }, () => {
                         this.form.resetForm()
                         this.firstInput.nativeElement.focus()
@@ -74,7 +72,7 @@ export class ConfirmComponent implements AfterViewInit, OnDestroy, OnInit {
         this.setTimer(this.confirmCodeExpireTime)
         this.authService.resendConfirmCode().subscribe((result) => {
             this.form.resetForm()
-        }, () => { });
+        });
     }
 
 

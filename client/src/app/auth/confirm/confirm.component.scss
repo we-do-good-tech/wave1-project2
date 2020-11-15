@@ -24,48 +24,14 @@ input::-webkit-inner-spin-button {
   width: 100%;
   margin-bottom: 20px;
 }
-.codeError {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  color: #d1372a;
-  direction: rtl;
-  font-size: 12px;
-  // animation: errorEnter 1s ease-in;
-  position: relative;
-  width: 100%;
-  // left: 50%;
-  // transform: translateX(-25%);
-  background-color: gray;
-}
-span {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  // animation: errorEnter 1s ease;
-}
-@keyframes errorEnter {
-  from {
-    left: 0;
-    // opacity: 0;
-  }
-  to {
-    left: 50%;
-    transform: translateX(-50%);
-    // opacity: 1;
-  }
-}
 
 .not-empty::-webkit-input-placeholder {
   color: #7c7676;
   font-size: 20px;
   font-weight:lighter;
   margin-top: 5px;
-  // font-stretch:expanded ;
   transform: scaleY(1.8)
-
-};
-
-
+}
 
 ::-webkit-input-placeholder {
      color: white;
@@ -92,53 +58,20 @@ span {
   padding: 5px 0;
 }
 
-.disabled-link {
-  pointer-events: none;
-  color: #ccc;
-  text-decoration: underline;
-  margin: 0 auto;
+h2{
+  font-weight: bold;
+  font-size: 28px;
 }
 
-// input:focus {
-//   color: red;
-// }
-
-// ::placeholder {
-//   margin: 10px;
-//   color: #333;
-//   opacity: 0.3;
-//   text-align: center;
-//   animation: fontbulger 2s infinite;
-// }
-// @keyframes fontbulger {
-//   0% {
-//     opacity: 0 ;
-//   }
-//   30% {
-//     opacity: 0.5;
-//   }
-//   100% {
-//     opacity: 1;
-//   }
-// }
-
-.confirmWrapper p {
-  font-size: 22px;
-  color: #4a4545;
-  font-weight: 600;
-}
 .confirmWrapper small {
   display: block;
   border-bottom: 1px solid black;
   cursor: pointer;
   line-height: 12px;
-  margin: 10px 0;
+  margin-top: 25px;
 }
 button {
   width: 80%;
   margin: 0 auto;
   margin-top: 15px;
-}
-
-@media (max-height: 500px) {
 }

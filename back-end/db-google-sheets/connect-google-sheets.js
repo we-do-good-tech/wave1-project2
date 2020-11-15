@@ -4,7 +4,6 @@ const keys = require("../config/keys");
 
 function authorizeClient(callClient) {
     console.log("authorizeClient");
-
     const client = new google.auth.JWT(
         creds.client_email,
         null,
@@ -15,7 +14,6 @@ function authorizeClient(callClient) {
         if (error) {
             callClient(error, null);
         } else {
-            // console.log(tokens);
             console.log("connected");
             callClient(null, client);
         }

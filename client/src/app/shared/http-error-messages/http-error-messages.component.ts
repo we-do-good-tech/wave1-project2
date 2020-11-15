@@ -1,5 +1,6 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Subscription } from "rxjs";
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from "@angular/core";
+import { Router } from '@angular/router';
+import { Observable, Subscription } from "rxjs";
 import { HttpErrorMessagesService } from "src/app/services/http-error-messages.service";
 
 @Component({
@@ -9,15 +10,17 @@ import { HttpErrorMessagesService } from "src/app/services/http-error-messages.s
 })
 export class HttpErrorMessagesComponent implements OnInit, OnDestroy {
     subErrorMessageChange: Subscription;
-    message: string;
+    message: string
 
-    constructor(private httpErrorMessages: HttpErrorMessagesService) { }
+    constructor(
+        private httpErrorMessages: HttpErrorMessagesService,
+        private cdr: ChangeDetectorRef) { }
 
     ngOnInit(): void {
         this.subErrorMessageChange = this.httpErrorMessages
             .getErrorMessageChnage()
             .subscribe((message) => {
-                console.log(message);
+                this.cdr.detectChanges()
                 this.message = message;
             });
     }

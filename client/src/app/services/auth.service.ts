@@ -20,8 +20,7 @@ export class AuthService {
     private authProccessChnage: BehaviorSubject<boolean>
     private confirmCodeExpireTime: number
 
-    constructor(private http: HttpClient, private router: Router, private routingService: RoutingService) {
-        console.log(this.routingService)
+    constructor(private http: HttpClient, private router: Router) {
         this.isLog = false;
         this.isLogChange = new BehaviorSubject<boolean>(this.isLog);
         this.authProccess = false

@@ -56,17 +56,16 @@
         </div>
         <div class="mettingsTime" formGroupName="times">
             <div class="meetStart">
-                <mat-label style="text-align: center;">שעת התחלה</mat-label>
+                <mat-label>שעת התחלה</mat-label>
                 <mat-select class="meetStartHours" placeholder="--:--" formControlName="meetingStartTime">
-                    <!-- <mat-option value>--:--
-                    </mat-option> -->
                     <mat-option class="m-option" *ngFor="let time of timeList" [value]="time">
                         {{time}}
                     </mat-option>
                 </mat-select>
                 <div class="error-message-con"
                     *ngIf="this.formsService.formControlStatus(getFormControl('meetingStartTime'))">
-                    <div class="error-message" *ngIf=" getFormControl('meetingStartTime').errors.required">
+                    <div class="error-message"
+                        *ngIf=" getFormControl('meetingStartTime').errors.required">
                         שדה חובה
                     </div>
                     <div class="error-message" *ngIf="getFormControl('meetingStartTime').errors.blockOverTime">
@@ -75,7 +74,7 @@
                 </div>
             </div>
             <div class="meetEnd">
-                <mat-label style="text-align: center;">שעת סיום</mat-label>
+                <mat-label>שעת סיום</mat-label>
                 <mat-select class="meetingEndHours" placeholder="--:--" formControlName="meetingEndTime">
                     <!-- <mat-select-trigger>
                         <mat-icon>alarm</mat-icon>
@@ -87,7 +86,9 @@
                 </mat-select>
                 <div class="error-message-con"
                     *ngIf="this.formsService.formControlStatus(getFormControl('meetingEndTime'))">
-                    <div class="error-message" *ngIf="getFormControl('meetingEndTime').errors.required">
+                    <div class="error-message"
+                        style="text-align: center;"
+                        *ngIf="getFormControl('meetingEndTime').errors.required">
                         שדה חובה
                     </div>
                     <div class="error-message" *ngIf="getFormControl('meetingEndTime').errors.blockOverTime">

@@ -78,6 +78,14 @@
   outline:  hidden;
 }
 
+.disabled-link {
+  pointer-events: none;
+  color: #ccc;
+  text-decoration: underline;
+  margin: 0 auto;
+  border-bottom:#ccc ;
+}
+
 .backArrow {
   color: #fff;
   float: left;

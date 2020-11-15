@@ -5,20 +5,19 @@
     <form
         #form="ngForm"
         (ngSubmit)="onSendEmail(form)">
-        <div class="input-group">
-            <mat-label for="teacherEmail">דואר אלקטרוני</mat-label>
-            <input
-                (blur)="filedLeaved = $event.isTrusted"
-                required
-                type="email"
-                ngModel
-                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-                name="teacherEmail"
-                #teacherEmail="ngModel"
-                class="form-control"
-                placeholder="exmple@gmail.com">
-
-        </div>
+        <!-- <div class="input-group"> -->
+        <mat-label for="teacherEmail">דואר אלקטרוני</mat-label>
+        <input
+            (blur)="filedLeaved = $event.isTrusted"
+            required
+            type="email"
+            ngModel
+            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+            name="teacherEmail"
+            #teacherEmail="ngModel"
+            class="form-control"
+            placeholder="exmple@gmail.com">
+        <!-- </div> -->
         <app-http-error-messages></app-http-error-messages>
         <div class="errorsContainer"
             *ngIf="this.formsService.formControlStatus(teacherEmail.control) && filedLeaved ">

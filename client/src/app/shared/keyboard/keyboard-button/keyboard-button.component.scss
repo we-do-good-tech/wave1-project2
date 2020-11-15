@@ -1,3 +1,5 @@
+.key_del,
+.key_clear,
 .key {
   width: 50px;
   height: 50px;
@@ -11,35 +13,14 @@
   font-weight: bold;
 }
 
+.key_clear {
+  background-color: #f3f2f2;
+  color: rgb(230, 102, 102);
+}
 .key_del {
-  width: 50px;
-  height: 50px;
-  // background-color: #6dac18;
-  font-size: 18px;
-  border-radius: 100%;
-  text-align: center;
-  line-height: 50px;
   color: rgb(197, 197, 197);
-  flex: 33.333%;
-  font-weight: bold;
   display: none;
 }
-
-.key_clear {
-  width: 50px;
-  height: 50px;
-  background-color: #f3f2f2;
-  font-size: 18px;
-  border-radius: 100%;
-  text-align: center;
-  line-height: 50px;
-  color: rgb(230, 102, 102);
-
-  // border: solid 2px  rgb(230, 102, 102) ;
-  flex: 33.333%;
-  font-weight: bold;
-}
-
 
 .fa-backspace {
   font-size: 29px;

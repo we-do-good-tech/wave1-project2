@@ -1,14 +1,11 @@
 .keyboard {
   width: 65%;
   margin: auto;
-  // background-color: red;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  //   direction: ltr;
 }
 app-keyboard-button {
-  //   flex: 0 0 33.333%;
   width: 33%;
   padding: 10px;
   text-align: center;

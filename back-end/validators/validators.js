@@ -1,9 +1,9 @@
 const { check } = require('express-validator')
 const { daysRange, timesRange, conculateRangeToTime } = require('../helpers/dates.ranges')
 const keys = require('../config/keys')
+const isBase64 = require('is-base64');
 
 const errorMessage = 'INVALID VALUES'
-
 
 module.exports = {
     email: function (property) {
@@ -81,6 +81,19 @@ module.exports = {
                 return true
             })
 
+    },
+    imageBase64: function (property) {
+        return check(property, errorMessage)
+            .exists()
+            .trim()
+            .custom((result) => {
+                const checkBase64 = isBase64(result, { allowMime: true, mimeRequired: true })
+                if (!checkBase64) {
+                    throw new Error()
+                }
+
+                return true
+            })
     }
 }
 

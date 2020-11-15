@@ -29,7 +29,7 @@ export class HttpErrorMessagesService {
     setMessage(message: string): void {
         this.errorMessage = message;
         this.errorMessageChnage.next(this.errorMessage);
-        this.clearMessage();
+        // this.clearMessage();
     }
 
     clearMessage(): void {
@@ -42,16 +42,20 @@ export class HttpErrorMessagesService {
 
     checkErrorMessage(error: HttpErrorResponse): void {
         let errorMassge: string = error.error.message;
+        this.setMessage(errorMassge)
         if (errorMassge === 'SERVER ERROR' || error.status >= 500) {
             this.router.navigate(['not-found'])
+            return
         }
         else if (error.status === 429 && error.statusText === "Too Many Requests") {
+            this.setMessage(errorMassge)
             this.router.navigate(['/not-found'])
-
+            return
         }
         else if (errorMassge === 'Unauthorized') {
             this.authService.clearLoginInfo()
             this.router.navigate(['/auth/user'])
+            return
 
         } else {
             this.setMessage(errorMassge);

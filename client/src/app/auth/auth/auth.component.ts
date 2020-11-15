@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class AuthComponent implements OnInit, OnDestroy {
 
-    authProccess: boolean = true
+    authProccess: boolean = false
     subAuthProccess: Subscription
 
     constructor(private authService: AuthService) { }
