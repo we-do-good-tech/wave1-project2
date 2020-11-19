@@ -14,7 +14,7 @@ const limitAuthEmailOptions = {
 
 router.post(
     '/teacherEmail',
-    limitter(10 * 60 * 1000, 1, 'אחי מספיק לשלוח בקשות ,תבוא מחר'),
+    // limitter(10 * 60 * 1000, 1, 'אחי מספיק לשלוח בקשות ,תבוא מחר'),
     [validators.email('teacherEmail')],
     validate,
     authSeets,

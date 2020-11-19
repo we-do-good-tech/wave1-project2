@@ -6,6 +6,9 @@ const keys = require('../config/keys')
 
 function sendMail(options, callSuccess) {
     const transporter = nodemailer.createTransport({
+        // host: '...',
+        // port: XXXX,
+        // secure: true, 
         service: 'gmail',
         auth: {
             user: keys.EMAIL_SENDER.auth.user,
