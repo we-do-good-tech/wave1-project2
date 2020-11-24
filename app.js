@@ -36,10 +36,10 @@ const authRoutes = require("./back-end/routes/auth");
 const teacherRoutes = require('./back-end/routes/teacher')
 const signRouter = require('./back-end/routes/signature');
 
-
+// http://localhost:3004/auth/user
 server.use(cors({
-    // origin: 'HOST'
-    // credentials: true
+    origin: 'https://mashlimim.herokuapp.com/',
+    credentials: true
 }));
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
@@ -58,8 +58,9 @@ server.use(session({
     cookie: {
         expires: keys.SESSION.expiresIn,
         // httpOnly: true,
-        // sameSite: true,
-        // secure: true
+        sameSite: true,
+        secure: true,
+        ephemeral: true
     }
 }))
 
