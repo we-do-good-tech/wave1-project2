@@ -79,7 +79,7 @@ module.exports.authConfirmCode = async function (request, response, next) {
             });
         }
 
-        response.status(401).send({
+        response.status(402).send({
             message: "קוד שגוי, נסה שנית",
         });
     } catch (error) {

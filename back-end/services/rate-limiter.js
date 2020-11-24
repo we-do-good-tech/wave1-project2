@@ -16,17 +16,17 @@ function limitter(windowMs, max, message) {
 }
 
 
-const confirmCode = rateLimiter({
-    windowMs: 10 * 60 * 1000 * 6,
-    max: 5,
-    message: 'כשל',
-    handler: function (request, response) {
-        console.log('CONFIRM COSE LIMITTER')
-        response.status(429).send({
-            message: ''
-        })
-    }
-})
+// const confirmCode = rateLimiter({
+//     windowMs: 10 * 60 * 1000 * 6,
+//     max: 5,
+//     message: 'כשל',
+//     handler: function (request, response) {
+//         console.log('CONFIRM COSE LIMITTER')
+//         response.status(429).send({
+//             message: ''
+//         })
+//     }
+// })
 
 
 

@@ -12,7 +12,13 @@
 
 
 
+button:focus {
+  outline: none !important;
+}
 
+#date-input:focus {
+  outline: none !important;
+}
 
 
 
@@ -92,11 +98,14 @@
   position: absolute;
   left: 10px;
 }
-.fa-arrow-left {
+mat-icon{
   font-size: 18px;
   margin-left: 10px;
-  margin-top: 50%;
+  margin-top: 35%;
+
 }
+// .fa-arrow-left {
+// }
 
 .header-green {
   text-align: center;

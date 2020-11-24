@@ -8,7 +8,7 @@ const routes: Routes = [
     {
         path: 'parent-signature/:token',
         component: ParentSignatureComponent,
-        // canActivate: [SignGuard]
+        canActivate: [SignGuard]
     },
     {
         path: 'signature-success',

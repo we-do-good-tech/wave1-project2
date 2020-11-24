@@ -27,7 +27,8 @@ const routes: Routes = [
                 path: "create-meeting",
                 component: CreateMeetingComponent,
                 resolve: {
-                    students: StudentsResolverService
+                    students: StudentsResolverService,
+                    reports: ReportsResolverService
                 }
             },
             {

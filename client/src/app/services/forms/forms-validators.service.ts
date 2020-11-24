@@ -49,6 +49,7 @@ export class FormsValidatorsService {
         if (value) {
             let time = value.split(':')
             let timeValue = new Date(Number(currentDateArr[2]), Number(currentDateArr[0]) - 1, Number(currentDateArr[1]), Number(time[0]), Number(time[1]), 0).getTime()
+            // console.log(now.getTime(), timeValue)
             if (now.getTime() < timeValue) {
                 return {
                     blockOverTime: true

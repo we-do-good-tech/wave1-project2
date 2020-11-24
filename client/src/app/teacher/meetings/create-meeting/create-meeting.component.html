@@ -3,7 +3,9 @@
     [changeClass]="'header-green'"
     [selector]="'#the-header'">
     <a class="backArrow" [routerLink]="['/main/teacher']">
-        <i class="fas fa-arrow-left"></i>
+        <!-- <i class="fas fa-arrow-left"></i> 
+        -->
+        <mat-icon>keyboard_arrow_left</mat-icon>
     </a>
 </app-header>
 <div class="meetingsContainer">
@@ -39,7 +41,8 @@
                 [matDatepicker]="picker"
                 [min]="minDate"
                 [max]="maxDate">
-            <i class="far fa-calendar-alt" (click)="picker.open()"></i>
+            <!-- <mat-icon class="icon">calendar_today</mat-icon> -->
+            <!-- <i class="far fa-calendar-alt" (click)="picker.open()"></i> -->
         </div>
         <mat-datepicker #picker touchUi></mat-datepicker>
         <div class="error-message-con" *ngIf="this.formsService.formControlStatus(getFormControl('meetingDate'))">

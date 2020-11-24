@@ -16,6 +16,8 @@ export class ParentSignatureSuccessComponent {
         this.router.navigate(['not-found'])
         // window.open('confirm-report/signature-success', '_self', '');
         // window.close();
+        // window.open('', '_self', '');
+        // window.close();
     }
 
 }

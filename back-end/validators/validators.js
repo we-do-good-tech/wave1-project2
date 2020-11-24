@@ -49,22 +49,23 @@ module.exports = {
             .exists()
             .matches(/^\s*([01]?\d|2[0-3]):?([0-5]\d)\s*$/)
             .custom((result, { req }) => {
+
                 if (key === 'TIMES_RANGE') {
                     if (timesRange(req.body.reportStartTime, req.body.reportEndTime) <= 0) {
+                        console.log('TIME RANGE ERROR')
                         throw new Error()
                     }
 
                     const meetingDate = new Date(req.body.reportDate).toLocaleDateString();
                     const dateToday = new Date().toLocaleDateString();
 
-
                     if (meetingDate === dateToday) {
                         let now = new Date()
-                        let currentDateArr = now.toLocaleDateString().split('/').length === 1 ? now.toLocaleDateString().split('.') : now.toLocaleDateString().split('/')
-                        let time = req.body.reportStartTime.split(':') || req.body.reportStartTime.split(':')
-                        let timeValue = new Date(Number(currentDateArr[2]), Number(currentDateArr[1]), Number(currentDateArr[0]), Number(time[0]), Number(time[1]), 0).getTime()
+                        let time = req.body.reportStartTime.split(':') || req.body.reportEndTime.split(':')
+                        let timeValue = new Date(now.getFullYear(), now.getMonth(), now.getDate(), Number(time[0]), Number(time[1]), 0).getTime()
 
                         if (now.getTime() < timeValue) {
+                            console.log('TIME RANGE ERROR CURRENT DATE')
                             throw new Error()
                         }
                     }
@@ -74,6 +75,8 @@ module.exports = {
                         timesRange(req.body.reportStartTime, req.body.reportEndTime)
                     )
                     if (time !== result) {
+                        console.log('TIME RANGE NOT EQULS')
+
                         throw new Error()
                     }
                 }

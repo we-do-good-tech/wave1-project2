@@ -25,6 +25,7 @@ import { OnBlurDirective } from "../directives/on-blur.directive";
 
 import { FilterPipe } from "../services/pipes/filter.pipe";
 import { HebrewMountNamePipe } from "../services/pipes/hebrew-mount-name.pipe";
+import { AngularMaterialModule } from '../angular.material.module';
 
 
 
@@ -55,6 +56,7 @@ import { HebrewMountNamePipe } from "../services/pipes/hebrew-mount-name.pipe";
         RouterModule,
         SignaturePadModule,
         FormsModule,
+        AngularMaterialModule
     ],
     exports: [
         HeaderComponent,

@@ -1,7 +1,4 @@
-const {
-    authorizeClient,
-} = require("../db-google-sheets/connect-google-sheets");
-
+const { authorizeClient } = require("../db-google-sheets/connect-google-sheets");
 
 async function authSeets(request, response, next) {
     authorizeClient((error, client) => {

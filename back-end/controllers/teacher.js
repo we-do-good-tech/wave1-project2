@@ -167,7 +167,7 @@ module.exports.getReportsStats = async function (request, response, next) {
 
 
 module.exports.resendParentSign = async function (request, response, next) {
-    console.log(request.findReport)
+    // console.log(request.findReport)
     if (!request.findReport) {
         return response.status(404).send({
             message: "INVALID REPORT",

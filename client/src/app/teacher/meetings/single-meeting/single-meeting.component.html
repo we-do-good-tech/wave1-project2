@@ -2,7 +2,8 @@
     [selector]="'#the-header'">
     <a class="backArrow"
         [routerLink]="mode === 'new-report' ? ['/main/teacher/create-meeting'] : ['/main/teacher/meetings-table']">
-        <i class="fas fa-arrow-left"></i> </a>
+        <mat-icon>keyboard_arrow_left</mat-icon>
+    </a>
 </app-header>
 <div class="singleMeetingContainer">
     <app-meeting-info [report]="report"></app-meeting-info>

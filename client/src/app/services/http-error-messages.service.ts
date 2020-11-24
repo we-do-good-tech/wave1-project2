@@ -13,7 +13,7 @@ export class HttpErrorMessagesService {
 
     private errorMessage: string;
     private errorMessageChnage: Subject<string>;
-    private deleteMessageTime: number = 5
+    private deleteMessageTime: number = 2
 
     constructor(private router: Router, private authService: AuthService) {
         this.errorMessage = '';
@@ -29,7 +29,7 @@ export class HttpErrorMessagesService {
     setMessage(message: string): void {
         this.errorMessage = message;
         this.errorMessageChnage.next(this.errorMessage);
-        // this.clearMessage();
+        this.clearMessage();
     }
 
     clearMessage(): void {

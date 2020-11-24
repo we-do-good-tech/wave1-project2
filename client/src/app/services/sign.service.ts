@@ -35,7 +35,7 @@ export class SignService {
         }>('api/sign/parent', { singImageBase64: singImageBase64, token: this.token })
             .pipe(
                 map((result) => {
-                    console.log(result)
+                    // console.log(result)
                     return result.message
                 })
             )

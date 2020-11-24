@@ -136,6 +136,7 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
             .subscribe((result) => {
                 const meetingDate = new Date(result).toLocaleDateString();
                 const dateToday = new Date().toLocaleDateString();
+                // console.log(meetingDate, dateToday)
                 const startTime = this.getFormControl("meetingStartTime");
                 const endTime = this.getFormControl("meetingEndTime");
                 if (meetingDate === dateToday) {
