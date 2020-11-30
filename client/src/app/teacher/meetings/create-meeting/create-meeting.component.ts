@@ -50,6 +50,7 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
 
     ngOnInit(): void {
         this.subStudents = this.studentsService.getStudents().subscribe((result) => {
+            console.log(result)
             this.students = result;
         });
 
@@ -66,7 +67,10 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
                 meetingStartTime: ['', []],
                 meetingEndTime: ['', []],
             }, { validator: FormsValidatorsService.PositiveTimeRange }),
-            meetingActivitis: [null, []],
+            meetingActivitis: [null, [
+                Validators.required,
+                Validators.minLength(5)
+            ]],
             meetingComments: [null, []],
         });
 

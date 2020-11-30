@@ -14,7 +14,7 @@ async function findReport(request, response, next) {
             sheetId,
             request.sheetsClientData.authorizationToken
         )
-        console.log(report)
+        // console.log(report)
         if (report) {
             request.findReport = convertSheetsDataToObjectsArray(report, 'REPORTS')[0]
             Object.freeze(request.findReport)
@@ -24,7 +24,7 @@ async function findReport(request, response, next) {
         next()
 
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         response.status(500).send({
             message: "ERROR UNKNOW",
         });

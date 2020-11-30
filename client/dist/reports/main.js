@@ -1820,10 +1820,10 @@ class AuthService {
             const now = new Date();
             const expiresInDate = new Date(now.getTime() + expiresIn * 1000);
             this.saveSessionStorage(this.token, expiresInDate, this.userName);
-            setTimeout(() => {
-                this.authProccess = false;
-                this.authProccessChnage.next(this.authProccess);
-            }, 1500);
+            // setTimeout(() => {
+            //     this.authProccess = false
+            //     this.authProccessChnage.next(this.authProccess)
+            // }, 1500);
             return result.message;
         }));
     }

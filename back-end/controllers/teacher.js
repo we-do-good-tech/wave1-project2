@@ -82,7 +82,7 @@ module.exports.createReport = async function (request, response, next) {
 
 
         if (reportCreated.updates.updatedRows > 0) {
-            console.log(reportCreated.updates)
+            // console.log(reportCreated.updates)
             const token = createToken({
                 studentName: studentName,
                 ticketNo: ticketNo,

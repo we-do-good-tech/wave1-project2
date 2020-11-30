@@ -112,6 +112,17 @@
                 cols="5"
                 rows="4">
         </textarea>
+            <div
+                class="error-message-con"
+                *ngIf="this.formsService.formControlStatus(getFormControl('meetingActivitis'))">
+                <div class="error-message" *ngIf="getFormControl('meetingActivitis').errors.required">
+                    שדה חובה
+                </div>
+                <div class="error-message" *ngIf="getFormControl('meetingActivitis').errors.minlength">
+                    חובה להכניס תוכן בעל 4 תווים לפחות
+                </div>
+            </div>
+
             <mat-label>הערות חשובות</mat-label>
             <textarea
                 placeholder="הערות חשובות: לדוגמא, לתלמיד היה קושי להתרכז."

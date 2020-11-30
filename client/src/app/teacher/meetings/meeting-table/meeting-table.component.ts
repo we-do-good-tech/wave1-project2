@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs";
-import { map, switchMap, tap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { Report } from "src/app/interfaces/Report";
 import { Student } from "src/app/interfaces/Student";
 import { ReportsService } from "src/app/services/reports.service";
@@ -36,6 +36,7 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
                 return this.reportsService.getReportsChange()
             }),
             map((result) => {
+                console.log(result)
                 this.reports = result;
                 this.students.forEach((s) => {
                     let findReports = this.reports.find((r) => r.ticketNo == s.ticketNo)
