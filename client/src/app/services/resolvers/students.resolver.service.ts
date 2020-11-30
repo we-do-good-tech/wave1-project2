@@ -15,7 +15,7 @@ export class StudentsResolverService implements Resolve<Student[]> {
     constructor(private studentsService: StudentsService, private loaderService: LoaderService) { }
 
     resolve(): Observable<Student[]> {
-        this.loaderService.setStatus(true)
+        // this.loaderService.setStatus(true)
         return this.studentsService.getStudents()
             .pipe(
                 tap(() => this.loaderService.setStatus(false))

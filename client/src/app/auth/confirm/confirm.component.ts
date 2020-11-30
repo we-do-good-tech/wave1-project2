@@ -71,6 +71,8 @@ export class ConfirmComponent implements AfterViewInit, OnDestroy, OnInit {
         this.setTimer(this.confirmCodeExpireTime)
         this.authService.resendConfirmCode().subscribe((result) => {
             this.form.resetForm()
+
+            alert(result)
         });
     }
 

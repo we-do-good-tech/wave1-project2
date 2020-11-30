@@ -123,7 +123,7 @@ module.exports.createReport = async function (request, response, next) {
 module.exports.getReportsUnConfirm = async function (request, response, next) {
     const sheetId = keys.GOOGLE_SHEETS.sheetsIds.reports
     const query = `select A,B,C,D,E,F,I,L,M where J=${Number(request.userData.teacherId)}and G=${false}`;
-    console.log(request.session.user)
+    // console.log(request.session.user)
     try {
         const reports = await googleSheetsService.find(
             query,

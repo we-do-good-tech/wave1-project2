@@ -60,9 +60,9 @@ server.use(session({
         // httpOnly: true,
 
         // PROD
-        sameSite: true,
-        secure: true,
-        ephemeral: true
+        // sameSite: true,
+        // secure: true,
+        // ephemeral: true
     }
 }))
 
