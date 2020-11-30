@@ -19,7 +19,7 @@ module.exports.find = async function (query, sheetId, authorizationToken) {
         if (!convertData) {
             return
         }
-        // console.log(convertData)
+
         return convertData
     } catch (error) {
         console.log(error)
@@ -61,7 +61,6 @@ module.exports.update = async function (range, sheetName, body, authorizationTok
         })
 
         const responseJson = await update.json()
-        // console.log(responseJson)
 
         return responseJson
     } catch (error) {

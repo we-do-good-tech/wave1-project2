@@ -1,4 +1,4 @@
-<app-header styleElement [changeClass]="mode === 'new-report' ? 'header-green' : 'header-red'"
+<app-header [styleElement]="mode === 'new-report' ? 'header-green' : 'header-red'"
     [selector]="'#the-header'">
     <a class="backArrow"
         [routerLink]="mode === 'new-report' ? ['/main/teacher/create-meeting'] : ['/main/teacher/meetings-table']">

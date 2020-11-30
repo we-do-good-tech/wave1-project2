@@ -10,7 +10,7 @@ import { HttpErrorMessagesService } from "src/app/services/http-error-messages.s
 })
 export class HttpErrorMessagesComponent implements OnInit, OnDestroy {
     subErrorMessageChange: Subscription;
-    message: string
+    message: string = ''
 
     constructor(
         private httpErrorMessages: HttpErrorMessagesService,
@@ -20,6 +20,7 @@ export class HttpErrorMessagesComponent implements OnInit, OnDestroy {
         this.subErrorMessageChange = this.httpErrorMessages
             .getErrorMessageChnage()
             .subscribe((message) => {
+                console.log(message)
                 this.cdr.detectChanges()
                 this.message = message;
             });

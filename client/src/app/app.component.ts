@@ -1,6 +1,6 @@
-import { Component, Renderer2 } from "@angular/core";
+import { Component } from "@angular/core";
 import { AuthService } from "./services/auth.service";
-import { environment } from "../environments/environment.prod";
+// import { environment } from "../environments/environment.prod";
 
 @Component({
     selector: "app-root",
@@ -11,8 +11,6 @@ export class AppComponent {
     constructor(private authService: AuthService) {
         this.authService.getAuthData()
         // console.log(environment)
-
-
     }
 
 }

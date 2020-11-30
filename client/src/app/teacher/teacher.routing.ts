@@ -15,21 +15,19 @@ const routes: Routes = [
     {
         path: "teacher",
         component: TeacherMainComponent,
+        resolve: {
+            reports: ReportsResolverService,
+            students: StudentsResolverService
+
+        },
         children: [
             {
                 path: "",
                 component: DashboardComponent,
-                resolve: {
-                    reports: ReportsResolverService
-                }
             },
             {
                 path: "create-meeting",
                 component: CreateMeetingComponent,
-                resolve: {
-                    students: StudentsResolverService,
-                    reports: ReportsResolverService
-                }
             },
             {
                 path: "meeting-new",
@@ -39,10 +37,6 @@ const routes: Routes = [
             {
                 path: "meetings-table",
                 component: MeetingTableComponent,
-                resolve: {
-                    students: StudentsResolverService,
-                    reports: ReportsResolverService
-                }
             },
             {
                 path: "meeting/:ticketNo",

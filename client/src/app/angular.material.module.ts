@@ -19,7 +19,6 @@ import { MatSelectModule } from '@angular/material/select';
         MatDatepickerModule,
         MatNativeDateModule,
         MatSelectModule
-        // MatCalendarCellClassFunction
     ]
 })
 export class AngularMaterialModule { }

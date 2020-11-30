@@ -1,11 +1,11 @@
-import { Directive, ElementRef, HostListener } from '@angular/core';
+import { Directive, HostListener } from '@angular/core';
 
 @Directive({
     selector: '[appLimitInput]'
 })
 export class LimitInputDirective {
 
-    constructor(private inputElement: ElementRef) { }
+    constructor() { }
 
     @HostListener('input', ['$event'])
     limit(event: any) {

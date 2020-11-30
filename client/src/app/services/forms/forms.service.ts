@@ -1,16 +1,12 @@
-
 import { Injectable } from '@angular/core';
 import { AbstractControl, FormControl } from '@angular/forms';
-
 
 @Injectable({
     providedIn: 'root'
 })
 export class FormsService {
 
-
     constructor() { }
-
 
     formControlStatus(control: FormControl): boolean {
         // console.log(control)

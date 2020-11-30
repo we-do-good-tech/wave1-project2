@@ -18,7 +18,6 @@ import { LimitInputDirective } from "../directives/limit-input.directive";
 import { InputFocusDirective } from "../directives/focus.directive";
 import { VirtualKeyDirective } from "../directives/virtual-key";
 import { StyleElementDirective } from "../directives/style.element.directive";
-import { StyleElemetSelectedDirective } from "../directives/style-elemet-selected.directive";
 import { RemoveAttrDirective } from "../directives/remove-attr.directive";
 import { IntervalToggleDirective } from "../directives/interval-toggle.directive";
 import { OnBlurDirective } from "../directives/on-blur.directive";
@@ -26,6 +25,8 @@ import { OnBlurDirective } from "../directives/on-blur.directive";
 import { FilterPipe } from "../services/pipes/filter.pipe";
 import { HebrewMountNamePipe } from "../services/pipes/hebrew-mount-name.pipe";
 import { AngularMaterialModule } from '../angular.material.module';
+import { PortalTargetDirective } from '../directives/portal-target.directive';
+import { PortalAttachDirective } from '../directives/portal-attach.directive';
 
 
 
@@ -44,12 +45,13 @@ import { AngularMaterialModule } from '../angular.material.module';
         LimitInputDirective,
         StyleElementDirective,
         RemoveAttrDirective,
-        StyleElemetSelectedDirective,
         FilterPipe,
         HebrewMountNamePipe,
         MeetingInfoComponent,
         IntervalToggleDirective,
-        OnBlurDirective
+        OnBlurDirective,
+        PortalTargetDirective,
+        PortalAttachDirective
     ],
     imports: [
         CommonModule,
@@ -71,13 +73,14 @@ import { AngularMaterialModule } from '../angular.material.module';
         InputFocusDirective,
         LimitInputDirective,
         StyleElementDirective,
-        StyleElemetSelectedDirective,
         FilterPipe,
         HebrewMountNamePipe,
         MeetingInfoComponent,
         RemoveAttrDirective,
         IntervalToggleDirective,
-        OnBlurDirective
+        OnBlurDirective,
+        PortalTargetDirective,
+        PortalAttachDirective
     ],
 })
 export class SharedModule { }

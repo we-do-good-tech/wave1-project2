@@ -16,6 +16,7 @@ import {
 } from "../../../services/helpers/time.range";
 import { Report } from "src/app/interfaces/Report";
 import { ReportsService } from "src/app/services/reports.service";
+import { StudentsService } from "src/app/services/students.service";
 import { timeList } from "../../../services/helpers/times.list";
 import { Subscription } from 'rxjs';
 
@@ -41,14 +42,15 @@ export class CreateMeetingComponent implements OnInit, AfterContentInit, OnDestr
         public formsService: FormsService,
         private route: ActivatedRoute,
         private router: Router,
-        private reportsService: ReportsService) {
+        private reportsService: ReportsService,
+        private studentsService: StudentsService) {
         this.students = [];
         this.timeList = timeList(8, 24, 15);
     }
 
     ngOnInit(): void {
-        this.subStudents = this.route.data.subscribe((result) => {
-            this.students = result.students;
+        this.subStudents = this.studentsService.getStudents().subscribe((result) => {
+            this.students = result;
         });
 
         this.meetingForm = this.formBuilder.group({

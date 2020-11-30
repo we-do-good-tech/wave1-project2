@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, ElementRef, HostListener, OnInit } from '@angular/core';
+import { Directive, ElementRef, HostListener, OnInit, Renderer2 } from '@angular/core';
 
 @Directive({
     selector: '[appInputFocus]'
@@ -6,7 +6,7 @@ import { AfterViewInit, Directive, ElementRef, HostListener, OnInit } from '@ang
 export class InputFocusDirective implements OnInit {
 
 
-    constructor(private formElement: ElementRef) { }
+    constructor(private formElement: ElementRef, private render: Renderer2) { }
 
 
     ngOnInit(): void {

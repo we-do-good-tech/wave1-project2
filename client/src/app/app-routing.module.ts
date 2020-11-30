@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { AuthGuard } from "./services/guards/auth.guard";
-import { NotAuthGuard } from "./services/guards/not-auth.guard";
+// import { NotAuthGuard } from "./services/guards/not-auth.guard";
 import { NotFoundComponent } from "./shared/not-found/not-found.component";
 // import { ExmpleComponent } from "./shared/exmple/exmple.component";
 import { SignGuard } from './services/guards/sign.guard';

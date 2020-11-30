@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         private reportsService: ReportsService) { }
 
     ngOnInit(): void {
+        console.log('DASHBOARD')
         this.subReports = this.route.data
             .subscribe((result) => this.reportsLength = result.reports.length)
 

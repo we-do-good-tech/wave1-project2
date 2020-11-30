@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthRoutingModule } from "./auth.routing.module";
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 
 import { EmailComponent } from './email/email.component';
@@ -19,7 +19,6 @@ import { AngularMaterialModule } from '../angular.material.module';
     imports: [
         CommonModule,
         FormsModule,
-        ReactiveFormsModule,
         AuthRoutingModule,
         SharedModule,
         AngularMaterialModule

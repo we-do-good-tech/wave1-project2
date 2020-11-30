@@ -42,6 +42,7 @@ export class HttpErrorMessagesService {
 
     checkErrorMessage(error: HttpErrorResponse): void {
         let errorMassge: string = error.error.message;
+        console.log(errorMassge)
         this.setMessage(errorMassge)
         if (errorMassge === 'SERVER ERROR' || error.status >= 500) {
             this.router.navigate(['not-found'])

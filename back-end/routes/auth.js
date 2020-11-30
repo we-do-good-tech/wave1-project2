@@ -6,11 +6,6 @@ const { validate } = require('../middlewares/validate')
 const { authSession } = require('../middlewares/auth-session')
 const { limitter } = require('../services/rate-limiter')
 
-const limitAuthEmailOptions = {
-
-}
-
-
 
 router.post(
     '/teacherEmail',

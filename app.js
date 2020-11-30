@@ -12,18 +12,18 @@ const port = process.env.PORT || 3000
 
 const server = express();
 
-// if (server.get('env') === 'production') {
-require('./back-end/prod/prod')(server)
-process.on('uncaughtExceptions', (ex) => {
-    console.log(ex)
-    process.exit(1)
-})
+if (server.get('env') === 'production') {
+    require('./back-end/prod/prod')(server)
+    process.on('uncaughtExceptions', (ex) => {
+        console.log(ex)
+        process.exit(1)
+    })
 
-process.on('unhandledRejections', (ex) => {
-    console.log(ex)
-    process.exit(1)
-})
-// }
+    process.on('unhandledRejections', (ex) => {
+        console.log(ex)
+        process.exit(1)
+    })
+}
 
 if (server.get('env') === 'development') {
     const morgan = require('morgan')
@@ -36,13 +36,13 @@ const authRoutes = require("./back-end/routes/auth");
 const teacherRoutes = require('./back-end/routes/teacher')
 const signRouter = require('./back-end/routes/signature');
 
-// http://localhost:3004/auth/user
-server.use(cors({
-    origin: 'https://mashlimim.herokuapp.com/',
-    credentials: true
-}));
 
+// server.use(cors({
+//     origin: 'https://mashlimim.herokuapp.com/',
+//     credentials: true
+// }));
 
+server.use(cors())
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(express.static(path.join(__dirname, "client/dist/reports")));
@@ -58,14 +58,13 @@ server.use(session({
     cookie: {
         expires: keys.SESSION.expiresIn,
         // httpOnly: true,
+
+        // PROD
         sameSite: true,
         secure: true,
         ephemeral: true
     }
 }))
-
-
-
 
 
 server.use("/api/auth", authRoutes);

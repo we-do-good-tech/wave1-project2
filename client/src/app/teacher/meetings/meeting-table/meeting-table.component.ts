@@ -5,6 +5,7 @@ import { map, switchMap, tap } from 'rxjs/operators';
 import { Report } from "src/app/interfaces/Report";
 import { Student } from "src/app/interfaces/Student";
 import { ReportsService } from "src/app/services/reports.service";
+import { StudentsService } from 'src/app/services/students.service';
 import { daysRange } from "../../../services/helpers/time.range";
 
 
@@ -22,15 +23,16 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private reportsService: ReportsService) {
+        private reportsService: ReportsService,
+        private studentsService: StudentsService) {
         this.students = [];
         this.reports = [];
     }
 
     ngOnInit(): void {
-        this.subInfo = this.route.data.pipe(
+        this.subInfo = this.studentsService.getStudents().pipe(
             switchMap((result) => {
-                this.students = result.students
+                this.students = result
                 return this.reportsService.getReportsChange()
             }),
             map((result) => {

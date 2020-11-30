@@ -13,6 +13,7 @@ export class TeacherMainComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        console.log('TEACHER MAIN')
     }
 
 }
