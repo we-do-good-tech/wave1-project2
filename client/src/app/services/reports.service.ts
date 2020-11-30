@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
+import { Router } from '@angular/router';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { Report, ReportStats } from "../interfaces/Report";
@@ -15,7 +16,7 @@ export class ReportsService {
     private reportChange: BehaviorSubject<Report>
 
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private router: Router) {
         this.reports = []
         this.report = null
         this.reportChange = new BehaviorSubject<Report>(this.report)
@@ -45,6 +46,7 @@ export class ReportsService {
                     report.lastDateResendSignToParent = formatDate(new Date())
                     this.reports.push(report)
                     this.reportsChange.next([...this.reports])
+                    // this.router.navigate(["/main/teacher/meeting-success"]);
                     return result.message
                 })
             )

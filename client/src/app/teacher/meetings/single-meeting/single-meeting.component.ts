@@ -41,6 +41,7 @@ export class SingleMeetingComponent implements OnInit, OnDestroy {
             this.reportsService.createReport(this.report)
                 .subscribe((result) => {
                     this.router.navigate(["/main/teacher/meeting-success"]);
+                    this.loaderService.setStatus(false);
                 }, (error) => alert(error.error.message));
         }
     }
@@ -51,6 +52,7 @@ export class SingleMeetingComponent implements OnInit, OnDestroy {
             this.reportsService.resendParentSign(this.report)
                 .subscribe((result) => {
                     this.router.navigate(['/main/teacher/meetings-table'])
+                    this.loaderService.setStatus(false);
                 })
         }
     }

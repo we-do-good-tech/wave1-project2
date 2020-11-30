@@ -58,11 +58,10 @@ server.use(session({
     cookie: {
         expires: keys.SESSION.expiresIn,
         // httpOnly: true,
-
         // PROD
-        sameSite: true,
-        secure: true,
-        ephemeral: true
+        sameSite: server.get('env') === 'production',
+        secure: server.get('env') === 'production',
+        ephemeral: server.get('env') === 'production'
     }
 }))
 
