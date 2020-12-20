@@ -7,11 +7,11 @@ function limitter(options) {
     return rateLimiter({
         windowMs: options.windowMs,
         max: options.max,
-        message: options.message,
+        message: 'יותר מידי נסיונות  נסה מאוחר יותר',
         handler: function (request, response) {
             console.log('LOG EMAIL LIMITTER')
             response.status(429).send({
-                message: message
+                message: 'יותר מידי נסיונות  נסה מאוחר יותר'
             })
         }
     })

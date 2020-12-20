@@ -31,6 +31,7 @@ if (server.get('env') === 'production') {
 if (server.get('env') === 'development') {
     const morgan = require('morgan')
     server.use(morgan('dev'))
+    server.use(cors())
 }
 
 
@@ -39,12 +40,6 @@ const teacherRoutes = require('./back-end/routes/teacher')
 const signRouter = require('./back-end/routes/signature');
 
 
-// server.use(cors({
-//     origin: 'https://mashlimim.herokuapp.com/',
-//     credentials: true
-// }));
-
-server.use(cors())
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(express.static(path.join(__dirname, "client/dist/reports")));

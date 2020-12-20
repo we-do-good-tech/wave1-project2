@@ -36,7 +36,7 @@ export class HttpErrorMessagesService {
         setTimeout(() => {
             this.errorMessage = '';
             this.errorMessageChnage.next(this.errorMessage);
-        }, this.deleteMessageTime * 1000);
+        }, this.deleteMessageTime * 2000);
     }
 
 
@@ -50,7 +50,7 @@ export class HttpErrorMessagesService {
         }
         else if (error.status === 429 && error.statusText === "Too Many Requests") {
             this.setMessage(errorMassge)
-            this.router.navigate(['/not-found'])
+            this.router.navigate(['/'])
             return
         }
         else if (errorMassge === 'Unauthorized') {

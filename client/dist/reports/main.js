@@ -874,17 +874,13 @@ class NotFoundComponent {
     ngOnInit() { }
 }
 NotFoundComponent.ɵfac = function NotFoundComponent_Factory(t) { return new (t || NotFoundComponent)(); };
-NotFoundComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: NotFoundComponent, selectors: [["app-not-found"]], decls: 8, vars: 0, consts: [[1, "notFoundContainer"], [1, "notFounsErrorMessage"]], template: function NotFoundComponent_Template(rf, ctx) { if (rf & 1) {
+NotFoundComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: NotFoundComponent, selectors: [["app-not-found"]], decls: 5, vars: 0, consts: [[1, "notFoundContainer"], [1, "notFounsErrorMessage"]], template: function NotFoundComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "h1");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "404 NOT FOUND");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "pre");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5, "  ");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](6, "app-http-error-messages");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](7, " ");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](4, "app-http-error-messages");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     } }, directives: [_http_error_messages_http_error_messages_component__WEBPACK_IMPORTED_MODULE_1__["HttpErrorMessagesComponent"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJub3QtZm91bmQuY29tcG9uZW50LnNjc3MifQ== */"] });
@@ -1240,7 +1236,7 @@ class HttpErrorMessagesService {
         setTimeout(() => {
             this.errorMessage = '';
             this.errorMessageChnage.next(this.errorMessage);
-        }, this.deleteMessageTime * 1000);
+        }, this.deleteMessageTime * 2000);
     }
     checkErrorMessage(error) {
         let errorMassge = error.error.message;
@@ -1252,7 +1248,7 @@ class HttpErrorMessagesService {
         }
         else if (error.status === 429 && error.statusText === "Too Many Requests") {
             this.setMessage(errorMassge);
-            this.router.navigate(['/not-found']);
+            this.router.navigate(['/']);
             return;
         }
         else if (errorMassge === 'Unauthorized') {

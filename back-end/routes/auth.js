@@ -9,14 +9,14 @@ const { limitter } = require('../services/rate-limiter')
 
 const authEmailLimitsOptions = {
     windowMs: 15 * 60 * 1000,
-    max: 7,
-    message: 'יותר מידי נסיונות  נסה מאוחר יותר'
+    max: 3,
+    // message: 'יותר מידי נסיונות  נסה מאוחר יותר'
 }
 
 const authConfirmCodeOptions = {
     windowMs: 15 * 60 * 1000,
-    max: 10,
-    message: 'יותר מידי נסיונות  נסה מאוחר יותר'
+    max: 7,
+    // message: 'יותר מידי נסיונות  נסה מאוחר יותר'
 }
 
 
