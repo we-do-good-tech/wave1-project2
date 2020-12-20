@@ -34,7 +34,6 @@ export class VirtualKeyDirective implements OnInit {
 
     @HostListener("focus")
     onFocus(): void {
-        // console.log('FOCUS EVENT')
         if (this.appInputFocus) {
             this.keyboardService.setElement(this.formInputElement.nativeElement);
             this.keyboardService.setAttribute('placeholder', '|')
@@ -45,11 +44,6 @@ export class VirtualKeyDirective implements OnInit {
     @HostListener('click', ['$event'])
     onClick(event: any) {
         if (this.appInputFocus) {
-            // if (event.target.value) {
-            //     this.ngModel.valueAccessor.writeValue(null)
-            //     const newEvent = this.keyboardService.createEvent('input')
-            //     this.formInputElement.nativeElement.dispatchEvent(newEvent);
-            // }
             this.keyboardService.removeAttribute('placeholder')
             this.formInputElement.nativeElement.blur()
         }

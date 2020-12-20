@@ -7,7 +7,6 @@ import { SignaturePadModule } from "@ng-plus/signature-pad";
 import { HeaderComponent } from "./header/header.component";
 import { HttpErrorMessagesComponent } from "./http-error-messages/http-error-messages.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
-import { FooterComponent } from "./footer/footer.component";
 import { LoaderComponent } from "./loader/loader.component";
 import { KeyboardButtonComponent } from './keyboard/keyboard-button/keyboard-button.component';
 import { ExmpleComponent } from './exmple/exmple.component';
@@ -35,7 +34,6 @@ import { PortalAttachDirective } from '../directives/portal-attach.directive';
         HeaderComponent,
         HttpErrorMessagesComponent,
         NotFoundComponent,
-        FooterComponent,
         LoaderComponent,
         KeyboardComponent,
         KeyboardButtonComponent,
@@ -64,7 +62,6 @@ import { PortalAttachDirective } from '../directives/portal-attach.directive';
         HeaderComponent,
         HttpErrorMessagesComponent,
         NotFoundComponent,
-        FooterComponent,
         LoaderComponent,
         KeyboardComponent,
         KeyboardButtonComponent,

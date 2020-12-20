@@ -6,6 +6,8 @@ import { PortalService } from '../services/portal.service';
 })
 export class PortalAttachDirective implements OnInit, OnDestroy {
 
+    // STILL NOT USED
+
     constructor(private portalService: PortalService, private template: TemplateRef<any>) { }
 
 

@@ -16,7 +16,6 @@ const limitResendSignDays = 1
 const createReportLimitOptions = {
     windowMs: 30 * 60 * 1000,
     max: 10,
-    // message: 'יותר מידי נסיונות  נסה מאוחר יותר'
 }
 
 

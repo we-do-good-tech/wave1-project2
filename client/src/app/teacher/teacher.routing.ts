@@ -7,9 +7,7 @@ import { MeetingTableComponent } from "./meetings/meeting-table/meeting-table.co
 import { SingleMeetingComponent } from "./meetings/single-meeting/single-meeting.component";
 import { TeacherMainComponent } from "./teacher-main/teacher-main.component";
 import { SingleMeetingToOperationGuard } from '../services/guards/single-meeting-to-operation.guard';
-import { StudentsResolverService } from '../services/resolvers/students.resolver.service';
-import { ReportsResolverService } from '../services/resolvers/reports.resolver.service';
-import { ReportsStatsResolverService } from "../services/resolvers/reports.stats.resolver.service";
+
 
 const routes: Routes = [
     {
@@ -18,7 +16,6 @@ const routes: Routes = [
         // resolve: {
         //     reports: ReportsResolverService,
         //     students: StudentsResolverService
-
         // },
         children: [
             {
@@ -47,12 +44,9 @@ const routes: Routes = [
                 path: "meeting-success",
                 component: MeetingCreateSuccessComponent,
                 canActivate: [SingleMeetingToOperationGuard],
-                // resolve: {
-                //     reportsStats: ReportsStatsResolverService
-                // }
-            },
-        ],
-    },
+            }
+        ]
+    }
 ];
 
 @NgModule({

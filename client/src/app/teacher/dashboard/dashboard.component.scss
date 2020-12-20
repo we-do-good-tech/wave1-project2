@@ -1,5 +1,5 @@
 .dashboardConatiner {
-  height: calc(100vh - 68px);
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -75,6 +75,7 @@
 
 
 .oldMeetings {
+  margin-top: 12rem;
   width: 100%;
   height: 80px;
   display: flex;

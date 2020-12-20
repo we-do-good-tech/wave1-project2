@@ -6,6 +6,8 @@ import { PortalService } from '../services/portal.service';
 })
 export class PortalTargetDirective implements OnInit {
 
+    // STILL NOT USED
+
     constructor(private portalService: PortalService, private viewContainer: ViewContainerRef) { }
 
     @Input('appPortalTarget') targetName: string

@@ -5,6 +5,8 @@ import { Injectable, TemplateRef, ViewContainerRef } from '@angular/core';
 })
 export class PortalService {
 
+    // STILL NOT USED
+
     targets: Map<string, ViewContainerRef>
 
     constructor() {

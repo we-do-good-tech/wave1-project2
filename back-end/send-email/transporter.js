@@ -14,11 +14,8 @@ function sendMail(options, callSuccess) {
     })
     transporter.sendMail(options, (error, info) => {
         if (error) {
-            // console.log(error)
             callSuccess(error, null)
         }
-
-        // console.log(info)
         callSuccess(null, true)
     })
 

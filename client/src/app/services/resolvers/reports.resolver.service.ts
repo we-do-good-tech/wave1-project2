@@ -16,6 +16,4 @@ export class ReportsResolverService implements Resolve<Report[]> {
         console.log('REPORTS RESOLVER START')
         return this.reportsService.getReportsNotConfirm()
     }
-
-
 }
