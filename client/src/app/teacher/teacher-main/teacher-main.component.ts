@@ -19,8 +19,8 @@ export class TeacherMainComponent implements OnInit {
 
     ngOnInit(): void {
         // console.log('TEACHER MAIN')
-        // this.reportsService.getReportsNotConfirm()
-        //     .subscribe()
+        this.reportsService.getReportsNotConfirm()
+            .subscribe()
         this.loaderService.setStatus(false)
 
     }
