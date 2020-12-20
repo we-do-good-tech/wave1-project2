@@ -17,7 +17,7 @@ export class AuthComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.subAuthProccess = this.authService.getAuthProccessChange()
-            .subscribe((result) => { this.authProccess = result })
+            .subscribe((result) => this.authProccess = result)
     }
 
     ngOnDestroy(): void {

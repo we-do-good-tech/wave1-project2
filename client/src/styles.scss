@@ -11,6 +11,25 @@
 // }
 
 
+.animate-center {
+  position: relative;
+  -webkit-animation-name: animatecenter;
+  -webkit-animation-duration: 1s;
+  animation-name: animatecenter;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatecenter {
+  from { bottom:0px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatecenter { 
+  from{ bottom:0px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+
 
 button:focus {
   outline: none !important;

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({

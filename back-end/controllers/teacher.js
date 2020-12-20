@@ -62,7 +62,7 @@ module.exports.createReport = async function (request, response, next) {
             "${reportEndTime}",
             "${reportRangeTimne}",
             "${reportActivitis}",
-            "${reportComments}",
+            "${reportComments ? reportComments : null}",
             ${false},
             ${null},
             "${ticketNo}",

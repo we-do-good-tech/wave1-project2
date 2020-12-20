@@ -7,6 +7,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 import { map } from 'rxjs/operators';
 import { ReportStats } from "src/app/interfaces/Report";
+import { ReportsService } from "src/app/services/reports.service";
 import { conculatePresent } from "../../../services/helpers/present";
 
 @Component({
@@ -20,14 +21,15 @@ export class MeetingCreateSuccessComponent implements OnInit, OnDestroy {
     progress: string;
     subReportsStats: Subscription;
 
-    constructor(private route: ActivatedRoute) { }
+    constructor(private route: ActivatedRoute, private reportsService: ReportsService) { }
 
     ngOnInit(): void {
-        this.subReportsStats = this.route.data
+        // this.subReportsStats = this.route.data
+        this.reportsService.getMountlyStats()
             .pipe(
                 map((result) => {
                     this.currentMount = new Date().getMonth() + 1;
-                    this.reporstStats = result.reportsStats;
+                    this.reporstStats = result;
                     let limitHoures = this.reporstStats.limitHours;
                     let hoursDone = this.reporstStats.totalHours.split(":")[0];
                     return conculatePresent(Number(limitHoures), Number(hoursDone))
@@ -40,7 +42,7 @@ export class MeetingCreateSuccessComponent implements OnInit, OnDestroy {
 
 
     ngOnDestroy(): void {
-        this.subReportsStats.unsubscribe();
+        // this.subReportsStats.unsubscribe();
     }
 
 }

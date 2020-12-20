@@ -1,31 +1,31 @@
-<app-header styleElement='header-green' [selector]="'#the-header'"></app-header>
-<!-- <ng-template appPortalAttach="header">
-    <h1 class="header-green"></h1>
-</ng-template> -->
+<div class="animate-center">
 
-<div class="dashboardConatiner">
-    <div class="topBox">
-        <h3>{{userName}} שלום</h3>
-        <div class="content">
-            מסר ייחודי לצרכי עמותה - חונך
-            <br>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, eveniet.
+    <app-header styleElement='header-green' [selector]="'#the-header'"></app-header>
+
+    <div class="dashboardConatiner">
+        <div class="topBox">
+            <h3>{{userName}} שלום</h3>
+            <div class="content">
+                מסר ייחודי לצרכי עמותה - חונך
+                <br>
+                {{companyContent}}
+            </div>
         </div>
-    </div>
-    <div class="bottomBox">
-        <div class="addNewMeeting">
-            <a class="addNewMeetingButton" [routerLink]="['/main/teacher/create-meeting']">
-                +
+        <div class="bottomBox">
+            <div class="addNewMeeting">
+                <a class="addNewMeetingButton" [routerLink]="['/main/teacher/create-meeting']">
+                    +
+                </a>
+            </div>
+        </div>
+        <div class="oldMeetings">
+            <a
+                [ngClass]="reportsLength === 0 ? 'disabled-link':'oldMeetingLink' "
+                [routerLink]="['/main/teacher/meetings-table']">
+                ישנם מפגשים שטרם אושרו
+                <span>!</span>
             </a>
         </div>
-    </div>
-    <div class="oldMeetings">
-        <a
-            [ngClass]="reportsLength === 0 ? 'disabled-link':'oldMeetingLink' "
-            [routerLink]="['/main/teacher/meetings-table']">
-            ישנם מפגשים שטרם אושרו
-            <span>!</span>
-        </a>
     </div>
 </div>
 <!-- <app-loader></app-loader> -->

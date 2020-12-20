@@ -51,6 +51,10 @@ export class AuthService {
         return this.authProccessChnage.asObservable()
     }
 
+    getCompanyContent() {
+        return JSON.parse(localStorage.getItem('company-content')) || ''
+    }
+
     getAuthData(): void {
         const authData = this.getSessionStorage();
 
@@ -61,7 +65,7 @@ export class AuthService {
         const now = new Date();
         const isValidTime = authData.expiresInDate.getTime() - now.getTime();
 
-        console.log(isValidTime, "IS TOKEN VALID TIME");
+        // console.log(isValidTime, "IS TOKEN VALID TIME");
 
         if (isValidTime > 0) {
             // console.log('IS LOG')
@@ -101,6 +105,7 @@ export class AuthService {
                 token: string;
                 tokenExpiresIn: number;
                 userName: string
+                companyContent: string
             }>(
                 "api/auth/confirm-code", { code: code }, { withCredentials: true })
             .pipe(
@@ -119,11 +124,12 @@ export class AuthService {
                     const expiresInDate = new Date(now.getTime() + expiresIn * 1000);
 
                     this.saveSessionStorage(this.token, expiresInDate, this.userName);
+                    this.saveToLocalStorage('company-content', result.companyContent)
 
-                    // setTimeout(() => {
-                    //     this.authProccess = false
-                    //     this.authProccessChnage.next(this.authProccess)
-                    // }, 1500);
+                    setTimeout(() => {
+                        this.authProccess = false
+                        this.authProccessChnage.next(this.authProccess)
+                    }, 1500);
 
                     return result.message
                 })
@@ -142,18 +148,6 @@ export class AuthService {
                     return result.message;
                 })
             );
-    }
-
-
-    // checkSession() {
-    //     return this.http.get("api/auth/teacher/auth-session", { withCredentials: true })
-    // }
-
-
-
-
-    private setAuthData(authResult): void {
-
     }
 
 
@@ -187,6 +181,10 @@ export class AuthService {
             expiresInDate: new Date(expiresInDate),
             userName: userName,
         };
+    }
+
+    private saveToLocalStorage(key: string, value: any) {
+        localStorage.setItem(key, JSON.stringify(value))
     }
 
     clearLoginInfo(): void {

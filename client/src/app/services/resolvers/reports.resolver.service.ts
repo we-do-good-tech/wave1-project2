@@ -13,7 +13,7 @@ export class ReportsResolverService implements Resolve<Report[]> {
     constructor(private reportsService: ReportsService) { }
 
     resolve(): Observable<Report[]> {
-        // console.log('REPORTS RESOLVER START')
+        console.log('REPORTS RESOLVER START')
         return this.reportsService.getReportsNotConfirm()
     }
 

@@ -1,7 +1,7 @@
 require("dotenv").config();
 const cors = require("cors");
 const express = require("express");
-const debug = require('debug')
+// const debug = require('debug')
 const path = require("path");
 const keys = require('./back-end/config/keys')
 const { apiNotFoundError, handleError } = require('./back-end/middlewares/global.errors')
@@ -37,12 +37,12 @@ const teacherRoutes = require('./back-end/routes/teacher')
 const signRouter = require('./back-end/routes/signature');
 
 
-// server.use(cors({
-//     origin: 'https://mashlimim.herokuapp.com/',
-//     credentials: true
-// }));
+server.use(cors({
+    origin: 'https://mashlimim.herokuapp.com/',
+    credentials: true
+}));
 
-server.use(cors())
+// server.use(cors())
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(express.static(path.join(__dirname, "client/dist/reports")));

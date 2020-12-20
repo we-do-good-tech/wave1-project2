@@ -612,10 +612,12 @@ class ReportsService {
     }
     getReportsNotConfirm() {
         if (this.reports.length > 0) {
+            console.log('REPORTS NO HTTP');
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(this.reports);
         }
         return this.http.get("api/teacher/reports-unconfirm", { withCredentials: true })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])((result) => {
+            console.log('REPORTS HTTP');
             this.reports = result;
             this.reportsChange.next([...this.reports]);
         }));
@@ -1141,8 +1143,10 @@ class AppComponent {
     }
 }
 AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"])); };
-AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: AppComponent, selectors: [["app-root"]], decls: 1, vars: 0, template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "router-outlet");
+AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: AppComponent, selectors: [["app-root"]], decls: 2, vars: 0, consts: [[1, "animate-center"]], template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "router-outlet");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     } }, directives: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterOutlet"]], styles: ["app-http-error-messages[_ngcontent-%COMP%] {\n  margin: 10px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcYXBwLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsWUFBQTtBQUNGIiwiZmlsZSI6ImFwcC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImFwcC1odHRwLWVycm9yLW1lc3NhZ2VzIHtcclxuICBtYXJnaW46IDEwcHg7XHJcbn1cclxuIl19 */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AppComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
@@ -1511,14 +1515,14 @@ __webpack_require__.r(__webpack_exports__);
 
 function HttpErrorMessagesComponent_div_0_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "span", 1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const ctx_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+    const ctx_r850 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r7.message);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r850.message);
 } }
 class HttpErrorMessagesComponent {
     constructor(httpErrorMessages, cdr) {
@@ -1540,7 +1544,7 @@ class HttpErrorMessagesComponent {
     }
 }
 HttpErrorMessagesComponent.ɵfac = function HttpErrorMessagesComponent_Factory(t) { return new (t || HttpErrorMessagesComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_http_error_messages_service__WEBPACK_IMPORTED_MODULE_1__["HttpErrorMessagesService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectorRef"])); };
-HttpErrorMessagesComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: HttpErrorMessagesComponent, selectors: [["app-http-error-messages"]], decls: 1, vars: 1, consts: [[4, "ngIf"]], template: function HttpErrorMessagesComponent_Template(rf, ctx) { if (rf & 1) {
+HttpErrorMessagesComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: HttpErrorMessagesComponent, selectors: [["app-http-error-messages"]], decls: 1, vars: 1, consts: [[4, "ngIf"], [1, "text-danger"]], template: function HttpErrorMessagesComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](0, HttpErrorMessagesComponent_div_0_Template, 3, 1, "div", 0);
     } if (rf & 2) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.message);
@@ -1779,6 +1783,9 @@ class AuthService {
     getAuthProccessChange() {
         return this.authProccessChnage.asObservable();
     }
+    getCompanyContent() {
+        return JSON.parse(localStorage.getItem('company-content')) || '';
+    }
     getAuthData() {
         const authData = this.getSessionStorage();
         if (!authData) {
@@ -1786,7 +1793,7 @@ class AuthService {
         }
         const now = new Date();
         const isValidTime = authData.expiresInDate.getTime() - now.getTime();
-        console.log(isValidTime, "IS TOKEN VALID TIME");
+        // console.log(isValidTime, "IS TOKEN VALID TIME");
         if (isValidTime > 0) {
             // console.log('IS LOG')
             this.token = authData.token;
@@ -1824,10 +1831,11 @@ class AuthService {
             const now = new Date();
             const expiresInDate = new Date(now.getTime() + expiresIn * 1000);
             this.saveSessionStorage(this.token, expiresInDate, this.userName);
-            // setTimeout(() => {
-            //     this.authProccess = false
-            //     this.authProccessChnage.next(this.authProccess)
-            // }, 1500);
+            this.saveToLocalStorage('company-content', result.companyContent);
+            setTimeout(() => {
+                this.authProccess = false;
+                this.authProccessChnage.next(this.authProccess);
+            }, 1500);
             return result.message;
         }));
     }
@@ -1838,11 +1846,6 @@ class AuthService {
             this.confirmCodeExpireTime = result.confirmCodeExpire;
             return result.message;
         }));
-    }
-    // checkSession() {
-    //     return this.http.get("api/auth/teacher/auth-session", { withCredentials: true })
-    // }
-    setAuthData(authResult) {
     }
     saveSessionStorage(token, expiresIn, userName) {
         sessionStorage.setItem("token", token);
@@ -1866,6 +1869,9 @@ class AuthService {
             expiresInDate: new Date(expiresInDate),
             userName: userName,
         };
+    }
+    saveToLocalStorage(key, value) {
+        localStorage.setItem(key, JSON.stringify(value));
     }
     clearLoginInfo() {
         this.token = null;

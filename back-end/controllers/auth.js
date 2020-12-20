@@ -11,7 +11,7 @@ const { convertSheetsDataToObjectsArray } = require('../helpers/tojson')
 
 module.exports.authTeacherEmail = async function (request, response, next) {
     const { teacherEmail } = request.body;
-    const query = `select A,B,C where C='${teacherEmail}'`;
+    const query = `select A,B,C,D where C='${teacherEmail}'`;
     const sheetId = keys.GOOGLE_SHEETS.sheetsIds.teachers;
 
     try {
@@ -43,6 +43,7 @@ module.exports.authTeacherEmail = async function (request, response, next) {
             userId: toJson.id,
             email: toJson.email,
             firstName: toJson.firstName,
+            companyContent: toJson.companyContent,
             confirmCode: newCode.getConfirmCode(),
             confirmCodeExpiresIn: new Date().getTime() + (keys.CONFIRM_CODE.expiresIn * 1000),
             studentsList: [],
@@ -61,11 +62,11 @@ module.exports.authTeacherEmail = async function (request, response, next) {
 
 module.exports.authConfirmCode = async function (request, response, next) {
     const { code } = request.body;
-    const { userId, email, firstName, confirmCode, confirmCodeExpiresIn } = request.session.user
+    const { userId, email, companyContent, firstName, confirmCode, confirmCodeExpiresIn } = request.session.user
 
     try {
         if (code === confirmCode && new Date().getTime() < confirmCodeExpiresIn) {
-            console.log("CODE IS CONFIRM");
+            // console.log("CODE IS CONFIRM");
             const token = createToken({
                 teacherId: userId,
             }, keys.TOKENS.ACCESS_TOKEN.secretTokenKey, keys.TOKENS.ACCESS_TOKEN.expiresIn);
@@ -75,7 +76,8 @@ module.exports.authConfirmCode = async function (request, response, next) {
                 isLog: true,
                 token: token,
                 tokenExpiresIn: keys.TOKENS.ACCESS_TOKEN.expiresIn,
-                userName: firstName
+                userName: firstName,
+                companyContent: companyContent
             });
         }
 

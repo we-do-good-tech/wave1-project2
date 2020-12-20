@@ -1,46 +1,49 @@
-<div class="wrapper">
-    <div class="logo animate_animated animate_flipInX">
-        <img src="../../../assets/Group 1764.svg" alt>
+<div class="animate-center">
+    <div class="wrapper">
+        <div class="logo animate_animated animate_flipInX">
+            <img src="../../../assets/Group 1764.svg" alt>
+        </div>
+        <form
+            #form="ngForm"
+            (ngSubmit)="onSendEmail(form)">
+            <!-- <div class="input-group"> -->
+            <mat-label for="teacherEmail">דואר אלקטרוני</mat-label>
+            <input
+                (blur)="filedLeaved = $event.isTrusted"
+                required
+                type="email"
+                ngModel
+                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                name="teacherEmail"
+                #teacherEmail="ngModel"
+                class="form-control"
+                placeholder="exmple@gmail.com">
+            <!-- </div> -->
+            <app-http-error-messages></app-http-error-messages>
+            <div class="errorsContainer"
+                *ngIf="this.formsService.formControlStatus(teacherEmail.control) && filedLeaved ">
+                <div class="error-validate-form-message"
+                    *ngIf="teacherEmail.errors.required ">
+                    שדה חובה!
+                </div>
+                <div class="error-validate-form-message"
+                    *ngIf="teacherEmail.errors.pattern">
+                    דואר שגוי
+                </div>
+            </div>
+            <div class="loginButton">
+                <div class="buttonImage">
+                    <img src="../../../assets/Group 1789.svg" alt>
+                </div>
+                <button
+                    class="mainButton"
+                    [disabled]="form.invalid"
+                    [class.disabledButton]="form.invalid">
+                    התחבר
+                </button>
+            </div>
+        </form>
     </div>
-    <form
-        #form="ngForm"
-        (ngSubmit)="onSendEmail(form)">
-        <!-- <div class="input-group"> -->
-        <mat-label for="teacherEmail">דואר אלקטרוני</mat-label>
-        <input
-            (blur)="filedLeaved = $event.isTrusted"
-            required
-            type="email"
-            ngModel
-            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-            name="teacherEmail"
-            #teacherEmail="ngModel"
-            class="form-control"
-            placeholder="exmple@gmail.com">
-        <!-- </div> -->
-        <app-http-error-messages></app-http-error-messages>
-        <div class="errorsContainer"
-            *ngIf="this.formsService.formControlStatus(teacherEmail.control) && filedLeaved ">
-            <div class="error-validate-form-message"
-                *ngIf="teacherEmail.errors.required ">
-                שדה חובה!
-            </div>
-            <div class="error-validate-form-message"
-                *ngIf="teacherEmail.errors.pattern">
-                דואר שגוי
-            </div>
-        </div>
-        <div class="loginButton">
-            <div class="buttonImage">
-                <img src="../../../assets/Group 1789.svg" alt>
-            </div>
-            <button
-                class="mainButton"
-                [disabled]="form.invalid"
-                [class.disabledButton]="form.invalid">
-                התחבר
-            </button>
-        </div>
-    </form>
+
 </div>
 <app-loader></app-loader>

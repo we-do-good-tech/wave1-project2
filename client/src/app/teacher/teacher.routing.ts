@@ -15,11 +15,11 @@ const routes: Routes = [
     {
         path: "teacher",
         component: TeacherMainComponent,
-        resolve: {
-            reports: ReportsResolverService,
-            students: StudentsResolverService
+        // resolve: {
+        //     reports: ReportsResolverService,
+        //     students: StudentsResolverService
 
-        },
+        // },
         children: [
             {
                 path: "",
@@ -47,9 +47,9 @@ const routes: Routes = [
                 path: "meeting-success",
                 component: MeetingCreateSuccessComponent,
                 canActivate: [SingleMeetingToOperationGuard],
-                resolve: {
-                    reportsStats: ReportsStatsResolverService
-                }
+                // resolve: {
+                //     reportsStats: ReportsStatsResolverService
+                // }
             },
         ],
     },

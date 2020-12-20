@@ -60,11 +60,13 @@ export class ReportsService {
 
     getReportsNotConfirm(): Observable<Report[]> {
         if (this.reports.length > 0) {
+             console.log('REPORTS NO HTTP')
             return of(this.reports);
         }
         return this.http.get<Report[]>("api/teacher/reports-unconfirm", { withCredentials: true })
             .pipe(
                 tap((result) => {
+                    console.log('REPORTS HTTP')
                     this.reports = result;
                     this.reportsChange.next([...this.reports])
                 })

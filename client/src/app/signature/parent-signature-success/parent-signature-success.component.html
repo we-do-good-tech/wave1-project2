@@ -1,16 +1,20 @@
-<app-header [styleElement]="'header-green'" [selector]="'#the-header'"></app-header>
+<div class="animate-center">
 
-<div class="signatureSuccessContainer">
-    <div class="top">
-        <img src="../../../assets/Group 1815.svg" alt="">
-        <p>חתימתך נשמרה במערכת</p>
+    <app-header [styleElement]="'header-green'" [selector]="'#the-header'"></app-header>
+
+    <div class="signatureSuccessContainer">
+        <div class="top">
+            <img src="../../../assets/Group 1815.svg" alt="">
+            <p>חתימתך נשמרה במערכת</p>
+        </div>
+        <div class="bottom">
+            <p>תודה על הנתינה!</p>
+            <p>צוות העמותה זמין עבורכם לכל שאלה, <br> עניין או צורך</p>
+            <p>במייל: office@mashlimim.co.il</p>
+            <p>וואטסאפ(בלבד) 053-5298697</p>
+            <p>ובטלפון: 072-2223697</p>
+        </div>
+        <button class="mainButton" (click)="onCloseTab()">סיום</button>
     </div>
-    <div class="bottom">
-        <p>תודה על הנתינה!</p>
-        <p>צוות העמותה זמין עבורכם לכל שאלה, <br> עניין או צורך</p>
-        <p>במייל: office@mashlimim.co.il</p>
-        <p>וואטסאפ(בלבד) 053-5298697</p>
-        <p>ובטלפון: 072-2223697</p>
-    </div>
-    <button class="mainButton" (click)="onCloseTab()">סיום</button>
+
 </div>

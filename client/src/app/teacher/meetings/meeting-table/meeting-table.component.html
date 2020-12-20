@@ -1,44 +1,47 @@
-<app-header
-    [styleElement]="'header-red'"
-    [selector]="'#the-header'">
-    <a class="backArrow" [routerLink]="['/main/teacher']">
-        <!-- <i class="fas fa-arrow-left"></i> 
+<div class="animate-center">
+
+    <app-header
+        [styleElement]="'header-red'"
+        [selector]="'#the-header'">
+        <a class="backArrow" [routerLink]="['/main/teacher']">
+            <!-- <i class="fas fa-arrow-left"></i> 
          -->
-        <mat-icon>keyboard_arrow_left</mat-icon>
-    </a>
-</app-header>
-<div class="tableContainer">
-    <div class="heading">
-        <div class="title">מפגשים שטרם אושרו</div>
-        <div class="list">
-            <mat-select placeholder="בחר" (selectionChange)="onSelectStudent($event)">
-                <mat-option value> כולם</mat-option>
-                <mat-option
-                    *ngFor="let student of students; let i = index;"
-                    [disabled]="!student?.hasReports"
-                    [value]="student?.ticketNo">
-                    {{student?.studentName}}
-                </mat-option>
-            </mat-select>
-        </div>
-    </div>
-    <div class="table">
-        <ul>
-            <li>מפגש</li>
-            <li>תאריך</li>
-            <li>סטטוס</li>
-        </ul>
-        <div class="meetings">
-            <div style="text-align: center;" *ngIf="(reports | filter: studentSelected:'ticketNo').length === 0">
-                No Repots
+            <mat-icon>keyboard_arrow_left</mat-icon>
+        </a>
+    </app-header>
+    <div class="tableContainer">
+        <div class="heading">
+            <div class="title">מפגשים שטרם אושרו</div>
+            <div class="list">
+                <mat-select placeholder="בחר" (selectionChange)="onSelectStudent($event)">
+                    <mat-option value> כולם</mat-option>
+                    <mat-option
+                        *ngFor="let student of students; let i = index;"
+                        [disabled]="!student?.hasReports"
+                        [value]="student?.ticketNo">
+                        {{student?.studentName}}
+                    </mat-option>
+                </mat-select>
             </div>
-            <app-meeting-table-item
-                *ngFor="let report of reports | filter: studentSelected:'ticketNo';let i = index;"
-                [displayItem]="anableResendParentSign(report?.lastDateResendSignToParent, 1)"
-                [index]="i +1"
-                [report]="report"
-                (sendSignAgain)="getReportSignAgain($event)">
-            </app-meeting-table-item>
+        </div>
+        <div class="table">
+            <ul>
+                <li>מפגש</li>
+                <li>תאריך</li>
+                <li>סטטוס</li>
+            </ul>
+            <div class="meetings">
+                <div style="text-align: center;" *ngIf="(reports | filter: studentSelected:'ticketNo').length === 0">
+                    No Repots
+                </div>
+                <app-meeting-table-item
+                    *ngFor="let report of reports | filter: studentSelected:'ticketNo';let i = index;"
+                    [displayItem]="anableResendParentSign(report?.lastDateResendSignToParent, 1)"
+                    [index]="i +1"
+                    [report]="report"
+                    (sendSignAgain)="getReportSignAgain($event)">
+                </app-meeting-table-item>
+            </div>
         </div>
     </div>
 </div>

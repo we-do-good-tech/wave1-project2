@@ -1,60 +1,62 @@
-<div class="confirmWrapper">
-    <h2 class="m-3">נשלח מייל, נא הזינו הקוד</h2>
-    <form #form="ngForm" appInputFocus [appRemoveAttr]="'placeholder'" [elementName]="'input'">
-        <div class="smsCode">
-            <input
-                appOnBlur
-                appLimitInput
-                readonly="readonly"
-                [appIntervalToggle]="{className: 'not-empty', time: 500}"
-                #first
-                id="0"
-                ngModel="virtualkey"
-                (clear)="onClear()"
-                required type="number"
-                pattern="^\d{1}$"
-                name="first"
-                #one="ngModel">
-            <input
-                appLimitInput
-                readonly="readonly"
-
-                id="1"
-                ngModel="virtualkey"
-                [appIntervalToggle]="{className: 'not-empty', time: 500}"
-                required
-                type="number"
-                pattern="^\d{1}$"
-                name="second"
-                #two="ngModel">
-            <input
-                appLimitInput
-                readonly="readonly"
-                id="2"
-                ngModel="virtualkey"
-                [appIntervalToggle]="{className: 'not-empty', time: 500}"
-                required
-                type="number"
-                pattern="^\d{1}$"
-                name="third"
-                #three="ngModel">
-            <input
-                appLimitInput
-                readonly="readonly"
-                id="3"
-                ngModel="virtualkey"
-                [appIntervalToggle]="{className: 'not-empty', time: 500}"
-                required
-                type="number"
-                pattern="^\d{1}$"
-                name="fourth"
-                #four="ngModel">
+<div class="animate-center">
+    <div class="confirmWrapper">
+        <h2 class="m-3">נשלח מייל, נא הזינו הקוד</h2>
+        <form #form="ngForm" appInputFocus [appRemoveAttr]="'placeholder'" [elementName]="'input'">
+            <div class="smsCode">
+                <input
+                    appOnBlur
+                    appLimitInput
+                    readonly="readonly"
+                    [appIntervalToggle]="{className: 'not-empty', time: 500}"
+                    #first
+                    id="0"
+                    ngModel="virtualkey"
+                    (clear)="onClear()"
+                    required type="number"
+                    pattern="^\d{1}$"
+                    name="first"
+                    #one="ngModel">
+                <input
+                    appLimitInput
+                    readonly="readonly"
+                    id="1"
+                    ngModel="virtualkey"
+                    [appIntervalToggle]="{className: 'not-empty', time: 500}"
+                    required
+                    type="number"
+                    pattern="^\d{1}$"
+                    name="second"
+                    #two="ngModel">
+                <input
+                    appLimitInput
+                    readonly="readonly"
+                    id="2"
+                    ngModel="virtualkey"
+                    [appIntervalToggle]="{className: 'not-empty', time: 500}"
+                    required
+                    type="number"
+                    pattern="^\d{1}$"
+                    name="third"
+                    #three="ngModel">
+                <input
+                    appLimitInput
+                    readonly="readonly"
+                    id="3"
+                    ngModel="virtualkey"
+                    [appIntervalToggle]="{className: 'not-empty', time: 500}"
+                    required
+                    type="number"
+                    pattern="^\d{1}$"
+                    name="fourth"
+                    #four="ngModel">
+            </div>
+        </form>
+        <div class="errors">
+            <app-http-error-messages></app-http-error-messages>
         </div>
-    </form>
-    <div class="errors">
-        <app-http-error-messages></app-http-error-messages>
+        <app-keyboard></app-keyboard>
+        <small [class.disabled-link]="isValidTime" (click)="onResendConfirmCode()">לא הגיע קוד, שלח מחדש</small>
     </div>
-    <app-keyboard></app-keyboard>
-    <small [class.disabled-link]="isValidTime" (click)="onResendConfirmCode()">לא הגיע קוד, שלח מחדש</small>
+
 </div>
 <app-loader></app-loader>

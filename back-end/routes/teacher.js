@@ -29,7 +29,7 @@ router.post(
         validators.numberPropery('ticketNo'),
         validators.stringProperty('studentName'),
         validators.stringProperty('reportActivitis'),
-        // validators.stringProperty('reportComments'),
+        validators.stringProperty('reportComments'),
         validators.email('parentEmail'),
         validators.datePropery(
             'reportDate',

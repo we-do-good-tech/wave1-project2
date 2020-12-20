@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { map, switchMap } from 'rxjs/operators';
 import { Report } from "src/app/interfaces/Report";
@@ -21,7 +21,6 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
     subInfo: Subscription;
 
     constructor(
-        private route: ActivatedRoute,
         private router: Router,
         private reportsService: ReportsService,
         private studentsService: StudentsService) {
