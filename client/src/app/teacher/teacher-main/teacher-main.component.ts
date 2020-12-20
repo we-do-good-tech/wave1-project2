@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
+// import { AuthService } from 'src/app/services/auth.service';
 import { LoaderService } from 'src/app/services/loader.service';
 import { ReportsService } from 'src/app/services/reports.service';
 
@@ -14,16 +14,13 @@ export class TeacherMainComponent implements OnInit {
         // private authService: AuthService,
         private reportsService: ReportsService,
         private loaderService: LoaderService,
-        // private route: ActivatedRoute,
-    ) {
-        // this.authService.getAuthData()
-    }
+
+    ) { }
 
     ngOnInit(): void {
-        console.log('TEACHER MAIN')
+        // console.log('TEACHER MAIN')
         this.reportsService.getReportsNotConfirm()
             .subscribe()
-
         this.loaderService.setStatus(false)
 
     }

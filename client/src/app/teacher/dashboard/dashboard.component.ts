@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { LoaderService } from 'src/app/services/loader.service';
+// import { LoaderService } from 'src/app/services/loader.service';
 import { ReportsService } from 'src/app/services/reports.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
 
     constructor(
         private authService: AuthService,
-        private loaderService: LoaderService,
+        // private loaderService: LoaderService,
         private reportsService: ReportsService) { }
 
     ngOnInit(): void {

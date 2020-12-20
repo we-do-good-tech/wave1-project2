@@ -126,10 +126,10 @@ export class AuthService {
                     this.saveSessionStorage(this.token, expiresInDate, this.userName);
                     this.saveToLocalStorage('company-content', result.companyContent)
 
-                    setTimeout(() => {
-                        this.authProccess = false
-                        this.authProccessChnage.next(this.authProccess)
-                    }, 1500);
+                    // setTimeout(() => {
+                    this.authProccess = false
+                    this.authProccessChnage.next(this.authProccess)
+                    // }, 1500);
 
                     return result.message
                 })

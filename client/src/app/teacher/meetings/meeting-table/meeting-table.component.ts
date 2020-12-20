@@ -31,11 +31,11 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.subInfo = this.studentsService.getStudents().pipe(
             switchMap((result) => {
+                console.log(result)
                 this.students = result
                 return this.reportsService.getReportsChange()
             }),
             map((result) => {
-                console.log(result)
                 this.reports = result;
                 this.students.forEach((s) => {
                     let findReports = this.reports.find((r) => r.ticketNo == s.ticketNo)
@@ -55,17 +55,20 @@ export class MeetingTableComponent implements OnInit, OnDestroy {
 
     getReportSignAgain(report: Report): void {
         const student = this.students.find((s) => s.ticketNo === report.ticketNo);
-        report.studentName = student.studentName;
-        report.parentEmail = student.parentEmail;
+        if (student) {
+            report.studentName = student.studentName;
+            report.parentEmail = student.parentEmail;
 
-        this.reportsService.setReport(report);
+            this.reportsService.setReport(report);
 
-        this.router.navigate(["/main/teacher/meeting", report.ticketNo], {
-            queryParams: {
-                date: report.reportDate,
-                time: report.reportStartTime
-            }
-        });
+            this.router.navigate(["/main/teacher/meeting", report.ticketNo], {
+                queryParams: {
+                    date: report.reportDate,
+                    time: report.reportStartTime
+                }
+            });
+
+        }
     }
 
     anableResendParentSign(date: string, rangeLimit: number): boolean {
