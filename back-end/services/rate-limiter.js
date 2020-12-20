@@ -3,11 +3,11 @@ const rateLimiter = require('express-rate-limit')
 
 
 
-function limitter(windowMs, max, message) {
+function limitter(options) {
     return rateLimiter({
-        windowMs: windowMs,
-        max: max,
-        message: message,
+        windowMs: options.windowMs,
+        max: options.max,
+        message: options.message,
         handler: function (request, response) {
             console.log('LOG EMAIL LIMITTER')
             response.status(429).send({

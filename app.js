@@ -12,8 +12,8 @@ const port = process.env.PORT || 3000
 
 const server = express();
 
-server.set('trust proxy', 1);
 
+server.set('trust proxy', 1);
 
 if (server.get('env') === 'production') {
     require('./back-end/prod/prod')(server)
@@ -39,12 +39,12 @@ const teacherRoutes = require('./back-end/routes/teacher')
 const signRouter = require('./back-end/routes/signature');
 
 
-server.use(cors({
-    origin: 'https://mashlimim.herokuapp.com/',
-    credentials: true
-}));
+// server.use(cors({
+//     origin: 'https://mashlimim.herokuapp.com/',
+//     credentials: true
+// }));
 
-// server.use(cors())
+server.use(cors())
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(express.static(path.join(__dirname, "client/dist/reports")));
