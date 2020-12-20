@@ -8,9 +8,17 @@ const { authSession } = require('../middlewares/auth-session')
 const cache = require('../middlewares/cache/cache')
 const validators = require('../validators/validators')
 const keys = require('../config/keys')
+const { limitter } = require('../services/rate-limiter')
 
 const limitReportsDays = 90
 const limitResendSignDays = 1
+
+const createReportLimitOptions = {
+    windowMs: 30 * 60 * 1000,
+    max: 10,
+    message: 'יותר מידי נסיונות  נסה מאוחר יותר'
+}
+
 
 router.get(
     '/students',
@@ -23,6 +31,7 @@ router.get(
 
 router.post(
     '/create-report',
+    limitter(createReportLimitOptions),
     authSession,
     verifyToken,
     [

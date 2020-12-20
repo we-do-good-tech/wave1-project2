@@ -12,6 +12,9 @@ const port = process.env.PORT || 3000
 
 const server = express();
 
+server.set('trust proxy', 1);
+
+
 if (server.get('env') === 'production') {
     require('./back-end/prod/prod')(server)
     process.on('uncaughtExceptions', (ex) => {
@@ -30,7 +33,6 @@ if (server.get('env') === 'development') {
     server.use(morgan('dev'))
 }
 
-server.set('trust proxy', 1);
 
 const authRoutes = require("./back-end/routes/auth");
 const teacherRoutes = require('./back-end/routes/teacher')
