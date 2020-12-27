@@ -1,7 +1,13 @@
 const keys = require('../config/keys')
 const JsonWebToken = require('jsonwebtoken')
 
-
+/**
+ * 
+ * @param {*} request 
+ * @param {*} response 
+ * @param {*} next
+ * verify token - authorize user
+ */
 async function verifyTokenSign(request, response, next) {
 
     const { token } = request.body

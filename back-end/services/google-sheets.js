@@ -3,6 +3,12 @@ const fetch = require('node-fetch')
 const { convertCSV } = require('../helpers/csv')
 
 
+/**
+ * @param {*} query 
+ * @param {*} sheetId 
+ * @param {*} authorizationToken 
+ * find on google sheet doc
+ */
 module.exports.find = async function (query, sheetId, authorizationToken) {
     const spreadsheetId = keys.GOOGLE_SHEETS.spreadsheetId
 
@@ -27,7 +33,13 @@ module.exports.find = async function (query, sheetId, authorizationToken) {
     }
 }
 
-
+/**
+ * 
+ * @param {*} body 
+ * @param {*} sheetName 
+ * @param {*} authorizationToken 
+ * save on goolge sheet doc
+ */
 module.exports.save = async function (body, sheetName, authorizationToken) {
     const spreadsheetId = keys.GOOGLE_SHEETS.spreadsheetId
 
@@ -49,7 +61,14 @@ module.exports.save = async function (body, sheetName, authorizationToken) {
 }
 
 
-
+/**
+ * 
+ * @param {*} range 
+ * @param {*} sheetName 
+ * @param {*} body 
+ * @param {*} authorizationToken 
+ * update google sheet doc
+ */
 module.exports.update = async function (range, sheetName, body, authorizationToken) {
     const spreadsheetId = keys.GOOGLE_SHEETS.spreadsheetId
 

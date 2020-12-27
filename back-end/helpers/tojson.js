@@ -1,3 +1,10 @@
+
+/**
+ * 
+ * @param {*} data 
+ * @param {*} sheetName 
+ * convert nested arrays to json format
+ */
 function convertSheetsDataToObjectsArray(data, sheetName) {
     switch (sheetName) {
         case 'TEACHERS':

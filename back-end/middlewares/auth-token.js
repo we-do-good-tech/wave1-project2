@@ -1,9 +1,15 @@
 const keys = require('../config/keys')
 const JsonWebToken = require('jsonwebtoken')
+const { destroySession } = require('./auth-session')
 
+/**
+ * 
+ * @param {*} request 
+ * @param {*} response 
+ * @param {*} next
+ * verify token - authorize  user
+ */
 async function verifyToken(request, response, next) {
-
-    console.log('AUTH TOKEN MIDDLEWERE')
 
     try {
         const token = request.headers.authorization.split(' ')[1]
@@ -21,6 +27,7 @@ async function verifyToken(request, response, next) {
         next()
 
     } catch (error) {
+        destroySession(request)
         console.log('Unauthorized user')
         response.status(401).send({
             message: 'Unauthorized',

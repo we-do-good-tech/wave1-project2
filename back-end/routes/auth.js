@@ -18,6 +18,7 @@ const authConfirmCodeOptions = {
 }
 
 
+/** POST /api/auth/teacherEmail - body: {teacherEmail: string} find user email */
 router.post(
     '/teacherEmail',
     limitter(authEmailLimitsOptions),
@@ -27,6 +28,7 @@ router.post(
     authControllers.authTeacherEmail
 )
 
+/** GET /api/auth/new-confirm-code -  get new confirm code  */
 router.get(
     '/new-confirm-code',
     limitter(authConfirmCodeOptions),
@@ -34,6 +36,8 @@ router.get(
     authControllers.newConfirmCode
 )
 
+
+/** POST /api/auth/confirm - body: {code: 4 digits} auth confirm code  */
 router.post(
     '/confirm-code',
     limitter(authConfirmCodeOptions),
@@ -42,5 +46,7 @@ router.post(
     validate,
     authControllers.authConfirmCode
 )
+
+
 
 module.exports = router;

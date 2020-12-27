@@ -1,5 +1,10 @@
 const parseCSV = require('csv-parse')
 
+
+/**
+ * @param {*} data
+ * csv parser 
+ */
 function convertCSV(data) {
     return new Promise((resolve, reject) => {
         parseCSV(data, {}, (error, result) => {

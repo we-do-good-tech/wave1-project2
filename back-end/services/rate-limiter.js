@@ -1,6 +1,10 @@
 const rateLimiter = require('express-rate-limit')
 
-
+/**
+ * 
+ * @param {*} options 
+ * limiter - limit requests
+ */
 function limitter(options) {
     return rateLimiter({
         windowMs: options.windowMs,

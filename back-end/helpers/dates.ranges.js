@@ -1,3 +1,7 @@
+
+/** conculate dates/times */
+
+
 function formatDate() {
     let x = new Date().toISOString()
     return x.slice(0, x.indexOf('T'))

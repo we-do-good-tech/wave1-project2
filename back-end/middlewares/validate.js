@@ -1,5 +1,11 @@
 const { validationResult } = require('express-validator')
 
+/**
+ * @param {*} request 
+ * @param {*} response 
+ * @param {*} next 
+ * collect errors from user inputs
+ */
 async function validate(request, response, next) {
 
     const errors = validationResult(request)

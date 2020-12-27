@@ -79,6 +79,8 @@ export class AuthService {
         }
     }
 
+
+    // POST AUTH TEACHER EMAIL 
     authTeacherEmail(teacherEmail: string): Observable<string> {
         return this.http
             .post<{
@@ -97,6 +99,7 @@ export class AuthService {
             );
     }
 
+    // POST AUTH TEACHER CONFIRM CODE 
     confirmCode(code: string): Observable<string> {
         return this.http
             .post<{
@@ -136,6 +139,7 @@ export class AuthService {
             );
     }
 
+    // GER NEW CONFIRM CODE 
     resendConfirmCode(): Observable<string> {
         return this.http
             .get<{

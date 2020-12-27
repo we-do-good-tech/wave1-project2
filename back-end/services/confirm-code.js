@@ -1,3 +1,6 @@
+/**
+ * confirm code
+ */
 class ConfirmCode {
     constructor(expireIn) {
         if (expireIn) {

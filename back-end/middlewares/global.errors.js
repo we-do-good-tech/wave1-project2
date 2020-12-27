@@ -1,3 +1,9 @@
+/**
+ * @param {*} request 
+ * @param {*} response 
+ * @param {*} next
+ * error handler not found request 
+ */
 function apiNotFoundError(request, response, next) {
     console.log('ERROR NOT FOUND')
     const error = new Error('NOT-FOUND')
@@ -6,6 +12,12 @@ function apiNotFoundError(request, response, next) {
     next(error)
 }
 
+/**
+ * @param {*} request 
+ * @param {*} response 
+ * @param {*} next 
+ * error handler  bad request
+ */
 function handleError(error, request, response, next) {
     console.log(error)
     response.status(error.status || 500).send({

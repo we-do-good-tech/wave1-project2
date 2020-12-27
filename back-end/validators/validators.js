@@ -5,6 +5,10 @@ const isBase64 = require('is-base64');
 
 const errorMessage = 'INVALID VALUES'
 
+/**
+ * Validators - validate user inputs
+ */
+
 module.exports = {
     email: function (property) {
         return check(property, errorMessage)

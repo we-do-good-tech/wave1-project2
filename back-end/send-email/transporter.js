@@ -1,6 +1,12 @@
 const nodemailer = require('nodemailer')
 const keys = require('../config/keys')
 
+
+/**
+ * @param {*} options 
+ * @param {*} callSuccess 
+ * email transporter 
+ */
 function sendMail(options, callSuccess) {
     const transporter = nodemailer.createTransport({
         // host: '...',

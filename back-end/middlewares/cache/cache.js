@@ -1,3 +1,6 @@
+/**
+ * cache - cache data
+ */
 module.exports = {
     studentsList: function (request, response, next) {
         const { studentsList } = request.session.user

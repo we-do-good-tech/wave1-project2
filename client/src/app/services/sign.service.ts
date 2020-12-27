@@ -15,7 +15,7 @@ export class SignService {
 
     constructor(private http: HttpClient, private reportsService: ReportsService) { }
 
-
+    // POST VERIFY PARENT TOKEN
     verifyToken(token: string): Observable<Report> {
         return this.http.post<Report>('api/sign/verify/parent-token', { token: token })
             .pipe(
@@ -28,7 +28,7 @@ export class SignService {
             )
     }
 
-
+    // POST  PARENT SIGN
     sendSign(singImageBase64: Blob): Observable<string> {
         return this.http.post<{
             message: string

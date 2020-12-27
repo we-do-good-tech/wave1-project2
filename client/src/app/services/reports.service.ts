@@ -34,6 +34,7 @@ export class ReportsService {
     }
 
 
+    // POST TEACHER CREATE REPORT
     createReport(report: Report): Observable<string> {
         return this.http.post<{
             message: string,
@@ -52,15 +53,15 @@ export class ReportsService {
             )
     }
 
-
+    // GET TEACHER STATS
     getMountlyStats(): Observable<ReportStats> {
         return this.http.get<ReportStats>('api/teacher/reports/stats', { withCredentials: true })
     }
 
-
+    // GET TEACHER UNCINFIRM REPORTS
     getReportsNotConfirm(): Observable<Report[]> {
         if (this.reports.length > 0) {
-             console.log('REPORTS NO HTTP')
+            console.log('REPORTS NO HTTP')
             return of(this.reports);
         }
         return this.http.get<Report[]>("api/teacher/reports-unconfirm", { withCredentials: true })
@@ -75,6 +76,7 @@ export class ReportsService {
     }
 
 
+    // POST TEACHER RESEND EMAIL TO PARENT FOR CONFIRM REPORT 
     resendParentSign(report: Report): Observable<string> {
         const reportInfo = {
             studentName: report.studentName,

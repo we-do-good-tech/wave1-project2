@@ -16,6 +16,7 @@ const server = express();
 server.set('trust proxy', 1);
 
 if (server.get('env') === 'production') {
+    /** secure middleweres if prod mode */
     require('./back-end/prod/prod')(server)
     process.on('uncaughtExceptions', (ex) => {
         console.log(ex)
@@ -30,6 +31,7 @@ if (server.get('env') === 'production') {
 
 if (server.get('env') === 'development') {
     const morgan = require('morgan')
+    /** development mode log loggers */
     server.use(morgan('dev'))
     server.use(cors())
 }
@@ -39,12 +41,12 @@ const authRoutes = require("./back-end/routes/auth");
 const teacherRoutes = require('./back-end/routes/teacher')
 const signRouter = require('./back-end/routes/signature');
 
-
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(express.static(path.join(__dirname, "client/dist/reports")));
 
 
+/** Session confing */
 server.use(session({
     store: new memoryStore({
         checkPeriod: 1000 * 5
@@ -63,20 +65,27 @@ server.use(session({
 }))
 
 
-server.use("/api/auth", authRoutes);
+
+/** Auth routes */
+server.use("/api/auth", authRoutes)
+
+/**Teacher actions routes */
 server.use('/api/teacher', teacherRoutes)
+
+/**Parent sign routes */
 server.use('/api/sign', signRouter)
 
 
-
+/** response client html */
 server.get("*", (request, response) => {
     response.sendFile(path.resolve("client/dist/reports/index.html"));
 });
 
 
+/** Errors handlers */
 server.use(apiNotFoundError)
 server.use(handleError)
 
 
-
+/**PORT lisining */
 server.listen(port, () => console.log("Listening at port: ", port));

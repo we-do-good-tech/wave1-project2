@@ -1,3 +1,6 @@
+/**
+ * APP config vars
+ */
 module.exports = {
     port: 3000,
     GOOGLE_SHEETS: {

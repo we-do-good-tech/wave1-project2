@@ -19,6 +19,7 @@ const createReportLimitOptions = {
 }
 
 
+/** GET /api/teacher/students -  get students list */
 router.get(
     '/students',
     authSession,
@@ -28,6 +29,19 @@ router.get(
     teacherController.getStudents
 )
 
+/** POST /api/teacher/create-report' 
+ *  body : { ticketNo: string,
+ * studentName:string,
+ * reportActivitis: string,
+ * reportComments: string,
+ * parentEmail: email string ,
+ * reportDate: date string,
+ * reportStartTime: time string,
+ * reportEndTime: time string,
+ * reportRangeTimne: time string }
+ * -
+ * save report created
+*/
 router.post(
     '/create-report',
     limitter(createReportLimitOptions),
@@ -63,6 +77,7 @@ router.post(
     teacherController.createReport
 )
 
+/** GET /api/teacher/reports-unconfirm -  get reports  unconfirm list  */
 router.get(
     '/reports-unconfirm',
     authSession,
@@ -72,6 +87,7 @@ router.get(
     teacherController.getReportsUnConfirm
 )
 
+/** GET /api/teacher/reports/stats -  get reports  stats   */
 router.get(
     '/reports/stats',
     authSession,
@@ -80,7 +96,16 @@ router.get(
     teacherController.getReportsStats
 )
 
-
+/** POST /api/teacher/resend/parent-sign' 
+ *  body : { ticketNo: string,
+ * studentName:string,
+ * reportActivitis: string,
+ * reportComments: string,
+ * index:  number ,
+ * reportDate: date string}
+ * -
+ * resend confirm email to parent
+*/
 router.post(
     '/resend/parent-sign',
     authSession,
