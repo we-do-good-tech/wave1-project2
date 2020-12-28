@@ -6,7 +6,7 @@ const JsonWebToken = require('jsonwebtoken')
  * @param {*} request 
  * @param {*} response 
  * @param {*} next
- * verify token - authorize user
+ * verify token - authorize sign user
  */
 async function verifyTokenSign(request, response, next) {
 

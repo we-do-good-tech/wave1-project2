@@ -1,3 +1,6 @@
+/**
+ * email tamplates
+ */
 module.exports = {
     confirmCode: function (code) {
         return {

@@ -2,7 +2,14 @@ const googleSheetsService = require('../services/google-sheets')
 const keys = require('../config/keys')
 const { convertSheetsDataToObjectsArray } = require('../helpers/tojson')
 
-
+/**
+ * 
+ * @param {*} request 
+ * @param {*} response 
+ * @param {*} next 
+ * 
+ * find sigle report 
+ */
 async function findReport(request, response, next) {
     const { ticketNo, reportDate } = request.body
     const query = `select A,B,C,D,E,F,I,L,M where J=${Number(request.userData.teacherId)}and I=${ticketNo} and A=date '${reportDate}'`

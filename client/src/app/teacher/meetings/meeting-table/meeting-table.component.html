@@ -24,6 +24,8 @@
                 </mat-select>
             </div>
         </div>
+        <!-- <div class="animate-center"> -->
+
         <div class="table">
             <ul>
                 <li>מפגש</li>
@@ -31,17 +33,26 @@
                 <li>סטטוס</li>
             </ul>
             <div class="meetings">
-                <div style="text-align: center;" *ngIf="(reports | filter: studentSelected:'ticketNo').length === 0">
-                    No Repots
-                </div>
-                <app-meeting-table-item
-                    *ngFor="let report of reports | filter: studentSelected:'ticketNo';let i = index;"
-                    [displayItem]="anableResendParentSign(report?.lastDateResendSignToParent, 1)"
-                    [index]="i +1"
-                    [report]="report"
-                    (sendSignAgain)="getReportSignAgain($event)">
-                </app-meeting-table-item>
+                <ng-container
+                    *ngIf="reports | filter: studentSelected:'ticketNo').length === 0; then empty else displayTable">
+                </ng-container>
+
+                <ng-template #empty>
+                    <div style="text-align: center;">
+                        No Repots
+                    </div>
+                </ng-template>
+                <ng-template #displayTable>
+                    <app-meeting-table-item
+                        *ngFor="let report of reports | filter: studentSelected:'ticketNo';let i = index;"
+                        [displayItem]="anableResendParentSign(report?.lastDateResendSignToParent, 1)"
+                        [index]="i +1"
+                        [report]="report"
+                        (sendSignAgain)="getReportSignAgain($event)">
+                    </app-meeting-table-item>
+                </ng-template>
             </div>
         </div>
+        <!-- </div> -->
     </div>
 </div>

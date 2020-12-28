@@ -591,6 +591,7 @@ class ReportsService {
     getReportChange() {
         return this.reportChange.asObservable();
     }
+    // POST TEACHER CREATE REPORT
     createReport(report) {
         return this.http.post('api/teacher/create-report', report, { withCredentials: true })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((result) => {
@@ -603,9 +604,11 @@ class ReportsService {
             return result.message;
         }));
     }
+    // GET TEACHER STATS
     getMountlyStats() {
         return this.http.get('api/teacher/reports/stats', { withCredentials: true });
     }
+    // GET TEACHER UNCINFIRM REPORTS
     getReportsNotConfirm() {
         if (this.reports.length > 0) {
             console.log('REPORTS NO HTTP');
@@ -618,6 +621,7 @@ class ReportsService {
             this.reportsChange.next([...this.reports]);
         }));
     }
+    // POST TEACHER RESEND EMAIL TO PARENT FOR CONFIRM REPORT 
     resendParentSign(report) {
         const reportInfo = {
             studentName: report.studentName,
@@ -1749,6 +1753,7 @@ class AuthService {
             this.clearLoginInfo();
         }
     }
+    // POST AUTH TEACHER EMAIL 
     authTeacherEmail(teacherEmail) {
         return this.http
             .post("api/auth/teacherEmail", { teacherEmail: teacherEmail })
@@ -1761,6 +1766,7 @@ class AuthService {
             return result.message;
         }));
     }
+    // POST AUTH TEACHER CONFIRM CODE 
     confirmCode(code) {
         return this.http
             .post("api/auth/confirm-code", { code: code }, { withCredentials: true })
@@ -1782,6 +1788,7 @@ class AuthService {
             return result.message;
         }));
     }
+    // GER NEW CONFIRM CODE 
     resendConfirmCode() {
         return this.http
             .get("api/auth/new-confirm-code", { withCredentials: true })
@@ -2388,6 +2395,7 @@ class SignService {
         this.http = http;
         this.reportsService = reportsService;
     }
+    // POST VERIFY PARENT TOKEN
     verifyToken(token) {
         return this.http.post('api/sign/verify/parent-token', { token: token })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["tap"])((result) => {
@@ -2397,6 +2405,7 @@ class SignService {
             }
         }));
     }
+    // POST  PARENT SIGN
     sendSign(singImageBase64) {
         return this.http.post('api/sign/parent', { singImageBase64: singImageBase64, token: this.token })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])((result) => {
