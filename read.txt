@@ -1,5 +1,4 @@
-at the moment app run on heroku , look up package.json and package.json on client folder
-the front end static files  accessible by server
+the fron end static files  accessible by server
 
 run localy:
 cd client and run command npm i 
@@ -10,3 +9,6 @@ dev mode : NODE_ENV =development
 init app: run command node app.js
 
 bulid: cd clinet folder and run ng build --prod
+
+
+

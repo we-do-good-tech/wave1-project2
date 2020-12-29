@@ -3,7 +3,6 @@ const JsonWebToken = require('jsonwebtoken')
 const { destroySession } = require('./auth-session')
 
 /**
- * 
  * @param {*} request 
  * @param {*} response 
  * @param {*} next

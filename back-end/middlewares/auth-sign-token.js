@@ -2,7 +2,6 @@ const keys = require('../config/keys')
 const JsonWebToken = require('jsonwebtoken')
 
 /**
- * 
  * @param {*} request 
  * @param {*} response 
  * @param {*} next
