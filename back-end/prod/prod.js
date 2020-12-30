@@ -19,7 +19,7 @@ module.exports = function (app) {
     app.use(helmet())
     app.use(compression())
     app.use(cors({
-        origin: 'https://mashlimim.herokuapp.com/',
+        origin: '...',
         methods: ['GET', 'POST']
     }))
 }
