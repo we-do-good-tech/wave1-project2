@@ -13,19 +13,25 @@ bulid: cd clinet folder and run ng build --prod
 
 env vars 
 
-SPREADSHEETS_ID=
-SHEET_ID_TEACHERS=
-SHEET_ID_CHILDRENS=
-SHEET_ID_REPORTS=
-SHEET_ID_TEACHER_STATS=
-SHETT_NAME_TEACHER_STATS=
-SHEETS_NAME_REPORTS=
-SHEET_NAME_CHILDRENS=
-SHEET_NAME_TEACHERS=
-SEETS_SCOPE=
+SPREADSHEETS_ID= the SPREADSHEETS ID , your uniqe id of SPREADSHEETS / EXP: 1iT7Cu_tBxdMXXfQp7vTGXPg2VUEv7tcbufN5k4AA
 
-AUTH_EMAIL_USER=
-AUTH_EMAIL_PASS=
+SHEET_ID_TEACHERS= id of tab in SPREADSHEETS /EXP: gid=713044226
+SHEET_ID_CHILDRENS= id of tab in SPREADSHEETS
+SHEET_ID_REPORTS= id of tab in SPREADSHEETS
+SHEET_ID_TEACHER_STATS= id of tab in SPREADSHEETS
 
-SECRET_ACCESS_TOKEN_KEY=
-SECRET_ACCESS_PARENT_TOKEN_KEY=
+* Information is available at the url of the document *
+
+SHETT_NAME_TEACHER_STATS= name of tab
+SHEETS_NAME_REPORTS=name of tab
+SHEET_NAME_CHILDRENS=name of tab
+SHEET_NAME_TEACHERS=name of tab
+
+prommisions:
+SEETS_SCOPE= level of scope user can access to sheet
+
+AUTH_EMAIL_USER= company email (base sender email to users)
+AUTH_EMAIL_PASS= password of email
+
+SECRET_ACCESS_TOKEN_KEY=any key you choose EXP: ssagsug67r
+SECRET_ACCESS_PARENT_TOKEN_KEY=any key you choose EXP: ssagsug67r
