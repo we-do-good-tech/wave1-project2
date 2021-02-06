@@ -35,8 +35,8 @@ export class MeetingCreateSuccessComponent implements OnInit, OnDestroy {
                     return conculatePresent(Number(limitHoures), Number(hoursDone))
                 })
             ).subscribe((result) => {
-                console.log(result);
-                this.progress = `${String(result)}%`
+               
+                this.progress = result >= 100 ? `${String(100)}%` : `${String(result)}%`
             });
     }
 
